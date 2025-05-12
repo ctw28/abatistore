@@ -76,6 +76,18 @@
         padding-top: 3rem;
     }
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-71X4PVE1XD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-71X4PVE1XD');
+    </script>
 </head>
 
 <body id="page-top">
@@ -209,7 +221,9 @@
                                 style="width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid #ddd;"
                                 :class="{ 'border-primary': index === activeImageIndex }" />
                         </div>
-                        <a :href="getWhatsappLink(selectedProduct.name)" target="_blank" class="btn btn-success my-3">
+                        <a :href="getWhatsappLink(selectedProduct.name)"
+                            @click="trackWhatsAppClick(selectedProduct.name)" target="_blank"
+                            class="btn btn-success my-3">
                             <i class="fa fa-whatsapp me-1"></i> Info / Pemesanan
                         </a>
 
@@ -278,6 +292,14 @@
             }
         },
         methods: {
+            trackWhatsAppClick(productName) {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'click_whatsapp', {
+                        'event_category': 'Engagement',
+                        'event_label': productName,
+                    });
+                }
+            },
             getWhatsappLink(productName) {
                 const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
                 const message =

@@ -85,7 +85,7 @@ createApp({
     },
     methods: {
         async loadKategori() {
-            const res = await fetch('/api/kategori', {
+            const res = await fetch("{{route('categories')}}", {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('jwt')
                 }
@@ -128,7 +128,7 @@ createApp({
                 }
             }
 
-            fetch('/api/products', {
+            fetch("{{route('product.store')}}", {
                     method: 'POST',
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.getItem('jwt') // jika pakai auth
@@ -141,7 +141,7 @@ createApp({
                 })
                 .then(res => {
                     alert('Produk berhasil disimpan!');
-                    window.location.href = "{{ route('product.index') }}";
+                    window.location.href = "{{ route('product.data') }}";
                     console.log(res);
                     // reset form atau redirect
                 })

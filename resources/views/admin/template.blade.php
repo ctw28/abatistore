@@ -126,7 +126,7 @@
                         </li>
                         <li class="nav-header">PRODUK</li>
                         <li class="nav-item">
-                            <a href="{{ route('product.index') }}" class="nav-link">
+                            <a href="{{ route('product.data') }}" class="nav-link">
                                 <i class="nav-icon bi bi-box-seam"></i> {{-- Ikon produk --}}
                                 <p>Data Produk</p>
                             </a>

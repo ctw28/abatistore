@@ -27,13 +27,6 @@ class ProductController extends Controller
 
         // Ambil data produk
         $products = $products->get();
-
-        // Tambahkan URL gambar untuk setiap produk
-        $products->each(function ($product) {
-            // Misalnya kolom 'image' berisi path seperti 'product/namafile'
-            $product->image = asset('storage/' . $product->image);
-        });
-
         return response()->json($products);
     }
 

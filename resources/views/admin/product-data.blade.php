@@ -163,10 +163,11 @@ new Vue({
         },
         async openStockModal(product) {
             this.currentProduct = product;
-
+            let urlstock = "{{route('stock.index',':id')}}"
+            urlstock = urlstock.replace(':id', product.id)
             const [sizes, stock] = await Promise.all([
-                fetch('/api/sizes').then(res => res.json()),
-                fetch(`/api/products/${product.id}/stocks`).then(res => res.json())
+                fetch("{{route('size.index')}}").then(res => res.json()),
+                fetch(urlstock).then(res => res.json())
             ]);
 
             this.availableSizes = sizes;
@@ -205,7 +206,9 @@ new Vue({
             }));
 
             // Mengirimkan data stok ke API
-            fetch(`/api/products/${this.currentProduct.id}/stocks`, {
+            let url = "{{route('stock.store',':id')}}"
+            url = url.replace(':id', this.currentProduct.id)
+            fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -240,7 +243,9 @@ new Vue({
             modal.show();
         },
         fetchProducts() {
-            fetch('/api/products', {
+            let url = "{{route('product.index')}}"
+
+            fetch(url, {
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.getItem('jwt')
                     }
@@ -251,7 +256,9 @@ new Vue({
                 })
         },
         toggleFeatured(product) {
-            fetch(`/api/products/${product.id}/toggle-featured`, {
+            let url = "{{route('toggle.featured',':id')}}"
+            url = url.replace(':id', product.id)
+            fetch(url, {
                     method: 'PATCH',
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
@@ -265,8 +272,9 @@ new Vue({
         },
         deleteProduct(id) {
             if (!confirm('Yakin ingin menghapus produk ini?')) return;
-
-            fetch(`/api/products/${id}`, {
+            let url = "{{route('product.destroy',':id')}}"
+            url = url.replace(':id', id)
+            fetch(url, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.getItem('jwt')

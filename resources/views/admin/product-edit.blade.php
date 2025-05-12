@@ -89,7 +89,9 @@ new Vue({
             return segments[segments.length - 2]; // karena terakhir biasanya "edit"
         },
         fetchProduct() {
-            fetch(`/api/products/${this.productId}`)
+            let url = "{{route('product.show',':id')}}"
+            url = url.replace(':id', this.productId)
+            fetch(url)
                 .then(res => res.json())
                 .then(data => {
                     this.form.name = data.name;
@@ -101,7 +103,7 @@ new Vue({
                 });
         },
         fetchCategories() {
-            fetch(`/api/kategori`)
+            fetch("{{route('categories')}}")
                 .then(res => res.json())
                 .then(data => this.categories = data);
         },
@@ -118,7 +120,9 @@ new Vue({
         },
         deleteImage(id) {
             if (!confirm('Yakin hapus gambar ini?')) return;
-            fetch(`/api/product-images/${id}`, {
+            let url = "{{route('product.images.destroy',':id')}}"
+            url = url.replace(':id', id)
+            fetch(url, {
                     method: 'DELETE'
                 })
                 .then(() => {
@@ -140,14 +144,16 @@ new Vue({
                 formData.append('images[]', file);
             });
 
-            fetch(`/api/products/${this.productId}`, {
+            let url = "{{route('product.update',':id')}}"
+            url = url.replace(':id', this.productId)
+            fetch(url, {
                     method: 'POST',
                     body: formData
                 })
                 .then(res => res.json())
                 .then(() => {
                     alert('Produk berhasil diperbarui!');
-                    window.location.href = "{{ route('product.index') }}";
+                    window.location.href = "{{ route('product.data') }}";
 
                 });
         }

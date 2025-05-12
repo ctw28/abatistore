@@ -15,22 +15,22 @@ use App\Http\Controllers\SizeController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/me', [AuthController::class, 'me'])->middleware('auth:api');
-Route::get('/products', [ProductController::class, 'index']);
-Route::post('/products', [ProductController::class, 'store']);
-Route::get('/kategori', [KategoriController::class, 'index']);
-Route::get('/products/{id}/images', [ProductController::class, 'images']);
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+Route::post('/products', [ProductController::class, 'store'])->name('product.store');
+Route::get('/kategori', [KategoriController::class, 'index'])->name('categories');
+// Route::get('/products/{id}/images', [ProductController::class, 'images']);
 
-Route::get('/products/{id}', [ProductController::class, 'show']);
-Route::post('/products/{id}', [ProductController::class, 'update']);
-Route::delete('/products/{id}', [ProductController::class, 'destroy']);
-Route::delete('/product-images/{id}', [ProductImageController::class, 'destroy']);
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::post('/products/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::delete('/product-images/{id}', [ProductImageController::class, 'destroy'])->name('product.images.destroy');
 
-Route::get('/sizes', [SizeController::class, 'index']);
-Route::post('/sizes', [SizeController::class, 'store']);
-Route::delete('/sizes/{id}', [SizeController::class, 'destroy']);
+Route::get('/sizes', [SizeController::class, 'index'])->name('size.index');
+Route::post('/sizes', [SizeController::class, 'store'])->name('size.store');
+Route::delete('/sizes/{id}', [SizeController::class, 'destroy'])->name('size.destroy');
 
-Route::get('/products/{product}/stocks', [ProductStockController::class, 'index']);
-Route::post('/products/{product}/stocks', [ProductStockController::class, 'store']);
-Route::delete('stocks/{id}', [ProductStockController::class, 'destroy']);
+Route::get('/products/{product}/stocks', [ProductStockController::class, 'index'])->name('stock.index');
+Route::post('/products/{product}/stocks', [ProductStockController::class, 'store'])->name('stock.store');
+Route::delete('stocks/{id}', [ProductStockController::class, 'destroy'])->name('stock.destroy');
 
-Route::patch('/products/{id}/toggle-featured', [ProductController::class, 'toggleFeatured']);
+Route::patch('/products/{id}/toggle-featured', [ProductController::class, 'toggleFeatured'])->name('toggle.featured');

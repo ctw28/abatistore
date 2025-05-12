@@ -90,7 +90,7 @@
         },
         methods: {
             async login() {
-                const res = await fetch('/api/login', {
+                const res = await fetch("{{route('login')}}", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

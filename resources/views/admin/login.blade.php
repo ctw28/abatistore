@@ -34,13 +34,10 @@
     <div id="app">
         <div class="login-page bg-body-secondary">
             <div class="login-box">
-                <div class="login-logo">
-                    <a href="../index2.html"><b>Admin</b>LTE</a>
-                </div>
-                <!-- /.login-logo -->
                 <div class="card">
                     <div class="card-body login-card-body">
-                        <p class="login-box-msg">Sign in to start your session</p>
+                        <img class="d-block mx-auto mb-2" src="{{ asset('logo.png') }}" width="50%" />
+                        <p class="login-box-msg">Login dulu ya</p>
                         <form @submit.prevent="login" method="post">
                             <div class="input-group mb-3">
                                 <input type="email" v-model="email" class="form-control" placeholder="Email" />

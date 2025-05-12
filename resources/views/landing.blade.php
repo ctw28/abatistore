@@ -104,7 +104,7 @@
                 <br>
                 <br>
                 <a class="btn btn-info text-uppercase me-2" href=""><i class="fa fa-whatsapp me-1"></i> Admin</a>
-                <a class="btn btn-info text-uppercase" href="https://www.instagram.com/fadkhera.kendari.official/"
+                <a class="btn btn-info text-uppercase" href="https://www.instagram.com/fadkhera.kendari/"
                     target="_blank"><i class="fa fa-instagram me-1"></i>Instagram</a>
                 <br><br>
                 <a class="btn btn-info text-uppercase" href=""><i class="fa fa-map-marker me-1"></i> Lokasi Kami</a>
@@ -126,7 +126,8 @@
                             <div style="position: absolute; top: 0px; right: 5px; z-index: 10;">
                                 <span class="badge bg-info" style="font-size: 0.6rem;">Ready Stok</span>
                             </div>
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                            <a class="portfolio-link" href="#" @click.prevent="openModal(product)">
+
 
                                 <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
                             </a>
@@ -157,8 +158,7 @@
                             <div style="position: absolute; top: 0px; right: 5px; z-index: 10;">
                                 <span class="badge bg-info" style="font-size: 0.6rem;">Ready Stok</span>
                             </div>
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-
+                            <a class="portfolio-link" href="#" @click.prevent="openModal(product)">
                                 <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
                             </a>
                             <div class="portfolio-caption">
@@ -176,7 +176,52 @@
                 </div>
             </div>
         </section>
+        <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title">@{{ selectedProduct.name }}</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Galeri Utama -->
+                        <div class="position-relative">
+                            <img :src="getImageUrl(activeImage)" class="img-fluid mb-3 rounded shadow"
+                                style="object-fit: contain;" alt="Gambar Produk">
 
+                            <!-- Tombol navigasi manual -->
+                            <button @click="prevImage"
+                                class="btn btn-sm btn-light position-absolute top-50 start-0 translate-middle-y">
+                                <i class="fa fa-chevron-left"></i>
+                            </button>
+                            <button @click="nextImage"
+                                class="btn btn-sm btn-light position-absolute top-50 end-0 translate-middle-y">
+                                <i class="fa fa-chevron-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Thumbnail Preview -->
+                        <div class="d-flex justify-content-center gap-2 mt-2 flex-wrap">
+                            <img v-for="(img, index) in allImages" :key="index" :src="getImageUrl(img)"
+                                @click="activeImageIndex = index" class="rounded"
+                                style="width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid #ddd;"
+                                :class="{ 'border-primary': index === activeImageIndex }" />
+                        </div>
+                        <a :href="getWhatsappLink(selectedProduct.name)" target="_blank" class="btn btn-success my-3">
+                            <i class="fa fa-whatsapp me-1"></i> Info / Pemesanan
+                        </a>
+
+                        <p><strong>Harga:</strong> @{{ formatRupiah(selectedProduct.price) }}</p>
+                        Ukuran tersedia
+                        <ul class="list-group">
+                            <li class="list-group-item" v-for="stock in selectedProduct.stocks" :key="stock.size.id">
+                                @{{ stock.size.name }}: @{{ stock.stock }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
@@ -190,47 +235,9 @@
         </footer>
         <!-- Portfolio Modals-->
         <!-- Portfolio item 1 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Modal untuk Detail Produk -->
+
+
     </div>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -246,13 +253,57 @@
         data() {
             return {
                 featuredProducts: [],
-                otherProducts: []
+                otherProducts: [],
+                selectedProduct: {},
+                activeImageIndex: 0,
+                slideInterval: null,
+
             }
         },
         mounted() {
             this.fetchProducts();
         },
+        computed: {
+            allImages() {
+                // Gabungkan gambar utama + gambar pendukung
+                if (!this.selectedProduct) return [];
+                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                const others = this.selectedProduct.images?.map(img => img.image) || [];
+                return main.concat(others);
+            },
+            activeImage() {
+                return this.allImages[this.activeImageIndex] || '';
+            }
+        },
         methods: {
+            getWhatsappLink(productName) {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Halo, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            nextImage() {
+                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+            },
+            prevImage() {
+                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                    .length;
+            },
+            startSlide() {
+                this.slideInterval = setInterval(() => {
+                    this.nextImage();
+                }, 5000); // 3 detik
+            },
+            stopSlide() {
+                clearInterval(this.slideInterval);
+            },
+            openModal(product) {
+                this.selectedProduct = product;
+                this.activeImageIndex = 0;
+                this.startSlide();
+                const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                modal.show();
+            },
             async fetchProducts() {
                 let url = "{{route('product.index')}}"
                 const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
@@ -262,13 +313,16 @@
                 this.otherProducts = others;
             },
             getImageUrl(path) {
-                return path ? `/storage/${path}` : '/images/no-image.png';
+                return path ? `/storage/app/public/${path}` : '/images/no-image.png';
             },
             formatRupiah(value) {
                 const number = Number(value);
                 if (isNaN(number)) return value;
                 return 'Rp ' + number.toLocaleString('id-ID');
             },
+        },
+        beforeUnmount() {
+            this.stopSlide();
         }
     }).mount('#app');
     </script>

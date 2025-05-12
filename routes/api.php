@@ -13,7 +13,7 @@ use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProductStockController;
 use App\Http\Controllers\SizeController;
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/me', [AuthController::class, 'me'])->middleware('auth:api');
 Route::get('/products', [ProductController::class, 'index']);
 Route::post('/products', [ProductController::class, 'store']);

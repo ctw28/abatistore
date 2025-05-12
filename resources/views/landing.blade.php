@@ -103,11 +103,13 @@
                         class="fa fa-angle-double-down me-1"></i>Lihat Katalog</a>
                 <br>
                 <br>
-                <a class="btn btn-info text-uppercase me-2" href=""><i class="fa fa-whatsapp me-1"></i> Admin</a>
+                <a class="btn btn-info text-uppercase me-2" href="https://wa.me/message/A6U3BRVQCID3K1"><i
+                        class="fa fa-whatsapp me-1"></i> Admin</a>
                 <a class="btn btn-info text-uppercase" href="https://www.instagram.com/fadkhera.kendari/"
                     target="_blank"><i class="fa fa-instagram me-1"></i>Instagram</a>
                 <br><br>
-                <a class="btn btn-info text-uppercase" href=""><i class="fa fa-map-marker me-1"></i> Lokasi Kami</a>
+                <a class="btn btn-info text-uppercase" href="https://maps.app.goo.gl/czDzXeGqrUQXefoBA"
+                    target="_blank"><i class="fa fa-map-marker me-1"></i> Lokasi Kami</a>
 
             </div>
         </header>

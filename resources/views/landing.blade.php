@@ -165,8 +165,8 @@
                         </div>
                     </div>
 
-                    <div v-for="product in otherProducts" :key="product.id" class="col-lg-3 col-sm-6 col-6 mb-4"
-                        style="border: 1px solid #e9e9e9;">
+                    <div v-for="product in otherProducts" :key="product.id"
+                        class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4" style="border: 1px solid #e9e9e9;">
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item  position-relative">
                             <div style="position: absolute; top: 0px; right: 5px; z-index: 10;">
@@ -337,7 +337,7 @@
                 this.otherProducts = others;
             },
             getImageUrl(path) {
-                return path ? `/storage/app/public/${path}` : '/images/no-image.png';
+                return path ? `/public/storage/${path}` : '/images/no-image.png';
             },
             formatRupiah(value) {
                 const number = Number(value);

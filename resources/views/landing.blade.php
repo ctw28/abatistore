@@ -128,14 +128,15 @@
                             </div>
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
 
-                                <img class="img-fluid" :src="product.image" alt="..." />
+                                <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">@{{ product.name }}
+                                <div class="portfolio-caption-heading">[@{{ product.category.name }}]
+                                    @{{ product.name }}
                                 </div>
                                 <p class="mb-2 text-muted" style="font-size: 0.6rem;">
                                     <i class="fa fa-tags me-1 text-success"></i>
-                                    <strong class="me-2">@{{ product.price }}</strong>
+                                    <strong class="me-2">@{{ formatRupiah(product.price) }}</strong>
                                     <br>
 
                                 </p>
@@ -158,14 +159,14 @@
                             </div>
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
 
-                                <img class="img-fluid" :src="product.image" alt="..." />
+                                <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">[@{{ product.category.name }}]
                                     @{{ product.name }}</div>
                                 <p class="mb-2 text-muted" style="font-size: 0.6rem;">
                                     <i class="fa fa-tags me-1 text-success"></i>
-                                    <strong class="me-2">@{{ product.price }}</strong>
+                                    <strong class="me-2">@{{ formatRupiah(product.price) }}</strong>
                                     <br>
 
                                 </p>
@@ -230,216 +231,6 @@
                 </div>
             </div>
         </div>
-        <!-- Portfolio item 2 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/2.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Explore
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Graphic Design
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 3 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/3.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Finish
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Identity
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 4 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/4.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Lines
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Branding
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 5 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/5.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Southwest
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Website Design
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 6 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/6.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Window
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Photography
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -463,12 +254,21 @@
         },
         methods: {
             async fetchProducts() {
-                const featured = await fetch('/api/products?is_featured=1').then(res => res.json());
-                const others = await fetch('/api/products?is_featured=0').then(res => res.json());
+                let url = "{{route('product.index')}}"
+                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
 
                 this.featuredProducts = featured;
                 this.otherProducts = others;
-            }
+            },
+            getImageUrl(path) {
+                return path ? `/storage/${path}` : '/images/no-image.png';
+            },
+            formatRupiah(value) {
+                const number = Number(value);
+                if (isNaN(number)) return value;
+                return 'Rp ' + number.toLocaleString('id-ID');
+            },
         }
     }).mount('#app');
     </script>

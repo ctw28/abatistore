@@ -108,7 +108,7 @@ new Vue({
                 .then(data => this.categories = data);
         },
         getImageUrl(path) {
-            return path ? `/storage/${path}` : '/images/no-image.png';
+            return path ? `/public/storage/${path}` : '/images/no-image.png';
         },
         handleMainImage(e) {
             const file = e.target.files[0];

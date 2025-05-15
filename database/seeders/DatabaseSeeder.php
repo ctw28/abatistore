@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Koko', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Jacket', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Kurta', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Kopiah', 'created_at' => now(), 'updated_at' => now()],
         ]);
         DB::table('sizes')->insert([
             ['name' => 'S'],
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'XL'],
             ['name' => 'XXL'],
             ['name' => 'XXXL'],
+            ['name' => 'All Size'],
         ]);
     }
 }

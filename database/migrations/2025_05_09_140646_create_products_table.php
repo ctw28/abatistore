@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->string('image')->nullable(); // untuk path gambar
             $table->boolean('is_featured')->default(false);
+            $table->boolean('is_habis')->default(false);
 
             $table->timestamps();
         });

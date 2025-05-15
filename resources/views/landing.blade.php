@@ -149,12 +149,12 @@
                                 <div class="portfolio-caption-heading">[@{{ product.category.name }}]
                                     @{{ product.name }}
                                 </div>
-                                <p class="mb-2 text-muted" style="font-size: 0.6rem;">
+                                <!-- <p class="mb-2 text-muted" style="font-size: 0.6rem;">
                                     <i class="fa fa-tags me-1 text-success"></i>
                                     <strong class="me-2">@{{ formatRupiah(product.price) }}</strong>
                                     <br>
 
-                                </p>
+                                </p> -->
                                 <button class="btn btn-success btn-sm mb-1 mt-1 text-uppercase" href="#" @click.prevent="openModal(product)">
                                     <i class="fa fa-info-circle me-1"></i>
                                     Detail

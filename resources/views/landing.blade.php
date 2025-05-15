@@ -21,72 +21,72 @@
     <link href="css/styles.css" rel="stylesheet" />
     <link href="assets/fontawesome/css/font-awesome.css" rel="stylesheet" />
     <style>
-    .btn-bounce {
-        display: inline-block;
-        padding: 12px 24px;
-        color: white;
-        font-weight: bold;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
-        animation: bounce 1.5s infinite;
-    }
-
-    @keyframes bounce {
-
-        0%,
-        100% {
-            transform: translateY(0);
+        .btn-bounce {
+            display: inline-block;
+            padding: 12px 24px;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            animation: bounce 1.5s infinite;
         }
 
-        50% {
-            transform: translateY(-6px);
-        }
-    }
+        @keyframes bounce {
 
-    .btn-shake {
-        display: inline-block;
-        color: white;
-        font-weight: bold;
-        text-decoration: none;
-        animation: shake 5.5s infinite;
-    }
+            0%,
+            100% {
+                transform: translateY(0);
+            }
 
-    @keyframes shake {
-
-        0%,
-        100% {
-            transform: translateX(0);
+            50% {
+                transform: translateY(-6px);
+            }
         }
 
-        25% {
-            transform: translateX(-3px);
+        .btn-shake {
+            display: inline-block;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            animation: shake 5.5s infinite;
         }
 
-        50% {
-            transform: translateX(3px);
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-3px);
+            }
+
+            50% {
+                transform: translateX(3px);
+            }
+
+            75% {
+                transform: translateX(-3px);
+            }
         }
 
-        75% {
-            transform: translateX(-3px);
+        header.masthead {
+            padding-top: 3rem;
         }
-    }
-
-    header.masthead {
-        padding-top: 3rem;
-    }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-71X4PVE1XD"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', 'G-71X4PVE1XD');
+        gtag('config', 'G-71X4PVE1XD');
     </script>
 </head>
 
@@ -155,11 +155,10 @@
                                     <br>
 
                                 </p>
-                                <!-- <button class="btn btn-success btn-sm mb-1 text-uppercase" data-bs-dismiss="modal"
-                                type="button">
-                                <i class="fa fa-whatsapp me-1"></i>
-                                Order WA
-                            </button> -->
+                                <button class="btn btn-success btn-sm mb-1 mt-1 text-uppercase" href="#" @click.prevent="openModal(product)">
+                                    <i class="fa fa-info-circle me-1"></i>
+                                    Detail
+                                </button>
 
                             </div>
                         </div>
@@ -178,12 +177,16 @@
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">[@{{ product.category.name }}]
                                     @{{ product.name }}</div>
-                                <p class="mb-2 text-muted" style="font-size: 0.6rem;">
+                                <!-- <p class="mb-2 text-muted" style="font-size: 0.6rem;">
                                     <i class="fa fa-tags me-1 text-success"></i>
                                     <strong class="me-2">@{{ formatRupiah(product.price) }}</strong>
                                     <br>
 
-                                </p>
+                                </p> -->
+                                <button class="btn btn-success btn-sm mb-1 mt-1 text-uppercase" href="#" @click.prevent="openModal(product)">
+                                    <i class="fa fa-info-circle me-1"></i>
+                                    Detail
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -261,94 +264,94 @@
     <script src="js/scripts.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
-    const {
-        createApp
-    } = Vue;
+        const {
+            createApp
+        } = Vue;
 
-    createApp({
-        data() {
-            return {
-                featuredProducts: [],
-                otherProducts: [],
-                selectedProduct: {},
-                activeImageIndex: 0,
-                slideInterval: null,
+        createApp({
+            data() {
+                return {
+                    featuredProducts: [],
+                    otherProducts: [],
+                    selectedProduct: {},
+                    activeImageIndex: 0,
+                    slideInterval: null,
 
-            }
-        },
-        mounted() {
-            this.fetchProducts();
-        },
-        computed: {
-            allImages() {
-                // Gabungkan gambar utama + gambar pendukung
-                if (!this.selectedProduct) return [];
-                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                const others = this.selectedProduct.images?.map(img => img.image) || [];
-                return main.concat(others);
-            },
-            activeImage() {
-                return this.allImages[this.activeImageIndex] || '';
-            }
-        },
-        methods: {
-            trackWhatsAppClick(productName) {
-                if (typeof gtag === 'function') {
-                    gtag('event', 'click_whatsapp', {
-                        'event_category': 'Engagement',
-                        'event_label': productName,
-                    });
                 }
             },
-            getWhatsappLink(productName) {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                const message =
-                    `Halo, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            mounted() {
+                this.fetchProducts();
             },
-            nextImage() {
-                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+            computed: {
+                allImages() {
+                    // Gabungkan gambar utama + gambar pendukung
+                    if (!this.selectedProduct) return [];
+                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                    const others = this.selectedProduct.images?.map(img => img.image) || [];
+                    return main.concat(others);
+                },
+                activeImage() {
+                    return this.allImages[this.activeImageIndex] || '';
+                }
             },
-            prevImage() {
-                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
-                    .length;
-            },
-            startSlide() {
-                this.slideInterval = setInterval(() => {
-                    this.nextImage();
-                }, 5000); // 3 detik
-            },
-            stopSlide() {
-                clearInterval(this.slideInterval);
-            },
-            openModal(product) {
-                this.selectedProduct = product;
-                this.activeImageIndex = 0;
-                this.startSlide();
-                const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                modal.show();
-            },
-            async fetchProducts() {
-                let url = "{{route('product.index')}}"
-                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+            methods: {
+                trackWhatsAppClick(productName) {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'click_whatsapp', {
+                            'event_category': 'Engagement',
+                            'event_label': productName,
+                        });
+                    }
+                },
+                getWhatsappLink(productName) {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Halo, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                nextImage() {
+                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+                },
+                prevImage() {
+                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                        .length;
+                },
+                startSlide() {
+                    this.slideInterval = setInterval(() => {
+                        this.nextImage();
+                    }, 5000); // 3 detik
+                },
+                stopSlide() {
+                    clearInterval(this.slideInterval);
+                },
+                openModal(product) {
+                    this.selectedProduct = product;
+                    this.activeImageIndex = 0;
+                    this.startSlide();
+                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                    modal.show();
+                },
+                async fetchProducts() {
+                    let url = "{{route('product.index')}}"
+                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
 
-                this.featuredProducts = featured;
-                this.otherProducts = others;
+                    this.featuredProducts = featured;
+                    this.otherProducts = others;
+                },
+                getImageUrl(path) {
+                    return path ? `/public/storage/${path}` : '/images/no-image.png';
+                },
+                formatRupiah(value) {
+                    const number = Number(value);
+                    if (isNaN(number)) return value;
+                    return 'Rp ' + number.toLocaleString('id-ID');
+                },
             },
-            getImageUrl(path) {
-                return path ? `/public/storage/${path}` : '/images/no-image.png';
-            },
-            formatRupiah(value) {
-                const number = Number(value);
-                if (isNaN(number)) return value;
-                return 'Rp ' + number.toLocaleString('id-ID');
-            },
-        },
-        beforeUnmount() {
-            this.stopSlide();
-        }
-    }).mount('#app');
+            beforeUnmount() {
+                this.stopSlide();
+            }
+        }).mount('#app');
     </script>
 </body>
 

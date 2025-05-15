@@ -34,3 +34,4 @@ Route::post('/products/{product}/stocks', [ProductStockController::class, 'store
 Route::delete('stocks/{id}', [ProductStockController::class, 'destroy'])->name('stock.destroy');
 
 Route::patch('/products/{id}/toggle-featured', [ProductController::class, 'toggleFeatured'])->name('toggle.featured');
+Route::patch('/products/{id}/toggle-habis', [ProductController::class, 'toggleHabis'])->name('toggle.habis');

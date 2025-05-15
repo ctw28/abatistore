@@ -21,72 +21,72 @@
     <link href="css/styles.css" rel="stylesheet" />
     <link href="assets/fontawesome/css/font-awesome.css" rel="stylesheet" />
     <style>
-        .btn-bounce {
-            display: inline-block;
-            padding: 12px 24px;
-            color: white;
-            font-weight: bold;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
-            animation: bounce 1.5s infinite;
+    .btn-bounce {
+        display: inline-block;
+        padding: 12px 24px;
+        color: white;
+        font-weight: bold;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
         }
 
-        @keyframes bounce {
+        50% {
+            transform: translateY(-6px);
+        }
+    }
 
-            0%,
-            100% {
-                transform: translateY(0);
-            }
+    .btn-shake {
+        display: inline-block;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        animation: shake 5.5s infinite;
+    }
 
-            50% {
-                transform: translateY(-6px);
-            }
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translateX(0);
         }
 
-        .btn-shake {
-            display: inline-block;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-            animation: shake 5.5s infinite;
+        25% {
+            transform: translateX(-3px);
         }
 
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-3px);
-            }
-
-            50% {
-                transform: translateX(3px);
-            }
-
-            75% {
-                transform: translateX(-3px);
-            }
+        50% {
+            transform: translateX(3px);
         }
 
-        header.masthead {
-            padding-top: 3rem;
+        75% {
+            transform: translateX(-3px);
         }
+    }
+
+    header.masthead {
+        padding-top: 3rem;
+    }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-71X4PVE1XD"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-        gtag('config', 'G-71X4PVE1XD');
+    gtag('config', 'G-71X4PVE1XD');
     </script>
 </head>
 
@@ -144,6 +144,12 @@
 
 
                                 <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
+                                <!-- Overlay jika produk habis -->
+                                <div v-if="product.is_habis"
+                                    class="position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center"
+                                    style="width: 80px; height: 80px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.7); color: white; font-weight: bold; font-size: 0.8rem;">
+                                    Habis
+                                </div>
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">[@{{ product.category.name }}]
@@ -155,10 +161,17 @@
                                     <br>
 
                                 </p> -->
-                                <button class="btn btn-success btn-sm mb-1 mt-1 text-uppercase" href="#" @click.prevent="openModal(product)">
+                                <button class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase" href="#"
+                                    @click.prevent="openModal(product)">
                                     <i class="fa fa-info-circle me-1"></i>
                                     Detail
                                 </button>
+                                <a v-if="product.is_habis" :href="getWhatsappLinkPO(product.name)"
+                                    @click="trackWhatsAppClick(selectedProduct.name)" target="_blank"
+                                    class="btn btn-secondary btn-sm ">
+                                    <i class="fa fa-whatsapp me-1"></i> Ajukan PO
+                                </a>
+
 
                             </div>
                         </div>
@@ -173,6 +186,12 @@
                             </div>
                             <a class="portfolio-link" href="#" @click.prevent="openModal(product)">
                                 <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
+                                <!-- Overlay jika produk habis -->
+                                <div v-if="product.is_habis"
+                                    class="position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center"
+                                    style="width: 80px; height: 80px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.7); color: white; font-weight: bold; font-size: 0.8rem;">
+                                    Habis
+                                </div>
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">[@{{ product.category.name }}]
@@ -183,10 +202,18 @@
                                     <br>
 
                                 </p> -->
-                                <button class="btn btn-success btn-sm mb-1 mt-1 text-uppercase" href="#" @click.prevent="openModal(product)">
+                                <button class="btn btn-success btn-sm mb-1 mt-1 text-uppercase" href="#"
+                                    @click.prevent="openModal(product)">
                                     <i class="fa fa-info-circle me-1"></i>
                                     Detail
                                 </button>
+                                <a v-if="product.is_habis" :href="getWhatsappLinkPO(product.name)"
+                                    @click="trackWhatsAppClick(selectedProduct.name)" target="_blank"
+                                    class="btn btn-success my-3">
+                                    <i class="fa fa-whatsapp me-1"></i> Ajukan PO
+                                </a>
+
+
                             </div>
                         </div>
                     </div>
@@ -226,10 +253,17 @@
                         </div>
                         <a :href="getWhatsappLink(selectedProduct.name)"
                             @click="trackWhatsAppClick(selectedProduct.name)" target="_blank"
-                            class="btn btn-success my-3">
+                            class="btn btn-success my-3 me-2">
                             <i class="fa fa-whatsapp me-1"></i> Info / Pemesanan
                         </a>
-
+                        <a v-if="selectedProduct.is_habis" :href="getWhatsappLinkPO(selectedProduct.name)"
+                            @click="trackWhatsAppClick(selectedProduct.name)" target="_blank" class="btn btn-secondary">
+                            <i class="fa fa-whatsapp me-1"></i> Ajukan PO
+                        </a>
+                        <a v-if="!selectedProduct.is_habis" :href="getWhatsappLinkPOUkuran(selectedProduct.name)"
+                            @click="trackWhatsAppClick(selectedProduct.name)" target="_blank" class="btn btn-secondary">
+                            <i class="fa fa-whatsapp me-1"></i> Request Ukuran
+                        </a>
                         <p><strong>Harga:</strong> @{{ formatRupiah(selectedProduct.price) }}</p>
                         Ukuran tersedia
                         <ul class="list-group">
@@ -264,94 +298,106 @@
     <script src="js/scripts.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
-        const {
-            createApp
-        } = Vue;
+    const {
+        createApp
+    } = Vue;
 
-        createApp({
-            data() {
-                return {
-                    featuredProducts: [],
-                    otherProducts: [],
-                    selectedProduct: {},
-                    activeImageIndex: 0,
-                    slideInterval: null,
+    createApp({
+        data() {
+            return {
+                featuredProducts: [],
+                otherProducts: [],
+                selectedProduct: {},
+                activeImageIndex: 0,
+                slideInterval: null,
 
-                }
-            },
-            mounted() {
-                this.fetchProducts();
-            },
-            computed: {
-                allImages() {
-                    // Gabungkan gambar utama + gambar pendukung
-                    if (!this.selectedProduct) return [];
-                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                    const others = this.selectedProduct.images?.map(img => img.image) || [];
-                    return main.concat(others);
-                },
-                activeImage() {
-                    return this.allImages[this.activeImageIndex] || '';
-                }
-            },
-            methods: {
-                trackWhatsAppClick(productName) {
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'click_whatsapp', {
-                            'event_category': 'Engagement',
-                            'event_label': productName,
-                        });
-                    }
-                },
-                getWhatsappLink(productName) {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Halo, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                nextImage() {
-                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-                },
-                prevImage() {
-                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
-                        .length;
-                },
-                startSlide() {
-                    this.slideInterval = setInterval(() => {
-                        this.nextImage();
-                    }, 5000); // 3 detik
-                },
-                stopSlide() {
-                    clearInterval(this.slideInterval);
-                },
-                openModal(product) {
-                    this.selectedProduct = product;
-                    this.activeImageIndex = 0;
-                    this.startSlide();
-                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                    modal.show();
-                },
-                async fetchProducts() {
-                    let url = "{{route('product.index')}}"
-                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
-
-                    this.featuredProducts = featured;
-                    this.otherProducts = others;
-                },
-                getImageUrl(path) {
-                    return path ? `/public/storage/${path}` : '/images/no-image.png';
-                },
-                formatRupiah(value) {
-                    const number = Number(value);
-                    if (isNaN(number)) return value;
-                    return 'Rp ' + number.toLocaleString('id-ID');
-                },
-            },
-            beforeUnmount() {
-                this.stopSlide();
             }
-        }).mount('#app');
+        },
+        mounted() {
+            this.fetchProducts();
+        },
+        computed: {
+            allImages() {
+                // Gabungkan gambar utama + gambar pendukung
+                if (!this.selectedProduct) return [];
+                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                const others = this.selectedProduct.images?.map(img => img.image) || [];
+                return main.concat(others);
+            },
+            activeImage() {
+                return this.allImages[this.activeImageIndex] || '';
+            }
+        },
+        methods: {
+            trackWhatsAppClick(productName) {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'click_whatsapp', {
+                        'event_category': 'Engagement',
+                        'event_label': productName,
+                    });
+                }
+            },
+            getWhatsappLink(productName) {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Halo, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            getWhatsappLinkPO(productName) {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Halo, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            getWhatsappLinkPOUkuran(productName) {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Halo, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            nextImage() {
+                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+            },
+            prevImage() {
+                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                    .length;
+            },
+            startSlide() {
+                this.slideInterval = setInterval(() => {
+                    this.nextImage();
+                }, 5000); // 3 detik
+            },
+            stopSlide() {
+                clearInterval(this.slideInterval);
+            },
+            openModal(product) {
+                this.selectedProduct = product;
+                this.activeImageIndex = 0;
+                this.startSlide();
+                const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                modal.show();
+            },
+            async fetchProducts() {
+                let url = "{{route('product.index')}}"
+                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+
+                this.featuredProducts = featured;
+                this.otherProducts = others;
+            },
+            getImageUrl(path) {
+                return path ? `/storage/${path}` : '/images/no-image.png';
+            },
+            formatRupiah(value) {
+                const number = Number(value);
+                if (isNaN(number)) return value;
+                return 'Rp ' + number.toLocaleString('id-ID');
+            },
+        },
+        beforeUnmount() {
+            this.stopSlide();
+        }
+    }).mount('#app');
     </script>
 </body>
 

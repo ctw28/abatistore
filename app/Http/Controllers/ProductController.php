@@ -160,4 +160,15 @@ class ProductController extends Controller
             'is_featured' => $product->is_featured
         ]);
     }
+    public function toggleHabis($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->is_habis = !$product->is_habis;
+        $product->save();
+
+        return response()->json([
+            'message' => 'Produk diperbarui',
+            'is_habis' => $product->is_habis
+        ]);
+    }
 }

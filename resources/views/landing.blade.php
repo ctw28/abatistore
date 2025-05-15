@@ -202,14 +202,14 @@
                                     <br>
 
                                 </p> -->
-                                <button class="btn btn-success btn-sm mb-1 mt-1 text-uppercase" href="#"
+                                <button class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase" href="#"
                                     @click.prevent="openModal(product)">
                                     <i class="fa fa-info-circle me-1"></i>
                                     Detail
                                 </button>
                                 <a v-if="product.is_habis" :href="getWhatsappLinkPO(product.name)"
                                     @click="trackWhatsAppClick(selectedProduct.name)" target="_blank"
-                                    class="btn btn-success my-3">
+                                    class="btn btn-secondary btn-sm ">
                                     <i class="fa fa-whatsapp me-1"></i> Ajukan PO
                                 </a>
 

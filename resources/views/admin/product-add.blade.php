@@ -63,97 +63,97 @@
 @push('scripts')
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
-const {
-    createApp
-} = Vue
+    const {
+        createApp
+    } = Vue
 
-createApp({
-    data() {
-        return {
-            name: '',
-            category_id: '',
-            price: '',
-            description: '',
-            mainImage: null,
-            mainImagePreview: null,
+    createApp({
+        data() {
+            return {
+                name: '',
+                category_id: '',
+                price: '',
+                description: '',
+                mainImage: null,
+                mainImagePreview: null,
 
-            extraImages: [],
-            extraImagePreviews: [],
+                extraImages: [],
+                extraImagePreviews: [],
 
-            kategoriList: [] // isi dari API kategori
-        }
-    },
-    methods: {
-        async loadKategori() {
-            const res = await fetch("{{route('categories')}}", {
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('jwt')
-                }
-            })
-            this.kategoriList = await res.json()
-        },
-        handleMainImage(e) {
-            const file = event.target.files[0];
-            this.mainImage = file;
-            this.mainImagePreview = URL.createObjectURL(file);
-        },
-        handleExtraImages(e) {
-            const files = Array.from(event.target.files);
-            this.extraImages.push(...files);
-            files.forEach(file => {
-                this.extraImagePreviews.push({
-                    file,
-                    url: URL.createObjectURL(file)
-                });
-            });
-        },
-        removeExtraImage(index) {
-            this.extraImages.splice(index, 1);
-            this.extraImagePreviews.splice(index, 1);
-        },
-        submitProduct() {
-            const formData = new FormData();
-            formData.append('name', this.name);
-            formData.append('category_id', this.category_id);
-            formData.append('price', this.price);
-            formData.append('description', this.description ?? '');
-
-            if (this.mainImage) {
-                formData.append('image', this.mainImage);
+                kategoriList: [] // isi dari API kategori
             }
-
-            if (this.extraImages && this.extraImages.length) {
-                for (let i = 0; i < this.extraImages.length; i++) {
-                    formData.append('images[]', this.extraImages[i]);
-                }
-            }
-
-            fetch("{{route('product.store')}}", {
-                    method: 'POST',
+        },
+        methods: {
+            async loadKategori() {
+                const res = await fetch("{{route('categories')}}", {
                     headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('jwt') // jika pakai auth
-                    },
-                    body: formData
+                        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+                    }
                 })
-                .then(res => {
-                    console.log(res);
-                    res.json()
-                })
-                .then(res => {
-                    alert('Produk berhasil disimpan!');
-                    window.location.href = "{{ route('product.data') }}";
-                    console.log(res);
-                    // reset form atau redirect
-                })
-                .catch(err => {
-                    console.error(err);
-                    alert('Gagal menyimpan produk');
+                this.kategoriList = await res.json()
+            },
+            handleMainImage(e) {
+                const file = event.target.files[0];
+                this.mainImage = file;
+                this.mainImagePreview = URL.createObjectURL(file);
+            },
+            handleExtraImages(e) {
+                const files = Array.from(event.target.files);
+                this.extraImages.push(...files);
+                files.forEach(file => {
+                    this.extraImagePreviews.push({
+                        file,
+                        url: URL.createObjectURL(file)
+                    });
                 });
+            },
+            removeExtraImage(index) {
+                this.extraImages.splice(index, 1);
+                this.extraImagePreviews.splice(index, 1);
+            },
+            submitProduct() {
+                const formData = new FormData();
+                formData.append('name', this.name);
+                formData.append('category_id', this.category_id);
+                formData.append('price', this.price);
+                formData.append('description', this.description ?? '');
+
+                if (this.mainImage) {
+                    formData.append('image', this.mainImage);
+                }
+
+                if (this.extraImages && this.extraImages.length) {
+                    for (let i = 0; i < this.extraImages.length; i++) {
+                        formData.append('images[]', this.extraImages[i]);
+                    }
+                }
+
+                fetch("{{route('product.store')}}", {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('jwt') // jika pakai auth
+                        },
+                        body: formData
+                    })
+                    .then(res => {
+                        console.log(res);
+                        res.json()
+                    })
+                    .then(res => {
+                        alert('Produk berhasil disimpan!');
+                        window.location.href = "{{ route('product.data') }}";
+                        console.log(res);
+                        // reset form atau redirect
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert('Gagal menyimpan produk');
+                    });
+            }
+        },
+        mounted() {
+            this.loadKategori()
         }
-    },
-    mounted() {
-        this.loadKategori()
-    }
-}).mount('#app')
+    }).mount('#app')
 </script>
 @endpush

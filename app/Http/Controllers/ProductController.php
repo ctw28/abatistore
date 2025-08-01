@@ -54,7 +54,9 @@ class ProductController extends Controller
     }
     public function show($id)
     {
-        $product = Product::with('images', 'category')->findOrFail($id);
+        $product = Product::with('images', 'category', 'stocks.size')->findOrFail($id);
+
+
         return response()->json($product);
     }
 
@@ -67,6 +69,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable',
+            'link_shopee' => 'nullable|string',
             'image' => 'nullable|image',
             'images.*' => 'nullable|image',
         ]);
@@ -103,6 +106,7 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
             'description' => 'nullable|string',
+            'link_shopee' => 'nullable|string',
             'image' => 'nullable|image|max:2048', // gambar utama
             'images.*' => 'nullable|image|max:2048', // gambar pendukung
         ]);
@@ -119,6 +123,7 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'price' => $request->price,
             'description' => $request->description,
+            'link_shopee' => $request->link_shopee,
             'image' => $mainImagePath,
         ]);
 

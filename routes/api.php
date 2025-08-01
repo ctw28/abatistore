@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProductStockController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SizeController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -35,3 +36,13 @@ Route::delete('stocks/{id}', [ProductStockController::class, 'destroy'])->name('
 
 Route::patch('/products/{id}/toggle-featured', [ProductController::class, 'toggleFeatured'])->name('toggle.featured');
 Route::patch('/products/{id}/toggle-habis', [ProductController::class, 'toggleHabis'])->name('toggle.habis');
+
+// routes/api.php
+Route::get('/sales', function () {
+    return \App\Models\Sale::with('buyer', 'items.product', 'items.size')->latest()->get();
+});
+
+Route::post('/sales', [SaleController::class, 'store']);
+Route::get('/products-with-sizes', [SaleController::class, 'getProductsWithSizes']);
+Route::put('/sales/{id}', [SaleController::class, 'update']);
+Route::delete('/sales/{id}', [SaleController::class, 'destroy']);

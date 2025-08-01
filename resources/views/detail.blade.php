@@ -82,7 +82,7 @@
     <div id="app">
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
-
+                <h1>@{{selectedProduct.name}}</h1>
                 <!-- Galeri Utama -->
                 <div class="position-relative">
                     <img :src="getImageUrl(activeImage)" class="img-fluid mb-3 rounded shadow"
@@ -250,7 +250,7 @@
                         });
                 },
                 getImageUrl(path) {
-                    return path ? `/public/storage/${path}` : '/images/no-image.png';
+                    return path ? `/storage/${path}` : '/images/no-image.png';
                 },
                 formatRupiah(value) {
                     const number = Number(value);

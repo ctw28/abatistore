@@ -112,7 +112,7 @@
                         style="color:rgb(250, 255, 174)">keseharianmu</span>
                 </div>
                 <a class="btn btn-danger btn-xl text-uppercase btn-bounce" href="#portfolio"><i
-                        class="fa fa-angle-double-down me-1"></i>Lihat Katalog</a>
+                        class="fa fa-angle-double-down me-1"></i>Selengkapnya</a>
                 <br>
                 <br>
                 <a class="btn btn-info text-uppercase me-2" href="https://wa.me/message/A6U3BRVQCID3K1"><i
@@ -125,16 +125,140 @@
 
             </div>
         </header>
+        <!-- Pastikan sudah menyertakan Font Awesome 6 -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="..." crossorigin="anonymous"> -->
 
-        <section class="page-section bg-light" id="portfolio">
+        <section class="py-5 bg-light" id="portfolio">
+            <div class="container">
+                <h2 class="text-center mb-5 fw-bold">Kenapa Kamu Harus Punya Fadkhera?</h2>
+                <div class="row g-4">
+
+                    <div class="col-md-4 text-center">
+                        <i class="fa fa-star fs-1 text-warning mb-3"></i>
+                        <h5 class="fw-semibold">Desain Modern & Syar'i</h5>
+                        <p class="text-muted">Tampil gagah dan tetap syar'i – cocok untuk kerja, kajian, dan lebaran.
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <i class="fa fa-gem fs-1 text-warning mb-3"></i>
+                        <h5 class="fw-semibold">Material Premium</h5>
+                        <p>Shining soft touch dengan tekstur lembut dan tebal, nyaman dipakai seharian.</p>
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <i class="fa fa-user-tie fs-1 text-warning mb-3"></i>
+                        <h5 class="fw-semibold">Dipakai Tokoh & Ustadz Ternama</h5>
+                        <p>Sudah dipercaya dan dipakai oleh banyak ustadz serta tokoh publik ternama.</p>
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <i class="fa fa-cut fs-1 text-warning mb-3"></i>
+                        <h5 class="fw-semibold">Cutting Modern</h5>
+                        <p>Potongan pas badan (antara slimfit dan reguler) yang tetap sopan.</p>
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <i class="fa fa-tshirt fs-1 text-warning mb-3"></i>
+                        <h5 class="fw-semibold">Mudah Disetrika</h5>
+                        <p>Anti kusut, praktis digunakan untuk kerja, kajian, hingga lebaran.</p>
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <i class="fa fa-palette fs-1 text-warning mb-3"></i>
+                        <h5 class="fw-semibold">Motif Eksklusif</h5>
+                        <p class="text-muted">Desain motif original dari Fadkhera – tidak pasaran, lebih berkelas.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="py-5 bg-white">
+            <div class="container">
+                <h2 class="text-center fw-bold mb-4">
+                    Apa Kata Mereka <span class="text-warning">Tentang Fadkhera?</span>
+                </h2>
+
+                <div id="testimoniCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                        <!-- Testimoni 1 -->
+                        <div class="carousel-item active text-center">
+                            <img src="/assets/testimoni/testi-1.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 1" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="/assets/testimoni/testi-11.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 11" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="/assets/testimoni/testi-7.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 7" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <!-- Testimoni 2 -->
+                        <div class="carousel-item text-center">
+                            <img src="/assets/testimoni/testi-2.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 2" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="/assets/testimoni/testi-8.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 8" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="/assets/testimoni/testi-9.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 9" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="/assets/testimoni/testi-10.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 10" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <!-- Testimoni 3 -->
+                        <div class="carousel-item text-center">
+                            <img src="/assets/testimoni/testi-3.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 3" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="/assets/testimoni/testi-4.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 4" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="/assets/testimoni/testi-5.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 5" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="/assets/testimoni/testi-6.jpeg" class="d-block mx-auto img-fluid rounded shadow"
+                                alt="Testimoni 6" style="max-height: 400px; object-fit: contain;">
+                        </div>
+
+
+
+
+                    </div>
+
+                    <!-- Navigasi Carousel -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimoniCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimoniCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- KATALOG -->
+        <section class="page-section bg-light">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">READY STOK!</h2>
                     <h3 class="section-subheading text-muted">Klik gambar untuk detail</h3>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4" v-for="product in featuredProducts"
-                        :key="product.id" style="border: 1px solid #e9e9e9;">
+                    <div class="col-6 col-md-4 mb-4" v-for="product in featuredProducts" :key="product.id"
+                        style="border: 1px solid #e9e9e9;">
                         <!-- Portfolio item 1-->
                         <div class="portfolio-item  position-relative">
                             <div style="position: absolute; top: 0px; right: 5px; z-index: 10;">
@@ -155,35 +279,34 @@
                                 <div class="portfolio-caption-heading">[@{{ product.category.name }}]
                                     @{{ product.name }}
                                 </div>
-                                <!-- <p class="mb-2 text-muted" style="font-size: 0.6rem;">
-                                    <i class="fa fa-tags me-1 text-success"></i>
-                                    <strong class="me-2">@{{ formatRupiah(product.price) }}</strong>
-                                    <br>
-
-                                </p> -->
-                                <button class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase" href="#"
+                                <!-- <button class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase" href="#"
                                     @click.prevent="openModal(product)">
                                     <i class="fa fa-info-circle me-1"></i>
                                     Detail
-                                </button>
-                                <!-- <a :href="'{{ route('detail', ':id') }}'.replace(':id', product.id)"
-                                    class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase">
-                                    <i class="fa fa-info-circle me-1"></i>
-                                    Detail
-                                </a> -->
-                                <a v-if="product.is_habis" :href="getWhatsappLinkPO(product.name)"
+                                </button> -->
+                                <a :href="getWhatsappLink(product.name)" @click="trackWhatsAppClick(product.name)"
+                                    target="_blank" class="btn btn-success btn-sm my-3 me-2">
+                                    <i class="fa fa-whatsapp me-1"></i> Beli di WA
+                                </a>
+                                <a :href="product.link_shopee" class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
+                                    style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
+                                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
+                                        alt="Shopee Icon"
+                                        style="width: 16px; height: 16px; margin-right: 6px; filter: brightness(0) invert(1);">
+                                    Beli di Shopee
+                                </a>
+
+                                <!-- <a v-if="product.is_habis" :href="getWhatsappLinkPO(product.name)"
                                     @click="trackWhatsAppClick(selectedProduct.name)" target="_blank"
                                     class="btn btn-secondary btn-sm ">
                                     <i class="fa fa-whatsapp me-1"></i> Ajukan PO
-                                </a>
-
-
+                                </a> -->
                             </div>
                         </div>
                     </div>
 
-                    <div v-for="product in otherProducts" :key="product.id"
-                        class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4" style="border: 1px solid #e9e9e9;">
+                    <div v-for="product in otherProducts" :key="product.id" class="col-6 col-md-4 mb-4"
+                        style="border: 1px solid #e9e9e9;">
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item  position-relative">
                             <div v-if="!product.is_habis"
@@ -208,22 +331,35 @@
                                     <br>
 
                                 </p> -->
-                                <button class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase" href="#"
+
+                                <!-- <button class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase" href="#"
                                     @click.prevent="openModal(product)">
                                     <i class="fa fa-info-circle me-1"></i>
                                     Detail
-                                </button>
+                                </button> -->
+                                <a :href="getWhatsappLink(product.name)" @click="trackWhatsAppClick(product.name)"
+                                    target="_blank" class="btn btn-success btn-sm my-3 me-2">
+                                    <i class="fa fa-whatsapp me-1"></i> Beli di WA
+                                </a>
+                                <a :href="product.link_shopee" class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
+                                    style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
+                                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
+                                        alt="Shopee Icon"
+                                        style="width: 16px; height: 16px; margin-right: 6px; filter: brightness(0) invert(1);">
+                                    Beli di Shopee
+                                </a>
+
                                 <!-- <a :href="'{{ route('detail', ':id') }}'.replace(':id', product.id)"
                                     class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase">
                                     <i class="fa fa-info-circle me-1"></i>
                                     Detaila
                                 </a> -->
 
-                                <a v-if="product.is_habis" :href="getWhatsappLinkPO(product.name)"
+                                <!-- <a v-if="product.is_habis" :href="getWhatsappLinkPO(product.name)"
                                     @click="trackWhatsAppClick(selectedProduct.name)" target="_blank"
                                     class="btn btn-secondary btn-sm ">
                                     <i class="fa fa-whatsapp me-1"></i> Ajukan PO
-                                </a>
+                                </a> -->
 
 
                             </div>
@@ -232,6 +368,7 @@
                 </div>
             </div>
         </section>
+
         <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
@@ -398,7 +535,10 @@
                     this.otherProducts = others;
                 },
                 getImageUrl(path) {
-                    return path ? `/public/storage/${path}` : '/images/no-image.png';
+                    const url = location.origin.includes('abatistore.com') ?
+                        `/public/storage/${path}` :
+                        `/storage/${path}`;
+                    return path ? url : '/images/no-image.png';
                 },
                 formatRupiah(value) {
                     const number = Number(value);

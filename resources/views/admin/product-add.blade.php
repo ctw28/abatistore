@@ -52,7 +52,10 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="mb-3">
+                    <label class="form-label">Link Shopee</label>
+                    <textarea v-model="link_shopee" class="form-control"></textarea>
+                </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>
@@ -116,6 +119,7 @@
                 formData.append('name', this.name);
                 formData.append('category_id', this.category_id);
                 formData.append('price', this.price);
+                formData.append('link_shopee', this.link_shopee);
                 formData.append('description', this.description ?? '');
 
                 if (this.mainImage) {

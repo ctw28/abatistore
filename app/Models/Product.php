@@ -13,7 +13,8 @@ class Product extends Model
         'price',
         'image',
         'is_featured',
-        'is_habis'
+        'is_habis',
+        'link_shopee'
     ];
 
     public function category()

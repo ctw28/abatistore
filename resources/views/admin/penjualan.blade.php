@@ -348,7 +348,7 @@
 
             submitSale() {
                 const method = this.editingId ? 'PUT' : 'POST'
-                const url = this.editingId ? `/public/api/sales/${this.editingId}` : '/api/sales'
+                const url = this.editingId ? `/public/api/sales/${this.editingId}` : '/public/api/sales'
 
                 fetch(url, {
                         method,

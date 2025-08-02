@@ -11,15 +11,17 @@
     <link rel="icon" type="image/x-icon" href="{{asset('logo-only.png')}}" />
     <!-- Font Awesome icons (free version)-->
     <!-- <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script> -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css"
-        integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy" crossorigin="anonymous">
     <!-- Google fonts-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link href="assets/fontawesome/css/font-awesome.css" rel="stylesheet" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
     <style>
         .btn-bounce {
             display: inline-block;
@@ -75,6 +77,31 @@
         header.masthead {
             padding-top: 3rem;
         }
+
+        .video-container {
+            overflow-x: auto;
+            display: flex;
+            gap: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .video-wrapper {
+            min-width: 250px;
+            flex: 0 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .video-container {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                overflow-x: unset;
+            }
+
+            .video-wrapper {
+                flex: 0 0 calc(33.33% - 1rem);
+                min-width: unset;
+            }
+        }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-71X4PVE1XD"></script>
@@ -111,7 +138,7 @@
                     <span style="color:rgb(250, 255, 174)">ibadah</span> dan <span
                         style="color:rgb(250, 255, 174)">keseharianmu</span>
                 </div>
-                <a class="btn btn-danger btn-xl text-uppercase btn-bounce" href="#portfolio"><i
+                <a class="btn btn-danger btn-xl text-uppercase btn-bounce" href="#portofolio"><i
                         class="fa fa-angle-double-down me-1"></i>Selengkapnya</a>
                 <br>
                 <br>
@@ -127,49 +154,110 @@
         </header>
         <!-- Pastikan sudah menyertakan Font Awesome 6 -->
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="..." crossorigin="anonymous"> -->
-
-        <section class="py-5 bg-light" id="portfolio">
+        <!-- Section Keunggulan -->
+        <section class="py-5 bg-light" id="portofolio">
             <div class="container">
-                <h2 class="text-center mb-5 fw-bold">Kenapa Kamu Harus Punya Fadkhera?</h2>
+                <h2 class="text-center mb-4">Kenapa Harus Fadkhera?</h2>
+
+
+                <!-- Keunggulan -->
                 <div class="row g-4">
-
-                    <div class="col-md-4 text-center">
-                        <i class="fa fa-star fs-1 text-warning mb-3"></i>
-                        <h5 class="fw-semibold">Desain Modern & Syar'i</h5>
-                        <p class="text-muted">Tampil gagah dan tetap syar'i – cocok untuk kerja, kajian, dan lebaran.
-                        </p>
+                    <!-- 1 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100">
+                            <img :src="getFile('/assets/design.webp')" alt="Desain Modern" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Desain Modern & Syar'i</h5>
+                            <p class="text-muted">Designnya membuatmu selalu tampil fresh dan tentunya tetap syar'i –
+                                sangat cocok untuk ibadah, kerja, kajian, dan
+                                lebaran.</p>
+                        </div>
                     </div>
 
-                    <div class="col-md-4 text-center">
-                        <i class="fa fa-gem fs-1 text-warning mb-3"></i>
-                        <h5 class="fw-semibold">Material Premium</h5>
-                        <p>Shining soft touch dengan tekstur lembut dan tebal, nyaman dipakai seharian.</p>
+                    <!-- 2 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100">
+                            <img :src="getFile('/assets/bahan.webp')" alt="Bahan Premium" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Bahan Premium</h5>
+                            <p class="text-muted">Shining – soft touch dengan material tebal dan adem, nyaman seharian.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="col-md-4 text-center">
-                        <i class="fa fa-user-tie fs-1 text-warning mb-3"></i>
-                        <h5 class="fw-semibold">Dipakai Tokoh & Ustadz Ternama</h5>
-                        <p>Sudah dipercaya dan dipakai oleh banyak ustadz serta tokoh publik ternama.</p>
+
+
+                    <!-- 4 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100">
+                            <img :src="getFile('/assets/potongan.webp')" alt="Modern Fit" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Potongan Modern Fit</h5>
+                            <p class="text-muted">Ukuran pas badan, antara reguler dan slim fit – pas dan tetap nyaman.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="col-md-4 text-center">
-                        <i class="fa fa-cut fs-1 text-warning mb-3"></i>
-                        <h5 class="fw-semibold">Cutting Modern</h5>
-                        <p>Potongan pas badan (antara slimfit dan reguler) yang tetap sopan.</p>
+                    <!-- 5 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100">
+                            <img :src="getFile('/assets/setrika.webp')" alt="Mudah Disetrika" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Tidak Mudah Kusut</h5>
+                            <p class="text-muted">Tidak mudah kusut – tetap rapi meski dipakai beraktivitas seharian.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100">
+                            <img :src="getFile('/assets/kerah.webp')" alt="Motif Eksklusif" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Kerah Spread Collar</h5>
+                            <p class="text-muted">Desain kerah baju yang memberi kesan rapi, gagah, dan elegan.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 6 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100">
+                            <img :src="getFile('/assets/tokoh.jpeg')" alt="Dipercaya Tokoh" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Dipercaya Tokoh Ternama</h5>
+                            <p class="text-muted">Telah dipakai oleh banyak ustadz dan tokoh muslim ternama di
+                                Indonesia.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="page-section bg-light">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">VIDEO</h2>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-4 mb-4" style="border: 1px solid #e9e9e9;">
+                        <video controls class="w-100">
+                            <source src="assets/video-1.mp4" type="video/webm" />
+                            Browsermu tidak mendukung tag ini, upgrade donk!
+                        </video>
                     </div>
 
-                    <div class="col-md-4 text-center">
-                        <i class="fa fa-tshirt fs-1 text-warning mb-3"></i>
-                        <h5 class="fw-semibold">Mudah Disetrika</h5>
-                        <p>Anti kusut, praktis digunakan untuk kerja, kajian, hingga lebaran.</p>
+                    <div class="col-12 col-md-4 mb-4" style="border: 1px solid #e9e9e9;">
+                        <video controls class="w-100">
+                            <source src="assets/video-2.mp4" type="video/webm" />
+                            Browsermu tidak mendukung tag ini, upgrade donk!
+                        </video>
                     </div>
 
-                    <div class="col-md-4 text-center">
-                        <i class="fa fa-palette fs-1 text-warning mb-3"></i>
-                        <h5 class="fw-semibold">Motif Eksklusif</h5>
-                        <p class="text-muted">Desain motif original dari Fadkhera – tidak pasaran, lebih berkelas.</p>
+                    <div class="col-12 col-md-4 mb-4" style="border: 1px solid #e9e9e9;">
+                        <video controls class="w-100">
+                            <source src="assets/video-3.mp4" type="video/webm" />
+                            Browsermu tidak mendukung tag ini, upgrade donk!
+                        </video>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -184,50 +272,61 @@
 
                         <!-- Testimoni 1 -->
                         <div class="carousel-item active text-center">
-                            <img src="/assets/testimoni/testi-1.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 1" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-1.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 1"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
                         <div class="carousel-item text-center">
-                            <img src="/assets/testimoni/testi-11.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 11" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-11.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 11"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
                         <div class="carousel-item text-center">
-                            <img src="/assets/testimoni/testi-7.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 7" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-7.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 7"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
                         <!-- Testimoni 2 -->
                         <div class="carousel-item text-center">
-                            <img src="/assets/testimoni/testi-2.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 2" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-2.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 2"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
                         <div class="carousel-item text-center">
-                            <img src="/assets/testimoni/testi-8.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 8" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-8.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 8"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
                         <div class="carousel-item text-center">
-                            <img src="/assets/testimoni/testi-9.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 9" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-9.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 9"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
                         <div class="carousel-item text-center">
-                            <img src="/assets/testimoni/testi-10.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 10" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-10.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 10"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
                         <!-- Testimoni 3 -->
                         <div class="carousel-item text-center">
-                            <img src="/assets/testimoni/testi-3.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 3" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-3.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 3"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
                         <div class="carousel-item text-center">
-                            <img src="/assets/testimoni/testi-4.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 4" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-4.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 4"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
                         <div class="carousel-item text-center">
-                            <img src="/assets/testimoni/testi-5.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 5" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-5.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 5"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
                         <div class="carousel-item text-center">
-                            <img src="/assets/testimoni/testi-6.jpeg" class="d-block mx-auto img-fluid rounded shadow"
-                                alt="Testimoni 6" style="max-height: 400px; object-fit: contain;">
+                            <img :src="getFile('/assets/testimoni/testi-6.jpeg')"
+                                class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 6"
+                                style="max-height: 600px; object-fit: contain;">
                         </div>
 
 
@@ -253,8 +352,15 @@
         <section class="page-section bg-light">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">READY STOK!</h2>
-                    <h3 class="section-subheading text-muted">Klik gambar untuk detail</h3>
+                    <h2 class="section-heading text-uppercase">KATALOG</h2>
+                    <img src="assets/open.jpeg" class="img mb-3" width="100%">
+
+                    <h3 class="section-subheading text-muted">
+                        <b>[Beli via WhatsApp]</b> — Cepat, bisa tanya langsung, cocok
+                        untuk pembeli area Kendari.<br>
+                        <b>[Beli via Shopee]</b> — Aman, ada gratis ongkir, pembayaran fleksibel, cocok untuk luar
+                        kendari.
+                    </h3>
                 </div>
                 <div class="row">
                     <div class="col-6 col-md-4 mb-4" v-for="product in featuredProducts" :key="product.id"
@@ -275,7 +381,7 @@
                                     Habis
                                 </div>
                             </a>
-                            <div class="portfolio-caption">
+                            <div class="portfolio-caption text-center">
                                 <div class="portfolio-caption-heading">[@{{ product.category.name }}]
                                     @{{ product.name }}
                                 </div>
@@ -285,8 +391,8 @@
                                     Detail
                                 </button> -->
                                 <a :href="getWhatsappLink(product.name)" @click="trackWhatsAppClick(product.name)"
-                                    target="_blank" class="btn btn-success btn-sm my-3 me-2">
-                                    <i class="fa fa-whatsapp me-1"></i> Beli di WA
+                                    target="_blank" class="btn btn-success btn-sm my-1 me-2">
+                                    <i class="fa fa-whatsapp me-1"></i> Beli di WA / Info
                                 </a>
                                 <a :href="product.link_shopee" class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
                                     style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
@@ -322,24 +428,12 @@
                                     Habis
                                 </div>
                             </a>
-                            <div class="portfolio-caption">
+                            <div class="portfolio-caption text-center">
                                 <div class="portfolio-caption-heading">[@{{ product.category.name }}]
                                     @{{ product.name }}</div>
-                                <!-- <p class="mb-2 text-muted" style="font-size: 0.6rem;">
-                                    <i class="fa fa-tags me-1 text-success"></i>
-                                    <strong class="me-2">@{{ formatRupiah(product.price) }}</strong>
-                                    <br>
-
-                                </p> -->
-
-                                <!-- <button class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase" href="#"
-                                    @click.prevent="openModal(product)">
-                                    <i class="fa fa-info-circle me-1"></i>
-                                    Detail
-                                </button> -->
                                 <a :href="getWhatsappLink(product.name)" @click="trackWhatsAppClick(product.name)"
-                                    target="_blank" class="btn btn-success btn-sm my-3 me-2">
-                                    <i class="fa fa-whatsapp me-1"></i> Beli di WA
+                                    target="_blank" class="btn btn-success btn-sm my-1 me-2">
+                                    <i class="fa fa-whatsapp me-1"></i> Beli di WA / Info
                                 </a>
                                 <a :href="product.link_shopee" class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
                                     style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
@@ -348,20 +442,6 @@
                                         style="width: 16px; height: 16px; margin-right: 6px; filter: brightness(0) invert(1);">
                                     Beli di Shopee
                                 </a>
-
-                                <!-- <a :href="'{{ route('detail', ':id') }}'.replace(':id', product.id)"
-                                    class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase">
-                                    <i class="fa fa-info-circle me-1"></i>
-                                    Detaila
-                                </a> -->
-
-                                <!-- <a v-if="product.is_habis" :href="getWhatsappLinkPO(product.name)"
-                                    @click="trackWhatsAppClick(selectedProduct.name)" target="_blank"
-                                    class="btn btn-secondary btn-sm ">
-                                    <i class="fa fa-whatsapp me-1"></i> Ajukan PO
-                                </a> -->
-
-
                             </div>
                         </div>
                     </div>
@@ -403,16 +483,23 @@
                         <a :href="getWhatsappLink(selectedProduct.name)"
                             @click="trackWhatsAppClick(selectedProduct.name)" target="_blank"
                             class="btn btn-success my-3 me-2">
-                            <i class="fa fa-whatsapp me-1"></i> Info / Pemesanan
+                            <i class="fa fa-whatsapp me-1"></i> Beli di WA / Info
                         </a>
-                        <a v-if="selectedProduct.is_habis" :href="getWhatsappLinkPO(selectedProduct.name)"
+                        <a :href="selectedProduct.link_shopee" class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
+                            style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
+                                alt="Shopee Icon"
+                                style="width: 16px; height: 16px; margin-right: 6px; filter: brightness(0) invert(1);">
+                            Beli di Shopee
+                        </a>
+                        <!-- <a v-if="selectedProduct.is_habis" :href="getWhatsappLinkPO(selectedProduct.name)"
                             @click="trackWhatsAppClick(selectedProduct.name)" target="_blank" class="btn btn-secondary">
                             <i class="fa fa-whatsapp me-1"></i> Ajukan PO
                         </a>
                         <a v-if="!selectedProduct.is_habis" :href="getWhatsappLinkPOUkuran(selectedProduct.name)"
                             @click="trackWhatsAppClick(selectedProduct.name)" target="_blank" class="btn btn-secondary">
                             <i class="fa fa-whatsapp me-1"></i> Request Ukuran
-                        </a>
+                        </a> -->
                         <p><strong>Harga:</strong> @{{ formatRupiah(selectedProduct.price) }}</p>
                         Ukuran tersedia
                         <ul class="list-group">
@@ -446,6 +533,21 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: false,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: false,
+        });
+    </script>
+
     <script>
         const {
             createApp
@@ -539,6 +641,12 @@
                         `/public/storage/${path}` :
                         `/storage/${path}`;
                     return path ? url : '/images/no-image.png';
+                },
+                getFile(path) {
+                    const url = location.origin.includes('abatistore.com') ?
+                        `/public/${path}` :
+                        `${path}`;
+                    return url;
                 },
                 formatRupiah(value) {
                     const number = Number(value);

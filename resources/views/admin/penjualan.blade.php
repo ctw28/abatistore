@@ -258,13 +258,13 @@
                 this.calculateSubtotal(item)
             },
             fetchProducts() {
-                fetch('/api/products').then(res => res.json()).then(data => this.products = data)
+                fetch('/public/api/products').then(res => res.json()).then(data => this.products = data)
             },
             fetchSizes() {
-                fetch('/api/sizes').then(res => res.json()).then(data => this.sizes = data)
+                fetch('/public/api/sizes').then(res => res.json()).then(data => this.sizes = data)
             },
             fetchSales() {
-                fetch('/api/sales').then(res => res.json()).then(data => {
+                fetch('/public/api/sales').then(res => res.json()).then(data => {
                     console.log(data);
 
                     this.sales = data
@@ -332,7 +332,7 @@
 
             deleteSale(id) {
                 if (confirm("Yakin ingin menghapus penjualan ini?")) {
-                    fetch(`/api/sales/${id}`, {
+                    fetch(`/public/api/sales/${id}`, {
                             method: 'DELETE'
                         }).then(res => res.json())
                         .then(res => {
@@ -348,7 +348,7 @@
 
             submitSale() {
                 const method = this.editingId ? 'PUT' : 'POST'
-                const url = this.editingId ? `/api/sales/${this.editingId}` : '/api/sales'
+                const url = this.editingId ? `/public/api/sales/${this.editingId}` : '/api/sales'
 
                 fetch(url, {
                         method,

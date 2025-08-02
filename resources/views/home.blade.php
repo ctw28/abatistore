@@ -232,7 +232,7 @@
 
             </div>
         </section>
-        <section class="page-section bg-light">
+        <!-- <section class="page-section bg-light">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">VIDEO</h2>
@@ -260,14 +260,23 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="py-5 bg-white">
+        </section> -->
+        <section class="py-5 bg-black">
             <div class="container">
-                <h2 class="text-center fw-bold mb-4">
+                <h2 class="text-center fw-bold mb-4 text-white">
                     Apa Kata Mereka <span class="text-warning">Tentang Fadkhera?</span>
                 </h2>
 
                 <div id="testimoniCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Titik-titik navigasi -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
                     <div class="carousel-inner">
 
                         <!-- Testimoni 1 -->

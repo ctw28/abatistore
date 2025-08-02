@@ -48,7 +48,10 @@
                 <button class="btn btn-sm btn-danger mt-1" @click.prevent="deleteImage(img.id)">Hapus</button>
             </div>
         </div>
-
+        <div class="mb-3">
+            <label class="form-label">Link Shopee</label>
+            <textarea v-model="form.link_shopee" class="form-control"></textarea>
+        </div>
         <button class="btn btn-primary mt-3" type="submit">Simpan</button>
     </form>
 </div>
@@ -68,6 +71,7 @@ new Vue({
                 price: '',
                 description: '',
                 category_id: '',
+                link_shopee: '',
                 image: null,
                 image_preview: '',
                 support_images: [],
@@ -98,6 +102,8 @@ new Vue({
                     this.form.price = data.price;
                     this.form.description = data.description;
                     this.form.category_id = data.category_id;
+                    this.form.link_shopee = data.link_shopee;
+
                     this.form.images = data.images;
                     this.form.image_preview = this.getImageUrl(data.image);
                 });
@@ -135,6 +141,7 @@ new Vue({
             formData.append('price', this.form.price);
             formData.append('category_id', this.form.category_id);
             formData.append('description', this.form.description);
+            formData.append('link_shopee', this.form.link_shopee);
 
             if (this.form.image) {
                 formData.append('image', this.form.image);

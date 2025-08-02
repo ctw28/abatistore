@@ -57,7 +57,9 @@
                             </button>
                         </td>
                         <td>
-                            <a :href="`/produk/${product.id}/edit`" class="btn btn-sm btn-info">Edit</a>
+                            <a :href="'{{ route('product.edit', ['id' => 'REPLACE_ID']) }}'.replace('REPLACE_ID', product.id)"
+                                class="btn btn-sm btn-info">Edit</a>
+
                             <button class="btn btn-sm btn-warning" @click="openStockModal(product)">Kelola Stok</button>
 
                             <button @click="deleteProduct(product.id)" class="btn btn-sm btn-danger">Hapus</button>

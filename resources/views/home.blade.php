@@ -23,97 +23,97 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
-        .btn-bounce {
-            display: inline-block;
-            padding: 12px 24px;
-            color: white;
-            font-weight: bold;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
-            animation: bounce 1.5s infinite;
+    .btn-bounce {
+        display: inline-block;
+        padding: 12px 24px;
+        color: white;
+        font-weight: bold;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
         }
 
-        @keyframes bounce {
+        50% {
+            transform: translateY(-6px);
+        }
+    }
 
-            0%,
-            100% {
-                transform: translateY(0);
-            }
+    .btn-shake {
+        display: inline-block;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        animation: shake 5.5s infinite;
+    }
 
-            50% {
-                transform: translateY(-6px);
-            }
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translateX(0);
         }
 
-        .btn-shake {
-            display: inline-block;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-            animation: shake 5.5s infinite;
+        25% {
+            transform: translateX(-3px);
         }
 
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-3px);
-            }
-
-            50% {
-                transform: translateX(3px);
-            }
-
-            75% {
-                transform: translateX(-3px);
-            }
+        50% {
+            transform: translateX(3px);
         }
 
-        header.masthead {
-            padding-top: 3rem;
+        75% {
+            transform: translateX(-3px);
         }
+    }
 
+    header.masthead {
+        padding-top: 3rem;
+    }
+
+    .video-container {
+        overflow-x: auto;
+        display: flex;
+        gap: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .video-wrapper {
+        min-width: 250px;
+        flex: 0 0 auto;
+    }
+
+    @media (min-width: 768px) {
         .video-container {
-            overflow-x: auto;
-            display: flex;
-            gap: 1rem;
-            padding-bottom: 1rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            overflow-x: unset;
         }
 
         .video-wrapper {
-            min-width: 250px;
-            flex: 0 0 auto;
+            flex: 0 0 calc(33.33% - 1rem);
+            min-width: unset;
         }
-
-        @media (min-width: 768px) {
-            .video-container {
-                flex-wrap: wrap;
-                justify-content: space-between;
-                overflow-x: unset;
-            }
-
-            .video-wrapper {
-                flex: 0 0 calc(33.33% - 1rem);
-                min-width: unset;
-            }
-        }
+    }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-71X4PVE1XD"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-        gtag('config', 'G-71X4PVE1XD');
+    gtag('config', 'G-71X4PVE1XD');
     </script>
 </head>
 
@@ -143,9 +143,11 @@
                 <br>
                 <br>
                 <a class="btn btn-info text-uppercase me-2" href="https://wa.me/message/A6U3BRVQCID3K1"><i
-                        class="fa fa-whatsapp me-1"></i> Admin</a>
-                <a class="btn btn-info text-uppercase" href="https://www.instagram.com/fadkhera.kendari/"
+                        class="fa fa-whatsapp me-1"></i> WA Admin</a>
+                <a class="btn btn-info text-uppercase me-2" href="https://www.instagram.com/fadkhera.kendari/"
                     target="_blank"><i class="fa fa-instagram me-1"></i>Instagram</a>
+                <a class="btn btn-secondary text-uppercase" href="#seragam">Butuh
+                    Seragam?</a>
                 <br><br>
                 <a class="btn btn-info text-uppercase" href="https://maps.app.goo.gl/czDzXeGqrUQXefoBA"
                     target="_blank"><i class="fa fa-map-marker me-1"></i> Lokasi Kami</a>
@@ -193,7 +195,8 @@
                             <img :src="getFile('/assets/potongan.webp')" alt="Modern Fit" class="mb-3"
                                 style="width: 100%; height: auto;">
                             <h5 class="fw-semibold">Potongan Modern Fit</h5>
-                            <p class="text-muted">Ukuran pas badan, antara reguler dan slim fit – pas dan tetap nyaman.
+                            <p class="text-muted">Ukuran pas di badan, antara reguler dan slim fit – pas dan tetap
+                                nyaman.
                             </p>
                         </div>
                     </div>
@@ -204,7 +207,8 @@
                             <img :src="getFile('/assets/setrika.webp')" alt="Mudah Disetrika" class="mb-3"
                                 style="width: 100%; height: auto;">
                             <h5 class="fw-semibold">Tidak Mudah Kusut</h5>
-                            <p class="text-muted">Tidak mudah kusut – tetap rapi meski dipakai beraktivitas seharian.
+                            <p class="text-muted">Mudah di setrika dan Tidak mudah kusut – tetap rapi meski dipakai
+                                beraktivitas seharian.
                             </p>
                         </div>
                     </div>
@@ -223,7 +227,7 @@
                         <div class="bg-white p-4 shadow rounded text-center h-100">
                             <img :src="getFile('/assets/tokoh.jpeg')" alt="Dipercaya Tokoh" class="mb-3"
                                 style="width: 100%; height: auto;">
-                            <h5 class="fw-semibold">Dipercaya Tokoh Ternama</h5>
+                            <h5 class="fw-semibold">Dipercaya Ustadz & Tokoh Ternama</h5>
                             <p class="text-muted">Telah dipakai oleh banyak ustadz dan tokoh muslim ternama di
                                 Indonesia.</p>
                         </div>
@@ -353,7 +357,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">KATALOG</h2>
-                    <img src="assets/open.jpeg" class="img mb-3" width="100%">
+                    <img :src="getFile('/assets/open.jpeg')" class="img mb-3" width="100%">
 
                     <h3 class="section-subheading text-muted">
                         <b>[Beli via WhatsApp]</b> — Cepat, bisa tanya langsung, cocok
@@ -448,6 +452,40 @@
                 </div>
             </div>
         </section>
+        <section class="page-section bg-light" id="seragam">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">SAATNYA OUTFIT TIM KALIAN NAIK KELAS</h2>
+
+                </div>
+                <div class="row">
+                    <p>
+                        <strong>Butuh Seragam Keluarga/Komunitas/Rekan kerja untuk momen spesialmu</strong>? Percayakan
+                        pada Produk Fadkhera. Dengan
+                        <strong>motif dan design yang modern, memberi kalian semangat baru</strong>, sehingga momen
+                        spesial kalian jadi lebih berkesan!
+                    </p>
+                    <div class="col-6 col-md-3 col-lg-3 p-2 mb-2">
+                        <img :src="getFile('/assets/seragam.webp')" class="img" width="100%">
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-3 p-2 mb-2">
+                        <img :src="getFile('/assets/seragam1.jpeg')" class="img" width="100%">
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-3 p-2 mb-2">
+                        <img :src="getFile('/assets/seragam2.jpeg')" class="img" width="100%">
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-3 p-2 mb-2">
+                        <img :src="getFile('/assets/seragam3.jpeg')" class="img" width="100%">
+                    </div>
+                    <div class="col-12 text-center">
+                        <a :href=" getWhatsappLinkSeragam()" class="btn btn-success mt-2"> <i
+                                class="fa fa-whatsapp me-1"></i>Konsultasikan Seragam Sekarang</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
 
         <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-scrollable">
@@ -536,128 +574,134 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: false,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: false,
-        });
+    const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: false,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: false,
+    });
     </script>
 
     <script>
-        const {
-            createApp
-        } = Vue;
+    const {
+        createApp
+    } = Vue;
 
-        createApp({
-            data() {
-                return {
-                    featuredProducts: [],
-                    otherProducts: [],
-                    selectedProduct: {},
-                    activeImageIndex: 0,
-                    slideInterval: null,
+    createApp({
+        data() {
+            return {
+                featuredProducts: [],
+                otherProducts: [],
+                selectedProduct: {},
+                activeImageIndex: 0,
+                slideInterval: null,
 
-                }
-            },
-            mounted() {
-                this.fetchProducts();
-            },
-            computed: {
-                allImages() {
-                    // Gabungkan gambar utama + gambar pendukung
-                    if (!this.selectedProduct) return [];
-                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                    const others = this.selectedProduct.images?.map(img => img.image) || [];
-                    return main.concat(others);
-                },
-                activeImage() {
-                    return this.allImages[this.activeImageIndex] || '';
-                }
-            },
-            methods: {
-                trackWhatsAppClick(productName) {
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'click_whatsapp', {
-                            'event_category': 'Engagement',
-                            'event_label': productName,
-                        });
-                    }
-                },
-                getWhatsappLink(productName) {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Halo, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                getWhatsappLinkPO(productName) {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Halo, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                getWhatsappLinkPOUkuran(productName) {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Halo, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                nextImage() {
-                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-                },
-                prevImage() {
-                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
-                        .length;
-                },
-                startSlide() {
-                    this.slideInterval = setInterval(() => {
-                        this.nextImage();
-                    }, 5000); // 3 detik
-                },
-                stopSlide() {
-                    clearInterval(this.slideInterval);
-                },
-                openModal(product) {
-                    this.selectedProduct = product;
-                    this.activeImageIndex = 0;
-                    this.startSlide();
-                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                    modal.show();
-                },
-                async fetchProducts() {
-                    let url = "{{route('product.index')}}"
-                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
-
-                    this.featuredProducts = featured;
-                    this.otherProducts = others;
-                },
-                getImageUrl(path) {
-                    const url = location.origin.includes('abatistore.com') ?
-                        `/public/storage/${path}` :
-                        `/storage/${path}`;
-                    return path ? url : '/images/no-image.png';
-                },
-                getFile(path) {
-                    const url = location.origin.includes('abatistore.com') ?
-                        `/public/${path}` :
-                        `${path}`;
-                    return url;
-                },
-                formatRupiah(value) {
-                    const number = Number(value);
-                    if (isNaN(number)) return value;
-                    return 'Rp ' + number.toLocaleString('id-ID');
-                },
-            },
-            beforeUnmount() {
-                this.stopSlide();
             }
-        }).mount('#app');
+        },
+        mounted() {
+            this.fetchProducts();
+        },
+        computed: {
+            allImages() {
+                // Gabungkan gambar utama + gambar pendukung
+                if (!this.selectedProduct) return [];
+                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                const others = this.selectedProduct.images?.map(img => img.image) || [];
+                return main.concat(others);
+            },
+            activeImage() {
+                return this.allImages[this.activeImageIndex] || '';
+            }
+        },
+        methods: {
+            trackWhatsAppClick(productName) {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'click_whatsapp', {
+                        'event_category': 'Engagement',
+                        'event_label': productName,
+                    });
+                }
+            },
+            getWhatsappLink(productName) {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            getWhatsappLinkPO(productName) {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            getWhatsappLinkPOUkuran(productName) {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            getWhatsappLinkSeragam() {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            nextImage() {
+                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+            },
+            prevImage() {
+                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                    .length;
+            },
+            startSlide() {
+                this.slideInterval = setInterval(() => {
+                    this.nextImage();
+                }, 5000); // 3 detik
+            },
+            stopSlide() {
+                clearInterval(this.slideInterval);
+            },
+            openModal(product) {
+                this.selectedProduct = product;
+                this.activeImageIndex = 0;
+                this.startSlide();
+                const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                modal.show();
+            },
+            async fetchProducts() {
+                let url = "{{route('product.index')}}"
+                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+
+                this.featuredProducts = featured;
+                this.otherProducts = others;
+            },
+            getImageUrl(path) {
+                const url = location.origin.includes('abatistore.com') ?
+                    `/public/storage/${path}` :
+                    `/storage/${path}`;
+                return path ? url : '/images/no-image.png';
+            },
+            getFile(path) {
+                const url = location.origin.includes('abatistore.com') ?
+                    `/public/${path}` :
+                    `${path}`;
+                return url;
+            },
+            formatRupiah(value) {
+                const number = Number(value);
+                if (isNaN(number)) return value;
+                return 'Rp ' + number.toLocaleString('id-ID');
+            },
+        },
+        beforeUnmount() {
+            this.stopSlide();
+        }
+    }).mount('#app');
     </script>
 </body>
 

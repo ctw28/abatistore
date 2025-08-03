@@ -23,97 +23,97 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
-    .btn-bounce {
-        display: inline-block;
-        padding: 12px 24px;
-        color: white;
-        font-weight: bold;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
-        animation: bounce 1.5s infinite;
-    }
-
-    @keyframes bounce {
-
-        0%,
-        100% {
-            transform: translateY(0);
+        .btn-bounce {
+            display: inline-block;
+            padding: 12px 24px;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            animation: bounce 1.5s infinite;
         }
 
-        50% {
-            transform: translateY(-6px);
-        }
-    }
+        @keyframes bounce {
 
-    .btn-shake {
-        display: inline-block;
-        color: white;
-        font-weight: bold;
-        text-decoration: none;
-        animation: shake 5.5s infinite;
-    }
+            0%,
+            100% {
+                transform: translateY(0);
+            }
 
-    @keyframes shake {
-
-        0%,
-        100% {
-            transform: translateX(0);
+            50% {
+                transform: translateY(-6px);
+            }
         }
 
-        25% {
-            transform: translateX(-3px);
+        .btn-shake {
+            display: inline-block;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            animation: shake 5.5s infinite;
         }
 
-        50% {
-            transform: translateX(3px);
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-3px);
+            }
+
+            50% {
+                transform: translateX(3px);
+            }
+
+            75% {
+                transform: translateX(-3px);
+            }
         }
 
-        75% {
-            transform: translateX(-3px);
+        header.masthead {
+            padding-top: 3rem;
         }
-    }
 
-    header.masthead {
-        padding-top: 3rem;
-    }
-
-    .video-container {
-        overflow-x: auto;
-        display: flex;
-        gap: 1rem;
-        padding-bottom: 1rem;
-    }
-
-    .video-wrapper {
-        min-width: 250px;
-        flex: 0 0 auto;
-    }
-
-    @media (min-width: 768px) {
         .video-container {
-            flex-wrap: wrap;
-            justify-content: space-between;
-            overflow-x: unset;
+            overflow-x: auto;
+            display: flex;
+            gap: 1rem;
+            padding-bottom: 1rem;
         }
 
         .video-wrapper {
-            flex: 0 0 calc(33.33% - 1rem);
-            min-width: unset;
+            min-width: 250px;
+            flex: 0 0 auto;
         }
-    }
+
+        @media (min-width: 768px) {
+            .video-container {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                overflow-x: unset;
+            }
+
+            .video-wrapper {
+                flex: 0 0 calc(33.33% - 1rem);
+                min-width: unset;
+            }
+        }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-71X4PVE1XD"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', 'G-71X4PVE1XD');
+        gtag('config', 'G-71X4PVE1XD');
     </script>
 </head>
 
@@ -455,15 +455,22 @@
         <section class="page-section bg-light" id="seragam">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">SAATNYA OUTFIT TIM KALIAN NAIK KELAS</h2>
+                    <h2 class="section-heading text-uppercase">SAATNYA OUTFIT TIM KALIAN NAIK KELAS DAN MAKIN KOMPAK!
+                    </h2>
 
                 </div>
                 <div class="row">
                     <p>
-                        <strong>Butuh Seragam Keluarga/Komunitas/Rekan kerja untuk momen spesialmu</strong>? Percayakan
-                        pada Produk Fadkhera. Dengan
-                        <strong>motif dan design yang modern, memberi kalian semangat baru</strong>, sehingga momen
-                        spesial kalian jadi lebih berkesan!
+                        <strong>Butuh Seragam (Model yang sama dalam jumlah banyak) untuk Keluarga/Komunitas/Rekan kerja
+                            di momen
+                            spesial</strong>? Percayakan
+                        pada Produk Fadkhera. Dengan beragam pilihan
+                        <strong>model dan design yang modern, memberi kalian semangat baru</strong>, sehingga momen
+                        spesial kalian jadi lebih berkesan! <br>
+                        <b>Dapatkan harga spesial untuk pembelian model yang sama dalam
+                            jumlah banyak.</b>
+
+
                     </p>
                     <div class="col-6 col-md-3 col-lg-3 p-2 mb-2">
                         <img :src="getFile('/assets/seragam.webp')" class="img" width="100%">
@@ -479,7 +486,7 @@
                     </div>
                     <div class="col-12 text-center">
                         <a :href=" getWhatsappLinkSeragam()" class="btn btn-success mt-2"> <i
-                                class="fa fa-whatsapp me-1"></i>Konsultasikan Seragam Sekarang</a>
+                                class="fa fa-whatsapp me-1"></i>Order Seragam Sekarang</a>
                     </div>
                 </div>
 
@@ -600,134 +607,134 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-    const swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: false,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: false,
-    });
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: false,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: false,
+        });
     </script>
 
     <script>
-    const {
-        createApp
-    } = Vue;
+        const {
+            createApp
+        } = Vue;
 
-    createApp({
-        data() {
-            return {
-                featuredProducts: [],
-                otherProducts: [],
-                selectedProduct: {},
-                activeImageIndex: 0,
-                slideInterval: null,
+        createApp({
+            data() {
+                return {
+                    featuredProducts: [],
+                    otherProducts: [],
+                    selectedProduct: {},
+                    activeImageIndex: 0,
+                    slideInterval: null,
 
-            }
-        },
-        mounted() {
-            this.fetchProducts();
-        },
-        computed: {
-            allImages() {
-                // Gabungkan gambar utama + gambar pendukung
-                if (!this.selectedProduct) return [];
-                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                const others = this.selectedProduct.images?.map(img => img.image) || [];
-                return main.concat(others);
-            },
-            activeImage() {
-                return this.allImages[this.activeImageIndex] || '';
-            }
-        },
-        methods: {
-            trackWhatsAppClick(productName) {
-                if (typeof gtag === 'function') {
-                    gtag('event', 'click_whatsapp', {
-                        'event_category': 'Engagement',
-                        'event_label': productName,
-                    });
                 }
             },
-            getWhatsappLink(productName) {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                const message =
-                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            mounted() {
+                this.fetchProducts();
             },
-            getWhatsappLinkPO(productName) {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                const message =
-                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            computed: {
+                allImages() {
+                    // Gabungkan gambar utama + gambar pendukung
+                    if (!this.selectedProduct) return [];
+                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                    const others = this.selectedProduct.images?.map(img => img.image) || [];
+                    return main.concat(others);
+                },
+                activeImage() {
+                    return this.allImages[this.activeImageIndex] || '';
+                }
             },
-            getWhatsappLinkPOUkuran(productName) {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                const message =
-                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            },
-            getWhatsappLinkSeragam() {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                const message =
-                    `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            },
-            nextImage() {
-                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-            },
-            prevImage() {
-                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
-                    .length;
-            },
-            startSlide() {
-                this.slideInterval = setInterval(() => {
-                    this.nextImage();
-                }, 5000); // 3 detik
-            },
-            stopSlide() {
-                clearInterval(this.slideInterval);
-            },
-            openModal(product) {
-                this.selectedProduct = product;
-                this.activeImageIndex = 0;
-                this.startSlide();
-                const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                modal.show();
-            },
-            async fetchProducts() {
-                let url = "{{route('product.index')}}"
-                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+            methods: {
+                trackWhatsAppClick(productName) {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'click_whatsapp', {
+                            'event_category': 'Engagement',
+                            'event_label': productName,
+                        });
+                    }
+                },
+                getWhatsappLink(productName) {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                getWhatsappLinkPO(productName) {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                getWhatsappLinkPOUkuran(productName) {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                getWhatsappLinkSeragam() {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                nextImage() {
+                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+                },
+                prevImage() {
+                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                        .length;
+                },
+                startSlide() {
+                    this.slideInterval = setInterval(() => {
+                        this.nextImage();
+                    }, 5000); // 3 detik
+                },
+                stopSlide() {
+                    clearInterval(this.slideInterval);
+                },
+                openModal(product) {
+                    this.selectedProduct = product;
+                    this.activeImageIndex = 0;
+                    this.startSlide();
+                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                    modal.show();
+                },
+                async fetchProducts() {
+                    let url = "{{route('product.index')}}"
+                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
 
-                this.featuredProducts = featured;
-                this.otherProducts = others;
+                    this.featuredProducts = featured;
+                    this.otherProducts = others;
+                },
+                getImageUrl(path) {
+                    const url = location.origin.includes('abatistore.com') ?
+                        `/public/storage/${path}` :
+                        `/storage/${path}`;
+                    return path ? url : '/images/no-image.png';
+                },
+                getFile(path) {
+                    const url = location.origin.includes('abatistore.com') ?
+                        `/public/${path}` :
+                        `${path}`;
+                    return url;
+                },
+                formatRupiah(value) {
+                    const number = Number(value);
+                    if (isNaN(number)) return value;
+                    return 'Rp ' + number.toLocaleString('id-ID');
+                },
             },
-            getImageUrl(path) {
-                const url = location.origin.includes('abatistore.com') ?
-                    `/public/storage/${path}` :
-                    `/storage/${path}`;
-                return path ? url : '/images/no-image.png';
-            },
-            getFile(path) {
-                const url = location.origin.includes('abatistore.com') ?
-                    `/public/${path}` :
-                    `${path}`;
-                return url;
-            },
-            formatRupiah(value) {
-                const number = Number(value);
-                if (isNaN(number)) return value;
-                return 'Rp ' + number.toLocaleString('id-ID');
-            },
-        },
-        beforeUnmount() {
-            this.stopSlide();
-        }
-    }).mount('#app');
+            beforeUnmount() {
+                this.stopSlide();
+            }
+        }).mount('#app');
     </script>
 </body>
 

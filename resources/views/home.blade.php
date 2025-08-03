@@ -131,7 +131,7 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <img src="{{asset('logo-with-fadkhera.png')}}" class="mb-4" width="200">
+                <img src="{{asset('logo-with-fadkhera.png')}}" class="mb-4" width="150">
                 <div class="masthead-subheading">Pakaian adalah Akhlak!</div>
                 <div class="masthead-heading text-uppercase">Berikan yang <span
                         style="color:rgb(250, 255, 174)"><b>terbaik</b></span> dalam
@@ -145,12 +145,12 @@
                 <a class="btn btn-info text-uppercase me-2" href="https://wa.me/message/A6U3BRVQCID3K1"><i
                         class="fa fa-whatsapp me-1"></i> WA Admin</a>
                 <a class="btn btn-info text-uppercase me-2" href="https://www.instagram.com/fadkhera.kendari/"
-                    target="_blank"><i class="fa fa-instagram me-1"></i>Instagram</a>
+                    target="_blank"><i class="fa fa-instagram me-1"></i>Instagram</a><br><br>
                 <a class="btn btn-secondary text-uppercase" href="#seragam">Butuh
                     Seragam?</a>
                 <br><br>
-                <a class="btn btn-info text-uppercase" href="https://maps.app.goo.gl/czDzXeGqrUQXefoBA"
-                    target="_blank"><i class="fa fa-map-marker me-1"></i> Lokasi Kami</a>
+                <button class="btn btn-info text-uppercase" data-bs-toggle="modal" data-bs-target="#mapModal"><i
+                        class="fa fa-map-marker me-1"></i> Lokasi Kami</button>
 
             </div>
         </header>
@@ -486,7 +486,33 @@
             </div>
 
         </section>
-
+        <!-- Modal Bootstrap -->
+        <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mapModalLabel">Lokasi Toko</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Embed Google Maps -->
+                        <div class="ratio ratio-16x9">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m23!1m11!1m3!1d143.00770873843035!2d122.5114838009742!3d-3.998685335666983!2m2!1f0!2f1.6419434329974345!3m2!1i1024!2i768!4f50.84469958573552!4m9!3e0!4m3!3m2!1d-3.9986074!2d122.511354!4m3!3m2!1d-3.9986246!2d122.5113538!5e1!3m2!1sen!2suk!4v1754228293641!5m2!1sen!2suk"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <!-- Alamat -->
+                        <div class="mt-3">
+                            <strong>Alamat:</strong><br>
+                            Jalan La Ode Hadi, Lorong Satria / Lorong Al-Ikhlas (Sekitaran UMK / Belakang Fresh Mart
+                            Bypass)<br>
+                            Kec. Kadia, Kota Kendari
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">

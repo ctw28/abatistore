@@ -168,11 +168,12 @@
                         class="fa fa-angle-double-down me-1"></i>Selengkapnya</a>
                 <br>
                 <br>
-                <a class="btn btn-info text-uppercase me-2" href="https://wa.me/message/A6U3BRVQCID3K1"><i
-                        class="fa fa-whatsapp me-1"></i> WA Admin</a>
-                <a class="btn btn-info text-uppercase me-2" href="https://www.instagram.com/fadkhera.kendari/"
-                    target="_blank"><i class="fa fa-instagram me-1"></i>Instagram</a><br><br>
-                <a class="btn btn-secondary text-uppercase" href="#seragam">Butuh
+                <a class="btn btn-info text-uppercase me-2" @click="trackClickWaAdmin"
+                    href="https://wa.me/message/A6U3BRVQCID3K1"><i class="fa fa-whatsapp me-1"></i> WA Admin</a>
+                <a class="btn btn-info text-uppercase me-2" @click="trackClickIg"
+                    href="https://www.instagram.com/fadkhera.kendari/" target="_blank"><i
+                        class="fa fa-instagram me-1"></i>Instagram</a><br><br>
+                <a class="btn btn-secondary text-uppercase" href="#seragam" @click="trackSeragamClick">Butuh
                     Seragam?</a>
                 <br><br>
                 <button class="btn btn-info text-uppercase" data-bs-toggle="modal" data-bs-target="#mapModal"><i
@@ -400,7 +401,9 @@
                             <div style="position: absolute; top: 0px; right: 5px; z-index: 10;">
                                 <span class="badge bg-info" style="font-size: 0.6rem;">Ready Stok</span>
                             </div>
-                            <a class="portfolio-link" href="#" @click.prevent="openModal(product)">
+                            <a class="portfolio-link" href="#"
+                                @click.prevent="openModal(product); trackDetailClick(product)">
+                                >
 
 
                                 <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
@@ -424,7 +427,8 @@
                                     target="_blank" class="btn btn-success btn-sm my-1 me-2">
                                     <i class="fa fa-whatsapp me-1"></i> Beli di WA / Info
                                 </a>
-                                <a :href="product.link_shopee" class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
+                                <a :href="product.link_shopee" @click="trackShopeeClick(product)"
+                                    class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
                                     style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
                                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
                                         alt="Shopee Icon"
@@ -449,7 +453,9 @@
                                 style="position: absolute; top: 0px; right: 5px; z-index: 10;">
                                 <span class="badge bg-info" style="font-size: 0.6rem;">Ready Stok</span>
                             </div>
-                            <a class="portfolio-link" href="#" @click.prevent="openModal(product)">
+                            <a class="portfolio-link" href="#"
+                                @click.prevent="openModal(product); trackDetailClick(product)">
+                                >
                                 <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
                                 <!-- Overlay jika produk habis -->
                                 <div v-if="product.is_habis"
@@ -465,7 +471,8 @@
                                     target="_blank" class="btn btn-success btn-sm my-1 me-2">
                                     <i class="fa fa-whatsapp me-1"></i> Beli di WA / Info
                                 </a>
-                                <a :href="product.link_shopee" class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
+                                <a :href="product.link_shopee" @click="trackShopeeClick(product)"
+                                    class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
                                     style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
                                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
                                         alt="Shopee Icon"
@@ -511,8 +518,8 @@
                         <img :src="getFile('/assets/seragam3.jpeg')" class="img" width="100%">
                     </div>
                     <div class="col-12 text-center">
-                        <a :href=" getWhatsappLinkSeragam()" class="btn btn-success mt-2"> <i
-                                class="fa fa-whatsapp me-1"></i>Order Seragam Sekarang</a>
+                        <a :href=" getWhatsappLinkSeragam()" @click="trackSeragamClickWA" class="btn btn-success mt-2">
+                            <i class="fa fa-whatsapp me-1"></i>Order Seragam Sekarang</a>
                     </div>
                 </div>
 
@@ -581,7 +588,8 @@
                             target="_blank" class="btn btn-success my-3 me-2">
                             <i class="fa fa-whatsapp me-1"></i> Beli di WA / Info
                         </a>
-                        <a :href="selectedProduct.link_shopee" class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
+                        <a :href="selectedProduct.link_shopee" @click="trackShopeeClick(product)"
+                            class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
                             style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
                             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
                                 alt="Shopee Icon"
@@ -686,6 +694,48 @@
                         value: product.price,
                         currency: 'IDR'
                     });
+                }
+            },
+            trackShopeeClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'ShopeeClick', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+
+                }
+            },
+            trackDetailClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'DetailClick', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+
+                }
+            },
+            trackSeragamClick() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'SeragamClick');
+                }
+            },
+            trackSeragamClickWA() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'SeragamClickWA');
+                }
+            },
+            trackClickWaAdmin() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'WaAdminClick');
+                }
+            },
+            trackClickIg() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'IgClick');
                 }
             },
             getWhatsappLink(productName) {

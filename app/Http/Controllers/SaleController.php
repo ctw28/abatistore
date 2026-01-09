@@ -24,6 +24,7 @@ class SaleController extends Controller
             'sale_date' => 'required|date',
             'payment_method' => 'nullable|string',
             'total_paid' => 'required|numeric',
+            'buyer.id' => 'nullable|exists:buyers,id',
             'buyer.name' => 'nullable|string',
             'buyer.whatsapp_number' => 'nullable|string',
             'items' => 'required|array|min:1',
@@ -40,10 +41,23 @@ class SaleController extends Controller
 
         try {
             // Simpan pembeli (jika ada)
-            $buyer = Buyer::create([
-                'name' => $data['buyer']['name'] ?? "-",
-                'whatsapp_number' => $data['buyer']['whatsapp_number'] ?? "-"
-            ]);
+            $buyer = null;
+
+            if (!empty($data['buyer']['id'])) {
+
+                // PAKAI PEMBELI LAMA
+                $buyer = Buyer::find($data['buyer']['id']);
+            } else {
+
+                // BUAT PEMBELI BARU
+                if (!empty($data['buyer']['name'])) {
+                    $buyer = Buyer::firstOrCreate(
+                        ['whatsapp_number' => $data['buyer']['whatsapp_number']],
+                        ['name' => $data['buyer']['name']]
+                    );
+                }
+            }
+
 
             // Hitung total diskon
             $totalDiscount = collect($data['items'])->sum(function ($item) {
@@ -177,12 +191,25 @@ class SaleController extends Controller
                 'total_paid' => $data['total_paid'],
                 'total_discount' => $totalDiscount,
             ]);
-            if ($sale->buyer) {
-                $sale->buyer->update([
-                    'name' => $request->input('buyer.name'),
-                    'whatsapp_number' => $request->input('buyer.whatsapp_number'),
+            // Jika pilih buyer lain
+            if ($request->buyer_id) {
+                $sale->update([
+                    'buyer_id' => $request->buyer_id
                 ]);
             }
+            // Jika pilih buyer lain
+            if ($request->buyer_id) {
+                $sale->update([
+                    'buyer_id' => $request->buyer_id
+                ]);
+            }
+
+            // if ($sale->buyer) {
+            //     $sale->buyer->update([
+            //         'name' => $request->input('buyer.name'),
+            //         'whatsapp_number' => $request->input('buyer.whatsapp_number'),
+            //     ]);
+            // }
             // Simpan ulang item baru dan update stok
             foreach ($data['items'] as $item) {
                 \App\Models\SaleItem::create([

@@ -6,8 +6,39 @@
     <div class="card">
         <div class="card-body">
             <div class="mb-3">
-                <a href="{{ route('product.add') }}" class="btn btn-primary">Tambah Produk</a>
+                <a href="{{ route('product.add') }}" class="btn btn-primary">+ Tambah Produk</a>
             </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label>Status Stok</label>
+                    <select class="form-control" v-model="filterStatus" @change="fetchProducts">
+                        <option value="available">Masih Ada</option>
+                        <option value="habis">Habis</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3" v-if="filterStatus === 'available'">
+                    <label>Filter Size</label>
+                    <select class="form-control" v-model="filterSize" @change="fetchProducts">
+                        <option value="">Semua Ukuran</option>
+                        <option v-for="s in sizes" :key="s.id" :value="s.id">
+                            @{{ s.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label>Kategori</label>
+                    <select class="form-control" v-model="filterCategory" @change="fetchProducts">
+                        <option value="">Semua Kategori</option>
+                        <option v-for="c in categories" :key="c.id" :value="c.id">
+                            @{{ c.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr class="text-center">
@@ -65,6 +96,12 @@
                             <button @click="deleteProduct(product.id)" class="btn btn-sm btn-danger">Hapus</button>
                         </td>
                     </tr>
+                    <tr v-if="products.length === 0">
+                        <td colspan="8" class="text-center text-muted py-3">
+                            😢 Tidak ada produk sesuai filter
+                        </td>
+                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -144,171 +181,208 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
 <script>
-    new Vue({
-        el: '#app',
-        data: {
-            products: [],
-            selectedImages: [],
-            currentProduct: {},
-            stockData: [],
-            availableSizes: [], // daftar semua ukuran dari API
-            newSizeId: null,
+new Vue({
+    el: '#app',
+    data: {
+        products: [],
+        selectedImages: [],
+        currentProduct: {},
+        stockData: [],
+        availableSizes: [], // daftar semua ukuran dari API
+        newSizeId: null,
+        filterStatus: 'available',
+        filterSize: '',
+        sizes: [], // list ukuran
+        categories: [],
+        filterCategory: '',
 
+    },
+    mounted() {
+        this.fetchProducts()
+        this.fetchSizes()
+        this.fetchCategories()
+
+
+    },
+    methods: {
+        fetchCategories() {
+            fetch('/api/kategori')
+                .then(res => res.json())
+                .then(data => {
+                    this.categories = data
+                })
         },
-        mounted() {
-            this.fetchProducts()
+        formatRupiah(value) {
+            const number = Number(value);
+            if (isNaN(number)) return value;
+            return 'Rp ' + number.toLocaleString('id-ID');
         },
-        methods: {
-            formatRupiah(value) {
-                const number = Number(value);
-                if (isNaN(number)) return value;
-                return 'Rp ' + number.toLocaleString('id-ID');
-            },
-            totalStock(product) {
-                if (product && product.stocks) {
-                    return product.stocks.reduce((total, stock) => total + stock.stock, 0);
-                }
-                return 0;
-            },
-            async openStockModal(product) {
-                this.currentProduct = product;
-                let urlstock = "{{route('stock.index',':id')}}"
-                urlstock = urlstock.replace(':id', product.id)
-                const [sizes, stock] = await Promise.all([
-                    fetch("{{route('size.index')}}").then(res => res.json()),
-                    fetch(urlstock).then(res => res.json())
-                ]);
-
-                this.availableSizes = sizes;
-                this.stockData = stock;
-                console.log(stock);
-                this.stockData = stock.map(item => ({
-                    ...item,
-                    size_id: item.size_id,
-                    size_name: item.size.name,
-                    quantity: item.stock || 0 // Pastikan ada properti quantity
-                }));
-
-                new bootstrap.Modal(document.getElementById('stockModal')).show();
-            },
-            addSizeToStock() {
-                const size = this.availableSizes.find(s => s.id === this.newSizeId);
-                if (!size || this.stockData.some(s => s.size_id === size.id)) return;
-
-                this.stockData.push({
-                    size_id: size.id,
-                    size_name: size.name,
-                    quantity: 0,
-                });
-
-                this.newSizeId = null;
-            },
-            removeStock(index) {
-                this.stockData.splice(index, 1);
-            },
-            saveStock() {
-                // Menyiapkan array untuk menyimpan data stok yang akan dikirim ke API
-                const stocksToSave = this.stockData.map(stock => ({
-                    product_id: this.currentProduct.id, // ID produk yang sedang diedit
-                    size_id: stock.size_id, // ID ukuran
-                    stock: stock.quantity, // Jumlah stok
-                }));
-
-                // Mengirimkan data stok ke API
-                let url = "{{route('stock.store',':id')}}"
-                url = url.replace(':id', this.currentProduct.id)
-                fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            stocks: stocksToSave, // Data yang akan disimpan
-                        }),
-                    })
-                    .then(response => response.json())
-                    .then(() => {
-                        this.fetchProducts()
-
-                        alert('Stok berhasil disimpan!');
-                        // Menutup modal setelah data berhasil disimpan
-                        bootstrap.Modal.getInstance(document.getElementById('stockModal')).hide();
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Terjadi kesalahan saat menyimpan stok.');
-                    });
-            },
-            getImageUrl(path) {
-                return path ? `/public/storage/${path}` : '/images/no-image.png';
-            },
-            showImageModal(product) {
-                console.log(product);
-
-                this.selectedImages = product.images || [];
-                console.log(this.selectedImages);
-
-                const modal = new bootstrap.Modal(document.getElementById('imageModal'));
-                modal.show();
-            },
-            fetchProducts() {
-                let url = "{{route('product.index')}}"
-
-                fetch(url, {
-                        headers: {
-                            'Authorization': 'Bearer ' + localStorage.getItem('jwt')
-                        }
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        this.products = data
-                    })
-            },
-            toggleFeatured(product) {
-                let url = "{{route('toggle.featured',':id')}}"
-                url = url.replace(':id', product.id)
-                fetch(url, {
-                        method: 'PATCH',
-                        headers: {
-                            'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        product.is_featured = data.is_featured
-                    })
-            },
-            toggleHabis(product) {
-                let url = "{{route('toggle.habis',':id')}}"
-                url = url.replace(':id', product.id)
-                fetch(url, {
-                        method: 'PATCH',
-                        headers: {
-                            'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        product.is_habis = data.is_habis
-                    })
-            },
-            deleteProduct(id) {
-                if (!confirm('Yakin ingin menghapus produk ini?')) return;
-                let url = "{{route('product.destroy',':id')}}"
-                url = url.replace(':id', id)
-                fetch(url, {
-                        method: 'DELETE',
-                        headers: {
-                            'Authorization': 'Bearer ' + localStorage.getItem('jwt')
-                        }
-                    })
-                    .then(() => {
-                        this.products = this.products.filter(p => p.id !== id)
-                    })
+        totalStock(product) {
+            if (product && product.stocks) {
+                return product.stocks.reduce((total, stock) => total + stock.stock, 0);
             }
+            return 0;
+        },
+        async openStockModal(product) {
+            this.currentProduct = product;
+            let urlstock = "{{route('stock.index',':id')}}"
+            urlstock = urlstock.replace(':id', product.id)
+            const [sizes, stock] = await Promise.all([
+                fetch("{{route('size.index')}}").then(res => res.json()),
+                fetch(urlstock).then(res => res.json())
+            ]);
+
+            this.availableSizes = sizes;
+            this.stockData = stock;
+            console.log(stock);
+            this.stockData = stock.map(item => ({
+                ...item,
+                size_id: item.size_id,
+                size_name: item.size.name,
+                quantity: item.stock || 0 // Pastikan ada properti quantity
+            }));
+
+            new bootstrap.Modal(document.getElementById('stockModal')).show();
+        },
+        addSizeToStock() {
+            const size = this.availableSizes.find(s => s.id === this.newSizeId);
+            if (!size || this.stockData.some(s => s.size_id === size.id)) return;
+
+            this.stockData.push({
+                size_id: size.id,
+                size_name: size.name,
+                quantity: 0,
+            });
+
+            this.newSizeId = null;
+        },
+        removeStock(index) {
+            this.stockData.splice(index, 1);
+        },
+        saveStock() {
+            // Menyiapkan array untuk menyimpan data stok yang akan dikirim ke API
+            const stocksToSave = this.stockData.map(stock => ({
+                product_id: this.currentProduct.id, // ID produk yang sedang diedit
+                size_id: stock.size_id, // ID ukuran
+                stock: stock.quantity, // Jumlah stok
+            }));
+
+            // Mengirimkan data stok ke API
+            let url = "{{route('stock.store',':id')}}"
+            url = url.replace(':id', this.currentProduct.id)
+            fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        stocks: stocksToSave, // Data yang akan disimpan
+                    }),
+                })
+                .then(response => response.json())
+                .then(() => {
+                    this.fetchProducts()
+
+                    alert('Stok berhasil disimpan!');
+                    // Menutup modal setelah data berhasil disimpan
+                    bootstrap.Modal.getInstance(document.getElementById('stockModal')).hide();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan saat menyimpan stok.');
+                });
+        },
+        getImageUrl(path) {
+            return path ? `/public/storage/${path}` : '/images/no-image.png';
+        },
+        showImageModal(product) {
+            console.log(product);
+
+            this.selectedImages = product.images || [];
+            console.log(this.selectedImages);
+
+            const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+            modal.show();
+        },
+        fetchProducts() {
+            let url = "{{ route('product.index') }}"
+            let params = new URLSearchParams()
+
+            // status
+            params.append('status', this.filterStatus)
+
+            // size
+            if (this.filterSize) {
+                params.append('size_id', this.filterSize)
+            }
+
+            // kategori
+            if (this.filterCategory) {
+                params.append('category_id', this.filterCategory)
+            }
+
+            fetch(url + '?' + params.toString(), {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    this.products = data
+                })
+        },
+        fetchSizes() {
+            fetch('/api/sizes')
+                .then(res => res.json())
+                .then(data => {
+                    this.sizes = data
+                })
+        },
+        toggleFeatured(product) {
+            let url = "{{route('toggle.featured',':id')}}"
+            url = url.replace(':id', product.id)
+            fetch(url, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    product.is_featured = data.is_featured
+                })
+        },
+        toggleHabis(product) {
+            let url = "{{route('toggle.habis',':id')}}"
+            url = url.replace(':id', product.id)
+            fetch(url, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    product.is_habis = data.is_habis
+                })
+        },
+        deleteProduct(id) {
+            if (!confirm('Yakin ingin menghapus produk ini?')) return;
+            let url = "{{route('product.destroy',':id')}}"
+            url = url.replace(':id', id)
+            fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+                    }
+                })
+                .then(() => {
+                    this.products = this.products.filter(p => p.id !== id)
+                })
         }
-    })
+    }
+})
 </script>
 @endpush

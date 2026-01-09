@@ -17,18 +17,32 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        // Ambil produk dengan relasi yang dibutuhkan
         $products = Product::with('category', 'images', 'stocks.size');
 
-        // Filter berdasarkan is_featured jika ada di request
-        if ($request->has('is_featured')) {
-            $products->where('is_featured', $request->is_featured);
+        // STATUS
+        if ($request->status === 'habis') {
+            $products->where('is_habis', 1);
+        } else {
+            $products->where('is_habis', 0);
         }
 
-        // Ambil data produk
-        $products = $products->get();
-        return response()->json($products);
+        // SIZE
+        if ($request->filled('size_id')) {
+            $products->whereHas('stocks', function ($q) use ($request) {
+                $q->where('size_id', $request->size_id)
+                    ->where('stock', '>', 0);
+            });
+        }
+
+        // KATEGORI
+        if ($request->filled('category_id')) {
+            $products->where('category_id', $request->category_id);
+        }
+        $products->orderBy('name', 'ASC');
+        return response()->json($products->get());
     }
+
+
 
 
 

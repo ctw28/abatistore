@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('image')->nullable(); // untuk path gambar
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_habis')->default(false);
+            $table->string('link_shopee')->nullable();
 
             $table->timestamps();
         });

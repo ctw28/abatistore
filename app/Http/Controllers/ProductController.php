@@ -24,8 +24,6 @@ class ProductController extends Controller
         // STATUS
         if ($request->status === 'habis') {
             $products->where('is_habis', 1);
-        } else {
-            $products->where('is_habis', 0);
         }
 
         // SIZE

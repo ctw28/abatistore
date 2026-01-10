@@ -17,7 +17,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-3" v-if="filterStatus === 'available'">
+                <div class="col-md-3" v-if="filterStatus === 'ada'">
                     <label>Filter Size</label>
                     <select class="form-control" v-model="filterSize" @change="fetchProducts">
                         <option value="">Semua Ukuran</option>

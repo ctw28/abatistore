@@ -799,7 +799,7 @@
                 this.otherProducts = others;
             },
             getImageUrl(path) {
-                if (!path) return '/storage/products/no-image.png'
+                if (!path) return '/assets/no-image.png'
                 return `/storage/${path}`
             },
 

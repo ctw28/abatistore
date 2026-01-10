@@ -788,22 +788,21 @@
                 let url = "{{route('product.index')}}"
                 const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
                 const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+                console.log(featured);
+                console.log(others);
 
                 this.featuredProducts = featured;
                 this.otherProducts = others;
             },
             getImageUrl(path) {
-                const url = location.origin.includes('abatistore.com') ?
-                    `/storage/${path}` :
-                    `/storage/${path}`;
-                return path ? url : '/images/no-image.png';
+                if (!path) return '/images/no-image.png'
+                return `/storage/${path}`
             },
+
             getFile(path) {
-                const url = location.origin.includes('abatistore.com') ?
-                    `/${path}` :
-                    `/${path}`;
-                return url;
+                return path ? `/${path}` : ''
             },
+
             formatRupiah(value) {
                 const number = Number(value);
                 if (isNaN(number)) return value;

@@ -458,7 +458,7 @@
                                 >
                                 <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
                                 <!-- Overlay jika produk habis -->
-                                <div v-if="product.is_habis == '0'"
+                                <div v-if="product.is_habis == '1'"
                                     class="position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center"
                                     style="width: 80px; height: 80px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.7); color: white; font-weight: bold; font-size: 0.8rem;">
                                     Habis

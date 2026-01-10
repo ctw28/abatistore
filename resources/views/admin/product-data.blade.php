@@ -328,6 +328,8 @@ new Vue({
                 })
                 .then(res => res.json())
                 .then(data => {
+                    console.log(data);
+
                     this.products = data
                 })
         },

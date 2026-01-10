@@ -800,7 +800,7 @@
             },
 
             getFile(path) {
-                return path ? `/${path}` : ''
+                return path ? `${path}` : ''
             },
 
             formatRupiah(value) {

@@ -26,6 +26,10 @@ class ProductController extends Controller
             $products->where('is_habis', 1);
         }
 
+        if ($request->status === 'ada') {
+            $products->where('is_habis', 0);
+        }
+
         // SIZE
         if ($request->filled('size_id')) {
             $products->whereHas('stocks', function ($q) use ($request) {

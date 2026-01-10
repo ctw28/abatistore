@@ -12,7 +12,7 @@
                 <div class="col-md-3">
                     <label>Status Stok</label>
                     <select class="form-control" v-model="filterStatus" @change="fetchProducts">
-                        <option value="available">Masih Ada</option>
+                        <option value="ada">Masih Ada</option>
                         <option value="habis">Habis</option>
                     </select>
                 </div>

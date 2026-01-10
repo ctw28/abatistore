@@ -18,7 +18,9 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::with('category', 'images', 'stocks.size');
-
+        if ($request->has('is_featured')) {
+            $products->where('is_featured', $request->is_featured);
+        }
         // STATUS
         if ($request->status === 'habis') {
             $products->where('is_habis', 1);
@@ -41,8 +43,6 @@ class ProductController extends Controller
         $products->orderBy('name', 'ASC');
         return response()->json($products->get());
     }
-
-
 
 
 

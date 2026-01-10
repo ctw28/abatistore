@@ -794,13 +794,13 @@
             },
             getImageUrl(path) {
                 const url = location.origin.includes('abatistore.com') ?
-                    `/public/storage/${path}` :
+                    `/storage/${path}` :
                     `/storage/${path}`;
                 return path ? url : '/images/no-image.png';
             },
             getFile(path) {
                 const url = location.origin.includes('abatistore.com') ?
-                    `/public/${path}` :
+                    `/${path}` :
                     `${path}`;
                 return url;
             },

@@ -190,7 +190,7 @@ new Vue({
         stockData: [],
         availableSizes: [], // daftar semua ukuran dari API
         newSizeId: null,
-        filterStatus: 'available',
+        filterStatus: 'ada',
         filterSize: '',
         sizes: [], // list ukuran
         categories: [],

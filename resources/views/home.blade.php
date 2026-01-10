@@ -408,7 +408,7 @@
 
                                 <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
                                 <!-- Overlay jika produk habis -->
-                                <div v-if="Number(product.is_habis) === 1"
+                                <div v-if="product.is_habis == '1'"
                                     class="position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center"
                                     style="width: 80px; height: 80px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.7); color: white; font-weight: bold; font-size: 0.8rem;">
                                     Habis
@@ -449,7 +449,7 @@
                         style="border: 1px solid #e9e9e9;">
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item  position-relative">
-                            <div v-if="!product.is_habis"
+                            <div v-if="product.is_habis=='0'"
                                 style="position: absolute; top: 0px; right: 5px; z-index: 10;">
                                 <span class="badge bg-info" style="font-size: 0.6rem;">Ready Stok</span>
                             </div>
@@ -458,7 +458,7 @@
                                 >
                                 <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
                                 <!-- Overlay jika produk habis -->
-                                <div v-if="Number(product.is_habis) === 1"
+                                <div v-if="product.is_habis == '0'"
                                     class="position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center"
                                     style="width: 80px; height: 80px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.7); color: white; font-weight: bold; font-size: 0.8rem;">
                                     Habis

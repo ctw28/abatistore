@@ -293,7 +293,7 @@ new Vue({
                 });
         },
         getImageUrl(path) {
-            return path ? `/public/storage/${path}` : '/images/no-image.png';
+            return path ? `/storage/${path}` : '/images/no-image.png';
         },
         showImageModal(product) {
             console.log(product);

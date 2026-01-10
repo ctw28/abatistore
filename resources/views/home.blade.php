@@ -801,7 +801,7 @@
             getFile(path) {
                 const url = location.origin.includes('abatistore.com') ?
                     `/${path}` :
-                    `${path}`;
+                    `/${path}`;
                 return url;
             },
             formatRupiah(value) {

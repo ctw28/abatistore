@@ -51,10 +51,10 @@ class SaleController extends Controller
 
                 // BUAT PEMBELI BARU
                 if (!empty($data['buyer']['name'])) {
-                    $buyer = Buyer::firstOrCreate(
-                        ['whatsapp_number' => $data['buyer']['whatsapp_number']],
-                        ['name' => $data['buyer']['name']]
-                    );
+                    $buyer = Buyer::create([
+                        'name' => $data['buyer']['name'],
+                        'whatsapp_number' => $data['buyer']['whatsapp_number'],
+                    ]);
                 }
             }
 

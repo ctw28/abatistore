@@ -341,7 +341,6 @@ new Vue({
                 })
         },
         toggleFeatured(product) {
-            alert('Toggling featured for ' + product.name);
             let url = "{{route('toggle.featured',':id')}}"
             url = url.replace(':id', product.id)
             fetch(url, {

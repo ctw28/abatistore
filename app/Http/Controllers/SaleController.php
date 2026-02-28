@@ -15,7 +15,7 @@ class SaleController extends Controller
 {
     public function index()
     {
-        return Sale::with('items.product', 'items.size')->latest()->get();
+        return Sale::with('buyer', 'items.product', 'items.size')->orderBy('sale_date', 'DESC')->get();
     }
 
     public function store(Request $request)

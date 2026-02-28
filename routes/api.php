@@ -44,9 +44,11 @@ Route::middleware('auth:api')->group(function () {
     Route::patch('/products/{id}/toggle-habis', [ProductController::class, 'toggleHabis'])->name('toggle.habis');
 
     // routes/api.php
-    Route::get('/sales', function () {
-        return \App\Models\Sale::with('buyer', 'items.product', 'items.size')->orderBy('sale_date', 'DESC')->get();
-    });
+    // Route::get('/sales', function () {
+    //     return \App\Models\Sale::with('buyer', 'items.product', 'items.size')->orderBy('sale_date', 'DESC')->get();
+    // });
+
+    Route::get('/sales', [SaleController::class, 'index']);
 
     Route::post('/sales', [SaleController::class, 'store']);
     Route::get('/products-with-sizes', [SaleController::class, 'getProductsWithSizes']);

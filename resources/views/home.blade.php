@@ -182,16 +182,25 @@
                 </div>
                 <a class="btn btn-danger btn-xl text-uppercase btn-bounce" href="#portofolio"><i
                         class="fa fa-angle-double-down me-1"></i>Selengkapnya</a>
-                <br>
-                <br>
-                <a class="btn btn-light text-uppercase me-1" @click="trackClickWaAdmin"
-                    href="https://wa.me/message/A6U3BRVQCID3K1"><i class="fa fa-whatsapp me-1"></i> WA Admin</a>
-                <a class="btn btn-light text-uppercase me-1" @click="trackClickIg"
-                    href="https://www.instagram.com/fadkhera.kendari/" target="_blank"><i
-                        class="fa fa-instagram me-1"></i>Instagram</a>
-                <a class="btn btn-light text-uppercase me-1" @click="trackClickIg"
-                    href="https://www.tiktok.com/@fadkhera.kendari" target="_blank"><i
-                        class="fa fa-tiktok me-2"></i>Tiktok</a><br><br>
+
+                <div class="d-flex flex-wrap justify-content-center gap-2 mt-3 mb-3">
+
+                    <a class="btn btn-light text-uppercase" @click="trackClickWaAdmin"
+                        href="https://wa.me/message/A6U3BRVQCID3K1">
+                        <i class="fa fa-whatsapp me-1"></i> WA Admin
+                    </a>
+
+                    <a class="btn btn-light text-uppercase" @click="trackClickIg"
+                        href="https://www.instagram.com/fadkhera.kendari/" target="_blank">
+                        <i class="fa fa-instagram me-1"></i> Instagram
+                    </a>
+
+                    <a class="btn btn-light text-uppercase" @click="trackClickIg"
+                        href="https://www.tiktok.com/@fadkhera.kendari" target="_blank">
+                        <i class="fa fa-tiktok me-1"></i> Tiktok
+                    </a>
+
+                </div>
                 <a class="btn btn-secondary text-uppercase me-2" href="#seragam" @click="trackSeragamClick">Butuh
                     Seragam?</a>
                 <button class="btn btn-info text-uppercase" data-bs-toggle="modal" data-bs-target="#mapModal"><i

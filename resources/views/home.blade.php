@@ -23,120 +23,135 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
-    .btn-bounce {
-        display: inline-block;
-        padding: 12px 24px;
-        color: white;
-        font-weight: bold;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
-        animation: bounce 1.5s infinite;
-    }
-
-    @keyframes bounce {
-
-        0%,
-        100% {
-            transform: translateY(0);
+        .btn-bounce {
+            display: inline-block;
+            padding: 12px 24px;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            animation: bounce 1.5s infinite;
         }
 
-        50% {
-            transform: translateY(-6px);
-        }
-    }
-
-    .btn-shake {
-        display: inline-block;
-        color: white;
-        font-weight: bold;
-        text-decoration: none;
-        animation: shake 5.5s infinite;
-    }
-
-    @keyframes shake {
-
-        0%,
-        100% {
-            transform: translateX(0);
+        .portfolio-card {
+            padding: 20px;
+            transition: all 0.3s ease;
         }
 
-        25% {
-            transform: translateX(-3px);
+        .portfolio-card:hover {
+            transform: translateY(-5px);
         }
 
-        50% {
-            transform: translateX(3px);
+        .portfolio-img {
+            max-height: 160px;
+            object-fit: contain;
         }
 
-        75% {
-            transform: translateX(-3px);
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
         }
-    }
 
-    header.masthead {
-        padding-top: 3rem;
-    }
+        .btn-shake {
+            display: inline-block;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            animation: shake 5.5s infinite;
+        }
 
-    .video-container {
-        overflow-x: auto;
-        display: flex;
-        gap: 1rem;
-        padding-bottom: 1rem;
-    }
+        @keyframes shake {
 
-    .video-wrapper {
-        min-width: 250px;
-        flex: 0 0 auto;
-    }
+            0%,
+            100% {
+                transform: translateX(0);
+            }
 
-    @media (min-width: 768px) {
+            25% {
+                transform: translateX(-3px);
+            }
+
+            50% {
+                transform: translateX(3px);
+            }
+
+            75% {
+                transform: translateX(-3px);
+            }
+        }
+
+        header.masthead {
+            padding-top: 2.5rem;
+            padding-bottom: 4rem;
+        }
+
         .video-container {
-            flex-wrap: wrap;
-            justify-content: space-between;
-            overflow-x: unset;
+            overflow-x: auto;
+            display: flex;
+            gap: 1rem;
+            padding-bottom: 1rem;
         }
 
         .video-wrapper {
-            flex: 0 0 calc(33.33% - 1rem);
-            min-width: unset;
+            min-width: 250px;
+            flex: 0 0 auto;
         }
-    }
+
+        @media (min-width: 768px) {
+            .video-container {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                overflow-x: unset;
+            }
+
+            .video-wrapper {
+                flex: 0 0 calc(33.33% - 1rem);
+                min-width: unset;
+            }
+        }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-71X4PVE1XD"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', 'G-71X4PVE1XD');
+        gtag('config', 'G-71X4PVE1XD');
     </script>
     <!-- Meta Pixel Code -->
     <script>
-    ! function(f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function() {
-            n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '638215716027703');
-    fbq('track', 'PageView');
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '638215716027703');
+        fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=638215716027703&ev=PageView&noscript=1" /></noscript>
@@ -157,9 +172,10 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <img src="{{asset('logo-with-fadkhera.png')}}" class="mb-4" width="150">
-                <div class="masthead-subheading">Pakaian adalah Akhlak!</div>
-                <div class="masthead-heading text-uppercase">Berikan yang <span
+                <img src="{{asset('logo-abati-store-white.png')}}" class="mb-1" width="150">
+                <br><span style="text-transform: uppercase;">Agen Resmi <b>Fadkhera</b></span>
+                <!-- <div class="masthead-subheading">Pakaian adalah Akhlak!</div> -->
+                <div class="masthead-heading text-uppercase mt-4">Berikan yang <span
                         style="color:rgb(250, 255, 174)"><b>terbaik</b></span> dalam
                     <span style="color:rgb(250, 255, 174)">ibadah</span> dan <span
                         style="color:rgb(250, 255, 174)">keseharianmu</span>
@@ -168,14 +184,16 @@
                         class="fa fa-angle-double-down me-1"></i>Selengkapnya</a>
                 <br>
                 <br>
-                <a class="btn btn-info text-uppercase me-2" @click="trackClickWaAdmin"
+                <a class="btn btn-light text-uppercase me-1" @click="trackClickWaAdmin"
                     href="https://wa.me/message/A6U3BRVQCID3K1"><i class="fa fa-whatsapp me-1"></i> WA Admin</a>
-                <a class="btn btn-info text-uppercase me-2" @click="trackClickIg"
+                <a class="btn btn-light text-uppercase me-1" @click="trackClickIg"
                     href="https://www.instagram.com/fadkhera.kendari/" target="_blank"><i
-                        class="fa fa-instagram me-1"></i>Instagram</a><br><br>
-                <a class="btn btn-secondary text-uppercase" href="#seragam" @click="trackSeragamClick">Butuh
+                        class="fa fa-instagram me-1"></i>Instagram</a>
+                <a class="btn btn-light text-uppercase me-1" @click="trackClickIg"
+                    href="https://www.tiktok.com/@fadkhera.kendari" target="_blank"><i
+                        class="fa fa-tiktok me-2"></i>Tiktok</a><br><br>
+                <a class="btn btn-secondary text-uppercase me-2" href="#seragam" @click="trackSeragamClick">Butuh
                     Seragam?</a>
-                <br><br>
                 <button class="btn btn-info text-uppercase" data-bs-toggle="modal" data-bs-target="#mapModal"><i
                         class="fa fa-map-marker me-1"></i> Lokasi Kami</button>
 
@@ -186,73 +204,56 @@
         <!-- Section Keunggulan -->
         <section class="py-5 bg-light" id="portofolio">
             <div class="container">
-                <h2 class="text-center mb-4">Kenapa Harus Fadkhera?</h2>
-
-
-                <!-- Keunggulan -->
+                <h2 class="text-center mb-4">Kenapa Harus Fadkhera?</h2> <!-- Keunggulan -->
                 <div class="row g-4">
                     <!-- 1 -->
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="bg-white p-4 shadow rounded text-center h-100">
-                            <img :src="getFile('/assets/design.webp')" alt="Desain Modern" class="mb-3"
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/design.webp')" alt="Desain Modern" class="mb-3"
                                 style="width: 100%; height: auto;">
                             <h5 class="fw-semibold">Desain Modern & Syar'i</h5>
                             <p class="text-muted">Designnya membuatmu selalu tampil fresh dan tentunya tetap syar'i –
-                                sangat cocok untuk ibadah, kerja, kajian, dan
-                                lebaran.</p>
+                                sangat cocok untuk ibadah, kerja, kajian, dan lebaran.</p>
                         </div>
-                    </div>
-
-                    <!-- 2 -->
+                    </div> <!-- 2 -->
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="bg-white p-4 shadow rounded text-center h-100">
-                            <img :src="getFile('/assets/bahan.webp')" alt="Bahan Premium" class="mb-3"
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/bahan.webp')" alt="Bahan Premium" class="mb-3"
                                 style="width: 100%; height: auto;">
                             <h5 class="fw-semibold">Bahan Premium</h5>
                             <p class="text-muted">Shining – soft touch dengan material tebal dan adem, nyaman seharian.
                             </p>
                         </div>
-                    </div>
-
-
-
-                    <!-- 4 -->
+                    </div> <!-- 4 -->
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="bg-white p-4 shadow rounded text-center h-100">
-                            <img :src="getFile('/assets/potongan.webp')" alt="Modern Fit" class="mb-3"
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/potongan.webp')" alt="Modern Fit" class="mb-3"
                                 style="width: 100%; height: auto;">
                             <h5 class="fw-semibold">Potongan Modern Fit</h5>
                             <p class="text-muted">Ukuran pas di badan, antara reguler dan slim fit – pas dan tetap
-                                nyaman.
-                            </p>
+                                nyaman. </p>
                         </div>
-                    </div>
-
-                    <!-- 5 -->
+                    </div> <!-- 5 -->
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="bg-white p-4 shadow rounded text-center h-100">
-                            <img :src="getFile('/assets/setrika.webp')" alt="Mudah Disetrika" class="mb-3"
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/setrika.webp')" alt="Mudah Disetrika" class="mb-3"
                                 style="width: 100%; height: auto;">
                             <h5 class="fw-semibold">Tidak Mudah Kusut</h5>
                             <p class="text-muted">Mudah di setrika dan Tidak mudah kusut – tetap rapi meski dipakai
-                                beraktivitas seharian.
-                            </p>
+                                beraktivitas seharian. </p>
                         </div>
-                    </div>
-                    <!-- 3 -->
+                    </div> <!-- 3 -->
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="bg-white p-4 shadow rounded text-center h-100">
-                            <img :src="getFile('/assets/kerah.webp')" alt="Motif Eksklusif" class="mb-3"
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/kerah.webp')" alt="Motif Eksklusif" class="mb-3"
                                 style="width: 100%; height: auto;">
                             <h5 class="fw-semibold">Kerah Spread Collar</h5>
-                            <p class="text-muted">Desain kerah baju yang memberi kesan rapi, gagah, dan elegan.
-                            </p>
+                            <p class="text-muted">Desain kerah baju yang memberi kesan rapi, gagah, dan elegan. </p>
                         </div>
-                    </div>
-                    <!-- 6 -->
+                    </div> <!-- 6 -->
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="bg-white p-4 shadow rounded text-center h-100">
-                            <img :src="getFile('/assets/tokoh.jpeg')" alt="Dipercaya Tokoh" class="mb-3"
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/tokoh.jpeg')" alt="Dipercaya Tokoh" class="mb-3"
                                 style="width: 100%; height: auto;">
                             <h5 class="fw-semibold">Dipercaya Ustadz & Tokoh Ternama</h5>
                             <p class="text-muted">Telah dipakai oleh banyak ustadz dan tokoh muslim ternama di
@@ -260,7 +261,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
         <!-- <section class="page-section bg-light">
@@ -641,178 +641,178 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-    const swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: false,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: false,
-    });
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: false,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: false,
+        });
     </script>
 
     <script>
-    const {
-        createApp
-    } = Vue;
+        const {
+            createApp
+        } = Vue;
 
-    createApp({
-        data() {
-            return {
-                featuredProducts: [],
-                otherProducts: [],
-                selectedProduct: {},
-                activeImageIndex: 0,
-                slideInterval: null,
+        createApp({
+            data() {
+                return {
+                    featuredProducts: [],
+                    otherProducts: [],
+                    selectedProduct: {},
+                    activeImageIndex: 0,
+                    slideInterval: null,
 
+                }
+            },
+            mounted() {
+                this.fetchProducts();
+            },
+            computed: {
+                allImages() {
+                    // Gabungkan gambar utama + gambar pendukung
+                    if (!this.selectedProduct) return [];
+                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                    const others = this.selectedProduct.images?.map(img => img.image) || [];
+                    return main.concat(others);
+                },
+                activeImage() {
+                    return this.allImages[this.activeImageIndex] || '';
+                }
+            },
+            methods: {
+                trackWhatsAppClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'InitiateCheckout', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            content_type: 'product',
+                            value: product.price,
+                            currency: 'IDR'
+                        });
+                    }
+                },
+                trackShopeeClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'ShopeeClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        });
+
+                    }
+                },
+                trackDetailClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'DetailClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        });
+
+                    }
+                },
+                trackSeragamClick() {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'SeragamClick');
+                    }
+                },
+                trackSeragamClickWA() {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'SeragamClickWA');
+                    }
+                },
+                trackClickWaAdmin() {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'WaAdminClick');
+                    }
+                },
+                trackClickIg() {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'IgClick');
+                    }
+                },
+                getWhatsappLink(productName) {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                getWhatsappLinkPO(productName) {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                getWhatsappLinkPOUkuran(productName) {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                getWhatsappLinkSeragam() {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                nextImage() {
+                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+                },
+                prevImage() {
+                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                        .length;
+                },
+                startSlide() {
+                    this.slideInterval = setInterval(() => {
+                        this.nextImage();
+                    }, 5000); // 3 detik
+                },
+                stopSlide() {
+                    clearInterval(this.slideInterval);
+                },
+                openModal(product) {
+                    this.selectedProduct = product;
+                    this.activeImageIndex = 0;
+                    this.startSlide();
+                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                    modal.show();
+                },
+                async fetchProducts() {
+                    let url = "{{route('product.index')}}"
+                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+                    console.log(featured);
+                    console.log(others);
+
+                    this.featuredProducts = featured;
+                    this.otherProducts = others;
+                },
+                getImageUrl(path) {
+                    if (!path) return '/assets/no-image.png'
+                    return `/storage/${path}`
+                },
+
+                getFile(path) {
+                    return path ? `${path}` : ''
+                },
+
+                formatRupiah(value) {
+                    const number = Number(value);
+                    if (isNaN(number)) return value;
+                    return 'Rp ' + number.toLocaleString('id-ID');
+                },
+            },
+            beforeUnmount() {
+                this.stopSlide();
             }
-        },
-        mounted() {
-            this.fetchProducts();
-        },
-        computed: {
-            allImages() {
-                // Gabungkan gambar utama + gambar pendukung
-                if (!this.selectedProduct) return [];
-                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                const others = this.selectedProduct.images?.map(img => img.image) || [];
-                return main.concat(others);
-            },
-            activeImage() {
-                return this.allImages[this.activeImageIndex] || '';
-            }
-        },
-        methods: {
-            trackWhatsAppClick(product) {
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'InitiateCheckout', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        content_type: 'product',
-                        value: product.price,
-                        currency: 'IDR'
-                    });
-                }
-            },
-            trackShopeeClick(product) {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'ShopeeClick', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    });
-
-                }
-            },
-            trackDetailClick(product) {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'DetailClick', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    });
-
-                }
-            },
-            trackSeragamClick() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'SeragamClick');
-                }
-            },
-            trackSeragamClickWA() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'SeragamClickWA');
-                }
-            },
-            trackClickWaAdmin() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'WaAdminClick');
-                }
-            },
-            trackClickIg() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'IgClick');
-                }
-            },
-            getWhatsappLink(productName) {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                const message =
-                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            },
-            getWhatsappLinkPO(productName) {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                const message =
-                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            },
-            getWhatsappLinkPOUkuran(productName) {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                const message =
-                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            },
-            getWhatsappLinkSeragam() {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                const message =
-                    `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            },
-            nextImage() {
-                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-            },
-            prevImage() {
-                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
-                    .length;
-            },
-            startSlide() {
-                this.slideInterval = setInterval(() => {
-                    this.nextImage();
-                }, 5000); // 3 detik
-            },
-            stopSlide() {
-                clearInterval(this.slideInterval);
-            },
-            openModal(product) {
-                this.selectedProduct = product;
-                this.activeImageIndex = 0;
-                this.startSlide();
-                const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                modal.show();
-            },
-            async fetchProducts() {
-                let url = "{{route('product.index')}}"
-                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
-                console.log(featured);
-                console.log(others);
-
-                this.featuredProducts = featured;
-                this.otherProducts = others;
-            },
-            getImageUrl(path) {
-                if (!path) return '/assets/no-image.png'
-                return `/storage/${path}`
-            },
-
-            getFile(path) {
-                return path ? `${path}` : ''
-            },
-
-            formatRupiah(value) {
-                const number = Number(value);
-                if (isNaN(number)) return value;
-                return 'Rp ' + number.toLocaleString('id-ID');
-            },
-        },
-        beforeUnmount() {
-            this.stopSlide();
-        }
-    }).mount('#app');
+        }).mount('#app');
     </script>
 </body>
 

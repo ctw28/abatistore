@@ -346,350 +346,350 @@
         @push('scripts')
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script>
-        const {
-            createApp
-        } = Vue;
+            const {
+                createApp
+            } = Vue;
 
-        createApp({
-            data() {
-                return {
-                    showModal: false,
-                    sales: [],
-                    products: [],
-                    sizes: [],
-                    editingId: null,
+            createApp({
+                data() {
+                    return {
+                        showModal: false,
+                        sales: [],
+                        products: [],
+                        sizes: [],
+                        editingId: null,
 
-                    sale: {
-                        sale_date: new Date().toISOString().substr(0, 10),
-                        payment_method: 'cash',
-                        total_paid: 0,
-                        buyer: {
-                            id: null,
-                            name: '',
-                            whatsapp_number: ''
+                        sale: {
+                            sale_date: new Date().toISOString().substr(0, 10),
+                            payment_method: 'cash',
+                            total_paid: 0,
+                            buyer: {
+                                id: null,
+                                name: '',
+                                whatsapp_number: ''
+                            },
+                            items: []
                         },
-                        items: []
+                        buyerMode: null, // 'old' | 'new'
+                        buyers: [],
+                        filteredBuyers: [],
+                        searchBuyer: '',
+                        isEdit: false,
+                        selectedYear: 2026, // 🔥 default
+                        perPage: 10,
+                        currentPage: 1,
+                        selectedMonth: 'all',
+
+
+                    }
+                },
+                mounted() {
+                    this.fetchProducts();
+                    this.fetchSales();
+                    this.addItem();
+                },
+                computed: {
+                    daftarBulan() {
+                        return [
+                            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                        ];
                     },
-                    buyerMode: null, // 'old' | 'new'
-                    buyers: [],
-                    filteredBuyers: [],
-                    searchBuyer: '',
-                    isEdit: false,
-                    selectedYear: 2026, // 🔥 default
-                    perPage: 10,
-                    currentPage: 1,
-                    selectedMonth: 'all',
+                    filteredSales() {
+                        return this.sales.filter(s => {
 
+                            const date = new Date(s.sale_date);
 
-                }
-            },
-            mounted() {
-                this.fetchProducts();
-                this.fetchSales();
-                this.addItem();
-            },
-            computed: {
-                daftarBulan() {
-                    return [
-                        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-                        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-                    ];
-                },
-                filteredSales() {
-                    return this.sales.filter(s => {
+                            const tahun = date.getFullYear();
+                            const bulan = date.getMonth() + 1;
 
-                        const date = new Date(s.sale_date);
+                            const matchYear = tahun == this.selectedYear;
 
-                        const tahun = date.getFullYear();
-                        const bulan = date.getMonth() + 1;
+                            const matchMonth = this.selectedMonth == 'all' ?
+                                true :
+                                bulan == this.selectedMonth;
 
-                        const matchYear = tahun == this.selectedYear;
+                            return matchYear && matchMonth;
+                        });
+                    },
 
-                        const matchMonth = this.selectedMonth == 'all' ?
-                            true :
-                            bulan == this.selectedMonth;
+                    paginatedSales() {
+                        const start = (this.currentPage - 1) * this.perPage;
+                        return this.filteredSales.slice(start, start + this.perPage);
+                    },
 
-                        return matchYear && matchMonth;
-                    });
-                },
+                    totalSemuaPenjualan() {
+                        return this.filteredSales.reduce((total, sale) => {
+                            const perSale = sale.items.reduce((sum, item) => {
+                                return sum + (item.final_price * item.quantity)
+                            }, 0)
 
-                paginatedSales() {
-                    const start = (this.currentPage - 1) * this.perPage;
-                    return this.filteredSales.slice(start, start + this.perPage);
-                },
-
-                totalSemuaPenjualan() {
-                    return this.filteredSales.reduce((total, sale) => {
-                        const perSale = sale.items.reduce((sum, item) => {
-                            return sum + (item.final_price * item.quantity)
+                            return total + perSale
                         }, 0)
+                    },
 
-                        return total + perSale
-                    }, 0)
-                },
-
-                // pagination
-                totalPages() {
-                    return Math.ceil(this.filteredSales.length / this.perPage)
-                },
+                    // pagination
+                    totalPages() {
+                        return Math.ceil(this.filteredSales.length / this.perPage)
+                    },
 
 
-                // totalSemuaPenjualan() {
-                //     return this.sales.reduce((total, sale) => {
-                //         const totalPerSale = sale.items.reduce((subtotal, item) => {
-                //             return subtotal + (parseInt(item.final_price) * parseInt(item.quantity) ||
-                //                 0);
-                //         }, 0);
-                //         return total + totalPerSale;
-                //     }, 0);
-                // },
-                totalHarga() {
-                    return this.sale.items.reduce((sum, item) => {
-                        return sum + (item.subtotal || 0);
-                    }, 0);
-                },
-                formattedTotalPaid() {
-                    const numeric = parseInt(this.sale.total_paid.toString().replace(/[^\d]/g, '')) || 0
-                    return numeric.toLocaleString('id-ID')
-                }
-
-            },
-            methods: {
-                formatTanggal(tanggal) {
-                    if (!tanggal) return '-';
-
-                    const opsi = {
-                        day: '2-digit',
-                        month: 'long',
-                        year: 'numeric'
-                    };
-
-                    return new Date(tanggal)
-                        .toLocaleDateString('id-ID', opsi);
-                },
-                setLunas() {
-                    this.sale.total_paid = this.totalHarga
-                },
-                chooseBuyerMode(mode) {
-                    this.searchBuyer = '',
-
-                        this.buyerMode = mode
-
-                    if (mode === 'old') {
-                        this.fetchBuyers()
+                    // totalSemuaPenjualan() {
+                    //     return this.sales.reduce((total, sale) => {
+                    //         const totalPerSale = sale.items.reduce((subtotal, item) => {
+                    //             return subtotal + (parseInt(item.final_price) * parseInt(item.quantity) ||
+                    //                 0);
+                    //         }, 0);
+                    //         return total + totalPerSale;
+                    //     }, 0);
+                    // },
+                    totalHarga() {
+                        return this.sale.items.reduce((sum, item) => {
+                            return sum + (item.subtotal || 0);
+                        }, 0);
+                    },
+                    formattedTotalPaid() {
+                        const numeric = parseInt(this.sale.total_paid.toString().replace(/[^\d]/g, '')) || 0
+                        return numeric.toLocaleString('id-ID')
                     }
 
-                    if (mode === 'new') {
+                },
+                methods: {
+                    formatTanggal(tanggal) {
+                        if (!tanggal) return '-';
+
+                        const opsi = {
+                            day: '2-digit',
+                            month: 'long',
+                            year: 'numeric'
+                        };
+
+                        return new Date(tanggal)
+                            .toLocaleDateString('id-ID', opsi);
+                    },
+                    setLunas() {
+                        this.sale.total_paid = this.totalHarga
+                    },
+                    chooseBuyerMode(mode) {
+                        this.searchBuyer = '',
+
+                            this.buyerMode = mode
+
+                        if (mode === 'old') {
+                            this.fetchBuyers()
+                        }
+
+                        if (mode === 'new') {
+                            this.sale.buyer = {
+                                id: null,
+                                name: '',
+                                whatsapp_number: ''
+                            }
+                        }
+                    },
+                    fetchBuyers() {
+                        fetch('/api/buyers')
+                            .then(res => res.json())
+                            .then(data => this.buyers = data)
+                    },
+
+                    filterBuyers() {
+                        const key = this.searchBuyer.toLowerCase()
+                        this.filteredBuyers = this.buyers.filter(b =>
+                            b.name.toLowerCase().includes(key)
+                        )
+                    },
+
+                    selectBuyer(buyer) {
                         this.sale.buyer = {
-                            id: null,
+                            id: buyer.id,
+                            name: buyer.name,
+                            whatsapp_number: buyer.whatsapp_number
+                        }
+
+                        this.searchBuyer = buyer.name
+                        this.filteredBuyers = []
+                        this.isNewBuyer = false
+                    },
+                    totalHargaPerSale(sale) {
+                        return sale.items?.reduce((sum, item) => {
+                            return sum + ((item.final_price || 0) * (item.quantity || 0));
+                        }, 0);
+                    },
+                    onTotalPaidInput(value) {
+                        const numeric = parseInt(value.replace(/\D/g, '')) || 0
+                        this.sale.total_paid = numeric
+                    },
+                    formatPrice(value) {
+                        if (!value) return ''
+                        return parseFloat(value).toLocaleString('id-ID')
+                    },
+                    parsePrice(value) {
+                        return parseFloat(value.replace(/\./g, '').replace(',', '.')) || 0
+                    },
+                    onOriginalPriceInput(event, item) {
+                        const value = event.target.value
+                        item.original_price = this.parsePrice(value)
+                        this.calculateSubtotal(item)
+                    },
+                    // Kalau pakai final_price juga:
+                    onFinalPriceInput(event, item) {
+                        const value = event.target.value
+                        item.final_price = this.parsePrice(value)
+                        this.calculateSubtotal(item)
+                    },
+                    fetchProducts() {
+                        fetch('/api/products?is_habis=0').then(res => res.json()).then(data => this.products = data)
+                    },
+                    fetchSizes() {
+                        fetch('/api/sizes').then(res => res.json()).then(data => this.sizes = data)
+                    },
+                    fetchSales() {
+                        fetch('/api/sales').then(res => res.json()).then(data => {
+                            console.log(data);
+
+                            this.sales = data
+                            console.log(this.sales);
+
+                        })
+                    },
+                    formatRupiah(value) {
+                        return new Intl.NumberFormat('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                        }).format(value)
+                    },
+                    addItem() {
+                        this.sale.items.push({
+                            product_id: '',
+                            size_id: '',
+                            original_price: 0,
+                            final_price: 0,
+                            discount_per_item: 0,
+                            quantity: 1,
+                            subtotal: 0,
+                            sizes: [] // 🔥 khusus item ini
+
+                        });
+                    },
+                    removeItem(i) {
+                        this.sale.items.splice(i, 1)
+                    },
+                    updateProduct(item) {
+                        item.size_id = ''
+                        item.sizes = []
+
+                        fetch(`/api/products/${item.product_id}/sizes`)
+                            .then(res => res.json())
+                            .then(data => {
+                                item.sizes = data
+                            })
+                        const product = this.products.find(p => p.id === item.product_id)
+                        if (product) {
+                            item.original_price = product.price
+                            item.final_price = product.price
+                            this.calculateSubtotal(item)
+                        }
+                    },
+                    calculateSubtotal(item) {
+                        item.discount_per_item = item.original_price - item.final_price
+                        item.subtotal = item.final_price * item.quantity
+
+                    },
+                    editSale(sale) {
+
+                        this.isEdit = true
+                        this.buyerMode = null // NONAKTIF
+
+                        // Clone data
+                        this.sale = JSON.parse(JSON.stringify(sale))
+
+                        this.sale.buyer = this.sale.buyer || {
                             name: '',
                             whatsapp_number: ''
                         }
-                    }
-                },
-                fetchBuyers() {
-                    fetch('/api/buyers')
-                        .then(res => res.json())
-                        .then(data => this.buyers = data)
-                },
 
-                filterBuyers() {
-                    const key = this.searchBuyer.toLowerCase()
-                    this.filteredBuyers = this.buyers.filter(b =>
-                        b.name.toLowerCase().includes(key)
-                    )
-                },
+                        this.sale.items = sale.items.map(item => ({
+                            ...item,
+                            discount_per_item: item.original_price - item.final_price,
+                            subtotal: item.final_price * item.quantity
+                        }))
 
-                selectBuyer(buyer) {
-                    this.sale.buyer = {
-                        id: buyer.id,
-                        name: buyer.name,
-                        whatsapp_number: buyer.whatsapp_number
-                    }
+                        this.editingId = sale.id
 
-                    this.searchBuyer = buyer.name
-                    this.filteredBuyers = []
-                    this.isNewBuyer = false
-                },
-                totalHargaPerSale(sale) {
-                    return sale.items?.reduce((sum, item) => {
-                        return sum + ((item.final_price || 0) * (item.quantity || 0));
-                    }, 0);
-                },
-                onTotalPaidInput(value) {
-                    const numeric = parseInt(value.replace(/\D/g, '')) || 0
-                    this.sale.total_paid = numeric
-                },
-                formatPrice(value) {
-                    if (!value) return ''
-                    return parseFloat(value).toLocaleString('id-ID')
-                },
-                parsePrice(value) {
-                    return parseFloat(value.replace(/\./g, '').replace(',', '.')) || 0
-                },
-                onOriginalPriceInput(event, item) {
-                    const value = event.target.value
-                    item.original_price = this.parsePrice(value)
-                    this.calculateSubtotal(item)
-                },
-                // Kalau pakai final_price juga:
-                onFinalPriceInput(event, item) {
-                    const value = event.target.value
-                    item.final_price = this.parsePrice(value)
-                    this.calculateSubtotal(item)
-                },
-                fetchProducts() {
-                    fetch('/api/products?is_habis=0').then(res => res.json()).then(data => this.products = data)
-                },
-                fetchSizes() {
-                    fetch('/api/sizes').then(res => res.json()).then(data => this.sizes = data)
-                },
-                fetchSales() {
-                    fetch('/api/sales').then(res => res.json()).then(data => {
-                        console.log(data);
-
-                        this.sales = data
-                        console.log(this.sales);
-
-                    })
-                },
-                formatRupiah(value) {
-                    return new Intl.NumberFormat('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR'
-                    }).format(value)
-                },
-                addItem() {
-                    this.sale.items.push({
-                        product_id: '',
-                        size_id: '',
-                        original_price: 0,
-                        final_price: 0,
-                        discount_per_item: 0,
-                        quantity: 1,
-                        subtotal: 0,
-                        sizes: [] // 🔥 khusus item ini
-
-                    });
-                },
-                removeItem(i) {
-                    this.sale.items.splice(i, 1)
-                },
-                updateProduct(item) {
-                    item.size_id = ''
-                    item.sizes = []
-
-                    fetch(`/api/products/${item.product_id}/sizes`)
-                        .then(res => res.json())
-                        .then(data => {
-                            item.sizes = data
-                        })
-                    const product = this.products.find(p => p.id === item.product_id)
-                    if (product) {
-                        item.original_price = product.price
-                        item.final_price = product.price
-                        this.calculateSubtotal(item)
-                    }
-                },
-                calculateSubtotal(item) {
-                    item.discount_per_item = item.original_price - item.final_price
-                    item.subtotal = item.final_price * item.quantity
-
-                },
-                editSale(sale) {
-
-                    this.isEdit = true
-                    this.buyerMode = null // NONAKTIF
-
-                    // Clone data
-                    this.sale = JSON.parse(JSON.stringify(sale))
-
-                    this.sale.buyer = this.sale.buyer || {
-                        name: '',
-                        whatsapp_number: ''
-                    }
-
-                    this.sale.items = sale.items.map(item => ({
-                        ...item,
-                        discount_per_item: item.original_price - item.final_price,
-                        subtotal: item.final_price * item.quantity
-                    }))
-
-                    this.editingId = sale.id
-
-                    const modal = new bootstrap.Modal(document.getElementById('saleModal'))
-                    modal.show()
-                },
+                        const modal = new bootstrap.Modal(document.getElementById('saleModal'))
+                        modal.show()
+                    },
 
 
-                deleteSale(id) {
-                    if (confirm("Yakin ingin menghapus penjualan ini?")) {
-                        fetch(`/api/sales/${id}`, {
-                                method: 'DELETE'
+                    deleteSale(id) {
+                        if (confirm("Yakin ingin menghapus penjualan ini?")) {
+                            fetch(`/api/sales/${id}`, {
+                                    method: 'DELETE'
+                                }).then(res => res.json())
+                                .then(res => {
+                                    if (res.success) {
+                                        alert(res.message)
+                                        this.fetchSales()
+                                    } else {
+                                        alert('Gagal: ' + res.message)
+                                    }
+                                })
+                        }
+                    },
+
+                    submitSale() {
+                        const method = this.editingId ? 'PUT' : 'POST'
+                        const url = this.editingId ? `/api/sales/${this.editingId}` : '/api/sales'
+
+                        fetch(url, {
+                                method,
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(this.sale)
                             }).then(res => res.json())
                             .then(res => {
+                                console.log(res.data);
+
                                 if (res.success) {
                                     alert(res.message)
+                                    bootstrap.Modal.getInstance(document.getElementById('saleModal')).hide()
                                     this.fetchSales()
+                                    this.showForm()
                                 } else {
-                                    alert('Gagal: ' + res.message)
+                                    alert('Gagal menyimpan: ' + res.message)
                                 }
                             })
-                    }
-                },
+                    },
+                    showForm() {
+                        this.isEdit = false
+                        this.editingId = null
+                        this.buyerMode = null
 
-                submitSale() {
-                    const method = this.editingId ? 'PUT' : 'POST'
-                    const url = this.editingId ? `/api/sales/${this.editingId}` : '/api/sales'
-
-                    fetch(url, {
-                            method,
-                            headers: {
-                                'Content-Type': 'application/json'
+                        this.sale = {
+                            sale_date: new Date().toISOString().substr(0, 10),
+                            payment_method: 'cash',
+                            total_paid: 0,
+                            buyer: {
+                                id: null,
+                                name: '',
+                                whatsapp_number: ''
                             },
-                            body: JSON.stringify(this.sale)
-                        }).then(res => res.json())
-                        .then(res => {
-                            console.log(res.data);
+                            items: []
+                        }
 
-                            if (res.success) {
-                                alert(res.message)
-                                bootstrap.Modal.getInstance(document.getElementById('saleModal')).hide()
-                                this.fetchSales()
-                                this.showForm()
-                            } else {
-                                alert('Gagal menyimpan: ' + res.message)
-                            }
-                        })
-                },
-                showForm() {
-                    this.isEdit = false
-                    this.editingId = null
-                    this.buyerMode = null
-
-                    this.sale = {
-                        sale_date: new Date().toISOString().substr(0, 10),
-                        payment_method: 'cash',
-                        total_paid: 0,
-                        buyer: {
-                            id: null,
-                            name: '',
-                            whatsapp_number: ''
-                        },
-                        items: []
+                        this.addItem()
                     }
 
-                    this.addItem()
-                }
 
 
 
-
-            },
-
+                },
 
 
-        }).mount('#app')
+
+            }).mount('#app')
         </script>
 
         @endpush

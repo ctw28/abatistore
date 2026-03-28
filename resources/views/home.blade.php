@@ -104,7 +104,16 @@
             min-width: 250px;
             flex: 0 0 auto;
         }
-
+.sticky-filter {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #eee;
+}
+.sticky-filter {
+    backdrop-filter: blur(6px);
+    background-color: rgba(255,255,255,0.9);
+}
         @media (min-width: 768px) {
             .video-container {
                 flex-wrap: wrap;
@@ -404,25 +413,37 @@
             </h6>
         </div>
 
-        <!-- FILTER KATEGORI -->
-        <div class="text-center mb-4">
-            <button 
-                class="btn btn-sm me-2 mb-2"
-                :class="selectedCategory === null ? 'btn-dark' : 'btn-outline-dark'"
-                @click="changeCategory(null)">
-                Semua
-            </button>
+       <!-- FILTER WRAPPER (STICKY) -->
+<div class="sticky-filter bg-light py-2 mb-3">
 
-            <button 
-                v-for="cat in categories" 
-                :key="cat.id"
-                class="btn btn-sm me-2 mb-2"
-                :class="selectedCategory === cat.id ? 'btn-dark' : 'btn-outline-dark'"
-                @click="changeCategory(cat.id)">
-                @{{ cat.name }}
-            </button>
-        </div>
+    <!-- KATEGORI -->
+    <div class="text-center mb-2">
+        <button 
+            class="btn btn-sm me-2 mb-2"
+            :class="selectedCategory === null ? 'btn-dark' : 'btn-outline-dark'"
+            @click="changeCategory(null)">
+            Semua
+        </button>
 
+        <button 
+            v-for="cat in categories" 
+            :key="cat.id"
+            class="btn btn-sm me-2 mb-2"
+            :class="selectedCategory === cat.id ? 'btn-dark' : 'btn-outline-dark'"
+            @click="changeCategory(cat.id)">
+            @{{ cat.name }}
+        </button>
+    </div>
+
+    <!-- TOGGLE HABIS -->
+    <div class="text-center">
+        <label style="cursor:pointer; font-size: 0.9rem;">
+            <input type="checkbox" v-model="showOutOfStock">
+            Tampilkan produk habis
+        </label>
+    </div>
+
+</div>
         <!-- PRODUK -->
         <div class="row">
             <div class="col-6 col-md-4 mb-4"
@@ -662,6 +683,7 @@ createApp({
 
             activeImageIndex: 0,
             slideInterval: null,
+            showOutOfStock: false,
         }
     },
 
@@ -671,14 +693,20 @@ createApp({
 
     computed: {
         filteredProducts() {
-            let all = [...this.featuredProducts, ...this.otherProducts];
+    let all = [...this.featuredProducts, ...this.otherProducts];
 
-            if (this.selectedCategory) {
-                return all.filter(p => p.category.id === this.selectedCategory);
-            }
+    // filter kategori
+    if (this.selectedCategory) {
+        all = all.filter(p => p.category.id === this.selectedCategory);
+    }
 
-            return all;
-        },
+    // filter stok
+    if (!this.showOutOfStock) {
+        all = all.filter(p => !p.is_habis);
+    }
+
+    return all;
+},
 
         visibleProducts() {
             return this.filteredProducts.slice(0, this.visibleCount);

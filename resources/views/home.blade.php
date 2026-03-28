@@ -566,69 +566,98 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h6 class="modal-title">@{{ selectedProduct.name }}</h6>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Galeri Utama -->
-                        <div class="position-relative">
-                            <img :src="getImageUrl(activeImage)" class="img-fluid mb-3 rounded shadow"
-                                style="object-fit: contain;" alt="Gambar Produk">
+        <!-- MODAL PRODUCT -->
+<div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
 
-                            <!-- Tombol navigasi manual -->
-                            <button @click="prevImage"
-                                class="btn btn-sm btn-light position-absolute top-50 start-0 translate-middle-y">
-                                <i class="fa fa-chevron-left"></i>
-                            </button>
-                            <button @click="nextImage"
-                                class="btn btn-sm btn-light position-absolute top-50 end-0 translate-middle-y">
-                                <i class="fa fa-chevron-right"></i>
-                            </button>
-                        </div>
-
-                        <!-- Thumbnail Preview -->
-                        <div class="d-flex justify-content-center gap-2 mt-2 flex-wrap">
-                            <img v-for="(img, index) in allImages" :key="index" :src="getImageUrl(img)"
-                                @click="activeImageIndex = index" class="rounded"
-                                style="width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid #ddd;"
-                                :class="{ 'border-primary': index === activeImageIndex }" />
-                        </div>
-                        <a :href="getWhatsappLink(selectedProduct.name)" @click="trackWhatsAppClick(selectedProduct)"
-                            target="_blank" class="btn btn-success my-3 me-2">
-                            <i class="fa fa-whatsapp me-1"></i> Beli di WA / Info
-                        </a>
-                        <a :href="selectedProduct.link_shopee" @click="trackShopeeClick(product)"
-                            class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
-                            style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
-                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
-                                alt="Shopee Icon"
-                                style="width: 16px; height: 16px; margin-right: 6px; filter: brightness(0) invert(1);">
-                            Beli di Shopee
-                        </a>
-                        <!-- <a v-if="selectedProduct.is_habis" :href="getWhatsappLinkPO(selectedProduct.name)"
-                            @click="trackWhatsAppClick(selectedProduct.name)" target="_blank" class="btn btn-secondary">
-                            <i class="fa fa-whatsapp me-1"></i> Ajukan PO
-                        </a>
-                        <a v-if="!selectedProduct.is_habis" :href="getWhatsappLinkPOUkuran(selectedProduct.name)"
-                            @click="trackWhatsAppClick(selectedProduct.name)" target="_blank" class="btn btn-secondary">
-                            <i class="fa fa-whatsapp me-1"></i> Request Ukuran
-                        </a> -->
-                        <p><strong>Harga:</strong> @{{ formatRupiah(selectedProduct.price) }}</p>
-                        Ukuran tersedia
-                        <ul class="list-group">
-                            <li class="list-group-item" v-for="stock in selectedProduct.stocks" :key="stock.size.id">
-                                @{{ stock.size.name }}
-                                <!-- @{{ stock.stock }} -->
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <!-- HEADER -->
+            <div class="modal-header">
+                <h6 class="modal-title">@{{ selectedProduct.name }}</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    @click="stopSlide"></button>
             </div>
+
+            <!-- BODY -->
+            <div class="modal-body">
+
+                <!-- IMAGE SLIDER -->
+                <div class="text-center mb-3 position-relative">
+                    <img :src="getImageUrl(activeImage)"
+                         class="img-fluid rounded"
+                         style="max-height:300px; object-fit:cover;">
+
+                    <!-- NAV -->
+                    <button class="btn btn-dark btn-sm position-absolute top-50 start-0 translate-middle-y"
+                            @click="prevImage">
+                        ‹
+                    </button>
+                    <button class="btn btn-dark btn-sm position-absolute top-50 end-0 translate-middle-y"
+                            @click="nextImage">
+                        ›
+                    </button>
+                </div>
+
+                <!-- INFO -->
+                <div class="text-center">
+                    <div class="text-muted mb-1">
+                        @{{ selectedProduct.category?.name }}
+                    </div>
+
+                    <h5 class="fw-bold">@{{ selectedProduct.name }}</h5>
+
+                    <div class="mb-2 fs-5">
+                        @{{ formatRupiah(selectedProduct.price) }}
+                    </div>
+
+                    <!-- STATUS -->
+                    <div class="mb-2">
+                        <span v-if="!selectedProduct.is_habis" class="badge bg-success">
+                            Ready Stok
+                        </span>
+                        <span v-else class="badge bg-dark">
+                            Stok Habis
+                        </span>
+                    </div>
+
+                    <!-- INFO TAMBAHAN -->
+                    <small class="text-muted d-block mb-3">
+                        Chat dulu untuk cek ukuran & ketersediaan 🙌
+                    </small>
+                </div>
+
+            </div>
+
+            <!-- FOOTER CTA -->
+            <div class="modal-footer flex-column">
+
+                <!-- WA (PRIMARY) -->
+                <a :href="getWhatsappLink(selectedProduct.name)"
+                   @click="trackWhatsAppClick(selectedProduct)"
+                   target="_blank"
+                   class="btn btn-success w-100 mb-2">
+                    <i class="fa fa-whatsapp me-1"></i>
+                    Tanya / Beli via WhatsApp
+                </a>
+
+                <!-- SHOPEE (SECONDARY) -->
+                <a v-if="selectedProduct.link_shopee"
+                   :href="selectedProduct.link_shopee"
+                   @click="trackShopeeClick(selectedProduct)"
+                   target="_blank"
+                   class="btn w-100"
+                   style="background:#f1582c; color:white;">
+                   
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
+                         style="width:16px; margin-right:6px; filter: brightness(0) invert(1);">
+                    Beli di Shopee
+                </a>
+
+            </div>
+
         </div>
+    </div>
+</div>
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
@@ -772,10 +801,10 @@ createApp({
 
         // 🔥 WHATSAPP
         getWhatsappLink(productName) {
-            const phoneNumber = '6285241800852';
-            const message = `Bismillah, saya tertarik dengan produk ${productName}. Apakah masih tersedia?`;
-            return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-        },
+    const phoneNumber = '6285241800852';
+    const message = `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
+    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+},
 
         // 🔥 MODAL
         openModal(product) {

@@ -195,7 +195,7 @@
                         <i class="fa fa-instagram me-1"></i> Instagram
                     </a>
 
-                    <a class="btn btn-light text-uppercase" @click="trackClickTiktok"
+                    <a class="btn btn-light text-uppercase" @click="trackClickIg"
                         href="https://www.tiktok.com/@fadkhera.kendari" target="_blank">
                         <i class="fa fa-tiktok me-1"></i> Tiktok
                     </a>
@@ -390,93 +390,110 @@
 
         <!-- KATALOG -->
         <section class="page-section bg-light">
-    <div class="container">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">KATALOG</h2>
+                    <img :src="getFile('/assets/open.jpeg')" class="img mb-3" width="100%">
 
-        <!-- HEADER -->
-        <div class="text-center mb-4">
-            <h2 class="section-heading text-uppercase">KATALOG</h2>
+                    <h3 class="section-subheading text-muted">
+                        <b>[Beli via WhatsApp]</b> — Cepat, bisa tanya langsung, cocok
+                        untuk pembeli area Kendari.<br>
+                        <b>[Beli via Shopee]</b> — Aman, ada gratis ongkir, pembayaran fleksibel, cocok untuk luar
+                        kendari.
+                    </h3>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-4 mb-4" v-for="product in featuredProducts" :key="product.id"
+                        style="border: 1px solid #e9e9e9;">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item  position-relative">
+                            <div style="position: absolute; top: 0px; right: 5px; z-index: 10;">
+                                <span class="badge bg-info" style="font-size: 0.6rem;">Ready Stok</span>
+                            </div>
+                            <a class="portfolio-link" href="#"
+                                @click.prevent="openModal(product); trackDetailClick(product)">
+                                >
 
-            <img :src="getFile('/assets/open.jpeg')" class="img mb-3" width="100%">
 
-            <h6 class="text-muted">
-                <b>[Beli via WhatsApp]</b> — Cepat & bisa tanya langsung <br>
-                <b>[Beli via Shopee]</b> — Aman & fleksibel
-            </h6>
-        </div>
+                                <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
+                                <!-- Overlay jika produk habis -->
+                                <div v-if="product.is_habis" class="position-absolute top-50 start-50 translate-middle d-flex
+                                    justify-content-center align-items-center" style="width: 80px; height: 80px; border-radius: 50%; background-color: rgba(0, 0,
+                                    0, 0.7); color: white; font-weight: bold; font-size: 0.8rem;">
+                                    Habis
+                                </div>
+                            </a>
+                            <div class="portfolio-caption text-center">
+                                <div class="portfolio-caption-heading">[@{{ product.category.name }}]
+                                    @{{ product.name }}
+                                </div>
+                                <!-- <button class="btn btn-success btn-sm mb-1 me-2 mt-1 text-uppercase" href="#"
+                                    @click.prevent="openModal(product)">
+                                    <i class="fa fa-info-circle me-1"></i>
+                                    Detail
+                                </button> -->
+                                <a :href="getWhatsappLink(product.name)" @click="trackWhatsAppClick(product)"
+                                    target="_blank" class="btn btn-success btn-sm my-1 me-2">
+                                    <i class="fa fa-whatsapp me-1"></i> Beli di WA / Info
+                                </a>
+                                <a :href="product.link_shopee" @click="trackShopeeClick(product)"
+                                    class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
+                                    style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
+                                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
+                                        alt="Shopee Icon"
+                                        style="width: 16px; height: 16px; margin-right: 6px; filter: brightness(0) invert(1);">
+                                    Beli di Shopee
+                                </a>
 
-        <!-- FILTER KATEGORI -->
-        <div class="text-center mb-4">
-            <button 
-                class="btn btn-sm me-2 mb-2"
-                :class="selectedCategory === null ? 'btn-dark' : 'btn-outline-dark'"
-                @click="changeCategory(null)">
-                Semua
-            </button>
-
-            <button 
-                v-for="cat in categories" 
-                :key="cat.id"
-                class="btn btn-sm me-2 mb-2"
-                :class="selectedCategory === cat.id ? 'btn-dark' : 'btn-outline-dark'"
-                @click="changeCategory(cat.id)">
-                @{{ cat.name }}
-            </button>
-        </div>
-
-        <!-- PRODUK -->
-        <div class="row">
-            <div class="col-6 col-md-4 mb-4"
-                 v-for="product in visibleProducts"
-                 :key="product.id">
-
-                <div class="card h-100 shadow-sm border-0"
-                     @click="openModal(product); trackDetailClick(product)"
-                     style="cursor: pointer;">
-
-                    <!-- BADGE -->
-                    <div style="position:absolute; top:10px; right:10px; z-index:10;">
-                        <span v-if="!product.is_habis" class="badge bg-success" style="font-size: 0.6rem;">
-                            Ready
-                        </span>
-                        <span v-else class="badge bg-dark" style="font-size: 0.6rem;">
-                            Habis
-                        </span>
-                    </div>
-
-                    <!-- IMAGE -->
-                    <div style="position: relative;">
-                        <img class="card-img-top"
-                             :src="getImageUrl(product.image)">
-
-                        <!-- Overlay habis -->
-                        <div v-if="product.is_habis"
-                             class="position-absolute top-50 start-50 translate-middle text-white fw-bold"
-                             style="background: rgba(0,0,0,0.7); padding:10px 15px; border-radius:10px;">
-                            HABIS
+                                <!-- <a v-if="product.is_habis" :href="getWhatsappLinkPO(product.name)"
+                                    @click="trackWhatsAppClick(selectedProduct.name)" target="_blank"
+                                    class="btn btn-secondary btn-sm ">
+                                    <i class="fa fa-whatsapp me-1"></i> Ajukan PO
+                                </a> -->
+                            </div>
                         </div>
                     </div>
 
-                    <!-- INFO -->
-                    <div class="card-body text-center">
-                        <small class="text-muted">@{{ product.category.name }}</small>
-                        <div class="fw-bold">@{{ product.name }}</div>
-                        <div class="text-dark">@{{ formatRupiah(product.price) }}</div>
+                    <div v-for="product in otherProducts" :key="product.id" class="col-6 col-md-4 mb-4"
+                        style="border: 1px solid #e9e9e9;">
+                        <!-- Portfolio item 3-->
+                        <div class="portfolio-item  position-relative">
+                            <div v-if="product.is_habis=='0'"
+                                style="position: absolute; top: 0px; right: 5px; z-index: 10;">
+                                <span class="badge bg-info" style="font-size: 0.6rem;">Ready Stok</span>
+                            </div>
+                            <a class="portfolio-link" href="#"
+                                @click.prevent="openModal(product); trackDetailClick(product)">
+                                >
+                                <img class="img-fluid" :src="getImageUrl(product.image)" alt="..." />
+                                <!-- Overlay jika produk habis -->
+                                <div v-if="product.is_habis" class="position-absolute top-50 start-50 translate-middle d-flex
+                                    justify-content-center align-items-center" style="width: 80px; height: 80px; border-radius: 50%; background-color: rgba(0, 0,
+                                    0, 0.7); color: white; font-weight: bold; font-size: 0.8rem;">
+                                    Habis
+                                </div>
+                            </a>
+                            <div class="portfolio-caption text-center">
+                                <div class="portfolio-caption-heading">[@{{ product.category.name }}]
+                                    @{{ product.name }}</div>
+                                <a :href="getWhatsappLink(product.name)" @click="trackWhatsAppClick(product)"
+                                    target="_blank" class="btn btn-success btn-sm my-1 me-2">
+                                    <i class="fa fa-whatsapp me-1"></i> Beli di WA / Info
+                                </a>
+                                <a :href="product.link_shopee" @click="trackShopeeClick(product)"
+                                    class="btn btn-sm mb-1 me-2 mt-1 text-uppercase"
+                                    style="background-color: #f1582c; color: white;" target="_blank" rel="noopener">
+                                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
+                                        alt="Shopee Icon"
+                                        style="width: 16px; height: 16px; margin-right: 6px; filter: brightness(0) invert(1);">
+                                    Beli di Shopee
+                                </a>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
-        </div>
-
-        <!-- LOAD MORE -->
-        <div class="text-center mt-3"
-             v-if="visibleCount < filteredProducts.length">
-            <button class="btn btn-dark" @click="loadMore">
-                Muat Lebih Banyak
-            </button>
-        </div>
-
-    </div>
-</section>
+        </section>
         <section class="page-section bg-light" id="seragam">
             <div class="container">
                 <div class="text-center">
@@ -646,187 +663,166 @@
     </script>
 
     <script>
-const { createApp } = Vue;
- 
-createApp({
-    data() {
-        return {
-            featuredProducts: [],
-            otherProducts: [],
-            selectedProduct: {},
+        const {
+            createApp
+        } = Vue;
 
-            // NEW
-            categories: [],
-            selectedCategory: null,
-            visibleCount: 6,
+        createApp({
+            data() {
+                return {
+                    featuredProducts: [],
+                    otherProducts: [],
+                    selectedProduct: {},
+                    activeImageIndex: 0,
+                    slideInterval: null,
 
-            activeImageIndex: 0,
-            slideInterval: null,
-        }
-    },
+                }
+            },
+            mounted() {
+                this.fetchProducts();
+            },
+            computed: {
+                allImages() {
+                    // Gabungkan gambar utama + gambar pendukung
+                    if (!this.selectedProduct) return [];
+                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                    const others = this.selectedProduct.images?.map(img => img.image) || [];
+                    return main.concat(others);
+                },
+                activeImage() {
+                    return this.allImages[this.activeImageIndex] || '';
+                }
+            },
+            methods: {
+                trackWhatsAppClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'InitiateCheckout', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            content_type: 'product',
+                            value: product.price,
+                            currency: 'IDR'
+                        });
+                    }
+                },
+                trackShopeeClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'ShopeeClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        });
 
-    mounted() {
-        this.fetchProducts();
-    },
+                    }
+                },
+                trackDetailClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'DetailClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        });
 
-    computed: {
-        filteredProducts() {
-            let all = [...this.featuredProducts, ...this.otherProducts];
-
-            if (this.selectedCategory) {
-                return all.filter(p => p.category.id === this.selectedCategory);
-            }
-
-            return all;
-        },
-
-        visibleProducts() {
-            return this.filteredProducts.slice(0, this.visibleCount);
-        },
-
-        allImages() {
-            if (!this.selectedProduct) return [];
-            const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-            const others = this.selectedProduct.images?.map(img => img.image) || [];
-            return main.concat(others);
-        },
-
-        activeImage() {
-            return this.allImages[this.activeImageIndex] || '';
-        }
-    },
-
-    methods: {
-
-        // 🔥 FILTER
-        changeCategory(catId) {
-            this.selectedCategory = catId;
-            this.visibleCount = 6; // reset load more
-        },
-
-        loadMore() {
-            this.visibleCount += 6;
-        },
-
-        // 🔥 TRACKING
-        trackWhatsAppClick(product) {
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'InitiateCheckout', {
-                    content_ids: [product.id],
-                    content_name: product.name,
-                    value: product.price,
-                    currency: 'IDR'
-                });
-            }
-        },
-
-        trackShopeeClick(product) {
-            if (typeof fbq !== 'undefined') {
-                fbq('trackCustom', 'ShopeeClick', {
-                    content_ids: [product.id],
-                    content_name: product.name,
-                    value: product.price,
-                    currency: 'IDR'
-                });
-            }
-        },
-
-        trackDetailClick(product) {
-            if (typeof fbq !== 'undefined') {
-                fbq('trackCustom', 'DetailClick', {
-                    content_ids: [product.id],
-                    content_name: product.name,
-                    value: product.price,
-                    currency: 'IDR'
-                });
-            }
-        },
-
-        // 🔥 WHATSAPP
-        getWhatsappLink(productName) {
-            const phoneNumber = '6285241800852';
-            const message = `Bismillah, saya tertarik dengan produk ${productName}. Apakah masih tersedia?`;
-            return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-        },
-
-        // 🔥 MODAL
-        openModal(product) {
-            this.selectedProduct = product;
-            this.activeImageIndex = 0;
-            this.startSlide();
-
-            const modal = new bootstrap.Modal(document.getElementById('productModal'));
-            modal.show();
-        },
-
-        nextImage() {
-            this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-        },
-
-        prevImage() {
-            this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages.length;
-        },
-
-        startSlide() {
-            this.slideInterval = setInterval(() => {
-                this.nextImage();
-            }, 5000);
-        },
-
-        stopSlide() {
-            clearInterval(this.slideInterval);
-        },
-
-        // 🔥 FETCH DATA
-        async fetchProducts() {
-            let url = "{{route('product.index')}}";
-
-            const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-            const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
-
-            this.featuredProducts = featured;
-            this.otherProducts = others;
-
-            // ambil kategori unik
-            const allProducts = [...featured, ...others];
-            const uniqueCategories = {};
-
-            allProducts.forEach(p => {
-                uniqueCategories[p.category.id] = p.category;
-            });
-
-            this.categories = Object.values(uniqueCategories);
-        },
-
-        // 🔥 HELPER
-        getImageUrl(path) {
-            if (!path) return '/assets/no-image.png';
-            return `/storage/${path}`;
-        },
-
-        getFile(path) {
-            return path ? `${path}` : '';
-        },
-
-        formatRupiah(value) {
-            const number = Number(value);
-            if (isNaN(number)) return value;
-            return 'Rp ' + number.toLocaleString('id-ID');
-        },
-        getWhatsappLinkSeragam() {
+                    }
+                },
+                trackSeragamClick() {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'SeragamClick');
+                    }
+                },
+                trackSeragamClickWA() {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'SeragamClickWA');
+                    }
+                },
+                trackClickWaAdmin() {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'WaAdminClick');
+                    }
+                },
+                trackClickIg() {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'IgClick');
+                    }
+                },
+                getWhatsappLink(productName) {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                getWhatsappLinkPO(productName) {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                getWhatsappLinkPOUkuran(productName) {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+                getWhatsappLinkSeragam() {
                     const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
                     const message =
                         `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
                     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 },
-    },
+                nextImage() {
+                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+                },
+                prevImage() {
+                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                        .length;
+                },
+                startSlide() {
+                    this.slideInterval = setInterval(() => {
+                        this.nextImage();
+                    }, 5000); // 3 detik
+                },
+                stopSlide() {
+                    clearInterval(this.slideInterval);
+                },
+                openModal(product) {
+                    this.selectedProduct = product;
+                    this.activeImageIndex = 0;
+                    this.startSlide();
+                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                    modal.show();
+                },
+                async fetchProducts() {
+                    let url = "{{route('product.index')}}"
+                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+                    console.log(featured);
+                    console.log(others);
 
-    beforeUnmount() {
-        this.stopSlide();
-    }
+                    this.featuredProducts = featured;
+                    this.otherProducts = others;
+                },
+                getImageUrl(path) {
+                    if (!path) return '/assets/no-image.png'
+                    return `/storage/${path}`
+                },
 
-}).mount('#app');
-</script>
+                getFile(path) {
+                    return path ? `${path}` : ''
+                },
+
+                formatRupiah(value) {
+                    const number = Number(value);
+                    if (isNaN(number)) return value;
+                    return 'Rp ' + number.toLocaleString('id-ID');
+                },
+            },
+            beforeUnmount() {
+                this.stopSlide();
+            }
+        }).mount('#app');
+    </script>
 </body>
 
 </html>

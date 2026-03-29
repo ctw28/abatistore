@@ -436,12 +436,12 @@
     </div>
 
     <!-- TOGGLE HABIS -->
-    <div class="text-center">
+    <!-- <div class="text-center">
         <label style="cursor:pointer; font-size: 0.9rem;">
             <input type="checkbox" v-model="showOutOfStock">
             Tampilkan produk habis
         </label>
-    </div>
+    </div> -->
 
 </div>
         <!-- PRODUK -->

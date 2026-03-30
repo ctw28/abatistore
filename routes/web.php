@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', fn() => view('home'));
+Route::get('/old', fn() => view('home-old'));
 Route::get('/detail/{id}', fn() => view('detail'))->name('detail');
 Route::get('/my-area', fn() => view('admin.login'))->name('login.page');
 Route::get('/produk', fn() => view('admin.product-data'))->name('product.data');

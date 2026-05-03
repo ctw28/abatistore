@@ -204,9 +204,9 @@
                     </a>
 
                 </div>
-                <a class="btn btn-secondary text-uppercase me-2" href="#seragam" @click="trackSeragamClick">Butuh
+                <a class="btn btn-secondary text-uppercase me-2" href="#seragam" @click="trackSeragamClick"> <i class="bi bi-person-badge me-1"></i> Butuh
                     Seragam?</a>
-                <button class="btn btn-info text-uppercase" data-bs-toggle="modal" data-bs-target="#mapModal"><i
+                <button class="btn btn-info text-uppercase btn-bounce" data-bs-toggle="modal" data-bs-target="#mapModal"><i
                         class="fa fa-map-marker me-1"></i> Lokasi Kami</button>
 
             </div>
@@ -640,7 +640,7 @@
                         </a>
 
                         <!-- SHOPEE (SECONDARY) -->
-                        <a v-if="selectedProduct.link_shopee"
+                        <!-- <a v-if="selectedProduct.link_shopee"
                             :href="selectedProduct.link_shopee"
                             @click="trackShopeeClick(selectedProduct)"
                             target="_blank"
@@ -650,7 +650,7 @@
                             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
                                 style="width:16px; margin-right:6px; filter: brightness(0) invert(1);">
                             Beli di Shopee
-                        </a>
+                        </a> -->
 
                     </div>
 

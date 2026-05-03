@@ -521,7 +521,7 @@
                         <div class="mb-3">
                             <strong>Alamat:</strong><br>
                             Jalan La Ode Hadi, Lorong Satria Kel. Wowawanggu Kec. Kadia, Kota Kendari <br>
-                            <b>(Bagian Bypass Pasar Baru, lihat peta atau video untuk lebih jelasnya)</b>
+                            <b>(Bagian Bypass Pasar Baru, lihat map atau video untuk lebih jelasnya)</b>
                         </div>
                         <!-- Embed Google Maps -->
                         <div class="ratio ratio-16x9">
@@ -530,11 +530,12 @@
                                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
-                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                        <div class="mt-3 d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2">
+
                             <a
                                 href="https://www.google.com/maps?q=-3.9986246,122.5113538"
                                 target="_blank"
-                                class="btn btn-success btn-sm">
+                                class="btn btn-success btn-sm w-100 w-sm-auto">
                                 <i class="bi bi-geo-alt-fill me-1"></i>
                                 Buka di Google Maps
                             </a>
@@ -542,9 +543,11 @@
                             <a
                                 href="https://www.google.com/maps/dir/?api=1&destination=-3.9986246,122.5113538"
                                 target="_blank"
-                                class="btn btn-primary btn-sm">
-                                <i class="bi bi-compass me-1"></i> Petunjuk Arah Google Maps (dari lokasimu ke toko)
+                                class="btn btn-secondary btn-sm w-100 w-sm-auto">
+                                <i class="bi bi-compass me-1"></i>
+                                Petunjuk Arah Google Maps
                             </a>
+
                         </div>
                         <div class="mt-4">
                             <strong>Video Lokasi:</strong>

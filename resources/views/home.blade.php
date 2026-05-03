@@ -104,16 +104,19 @@
             min-width: 250px;
             flex: 0 0 auto;
         }
-.sticky-filter {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid #eee;
-}
-.sticky-filter {
-    backdrop-filter: blur(6px);
-    background-color: rgba(255,255,255,0.9);
-}
+
+        .sticky-filter {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sticky-filter {
+            backdrop-filter: blur(6px);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
         @media (min-width: 768px) {
             .video-container {
                 flex-wrap: wrap;
@@ -169,16 +172,6 @@
 
 <body id="page-top">
     <div id="app">
-
-        <!-- Navigation-->
-        <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container text-center">
-                <a class="navbar-brand text-center" style="font-size: 14px;" href="#page-top">ABATI STORE - AGEN
-                    FADKHERA
-                    KENDARI</a>
-            </div>
-        </nav> -->
-        <!-- Masthead-->
         <header class="masthead">
             <div class="container">
                 <img src="{{asset('logo-abati-store-white.png')}}" class="mb-1" width="150">
@@ -217,9 +210,6 @@
 
             </div>
         </header>
-        <!-- Pastikan sudah menyertakan Font Awesome 6 -->
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="..." crossorigin="anonymous"> -->
-        <!-- Section Keunggulan -->
         <section class="py-5 bg-light" id="portofolio">
             <div class="container">
                 <h2 class="text-center mb-4">Kenapa Harus Fadkhera?</h2> <!-- Keunggulan -->
@@ -281,35 +271,7 @@
                 </div>
             </div>
         </section>
-        <!-- <section class="page-section bg-light">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">VIDEO</h2>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-4 mb-4" style="border: 1px solid #e9e9e9;">
-                        <video controls class="w-100">
-                            <source src="assets/video-1.mp4" type="video/webm" />
-                            Browsermu tidak mendukung tag ini, upgrade donk!
-                        </video>
-                    </div>
 
-                    <div class="col-12 col-md-4 mb-4" style="border: 1px solid #e9e9e9;">
-                        <video controls class="w-100">
-                            <source src="assets/video-2.mp4" type="video/webm" />
-                            Browsermu tidak mendukung tag ini, upgrade donk!
-                        </video>
-                    </div>
-
-                    <div class="col-12 col-md-4 mb-4" style="border: 1px solid #e9e9e9;">
-                        <video controls class="w-100">
-                            <source src="assets/video-3.mp4" type="video/webm" />
-                            Browsermu tidak mendukung tag ini, upgrade donk!
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </section> -->
         <section class="py-5 bg-black">
             <div class="container">
                 <h2 class="text-center fw-bold mb-4 text-white">
@@ -399,105 +361,111 @@
 
         <!-- KATALOG -->
         <section class="page-section bg-light">
-    <div class="container">
+            <div class="container">
 
-        <!-- HEADER -->
-        <div class="text-center mb-4">
-            <h2 class="section-heading text-uppercase">KATALOG</h2>
+                <!-- HEADER -->
+                <div class="text-center mb-4">
+                    <h2 class="section-heading text-uppercase">KATALOG</h2>
 
-            <img :src="getFile('/assets/open.jpeg')" class="img mb-3" width="100%">
+                    <img :src="getFile('/assets/open.jpeg')" class="img mb-3" width="100%">
 
-            <h6 class="text-muted">
-                <b>[Beli via WhatsApp]</b> — Cepat & bisa tanya langsung <br>
-                <b>[Beli via Shopee]</b> — Aman & fleksibel
-            </h6>
-        </div>
+                    <h6 class="text-muted">
+                        <b>[Beli via WhatsApp]</b> — Cepat & bisa tanya langsung <br>
+                        <b>[Beli via Shopee]</b> — Aman & fleksibel
+                    </h6>
+                </div>
 
-       <!-- FILTER WRAPPER (STICKY) -->
-<div class="sticky-filter bg-light py-2 mb-3">
+                <!-- FILTER WRAPPER (STICKY) -->
+                <div class="sticky-filter bg-light py-2 mb-3">
 
-    <!-- KATEGORI -->
-    <div class="text-center mb-2">
-        <button 
-            class="btn btn-sm me-2 mb-2"
-            :class="selectedCategory === null ? 'btn-dark' : 'btn-outline-dark'"
-            @click="changeCategory(null)">
-            Semua
-        </button>
+                    <!-- KATEGORI -->
+                    <div class="text-center mb-2">
+                        <button
+                            class="btn btn-sm me-2 mb-2"
+                            :class="selectedCategory === null ? 'btn-dark' : 'btn-outline-dark'"
+                            @click="changeCategory(null)">
+                            Semua
+                        </button>
 
-        <button 
-            v-for="cat in categories" 
-            :key="cat.id"
-            class="btn btn-sm me-2 mb-2"
-            :class="selectedCategory === cat.id ? 'btn-dark' : 'btn-outline-dark'"
-            @click="changeCategory(cat.id)">
-            @{{ cat.name }}
-        </button>
-    </div>
+                        <button
+                            v-for="cat in categories"
+                            :key="cat.id"
+                            class="btn btn-sm me-2 mb-2"
+                            :class="selectedCategory === cat.id ? 'btn-dark' : 'btn-outline-dark'"
+                            @click="changeCategory(cat.id)">
+                            @{{ cat.name }}
+                        </button>
+                        <button
+                            class="btn btn-sm me-2 mb-2"
+                            :class="stockFilter === 'out' ? 'btn-dark' : 'btn-outline-dark'"
+                            @click="changeStock('out')">
+                            Habis
+                        </button>
+                    </div>
 
-    <!-- TOGGLE HABIS -->
-    <!-- <div class="text-center">
+                    <!-- TOGGLE HABIS -->
+                    <!-- <div class="text-center">
         <label style="cursor:pointer; font-size: 0.9rem;">
             <input type="checkbox" v-model="showOutOfStock">
             Tampilkan produk habis
         </label>
     </div> -->
 
-</div>
-        <!-- PRODUK -->
-        <div class="row">
-            <div class="col-6 col-md-4 mb-4"
-                 v-for="product in visibleProducts"
-                 :key="product.id">
+                </div>
+                <!-- PRODUK -->
+                <div class="row">
+                    <div class="col-6 col-md-4 mb-4"
+                        v-for="product in visibleProducts"
+                        :key="product.id">
 
-                <div class="card h-100 shadow-sm border-0"
-                     @click="openModal(product); trackDetailClick(product)"
-                     style="cursor: pointer;">
+                        <div class="card h-100 shadow-sm border-0"
+                            @click="openModal(product); trackDetailClick(product)"
+                            style="cursor: pointer;">
 
-                    <!-- BADGE -->
-                    <div style="position:absolute; top:10px; right:10px; z-index:10;">
-                        <span v-if="!product.is_habis" class="badge bg-success" style="font-size: 0.6rem;">
-                            Ready
-                        </span>
-                        <span v-else class="badge bg-dark" style="font-size: 0.6rem;">
-                            Habis
-                        </span>
-                    </div>
+                            <!-- BADGE -->
+                            <div style="position:absolute; top:10px; right:10px; z-index:10;">
+                                <span v-if="!product.is_habis" class="badge bg-success" style="font-size: 0.6rem;">
+                                    Ready
+                                </span>
+                                <span v-else class="badge bg-dark" style="font-size: 0.6rem;">
+                                    Habis
+                                </span>
+                            </div>
 
-                    <!-- IMAGE -->
-                    <div style="position: relative;">
-                        <img class="card-img-top"
-                             :src="getImageUrl(product.image)">
+                            <!-- IMAGE -->
+                            <div style="position: relative;">
+                                <img class="card-img-top"
+                                    :src="getImageUrl(product.image)">
 
-                        <!-- Overlay habis -->
-                        <div v-if="product.is_habis"
-                             class="position-absolute top-50 start-50 translate-middle text-white fw-bold"
-                             style="background: rgba(0,0,0,0.7); padding:10px 15px; border-radius:10px;">
-                            HABIS
+                                <!-- Overlay habis -->
+                                <div v-if="product.is_habis"
+                                    class="position-absolute top-50 start-50 translate-middle text-white fw-bold"
+                                    style="background: rgba(0,0,0,0.7); padding:10px 15px; border-radius:10px;">
+                                    HABIS
+                                </div>
+                            </div>
+
+                            <!-- INFO -->
+                            <div class="card-body text-center">
+                                <small class="text-muted">@{{ product.category.name }}</small>
+                                <div class="fw-bold">@{{ product.name }}</div>
+                                <div class="text-dark">@{{ formatRupiah(product.price) }}</div>
+                            </div>
+
                         </div>
                     </div>
-
-                    <!-- INFO -->
-                    <div class="card-body text-center">
-                        <small class="text-muted">@{{ product.category.name }}</small>
-                        <div class="fw-bold">@{{ product.name }}</div>
-                        <div class="text-dark">@{{ formatRupiah(product.price) }}</div>
-                    </div>
-
                 </div>
+
+                <!-- LOAD MORE -->
+                <div class="text-center mt-3"
+                    v-if="visibleCount < filteredProducts.length">
+                    <button class="btn btn-dark" @click="loadMore">
+                        Muat Lebih Banyak
+                    </button>
+                </div>
+
             </div>
-        </div>
-
-        <!-- LOAD MORE -->
-        <div class="text-center mt-3"
-             v-if="visibleCount < filteredProducts.length">
-            <button class="btn btn-dark" @click="loadMore">
-                Muat Lebih Banyak
-            </button>
-        </div>
-
-    </div>
-</section>
+        </section>
         <section class="page-section bg-light" id="seragam">
             <div class="container">
                 <div class="text-center">
@@ -547,7 +515,12 @@
                         <h5 class="modal-title" id="mapModalLabel">Lokasi Toko</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body text-center">
+                        <!-- Alamat -->
+                        <div class="mt-3">
+                            <strong>Alamat:</strong><br>
+                            Jalan La Ode Hadi, Lorong Satria Kel. Wowawanggu Kec. Kadia, Kota Kendari
+                        </div>
                         <!-- Embed Google Maps -->
                         <div class="ratio ratio-16x9">
                             <iframe
@@ -555,109 +528,129 @@
                                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
-                        <!-- Alamat -->
-                        <div class="mt-3">
-                            <strong>Alamat:</strong><br>
-                            Jalan La Ode Hadi, Lorong Satria / Lorong Al-Ikhlas (Sekitaran UMK / Belakang Fresh Mart
-                            Bypass)<br>
-                            Kec. Kadia, Kota Kendari
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <a
+                                href="https://www.google.com/maps?q=-3.9986246,122.5113538"
+                                target="_blank"
+                                class="btn btn-secondary btn-sm">
+                                📍 Buka di Google Maps
+                            </a>
+
+                            <a
+                                href="https://www.google.com/maps/dir/?api=1&destination=-3.9986246,122.5113538"
+                                target="_blank"
+                                class="btn btn-outline-secondary btn-sm">
+                                Petunjuk Arah dari lokasimu
+                            </a>
                         </div>
+                        <div class="mt-4">
+                            <strong>Video Lokasi:</strong>
+                            <div class="ratio ratio-9x16 mt-2">
+                                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fadkhera.kendari/video/7608130662645681416" data-video-id="7608130662645681416" style="max-width: 605px;min-width: 325px;">
+                                    <section> <a target="_blank" title="@fadkhera.kendari" href="https://www.tiktok.com/@fadkhera.kendari?refer=embed">@fadkhera.kendari</a>
+                                        <p></p> <a target="_blank" title="♬ original sound  - Fadkhera Kendari" href="https://www.tiktok.com/music/original-sound-Fadkhera-Kendari-7608130722712980225?refer=embed">♬ original sound - Fadkhera Kendari</a>
+                                    </section>
+                                </blockquote>
+                                <script async src="https://www.tiktok.com/embed.js"></script>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
         <!-- MODAL PRODUCT -->
-<div class="modal fade" id="productModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
+        <div class="modal fade" id="productModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
 
-            <!-- HEADER -->
-            <div class="modal-header">
-                <h6 class="modal-title">@{{ selectedProduct.name }}</h6>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                    @click="stopSlide"></button>
-            </div>
+                    <!-- HEADER -->
+                    <div class="modal-header">
+                        <h6 class="modal-title">@{{ selectedProduct.name }}</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            @click="stopSlide"></button>
+                    </div>
 
-            <!-- BODY -->
-            <div class="modal-body">
+                    <!-- BODY -->
+                    <div class="modal-body">
 
-                <!-- IMAGE SLIDER -->
-                <div class="text-center mb-3 position-relative">
-                    <img :src="getImageUrl(activeImage)"
-                         class="img-fluid rounded"
-                         style="max-height:300px; object-fit:cover;">
+                        <!-- IMAGE SLIDER -->
+                        <div class="text-center mb-3 position-relative">
+                            <img :src="getImageUrl(activeImage)"
+                                class="img-fluid rounded"
+                                style="max-height:300px; object-fit:cover;">
 
-                    <!-- NAV -->
-                    <button class="btn btn-dark btn-sm position-absolute top-50 start-0 translate-middle-y"
-                            @click="prevImage">
-                        ‹
-                    </button>
-                    <button class="btn btn-dark btn-sm position-absolute top-50 end-0 translate-middle-y"
-                            @click="nextImage">
-                        ›
-                    </button>
+                            <!-- NAV -->
+                            <button class="btn btn-dark btn-sm position-absolute top-50 start-0 translate-middle-y"
+                                @click="prevImage">
+                                ‹
+                            </button>
+                            <button class="btn btn-dark btn-sm position-absolute top-50 end-0 translate-middle-y"
+                                @click="nextImage">
+                                ›
+                            </button>
+                        </div>
+
+                        <!-- INFO -->
+                        <div class="text-center">
+                            <div class="text-muted mb-1">
+                                @{{ selectedProduct.category?.name }}
+                            </div>
+
+                            <h5 class="fw-bold">@{{ selectedProduct.name }}</h5>
+
+                            <div class="mb-2 fs-5">
+                                @{{ formatRupiah(selectedProduct.price) }}
+                            </div>
+
+                            <!-- STATUS -->
+                            <div class="mb-2">
+                                <span v-if="!selectedProduct.is_habis" class="badge bg-success">
+                                    Ready Stok
+                                </span>
+                                <span v-else class="badge bg-dark">
+                                    Stok Habis
+                                </span>
+                            </div>
+
+                            <!-- INFO TAMBAHAN -->
+                            <small class="text-muted d-block mb-3">
+                                Chat dulu untuk cek ukuran & ketersediaan 🙌
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <!-- FOOTER CTA -->
+                    <div class="modal-footer flex-column">
+
+                        <!-- WA (PRIMARY) -->
+                        <a :href="getWhatsappLink(selectedProduct.name)"
+                            @click="trackWhatsAppClick(selectedProduct)"
+                            target="_blank"
+                            class="btn btn-success w-100 mb-2">
+                            <i class="fa fa-whatsapp me-1"></i>
+                            Tanya / Beli via WhatsApp
+                        </a>
+
+                        <!-- SHOPEE (SECONDARY) -->
+                        <a v-if="selectedProduct.link_shopee"
+                            :href="selectedProduct.link_shopee"
+                            @click="trackShopeeClick(selectedProduct)"
+                            target="_blank"
+                            class="btn w-100"
+                            style="background:#f1582c; color:white;">
+
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
+                                style="width:16px; margin-right:6px; filter: brightness(0) invert(1);">
+                            Beli di Shopee
+                        </a>
+
+                    </div>
+
                 </div>
-
-                <!-- INFO -->
-                <div class="text-center">
-                    <div class="text-muted mb-1">
-                        @{{ selectedProduct.category?.name }}
-                    </div>
-
-                    <h5 class="fw-bold">@{{ selectedProduct.name }}</h5>
-
-                    <div class="mb-2 fs-5">
-                        @{{ formatRupiah(selectedProduct.price) }}
-                    </div>
-
-                    <!-- STATUS -->
-                    <div class="mb-2">
-                        <span v-if="!selectedProduct.is_habis" class="badge bg-success">
-                            Ready Stok
-                        </span>
-                        <span v-else class="badge bg-dark">
-                            Stok Habis
-                        </span>
-                    </div>
-
-                    <!-- INFO TAMBAHAN -->
-                    <small class="text-muted d-block mb-3">
-                        Chat dulu untuk cek ukuran & ketersediaan 🙌
-                    </small>
-                </div>
-
             </div>
-
-            <!-- FOOTER CTA -->
-            <div class="modal-footer flex-column">
-
-                <!-- WA (PRIMARY) -->
-                <a :href="getWhatsappLink(selectedProduct.name)"
-                   @click="trackWhatsAppClick(selectedProduct)"
-                   target="_blank"
-                   class="btn btn-success w-100 mb-2">
-                    <i class="fa fa-whatsapp me-1"></i>
-                    Tanya / Beli via WhatsApp
-                </a>
-
-                <!-- SHOPEE (SECONDARY) -->
-                <a v-if="selectedProduct.link_shopee"
-                   :href="selectedProduct.link_shopee"
-                   @click="trackShopeeClick(selectedProduct)"
-                   target="_blank"
-                   class="btn w-100"
-                   style="background:#f1582c; color:white;">
-                   
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
-                         style="width:16px; margin-right:6px; filter: brightness(0) invert(1);">
-                    Beli di Shopee
-                </a>
-
-            </div>
-
         </div>
-    </div>
-</div>
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
@@ -696,194 +689,206 @@
     </script>
 
     <script>
-const { createApp } = Vue;
- 
-createApp({
-    data() {
-        return {
-            featuredProducts: [],
-            otherProducts: [],
-            selectedProduct: {},
+        const {
+            createApp
+        } = Vue;
 
-            // NEW
-            categories: [],
-            selectedCategory: null,
-            visibleCount: 6,
+        createApp({
+            data() {
+                return {
+                    featuredProducts: [],
+                    otherProducts: [],
+                    selectedProduct: {},
 
-            activeImageIndex: 0,
-            slideInterval: null,
-            showOutOfStock: false,
-        }
-    },
+                    // NEW
+                    categories: [],
+                    selectedCategory: null,
+                    visibleCount: 500,
 
-    mounted() {
-        this.fetchProducts();
-    },
+                    activeImageIndex: 0,
+                    slideInterval: null,
+                    showOutOfStock: false,
+                    stockFilter: 'available', // default: tampil yang ada stok
 
-    computed: {
-        filteredProducts() {
-    let all = [...this.featuredProducts, ...this.otherProducts];
+                }
+            },
 
-    // filter kategori
-    if (this.selectedCategory) {
-        all = all.filter(p => p.category.id === this.selectedCategory);
-    }
+            mounted() {
+                this.fetchProducts();
+            },
 
-    // filter stok
-    if (!this.showOutOfStock) {
-        all = all.filter(p => !p.is_habis);
-    }
+            computed: {
+                filteredProducts() {
+                    let all = [...this.featuredProducts, ...this.otherProducts];
 
-    return all;
-},
+                    // 🔥 PRIORITAS: kalau mode HABIS
+                    if (this.stockFilter === 'out') {
+                        return all.filter(p => p.is_habis);
+                    }
 
-        visibleProducts() {
-            return this.filteredProducts.slice(0, this.visibleCount);
-        },
+                    // mode normal
+                    if (this.selectedCategory) {
+                        all = all.filter(p => p.category.id === this.selectedCategory);
+                    }
 
-        allImages() {
-            if (!this.selectedProduct) return [];
-            const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-            const others = this.selectedProduct.images?.map(img => img.image) || [];
-            return main.concat(others);
-        },
+                    // hanya tampil yang tersedia
+                    all = all.filter(p => !p.is_habis);
 
-        activeImage() {
-            return this.allImages[this.activeImageIndex] || '';
-        }
-    },
+                    return all;
+                },
 
-    methods: {
+                visibleProducts() {
+                    return this.filteredProducts.slice(0, this.visibleCount);
+                },
 
-        // 🔥 FILTER
-        changeCategory(catId) {
-            this.selectedCategory = catId;
-            this.visibleCount = 6; // reset load more
-        },
+                allImages() {
+                    if (!this.selectedProduct) return [];
+                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                    const others = this.selectedProduct.images?.map(img => img.image) || [];
+                    return main.concat(others);
+                },
 
-        loadMore() {
-            this.visibleCount += 6;
-        },
+                activeImage() {
+                    return this.allImages[this.activeImageIndex] || '';
+                }
+            },
 
-        // 🔥 TRACKING
-        trackWhatsAppClick(product) {
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'InitiateCheckout', {
-                    content_ids: [product.id],
-                    content_name: product.name,
-                    value: product.price,
-                    currency: 'IDR'
-                });
-            }
-        },
+            methods: {
 
-        trackShopeeClick(product) {
-            if (typeof fbq !== 'undefined') {
-                fbq('trackCustom', 'ShopeeClick', {
-                    content_ids: [product.id],
-                    content_name: product.name,
-                    value: product.price,
-                    currency: 'IDR'
-                });
-            }
-        },
+                changeStock(type) {
+                    this.stockFilter = type;
+                    this.selectedCategory = null; // 🔥 reset kategori
+                },
+                // 🔥 FILTER
+                changeCategory(catId) {
+                    this.stockFilter = 'available'
+                    this.selectedCategory = catId;
+                    this.visibleCount = 500; // reset load more
+                },
 
-        trackDetailClick(product) {
-            if (typeof fbq !== 'undefined') {
-                fbq('trackCustom', 'DetailClick', {
-                    content_ids: [product.id],
-                    content_name: product.name,
-                    value: product.price,
-                    currency: 'IDR'
-                });
-            }
-        },
+                loadMore() {
+                    this.visibleCount += 500;
+                },
 
-        // 🔥 WHATSAPP
-        getWhatsappLink(productName) {
-    const phoneNumber = '6285241800852';
-    const message = `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
-    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-},
+                // 🔥 TRACKING
+                trackWhatsAppClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'InitiateCheckout', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        });
+                    }
+                },
 
-        // 🔥 MODAL
-        openModal(product) {
-            this.selectedProduct = product;
-            this.activeImageIndex = 0;
-            this.startSlide();
+                trackShopeeClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'ShopeeClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        });
+                    }
+                },
 
-            const modal = new bootstrap.Modal(document.getElementById('productModal'));
-            modal.show();
-        },
+                trackDetailClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'DetailClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        });
+                    }
+                },
 
-        nextImage() {
-            this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-        },
+                // 🔥 WHATSAPP
+                getWhatsappLink(productName) {
+                    const phoneNumber = '6285241800852';
+                    const message = `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
 
-        prevImage() {
-            this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages.length;
-        },
+                // 🔥 MODAL
+                openModal(product) {
+                    this.selectedProduct = product;
+                    this.activeImageIndex = 0;
+                    this.startSlide();
 
-        startSlide() {
-            this.slideInterval = setInterval(() => {
-                this.nextImage();
-            }, 5000);
-        },
+                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                    modal.show();
+                },
 
-        stopSlide() {
-            clearInterval(this.slideInterval);
-        },
+                nextImage() {
+                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+                },
 
-        // 🔥 FETCH DATA
-        async fetchProducts() {
-            let url = "{{route('product.index')}}";
+                prevImage() {
+                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages.length;
+                },
 
-            const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-            const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+                startSlide() {
+                    this.slideInterval = setInterval(() => {
+                        this.nextImage();
+                    }, 5000);
+                },
 
-            this.featuredProducts = featured;
-            this.otherProducts = others;
+                stopSlide() {
+                    clearInterval(this.slideInterval);
+                },
 
-            // ambil kategori unik
-            const allProducts = [...featured, ...others];
-            const uniqueCategories = {};
+                // 🔥 FETCH DATA
+                async fetchProducts() {
+                    let url = "{{route('product.index')}}";
 
-            allProducts.forEach(p => {
-                uniqueCategories[p.category.id] = p.category;
-            });
+                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
 
-            this.categories = Object.values(uniqueCategories);
-        },
+                    this.featuredProducts = featured;
+                    this.otherProducts = others;
 
-        // 🔥 HELPER
-        getImageUrl(path) {
-            if (!path) return '/assets/no-image.png';
-            return `/storage/${path}`;
-        },
+                    // ambil kategori unik
+                    const allProducts = [...featured, ...others];
+                    const uniqueCategories = {};
 
-        getFile(path) {
-            return path ? `${path}` : '';
-        },
+                    allProducts.forEach(p => {
+                        uniqueCategories[p.category.id] = p.category;
+                    });
 
-        formatRupiah(value) {
-            const number = Number(value);
-            if (isNaN(number)) return value;
-            return 'Rp ' + number.toLocaleString('id-ID');
-        },
-        getWhatsappLinkSeragam() {
+                    this.categories = Object.values(uniqueCategories);
+                },
+
+                // 🔥 HELPER
+                getImageUrl(path) {
+                    if (!path) return '/assets/no-image.png';
+                    return `/storage/${path}`;
+                },
+
+                getFile(path) {
+                    return path ? `${path}` : '';
+                },
+
+                formatRupiah(value) {
+                    const number = Number(value);
+                    if (isNaN(number)) return value;
+                    return 'Rp ' + number.toLocaleString('id-ID');
+                },
+                getWhatsappLinkSeragam() {
                     const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
                     const message =
                         `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
                     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 },
-    },
+            },
 
-    beforeUnmount() {
-        this.stopSlide();
-    }
+            beforeUnmount() {
+                this.stopSlide();
+            }
 
-}).mount('#app');
-</script>
+        }).mount('#app');
+    </script>
 </body>
 
 </html>

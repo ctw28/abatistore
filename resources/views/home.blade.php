@@ -208,8 +208,8 @@
                     <!-- <i class="bi bi-person-badge me-1"></i>  -->
                     Butuh
                     Seragam?</a>
-                <button class="btn btn-info text-uppercase btn-bounce" data-bs-toggle="modal" data-bs-target="#mapModal"><i
-                        class="fa fa-map-marker me-1"></i> Lokasi Kami</button>
+                <button class="btn btn-info text-uppercase" data-bs-toggle="modal" data-bs-target="#mapModal"><i
+                        class="fa fa-map-marker me-1"></i> Lokasi Toko</button>
 
             </div>
         </header>

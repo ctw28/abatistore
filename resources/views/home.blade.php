@@ -21,6 +21,7 @@
     <link href="assets/fontawesome/css/font-awesome.css" rel="stylesheet" />
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
         .btn-bounce {
@@ -517,9 +518,10 @@
                     </div>
                     <div class="modal-body text-center">
                         <!-- Alamat -->
-                        <div class="mt-3">
+                        <div class="mb-3">
                             <strong>Alamat:</strong><br>
-                            Jalan La Ode Hadi, Lorong Satria Kel. Wowawanggu Kec. Kadia, Kota Kendari
+                            Jalan La Ode Hadi, Lorong Satria Kel. Wowawanggu Kec. Kadia, Kota Kendari <br>
+                            <b>(Bagian Bypass Pasar Baru, lihat peta atau video untuk lebih jelasnya)</b>
                         </div>
                         <!-- Embed Google Maps -->
                         <div class="ratio ratio-16x9">
@@ -532,15 +534,16 @@
                             <a
                                 href="https://www.google.com/maps?q=-3.9986246,122.5113538"
                                 target="_blank"
-                                class="btn btn-secondary btn-sm">
-                                📍 Buka di Google Maps
+                                class="btn btn-success btn-sm">
+                                <i class="bi bi-geo-alt-fill me-1"></i>
+                                Buka di Google Maps
                             </a>
 
                             <a
                                 href="https://www.google.com/maps/dir/?api=1&destination=-3.9986246,122.5113538"
                                 target="_blank"
-                                class="btn btn-outline-secondary btn-sm">
-                                Petunjuk Arah dari lokasimu
+                                class="btn btn-primary btn-sm">
+                                <i class="bi bi-compass me-1"></i> Petunjuk Arah Google Maps (dari lokasimu ke toko)
                             </a>
                         </div>
                         <div class="mt-4">

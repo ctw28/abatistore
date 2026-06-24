@@ -482,7 +482,7 @@
                                     Ukuran tersedia:
                                 </small>
 
-                                <span v-for="item in selectedProduct.stocks" :key="item.id"
+                                <span v-for="item in selectedProduct.stocks" :key="item.id" v-if="item.stock > 0"
                                     class="badge bg-light text-dark border me-1">
 
                                     @{{ item.size.name }}
@@ -568,15 +568,15 @@
                             telah memilih kami.
                         </p>
                         <img src="{{asset('assets/pelanggan/728606784_17903583423445903_6750163565435512460_n.jpg')}}"
-                            class="info-image mb-3">
+                            class="info-image mb-3" style="width: 100%;">
 
 
 
 
-
+                        <!-- 
                         <a href="#seragam" data-bs-dismiss="modal" class="btn btn-danger">
                             Butuh Seragam?
-                        </a>
+                        </a> -->
 
                     </div>
 

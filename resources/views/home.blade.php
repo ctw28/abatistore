@@ -341,16 +341,20 @@
 
                     </p>
                     <div class="col-6 col-md-3 col-lg-3 p-2 mb-2">
-                        <img :src="getFile('/assets/seragam.webp')" class="img" width="100%">
+                        <img :src="getFile('/assets/pelanggan/WhatsApp Image 2026-06-24 at 08.42.56.webp')" class="img"
+                            width="100%">
                     </div>
                     <div class="col-6 col-md-3 col-lg-3 p-2 mb-2">
-                        <img :src="getFile('/assets/seragam1.jpeg')" class="img" width="100%">
+                        <img :src="getFile('/assets/pelanggan/WhatsApp Image 2026-06-24 at 08.43.25.webp')" class="img"
+                            width="100%">
                     </div>
                     <div class="col-6 col-md-3 col-lg-3 p-2 mb-2">
-                        <img :src="getFile('/assets/seragam2.jpeg')" class="img" width="100%">
+                        <img :src="getFile('/assets/pelanggan/WhatsApp Image 2026-06-24 at 08.43.45.webp')" class="img"
+                            width="100%">
                     </div>
                     <div class="col-6 col-md-3 col-lg-3 p-2 mb-2">
-                        <img :src="getFile('/assets/seragam3.jpeg')" class="img" width="100%">
+                        <img :src="getFile('/assets/pelanggan/WhatsApp Image 2026-06-24 at 08.43.26.webp')" class="img"
+                            width="100%">
                     </div>
                     <div class="col-12 text-center">
                         <a :href=" getWhatsappLinkSeragam()" @click="trackSeragamClickWA" class="btn btn-success mt-2">

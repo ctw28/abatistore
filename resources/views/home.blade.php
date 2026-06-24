@@ -476,13 +476,13 @@
                                 </span>
                             </div>
                             <!-- UKURAN -->
-                            <div v-if="selectedProduct.stocks?.length" class="mb-3">
+                            <div v-if="availableSizes.length" class="mb-3">
 
                                 <small class="text-muted d-block mb-2">
                                     Ukuran tersedia:
                                 </small>
 
-                                <span v-for="item in selectedProduct.stocks" :key="item.id" v-if="item.stock > 0"
+                                <span v-for="item in availableSizes" :key="item.id"
                                     class="badge bg-light text-dark border me-1">
 
                                     @{{ item.size.name }}
@@ -636,6 +636,11 @@
         },
 
         computed: {
+            availableSizes() {
+                return this.selectedProduct.stocks?.filter(
+                    item => item.stock > 0
+                ) ?? []
+            },
             filteredProducts() {
                 let all = [...this.featuredProducts, ...this.otherProducts];
 

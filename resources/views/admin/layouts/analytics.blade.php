@@ -14,7 +14,7 @@ gtag('config', 'G-71X4PVE1XD');
 
     <!-- Meta Pixel Code -->
     <script>
-alert('Meta Pixel Code is active on production environment.');
+// alert('Meta Pixel Code is active on production environment.');
 ! function(f, b, e, v, n, t, s) {
     if (f.fbq) return;
     n = f.fbq = function() {

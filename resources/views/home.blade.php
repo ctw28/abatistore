@@ -22,153 +22,25 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-    <style>
-        .btn-bounce {
-            display: inline-block;
-            padding: 12px 24px;
-            color: white;
-            font-weight: bold;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
-            animation: bounce 1.5s infinite;
-        }
-
-        .portfolio-card {
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .portfolio-img {
-            max-height: 160px;
-            object-fit: contain;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-6px);
-            }
-        }
-
-        .btn-shake {
-            display: inline-block;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-            animation: shake 5.5s infinite;
-        }
-
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-3px);
-            }
-
-            50% {
-                transform: translateX(3px);
-            }
-
-            75% {
-                transform: translateX(-3px);
-            }
-        }
-
-        header.masthead {
-            padding-top: 2.5rem;
-            padding-bottom: 4rem;
-        }
-
-        .video-container {
-            overflow-x: auto;
-            display: flex;
-            gap: 1rem;
-            padding-bottom: 1rem;
-        }
-
-        .video-wrapper {
-            min-width: 250px;
-            flex: 0 0 auto;
-        }
-
-        .sticky-filter {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #eee;
-        }
-
-        .sticky-filter {
-            backdrop-filter: blur(6px);
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-
-        @media (min-width: 768px) {
-            .video-container {
-                flex-wrap: wrap;
-                justify-content: space-between;
-                overflow-x: unset;
-            }
-
-            .video-wrapper {
-                flex: 0 0 calc(33.33% - 1rem);
-                min-width: unset;
-            }
-        }
-    </style>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-71X4PVE1XD"></script>
+    <!-- custom css -->
+    <link href="{{ asset('css/abati.css') }}" rel="stylesheet">
+    <!-- jika online aktifkan analytics (Google Analytics & Meta Pixel) -->
+    @if(app()->environment('production'))
+    @include('admin.layouts.analytics')
+    @endif
     <script>
-        window.dataLayer = window.dataLayer || [];
+    document.addEventListener("DOMContentLoaded", function() {
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+        let modal = new bootstrap.Modal(
+            document.getElementById('infoModal')
+        );
 
-        gtag('config', 'G-71X4PVE1XD');
+        setTimeout(function() {
+            modal.show();
+        }, 1000);
+
+    });
     </script>
-    <!-- Meta Pixel Code -->
-    <script>
-        ! function(f, b, e, v, n, t, s) {
-            if (f.fbq) return;
-            n = f.fbq = function() {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '638215716027703');
-        fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=638215716027703&ev=PageView&noscript=1" /></noscript>
-    <!-- End Meta Pixel Code -->
 </head>
 
 <body id="page-top">
@@ -207,7 +79,8 @@
                 <a class="btn btn-secondary text-uppercase me-2" href="#seragam" @click="trackSeragamClick">
                     <!-- <i class="bi bi-person-badge me-1"></i>  -->
                     Butuh
-                    Seragam?</a>
+                    Seragam?
+                </a>
                 <button class="btn btn-info text-uppercase" data-bs-toggle="modal" data-bs-target="#mapModal"><i
                         class="fa fa-map-marker me-1"></i> Lokasi Toko</button>
 
@@ -342,10 +215,6 @@
                                 class="d-block mx-auto img-fluid rounded shadow" alt="Testimoni 6"
                                 style="max-height: 600px; object-fit: contain;">
                         </div>
-
-
-
-
                     </div>
 
                     <!-- Navigasi Carousel -->
@@ -383,47 +252,31 @@
 
                     <!-- KATEGORI -->
                     <div class="text-center mb-2">
-                        <button
-                            class="btn btn-sm me-2 mb-2"
+                        <button class="btn btn-sm me-2 mb-2"
                             :class="selectedCategory === null ? 'btn-dark' : 'btn-outline-dark'"
                             @click="changeCategory(null)">
                             Semua
                         </button>
 
-                        <button
-                            v-for="cat in categories"
-                            :key="cat.id"
-                            class="btn btn-sm me-2 mb-2"
+                        <button v-for="cat in categories" :key="cat.id" class="btn btn-sm me-2 mb-2"
                             :class="selectedCategory === cat.id ? 'btn-dark' : 'btn-outline-dark'"
                             @click="changeCategory(cat.id)">
                             @{{ cat.name }}
                         </button>
-                        <button
-                            class="btn btn-sm me-2 mb-2"
+                        <button class="btn btn-sm me-2 mb-2"
                             :class="stockFilter === 'out' ? 'btn-dark' : 'btn-outline-dark'"
                             @click="changeStock('out')">
                             Habis
                         </button>
                     </div>
 
-                    <!-- TOGGLE HABIS -->
-                    <!-- <div class="text-center">
-        <label style="cursor:pointer; font-size: 0.9rem;">
-            <input type="checkbox" v-model="showOutOfStock">
-            Tampilkan produk habis
-        </label>
-    </div> -->
-
                 </div>
                 <!-- PRODUK -->
                 <div class="row">
-                    <div class="col-6 col-md-4 mb-4"
-                        v-for="product in visibleProducts"
-                        :key="product.id">
+                    <div class="col-6 col-md-4 mb-4" v-for="product in visibleProducts" :key="product.id">
 
                         <div class="card h-100 shadow-sm border-0"
-                            @click="openModal(product); trackDetailClick(product)"
-                            style="cursor: pointer;">
+                            @click="openModal(product); trackDetailClick(product)" style="cursor: pointer;">
 
                             <!-- BADGE -->
                             <div style="position:absolute; top:10px; right:10px; z-index:10;">
@@ -437,8 +290,7 @@
 
                             <!-- IMAGE -->
                             <div style="position: relative;">
-                                <img class="card-img-top"
-                                    :src="getImageUrl(product.image)">
+                                <img class="card-img-top" :src="getImageUrl(product.image)">
 
                                 <!-- Overlay habis -->
                                 <div v-if="product.is_habis"
@@ -460,8 +312,7 @@
                 </div>
 
                 <!-- LOAD MORE -->
-                <div class="text-center mt-3"
-                    v-if="visibleCount < filteredProducts.length">
+                <div class="text-center mt-3" v-if="visibleCount < filteredProducts.length">
                     <button class="btn btn-dark" @click="loadMore">
                         Muat Lebih Banyak
                     </button>
@@ -532,20 +383,17 @@
                                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
-                        <div class="mt-3 d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2">
+                        <div
+                            class="mt-3 d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2">
 
-                            <a
-                                href="https://www.google.com/maps?q=-3.9986246,122.5113538"
-                                target="_blank"
+                            <a href="https://www.google.com/maps?q=-3.9986246,122.5113538" target="_blank"
                                 class="btn btn-success btn-sm w-100 w-sm-auto">
                                 <i class="bi bi-geo-alt-fill me-1"></i>
                                 Buka di Google Maps
                             </a>
 
-                            <a
-                                href="https://www.google.com/maps/dir/?api=1&destination=-3.9986246,122.5113538"
-                                target="_blank"
-                                class="btn btn-secondary btn-sm w-100 w-sm-auto">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=-3.9986246,122.5113538"
+                                target="_blank" class="btn btn-secondary btn-sm w-100 w-sm-auto">
                                 <i class="bi bi-compass me-1"></i>
                                 Petunjuk Arah Google Maps
                             </a>
@@ -554,9 +402,14 @@
                         <div class="mt-4">
                             <strong>Video Lokasi:</strong>
                             <div class="ratio ratio-9x16 mt-2">
-                                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fadkhera.kendari/video/7608130662645681416" data-video-id="7608130662645681416" style="max-width: 605px;min-width: 325px;">
-                                    <section> <a target="_blank" title="@fadkhera.kendari" href="https://www.tiktok.com/@fadkhera.kendari?refer=embed">@fadkhera.kendari</a>
-                                        <p></p> <a target="_blank" title="♬ original sound  - Fadkhera Kendari" href="https://www.tiktok.com/music/original-sound-Fadkhera-Kendari-7608130722712980225?refer=embed">♬ original sound - Fadkhera Kendari</a>
+                                <blockquote class="tiktok-embed"
+                                    cite="https://www.tiktok.com/@fadkhera.kendari/video/7608130662645681416"
+                                    data-video-id="7608130662645681416" style="max-width: 605px;min-width: 325px;">
+                                    <section> <a target="_blank" title="@fadkhera.kendari"
+                                            href="https://www.tiktok.com/@fadkhera.kendari?refer=embed">@fadkhera.kendari</a>
+                                        <p></p> <a target="_blank" title="♬ original sound  - Fadkhera Kendari"
+                                            href="https://www.tiktok.com/music/original-sound-Fadkhera-Kendari-7608130722712980225?refer=embed">♬
+                                            original sound - Fadkhera Kendari</a>
                                     </section>
                                 </blockquote>
                                 <script async src="https://www.tiktok.com/embed.js"></script>
@@ -575,8 +428,7 @@
                     <!-- HEADER -->
                     <div class="modal-header">
                         <h6 class="modal-title">@{{ selectedProduct.name }}</h6>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            @click="stopSlide"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" @click="stopSlide"></button>
                     </div>
 
                     <!-- BODY -->
@@ -584,8 +436,7 @@
 
                         <!-- IMAGE SLIDER -->
                         <div class="text-center mb-3 position-relative">
-                            <img :src="getImageUrl(activeImage)"
-                                class="img-fluid rounded"
+                            <img :src="getImageUrl(activeImage)" class="img-fluid rounded"
                                 style="max-height:300px; object-fit:cover;">
 
                             <!-- NAV -->
@@ -620,10 +471,24 @@
                                     Stok Habis
                                 </span>
                             </div>
+                            <!-- UKURAN -->
+                            <div v-if="selectedProduct.stocks?.length" class="mb-3">
 
+                                <small class="text-muted d-block mb-2">
+                                    Ukuran tersedia:
+                                </small>
+
+                                <span v-for="item in selectedProduct.stocks" :key="item.id"
+                                    class="badge bg-light text-dark border me-1">
+
+                                    @{{ item.size.name }}
+
+                                </span>
+
+                            </div>
                             <!-- INFO TAMBAHAN -->
                             <small class="text-muted d-block mb-3">
-                                Chat dulu untuk cek ukuran & ketersediaan 🙌
+                                Mohon Chat untuk memastikan kembali ukuran & ketersediaan 🙌
                             </small>
                         </div>
 
@@ -633,20 +498,15 @@
                     <div class="modal-footer flex-column">
 
                         <!-- WA (PRIMARY) -->
-                        <a :href="getWhatsappLink(selectedProduct.name)"
-                            @click="trackWhatsAppClick(selectedProduct)"
-                            target="_blank"
-                            class="btn btn-success w-100 mb-2">
+                        <a :href="getWhatsappLink(selectedProduct.name)" @click="trackWhatsAppClick(selectedProduct)"
+                            target="_blank" class="btn btn-success w-100 mb-2">
                             <i class="fa fa-whatsapp me-1"></i>
                             Tanya / Beli via WhatsApp
                         </a>
 
                         <!-- SHOPEE (SECONDARY) -->
-                        <!-- <a v-if="selectedProduct.link_shopee"
-                            :href="selectedProduct.link_shopee"
-                            @click="trackShopeeClick(selectedProduct)"
-                            target="_blank"
-                            class="btn w-100"
+                        <!-- <a v-if="selectedProduct.link_shopee" :href="selectedProduct.link_shopee"
+                            @click="trackShopeeClick(selectedProduct)" target="_blank" class="btn w-100"
                             style="background:#f1582c; color:white;">
 
                             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopee.svg"
@@ -673,7 +533,53 @@
         <!-- Portfolio Modals-->
         <!-- Portfolio item 1 modal popup-->
         <!-- Modal untuk Detail Produk -->
+        <!-- Modal Informasi Terbaru -->
+        <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg">
 
+                    <div class="modal-header border-0 text-center">
+                        <h5 class="modal-title fw-bold">
+                            ✨ Info ABATI STORE ✨
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+
+
+                    <div class="modal-body text-center">
+                        <h4 class="fw-bold">
+                            Alhamdulillah 🤲
+                        </h4>
+
+
+                        <h5>
+                            ABATI STORE dipercaya menyediakan seragam di salah satu pondok pesantren di kota Kendari.
+                            <br>
+                        </h5>
+
+
+                        <p class="text-muted">
+                            Terima kasih atas kepercayaan
+                            telah memilih kami.
+                        </p>
+                        <img src="{{asset('assets/pelanggan/728606784_17903583423445903_6750163565435512460_n.jpg')}}"
+                            class="info-image mb-3">
+
+
+
+
+
+                        <a href="#seragam" data-bs-dismiss="modal" class="btn btn-danger">
+                            Butuh Seragam?
+                        </a>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- Bootstrap core JS-->
@@ -684,218 +590,219 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: false,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: false,
-        });
+    const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: false,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: false,
+    });
     </script>
 
     <script>
-        const {
-            createApp
-        } = Vue;
+    const {
+        createApp
+    } = Vue;
 
-        createApp({
-            data() {
-                return {
-                    featuredProducts: [],
-                    otherProducts: [],
-                    selectedProduct: {},
+    createApp({
+        data() {
+            return {
+                featuredProducts: [],
+                otherProducts: [],
+                selectedProduct: {},
 
-                    // NEW
-                    categories: [],
-                    selectedCategory: null,
-                    visibleCount: 500,
+                // NEW
+                categories: [],
+                selectedCategory: null,
+                visibleCount: 500,
 
-                    activeImageIndex: 0,
-                    slideInterval: null,
-                    showOutOfStock: false,
-                    stockFilter: 'available', // default: tampil yang ada stok
+                activeImageIndex: 0,
+                slideInterval: null,
+                showOutOfStock: false,
+                stockFilter: 'available', // default: tampil yang ada stok
 
-                }
-            },
-
-            mounted() {
-                this.fetchProducts();
-            },
-
-            computed: {
-                filteredProducts() {
-                    let all = [...this.featuredProducts, ...this.otherProducts];
-
-                    // 🔥 PRIORITAS: kalau mode HABIS
-                    if (this.stockFilter === 'out') {
-                        return all.filter(p => p.is_habis);
-                    }
-
-                    // mode normal
-                    if (this.selectedCategory) {
-                        all = all.filter(p => p.category.id === this.selectedCategory);
-                    }
-
-                    // hanya tampil yang tersedia
-                    all = all.filter(p => !p.is_habis);
-
-                    return all;
-                },
-
-                visibleProducts() {
-                    return this.filteredProducts.slice(0, this.visibleCount);
-                },
-
-                allImages() {
-                    if (!this.selectedProduct) return [];
-                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                    const others = this.selectedProduct.images?.map(img => img.image) || [];
-                    return main.concat(others);
-                },
-
-                activeImage() {
-                    return this.allImages[this.activeImageIndex] || '';
-                }
-            },
-
-            methods: {
-
-                changeStock(type) {
-                    this.stockFilter = type;
-                    this.selectedCategory = null; // 🔥 reset kategori
-                },
-                // 🔥 FILTER
-                changeCategory(catId) {
-                    this.stockFilter = 'available'
-                    this.selectedCategory = catId;
-                    this.visibleCount = 500; // reset load more
-                },
-
-                loadMore() {
-                    this.visibleCount += 500;
-                },
-
-                // 🔥 TRACKING
-                trackWhatsAppClick(product) {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('track', 'InitiateCheckout', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        });
-                    }
-                },
-
-                trackShopeeClick(product) {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('trackCustom', 'ShopeeClick', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        });
-                    }
-                },
-
-                trackDetailClick(product) {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('trackCustom', 'DetailClick', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        });
-                    }
-                },
-
-                // 🔥 WHATSAPP
-                getWhatsappLink(productName) {
-                    const phoneNumber = '6285241800852';
-                    const message = `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-
-                // 🔥 MODAL
-                openModal(product) {
-                    this.selectedProduct = product;
-                    this.activeImageIndex = 0;
-                    this.startSlide();
-
-                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                    modal.show();
-                },
-
-                nextImage() {
-                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-                },
-
-                prevImage() {
-                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages.length;
-                },
-
-                startSlide() {
-                    this.slideInterval = setInterval(() => {
-                        this.nextImage();
-                    }, 5000);
-                },
-
-                stopSlide() {
-                    clearInterval(this.slideInterval);
-                },
-
-                // 🔥 FETCH DATA
-                async fetchProducts() {
-                    let url = "{{route('product.index')}}";
-
-                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
-
-                    this.featuredProducts = featured;
-                    this.otherProducts = others;
-
-                    // ambil kategori unik
-                    const allProducts = [...featured, ...others];
-                    const uniqueCategories = {};
-
-                    allProducts.forEach(p => {
-                        uniqueCategories[p.category.id] = p.category;
-                    });
-
-                    this.categories = Object.values(uniqueCategories);
-                },
-
-                // 🔥 HELPER
-                getImageUrl(path) {
-                    if (!path) return '/assets/no-image.png';
-                    return `/storage/${path}`;
-                },
-
-                getFile(path) {
-                    return path ? `${path}` : '';
-                },
-
-                formatRupiah(value) {
-                    const number = Number(value);
-                    if (isNaN(number)) return value;
-                    return 'Rp ' + number.toLocaleString('id-ID');
-                },
-                getWhatsappLinkSeragam() {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-            },
-
-            beforeUnmount() {
-                this.stopSlide();
             }
+        },
 
-        }).mount('#app');
+        mounted() {
+            this.fetchProducts();
+        },
+
+        computed: {
+            filteredProducts() {
+                let all = [...this.featuredProducts, ...this.otherProducts];
+
+                // 🔥 PRIORITAS: kalau mode HABIS
+                if (this.stockFilter === 'out') {
+                    return all.filter(p => p.is_habis);
+                }
+
+                // mode normal
+                if (this.selectedCategory) {
+                    all = all.filter(p => p.category.id === this.selectedCategory);
+                }
+
+                // hanya tampil yang tersedia
+                all = all.filter(p => !p.is_habis);
+
+                return all;
+            },
+
+            visibleProducts() {
+                return this.filteredProducts.slice(0, this.visibleCount);
+            },
+
+            allImages() {
+                if (!this.selectedProduct) return [];
+                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                const others = this.selectedProduct.images?.map(img => img.image) || [];
+                return main.concat(others);
+            },
+
+            activeImage() {
+                return this.allImages[this.activeImageIndex] || '';
+            }
+        },
+
+        methods: {
+
+            changeStock(type) {
+                this.stockFilter = type;
+                this.selectedCategory = null; // 🔥 reset kategori
+            },
+            // 🔥 FILTER
+            changeCategory(catId) {
+                this.stockFilter = 'available'
+                this.selectedCategory = catId;
+                this.visibleCount = 500; // reset load more
+            },
+
+            loadMore() {
+                this.visibleCount += 500;
+            },
+
+            // 🔥 TRACKING
+            trackWhatsAppClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateCheckout', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+                }
+            },
+
+            trackShopeeClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'ShopeeClick', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+                }
+            },
+
+            trackDetailClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'DetailClick', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+                }
+            },
+
+            // 🔥 WHATSAPP
+            getWhatsappLink(productName) {
+                const phoneNumber = '6285241800852';
+                const message = `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+
+            // 🔥 MODAL
+            openModal(product) {
+                this.selectedProduct = product;
+                this.activeImageIndex = 0;
+                this.startSlide();
+
+                const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                modal.show();
+            },
+
+            nextImage() {
+                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+            },
+
+            prevImage() {
+                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                    .length;
+            },
+
+            startSlide() {
+                this.slideInterval = setInterval(() => {
+                    this.nextImage();
+                }, 5000);
+            },
+
+            stopSlide() {
+                clearInterval(this.slideInterval);
+            },
+
+            // 🔥 FETCH DATA
+            async fetchProducts() {
+                let url = "{{route('product.index')}}";
+
+                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+
+                this.featuredProducts = featured;
+                this.otherProducts = others;
+
+                // ambil kategori unik
+                const allProducts = [...featured, ...others];
+                const uniqueCategories = {};
+
+                allProducts.forEach(p => {
+                    uniqueCategories[p.category.id] = p.category;
+                });
+
+                this.categories = Object.values(uniqueCategories);
+            },
+
+            // 🔥 HELPER
+            getImageUrl(path) {
+                if (!path) return '/assets/no-image.png';
+                return `/storage/${path}`;
+            },
+
+            getFile(path) {
+                return path ? `${path}` : '';
+            },
+
+            formatRupiah(value) {
+                const number = Number(value);
+                if (isNaN(number)) return value;
+                return 'Rp ' + number.toLocaleString('id-ID');
+            },
+            getWhatsappLinkSeragam() {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+        },
+
+        beforeUnmount() {
+            this.stopSlide();
+        }
+
+    }).mount('#app');
     </script>
 </body>
 

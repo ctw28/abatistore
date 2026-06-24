@@ -1,0 +1,107 @@
+.btn-bounce {
+        display: inline-block;
+        padding: 12px 24px;
+        color: white;
+        font-weight: bold;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        animation: bounce 1.5s infinite;
+    }
+
+    .portfolio-card {
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .portfolio-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .portfolio-img {
+        max-height: 160px;
+        object-fit: contain;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-6px);
+        }
+    }
+
+    .btn-shake {
+        display: inline-block;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        animation: shake 5.5s infinite;
+    }
+
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        25% {
+            transform: translateX(-3px);
+        }
+
+        50% {
+            transform: translateX(3px);
+        }
+
+        75% {
+            transform: translateX(-3px);
+        }
+    }
+
+    header.masthead {
+        padding-top: 2.5rem;
+        padding-bottom: 4rem;
+    }
+
+    .video-container {
+        overflow-x: auto;
+        display: flex;
+        gap: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .video-wrapper {
+        min-width: 250px;
+        flex: 0 0 auto;
+    }
+
+    .sticky-filter {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid #eee;
+    }
+
+    .sticky-filter {
+        backdrop-filter: blur(6px);
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    @media (min-width: 768px) {
+        .video-container {
+            flex-wrap: wrap;
+            justify-content: space-between;
+            overflow-x: unset;
+        }
+
+        .video-wrapper {
+            flex: 0 0 calc(33.33% - 1rem);
+            min-width: unset;
+        }
+    }
+

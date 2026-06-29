@@ -1,107 +1,132 @@
 .btn-bounce {
-        display: inline-block;
-        padding: 12px 24px;
-        color: white;
-        font-weight: bold;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
-        animation: bounce 1.5s infinite;
+    display: inline-block;
+    padding: 12px 24px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    animation: bounce 1.5s infinite;
+}
+
+.portfolio-card {
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px);
+}
+
+.portfolio-img {
+    max-height: 160px;
+    object-fit: contain;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
     }
 
-    .portfolio-card {
-        padding: 20px;
-        transition: all 0.3s ease;
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.btn-shake {
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    animation: shake 5.5s infinite;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
     }
 
-    .portfolio-card:hover {
-        transform: translateY(-5px);
+    25% {
+        transform: translateX(-3px);
     }
 
-    .portfolio-img {
-        max-height: 160px;
-        object-fit: contain;
+    50% {
+        transform: translateX(3px);
     }
 
-    @keyframes bounce {
-
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-
-        50% {
-            transform: translateY(-6px);
-        }
+    75% {
+        transform: translateX(-3px);
     }
+}
 
-    .btn-shake {
-        display: inline-block;
-        color: white;
-        font-weight: bold;
-        text-decoration: none;
-        animation: shake 5.5s infinite;
-    }
+header.masthead {
+    padding-top: 2.5rem;
+    padding-bottom: 4rem;
+}
 
-    @keyframes shake {
+.video-container {
+    overflow-x: auto;
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
 
-        0%,
-        100% {
-            transform: translateX(0);
-        }
+.video-wrapper {
+    min-width: 250px;
+    flex: 0 0 auto;
+}
 
-        25% {
-            transform: translateX(-3px);
-        }
+.sticky-filter {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #eee;
+}
 
-        50% {
-            transform: translateX(3px);
-        }
+.sticky-filter {
+    backdrop-filter: blur(6px);
+    background-color: rgba(255, 255, 255, 0.9);
+}
 
-        75% {
-            transform: translateX(-3px);
-        }
-    }
-
-    header.masthead {
-        padding-top: 2.5rem;
-        padding-bottom: 4rem;
-    }
-
+@media (min-width: 768px) {
     .video-container {
-        overflow-x: auto;
-        display: flex;
-        gap: 1rem;
-        padding-bottom: 1rem;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        overflow-x: unset;
     }
 
     .video-wrapper {
-        min-width: 250px;
-        flex: 0 0 auto;
+        flex: 0 0 calc(33.33% - 1rem);
+        min-width: unset;
     }
+}
 
-    .sticky-filter {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        border-bottom: 1px solid #eee;
-    }
+.tokoh-slider {
+    scrollbar-width: none;
+}
 
-    .sticky-filter {
-        backdrop-filter: blur(6px);
-        background-color: rgba(255, 255, 255, 0.9);
-    }
+.tokoh-slider::-webkit-scrollbar {
+    display: none;
+}
 
-    @media (min-width: 768px) {
-        .video-container {
-            flex-wrap: wrap;
-            justify-content: space-between;
-            overflow-x: unset;
-        }
 
-        .video-wrapper {
-            flex: 0 0 calc(33.33% - 1rem);
-            min-width: unset;
-        }
-    }
+.tokoh-card {
+    min-width: 120px;
+    height: 160px;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
 
+
+.tokoh-card img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}

@@ -708,7 +708,7 @@ createApp({
             // NEW
             categories: [],
             selectedCategory: null,
-            visibleCount: 6,
+            visibleCount: 500,
 
             activeImageIndex: 0,
             slideInterval: null,
@@ -758,11 +758,11 @@ createApp({
         // 🔥 FILTER
         changeCategory(catId) {
             this.selectedCategory = catId;
-            this.visibleCount = 6; // reset load more
+            this.visibleCount = 500; // reset load more
         },
 
         loadMore() {
-            this.visibleCount += 6;
+            this.visibleCount += 500;
         },
 
         // 🔥 TRACKING

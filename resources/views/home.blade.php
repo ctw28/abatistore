@@ -338,7 +338,7 @@ Kuat
                 </div>
                 <!-- PRODUK -->
                 <div class="row">
-                    <div class="col-6 col-md-4 mb-4" v-for="product in visibleProducts" :key="product.id">
+                    <div class="col-6 col-md-3 mb-4" v-for="product in visibleProducts" :key="product.id">
 
                         <div class="card h-100 shadow-sm border-0"
                             @click="openModal(product); trackDetailClick(product)" style="cursor: pointer;">

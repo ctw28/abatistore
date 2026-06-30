@@ -29,17 +29,17 @@
     @include('admin.layouts.analytics')
     @endif
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function() {
 
-        let modal = new bootstrap.Modal(
-            document.getElementById('infoModal')
-        );
+            let modal = new bootstrap.Modal(
+                document.getElementById('infoModal')
+            );
 
-        setTimeout(function() {
-            modal.show();
-        }, 1000);
+            setTimeout(function() {
+                modal.show();
+            }, 1000);
 
-    });
+        });
     </script>
 </head>
 
@@ -86,132 +86,67 @@
 
             </div>
         </header>
-      <section class="py-5 bg-light" id="portofolio">
-    <div class="container">
-
-        <!-- <h2 class="text-center mb-5">Kenapa Harus Fadkhera?</h2> -->
-
-        <!-- KEUNGGULAN -->
-        <div class="bg-white shadow rounded-4 p-4 mb-5">
-
-            <div class="text-center mb-4">
-                <small class="text-warning fw-bold">KEUNGGULAN PRODUK</small>
-
-                <h3 class="fw-bold mt-2">
-                    Desain Modern.<br>
-                    Nyaman Sepanjang Hari.
-                </h3>
+        <section class="py-5 bg-light" id="portofolio">
+            <div class="container">
+                <h2 class="text-center mb-4">Kenapa Harus Fadkhera?</h2> <!-- Keunggulan -->
+                <div class="row g-4">
+                    <!-- 1 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/design.webp')" alt="Desain Modern" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Desain Modern & Syar'i</h5>
+                            <p class="text-muted">Designnya membuatmu selalu tampil fresh dan tentunya tetap syar'i –
+                                sangat cocok untuk ibadah, kerja, kajian, dan lebaran.</p>
+                        </div>
+                    </div> <!-- 2 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/bahan.webp')" alt="Bahan Premium" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Bahan Premium</h5>
+                            <p class="text-muted">Shining – soft touch dengan material tebal dan adem, nyaman seharian.
+                            </p>
+                        </div>
+                    </div> <!-- 4 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/potongan.webp')" alt="Modern Fit" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Potongan Modern Fit</h5>
+                            <p class="text-muted">Ukuran pas di badan, antara reguler dan slim fit – pas dan tetap
+                                nyaman. </p>
+                        </div>
+                    </div> <!-- 5 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/setrika.webp')" alt="Mudah Disetrika" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Tidak Mudah Kusut</h5>
+                            <p class="text-muted">Mudah di setrika dan Tidak mudah kusut – tetap rapi meski dipakai
+                                beraktivitas seharian. </p>
+                        </div>
+                    </div> <!-- 3 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/kerah.webp')" alt="Motif Eksklusif" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Kerah Spread Collar</h5>
+                            <p class="text-muted">Desain kerah baju yang memberi kesan rapi, gagah, dan elegan. </p>
+                        </div>
+                    </div> <!-- 6 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="bg-white p-4 shadow rounded text-center h-100"> <img
+                                :src="getFile('/assets/tokoh.jpeg')" alt="Dipercaya Tokoh" class="mb-3"
+                                style="width: 100%; height: auto;">
+                            <h5 class="fw-semibold">Dipercaya Ustadz & Tokoh Ternama</h5>
+                            <p class="text-muted">Telah dipakai oleh banyak ustadz dan tokoh muslim ternama di
+                                Indonesia.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-<div class="row text-center g-3">
-
-<div class="col-4 border-end">
-
-<i class="bi bi-cloud fs-1 text-warning"></i>
-
-<div class="mt-2">
-Bahan<br>
-Premium<br>
-dan Adem
-</div>
-
-</div>
-
-
-<div class="col-4 border-end">
-
-<i class="bi bi-gem fs-1 text-warning"></i>
-
-<div class="mt-2">
-Desain<br>
-Modern<br>
-& Elegan
-</div>
-
-</div>
-
-
-
-<div class="col-4">
-
-<i class="bi bi-check2-circle fs-1 text-warning"></i>
-
-<div class="mt-2">
-Jahitan<br>
-Rapi dan<br>
-Kuat
-</div>
-
-</div>
-
-</div>
-
-        </div>
-
-
-
-
-        <!-- DIPERCAYA -->
-        <div class="bg-white shadow rounded-4 p-4">
-
-
-            <div class="text-center mb-4">
-
-                <small class="text-warning fw-bold">
-                    DIPERCAYA OLEH
-                </small>
-
-            </div>
-
-
-            <!-- slider -->
-            <div class="tokoh-slider d-flex gap-3 overflow-auto">
-
-
-                <!-- dummy -->
-                <div class="tokoh-card">
-
-                    <img src="/assets/tokoh1.jpg">
-
-                </div>
-
-
-                <div class="tokoh-card">
-
-                    <img src="/assets/tokoh2.jpg">
-
-                </div>
-
-
-                <div class="tokoh-card">
-
-                    <img src="/assets/tokoh3.jpg">
-
-                </div>
-
-
-                <div class="tokoh-card">
-
-                    <img src="/assets/tokoh4.jpg">
-
-                </div>
-
-
-                <div class="tokoh-card">
-
-                    <img src="/assets/tokoh5.jpg">
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-</section>
+        </section>
 
         <section class="py-5 bg-black">
             <div class="container">
@@ -659,224 +594,224 @@ Kuat
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-    const swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: false,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: false,
-    });
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: false,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: false,
+        });
     </script>
 
     <script>
-    const {
-        createApp
-    } = Vue;
+        const {
+            createApp
+        } = Vue;
 
-    createApp({
-        data() {
-            return {
-                featuredProducts: [],
-                otherProducts: [],
-                selectedProduct: {},
+        createApp({
+            data() {
+                return {
+                    featuredProducts: [],
+                    otherProducts: [],
+                    selectedProduct: {},
 
-                // NEW
-                categories: [],
-                selectedCategory: null,
-                visibleCount: 500,
+                    // NEW
+                    categories: [],
+                    selectedCategory: null,
+                    visibleCount: 500,
 
-                activeImageIndex: 0,
-                slideInterval: null,
-                showOutOfStock: false,
-                stockFilter: 'available', // default: tampil yang ada stok
+                    activeImageIndex: 0,
+                    slideInterval: null,
+                    showOutOfStock: false,
+                    stockFilter: 'available', // default: tampil yang ada stok
 
+                }
+            },
+
+            mounted() {
+                this.fetchProducts();
+            },
+
+            computed: {
+                availableSizes() {
+                    return this.selectedProduct.stocks?.filter(
+                        item => item.stock > 0
+                    ) ?? []
+                },
+                filteredProducts() {
+                    let all = [...this.featuredProducts, ...this.otherProducts];
+
+                    // 🔥 PRIORITAS: kalau mode HABIS
+                    if (this.stockFilter === 'out') {
+                        return all.filter(p => p.is_habis);
+                    }
+
+                    // mode normal
+                    if (this.selectedCategory) {
+                        all = all.filter(p => p.category.id === this.selectedCategory);
+                    }
+
+                    // hanya tampil yang tersedia
+                    all = all.filter(p => !p.is_habis);
+
+                    return all;
+                },
+
+                visibleProducts() {
+                    return this.filteredProducts.slice(0, this.visibleCount);
+                },
+
+                allImages() {
+                    if (!this.selectedProduct) return [];
+                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                    const others = this.selectedProduct.images?.map(img => img.image) || [];
+                    return main.concat(others);
+                },
+
+                activeImage() {
+                    return this.allImages[this.activeImageIndex] || '';
+                }
+            },
+
+            methods: {
+
+                changeStock(type) {
+                    this.stockFilter = type;
+                    this.selectedCategory = null; // 🔥 reset kategori
+                },
+                // 🔥 FILTER
+                changeCategory(catId) {
+                    this.stockFilter = 'available'
+                    this.selectedCategory = catId;
+                    this.visibleCount = 500; // reset load more
+                },
+
+                loadMore() {
+                    this.visibleCount += 500;
+                },
+
+                // 🔥 TRACKING
+                trackWhatsAppClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'InitiateCheckout', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        });
+                    }
+                },
+
+                trackShopeeClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'ShopeeClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        });
+                    }
+                },
+
+                trackDetailClick(product) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'DetailClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        });
+                    }
+                },
+
+                // 🔥 WHATSAPP
+                getWhatsappLink(productName) {
+                    const phoneNumber = '6285241800852';
+                    const message = `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+
+                // 🔥 MODAL
+                openModal(product) {
+                    this.selectedProduct = product;
+                    this.activeImageIndex = 0;
+                    this.startSlide();
+
+                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                    modal.show();
+                },
+
+                nextImage() {
+                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+                },
+
+                prevImage() {
+                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                        .length;
+                },
+
+                startSlide() {
+                    this.slideInterval = setInterval(() => {
+                        this.nextImage();
+                    }, 5000);
+                },
+
+                stopSlide() {
+                    clearInterval(this.slideInterval);
+                },
+
+                // 🔥 FETCH DATA
+                async fetchProducts() {
+                    let url = "{{route('product.index')}}";
+
+                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+
+                    this.featuredProducts = featured;
+                    this.otherProducts = others;
+
+                    // ambil kategori unik
+                    const allProducts = [...featured, ...others];
+                    const uniqueCategories = {};
+
+                    allProducts.forEach(p => {
+                        uniqueCategories[p.category.id] = p.category;
+                    });
+
+                    this.categories = Object.values(uniqueCategories);
+                },
+
+                // 🔥 HELPER
+                getImageUrl(path) {
+                    if (!path) return '/assets/no-image.png';
+                    return `/storage/${path}`;
+                },
+
+                getFile(path) {
+                    return path ? `${path}` : '';
+                },
+
+                formatRupiah(value) {
+                    const number = Number(value);
+                    if (isNaN(number)) return value;
+                    return 'Rp ' + number.toLocaleString('id-ID');
+                },
+                getWhatsappLinkSeragam() {
+                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                    const message =
+                        `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                },
+            },
+
+            beforeUnmount() {
+                this.stopSlide();
             }
-        },
 
-        mounted() {
-            this.fetchProducts();
-        },
-
-        computed: {
-            availableSizes() {
-                return this.selectedProduct.stocks?.filter(
-                    item => item.stock > 0
-                ) ?? []
-            },
-            filteredProducts() {
-                let all = [...this.featuredProducts, ...this.otherProducts];
-
-                // 🔥 PRIORITAS: kalau mode HABIS
-                if (this.stockFilter === 'out') {
-                    return all.filter(p => p.is_habis);
-                }
-
-                // mode normal
-                if (this.selectedCategory) {
-                    all = all.filter(p => p.category.id === this.selectedCategory);
-                }
-
-                // hanya tampil yang tersedia
-                all = all.filter(p => !p.is_habis);
-
-                return all;
-            },
-
-            visibleProducts() {
-                return this.filteredProducts.slice(0, this.visibleCount);
-            },
-
-            allImages() {
-                if (!this.selectedProduct) return [];
-                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                const others = this.selectedProduct.images?.map(img => img.image) || [];
-                return main.concat(others);
-            },
-
-            activeImage() {
-                return this.allImages[this.activeImageIndex] || '';
-            }
-        },
-
-        methods: {
-
-            changeStock(type) {
-                this.stockFilter = type;
-                this.selectedCategory = null; // 🔥 reset kategori
-            },
-            // 🔥 FILTER
-            changeCategory(catId) {
-                this.stockFilter = 'available'
-                this.selectedCategory = catId;
-                this.visibleCount = 500; // reset load more
-            },
-
-            loadMore() {
-                this.visibleCount += 500;
-            },
-
-            // 🔥 TRACKING
-            trackWhatsAppClick(product) {
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'InitiateCheckout', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    });
-                }
-            },
-
-            trackShopeeClick(product) {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'ShopeeClick', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    });
-                }
-            },
-
-            trackDetailClick(product) {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'DetailClick', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    });
-                }
-            },
-
-            // 🔥 WHATSAPP
-            getWhatsappLink(productName) {
-                const phoneNumber = '6285241800852';
-                const message = `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            },
-
-            // 🔥 MODAL
-            openModal(product) {
-                this.selectedProduct = product;
-                this.activeImageIndex = 0;
-                this.startSlide();
-
-                const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                modal.show();
-            },
-
-            nextImage() {
-                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-            },
-
-            prevImage() {
-                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
-                    .length;
-            },
-
-            startSlide() {
-                this.slideInterval = setInterval(() => {
-                    this.nextImage();
-                }, 5000);
-            },
-
-            stopSlide() {
-                clearInterval(this.slideInterval);
-            },
-
-            // 🔥 FETCH DATA
-            async fetchProducts() {
-                let url = "{{route('product.index')}}";
-
-                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
-
-                this.featuredProducts = featured;
-                this.otherProducts = others;
-
-                // ambil kategori unik
-                const allProducts = [...featured, ...others];
-                const uniqueCategories = {};
-
-                allProducts.forEach(p => {
-                    uniqueCategories[p.category.id] = p.category;
-                });
-
-                this.categories = Object.values(uniqueCategories);
-            },
-
-            // 🔥 HELPER
-            getImageUrl(path) {
-                if (!path) return '/assets/no-image.png';
-                return `/storage/${path}`;
-            },
-
-            getFile(path) {
-                return path ? `${path}` : '';
-            },
-
-            formatRupiah(value) {
-                const number = Number(value);
-                if (isNaN(number)) return value;
-                return 'Rp ' + number.toLocaleString('id-ID');
-            },
-            getWhatsappLinkSeragam() {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                const message =
-                    `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            },
-        },
-
-        beforeUnmount() {
-            this.stopSlide();
-        }
-
-    }).mount('#app');
+        }).mount('#app');
     </script>
 </body>
 

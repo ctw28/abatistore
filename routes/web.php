@@ -19,16 +19,16 @@ Route::get('/penjualan', fn() => view('admin.penjualan'))->name('penjualan');
 Route::get('/install-tags', function () {
 
     // Migration 1
-    Artisan::call('migrate', [
-        '--path' => 'database/migrations/2026_07_04_104339_create_tags_table.php',
-        '--force' => true,
-    ]);
+    // Artisan::call('migrate', [
+    //     '--path' => 'database/migrations/2026_07_04_104339_create_tags_table.php',
+    //     '--force' => true,
+    // ]);
 
-    // Migration 2
-    Artisan::call('migrate', [
-        '--path' => 'database/migrations/2026_07_04_104934_create_product_tags_table.php',
-        '--force' => true,
-    ]);
+    // // Migration 2
+    // Artisan::call('migrate', [
+    //     '--path' => 'database/migrations/2026_07_04_104934_create_product_tags_table.php',
+    //     '--force' => true,
+    // ]);
 
     // Seeder
     Artisan::call('db:seed', [

@@ -23,7 +23,40 @@
                 <option v-for="cat in categories" :value="cat.id">@{{ cat.name }}</option>
             </select>
         </div>
+        <h5 class="mb-3">
 
+            Tag Produk
+
+        </h5>
+
+        <div v-for="group in tags" :key="group.group" class="mb-3">
+
+            <label class="form-label fw-bold">
+
+                @{{ group.group }}
+
+            </label>
+
+            <div>
+
+                <div class="form-check form-check-inline" v-for="tag in group.tags" :key="tag.id">
+
+                    <input class="form-check-input" type="checkbox" :id="'tag'+tag.id" :value="tag.id"
+                        v-model="selectedTags">
+
+                    <label class="form-check-label" :for="'tag'+tag.id">
+
+                        @{{ tag.name }}
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
         <div>
             <label>Deskripsi</label>
             <textarea v-model="form.description" class="form-control"></textarea>
@@ -78,6 +111,9 @@ new Vue({
                 images: []
             },
             categories: [],
+            tags: [],
+            selectedTags: [],
+
             productId: null // <- bisa kamu sesuaikan
         };
     },
@@ -86,8 +122,22 @@ new Vue({
 
         this.fetchProduct();
         this.fetchCategories();
+        this.loadTags();
     },
     methods: {
+        async loadTags() {
+
+            const res = await fetch('/api/tags/grouped', {
+
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+                }
+
+            });
+
+            this.tags = await res.json();
+
+        },
         getProductIdFromUrl() {
             const segments = window.location.pathname.split('/');
             return segments[segments.length - 2]; // karena terakhir biasanya "edit"
@@ -106,6 +156,8 @@ new Vue({
 
                     this.form.images = data.images;
                     this.form.image_preview = this.getImageUrl(data.image);
+                    // INI YANG KURANG
+                    this.selectedTags = data.tags.map(tag => tag.id);
                 });
         },
         fetchCategories() {
@@ -150,7 +202,11 @@ new Vue({
             this.form.support_images.forEach(file => {
                 formData.append('images[]', file);
             });
+            this.selectedTags.forEach(tag => {
 
+                formData.append('tags[]', tag);
+
+            });
             let url = "{{route('product.update',':id')}}"
             url = url.replace(':id', this.productId)
             fetch(url, {

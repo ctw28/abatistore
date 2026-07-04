@@ -17,10 +17,17 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $products = Product::with('category', 'images', 'stocks.size');
+        $products = Product::with([
+            'category',
+            'images',
+            'stocks.size',
+            'tags'
+        ]);
+
         if ($request->has('is_featured')) {
             $products->where('is_featured', $request->is_featured);
         }
+
         // STATUS
         if ($request->status === 'habis') {
             $products->where('is_habis', 1);
@@ -30,7 +37,7 @@ class ProductController extends Controller
             $products->where('is_habis', 0);
         }
 
-        // SIZE
+        // UKURAN
         if ($request->filled('size_id')) {
             $products->whereHas('stocks', function ($q) use ($request) {
                 $q->where('size_id', $request->size_id)
@@ -42,8 +49,42 @@ class ProductController extends Controller
         if ($request->filled('category_id')) {
             $products->where('category_id', $request->category_id);
         }
-        $products->orderBy('name', 'ASC');
-        return response()->json($products->get());
+
+        // WARNA
+        if ($request->filled('color')) {
+
+            $products->whereHas('tags', function ($q) use ($request) {
+
+                $q->where('group', 'Warna')
+                    ->where('tags.id', $request->color);
+            });
+        }
+
+        // MODEL
+        if ($request->filled('model')) {
+
+            $products->whereHas('tags', function ($q) use ($request) {
+
+                $q->where('group', 'Model')
+                    ->where('tags.id', $request->model);
+            });
+        }
+
+        // KOLEKSI
+        if ($request->filled('collection')) {
+
+            $products->whereHas('tags', function ($q) use ($request) {
+
+                $q->where('group', 'Koleksi')
+                    ->where('tags.id', $request->collection);
+            });
+        }
+
+        return response()->json(
+            $products
+                ->orderBy('name')
+                ->get()
+        );
     }
 
 
@@ -70,7 +111,7 @@ class ProductController extends Controller
     }
     public function show($id)
     {
-        $product = Product::with('images', 'category', 'stocks.size')->findOrFail($id);
+        $product = Product::with('images', 'category', 'stocks.size', 'tags')->findOrFail($id);
 
 
         return response()->json($product);
@@ -88,6 +129,8 @@ class ProductController extends Controller
             'link_shopee' => 'nullable|string',
             'image' => 'nullable|image',
             'images.*' => 'nullable|image',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id',
         ]);
 
         // Hapus gambar utama lama jika ada gambar baru
@@ -100,7 +143,9 @@ class ProductController extends Controller
 
         // Update produk dengan data baru (termasuk image baru jika ada)
         $product->update($validated);
-
+        $product->tags()->sync(
+            $request->tags ?? []
+        );
         // Tambah gambar pendukung baru
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
@@ -125,6 +170,8 @@ class ProductController extends Controller
             'link_shopee' => 'nullable|string',
             'image' => 'nullable|image|max:2048', // gambar utama
             'images.*' => 'nullable|image|max:2048', // gambar pendukung
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id',
         ]);
 
         // Simpan gambar utama (jika ada)
@@ -142,7 +189,10 @@ class ProductController extends Controller
             'link_shopee' => $request->link_shopee,
             'image' => $mainImagePath,
         ]);
+        if ($request->filled('tags')) {
 
+            $product->tags()->sync($request->tags);
+        }
         // Simpan gambar pendukung (jika ada)
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -156,15 +206,21 @@ class ProductController extends Controller
 
         return response()->json([
             'message' => 'Produk berhasil disimpan',
-            'product' => $product->load('images'),
+            'product' => $product->load([
+                'images',
+                'tags'
+            ]),
         ]);
     }
     public function featured()
     {
         $products = Product::where('is_featured', true)
+            ->with([
+                'images',
+                'tags'
+            ])
             ->latest()
             ->take(3)
-            ->with('images') // kalau pakai relasi gambar pendukung
             ->get();
 
         return response()->json($products);
@@ -192,4 +248,10 @@ class ProductController extends Controller
             'is_habis' => $product->is_habis
         ]);
     }
+
+    // public function hasTag($tag)
+    // {
+    //     return $this->tags
+    //         ->contains('name', $tag);
+    // }
 }

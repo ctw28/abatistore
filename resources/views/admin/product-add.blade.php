@@ -30,6 +30,42 @@
                     <label class="form-label">Harga</label>
                     <input v-model="price" type="number" class="form-control">
                 </div>
+                <hr>
+
+                <h5 class="mb-3">
+
+                    Tag Produk
+
+                </h5>
+
+                <div v-for="group in tags" :key="group.group" class="mb-3">
+
+                    <label class="form-label fw-bold">
+
+                        @{{ group.group }}
+
+                    </label>
+
+                    <div>
+
+                        <div class="form-check form-check-inline" v-for="tag in group.tags" :key="tag.id">
+
+                            <input class="form-check-input" type="checkbox" :id="'tag'+tag.id" :value="tag.id"
+                                v-model="selectedTags">
+
+                            <label class="form-check-label" :for="'tag'+tag.id">
+
+                                @{{ tag.name }}
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr>
                 <div class="mb-3">
                     <label class="form-label">Gambar Utama</label>
                     <input type="file" @change="handleMainImage" class="form-control">
@@ -66,98 +102,118 @@
 @push('scripts')
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
-    const {
-        createApp
-    } = Vue
+const {
+    createApp
+} = Vue
 
-    createApp({
-        data() {
-            return {
-                name: '',
-                category_id: '',
-                price: '',
-                description: '',
-                mainImage: null,
-                mainImagePreview: null,
+createApp({
+    data() {
+        return {
+            name: '',
+            category_id: '',
+            price: '',
+            description: '',
+            mainImage: null,
+            mainImagePreview: null,
 
-                extraImages: [],
-                extraImagePreviews: [],
-
-                kategoriList: [] // isi dari API kategori
-            }
-        },
-        methods: {
-            async loadKategori() {
-                const res = await fetch("{{route('categories')}}", {
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
-                    }
-                })
-                this.kategoriList = await res.json()
-            },
-            handleMainImage(e) {
-                const file = event.target.files[0];
-                this.mainImage = file;
-                this.mainImagePreview = URL.createObjectURL(file);
-            },
-            handleExtraImages(e) {
-                const files = Array.from(event.target.files);
-                this.extraImages.push(...files);
-                files.forEach(file => {
-                    this.extraImagePreviews.push({
-                        file,
-                        url: URL.createObjectURL(file)
-                    });
-                });
-            },
-            removeExtraImage(index) {
-                this.extraImages.splice(index, 1);
-                this.extraImagePreviews.splice(index, 1);
-            },
-            submitProduct() {
-                const formData = new FormData();
-                formData.append('name', this.name);
-                formData.append('category_id', this.category_id);
-                formData.append('price', this.price);
-                formData.append('link_shopee', this.link_shopee);
-                formData.append('description', this.description ?? '');
-
-                if (this.mainImage) {
-                    formData.append('image', this.mainImage);
-                }
-
-                if (this.extraImages && this.extraImages.length) {
-                    for (let i = 0; i < this.extraImages.length; i++) {
-                        formData.append('images[]', this.extraImages[i]);
-                    }
-                }
-
-                fetch("{{route('product.store')}}", {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': 'Bearer ' + localStorage.getItem('jwt') // jika pakai auth
-                        },
-                        body: formData
-                    })
-                    .then(res => {
-                        console.log(res);
-                        res.json()
-                    })
-                    .then(res => {
-                        alert('Produk berhasil disimpan!');
-                        window.location.href = "{{ route('product.data') }}";
-                        console.log(res);
-                        // reset form atau redirect
-                    })
-                    .catch(err => {
-                        console.error(err);
-                        alert('Gagal menyimpan produk');
-                    });
-            }
-        },
-        mounted() {
-            this.loadKategori()
+            extraImages: [],
+            extraImagePreviews: [],
+            tags: [],
+            selectedTags: [],
+            kategoriList: [] // isi dari API kategori
         }
-    }).mount('#app')
+    },
+    methods: {
+        async loadTags() {
+
+            const res = await fetch('/api/tags/grouped', {
+
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+                }
+
+            });
+
+            this.tags = await res.json();
+
+        },
+        async loadKategori() {
+            const res = await fetch("{{route('categories')}}", {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+                }
+            })
+            this.kategoriList = await res.json()
+        },
+        handleMainImage(e) {
+            const file = event.target.files[0];
+            this.mainImage = file;
+            this.mainImagePreview = URL.createObjectURL(file);
+        },
+        handleExtraImages(e) {
+            const files = Array.from(event.target.files);
+            this.extraImages.push(...files);
+            files.forEach(file => {
+                this.extraImagePreviews.push({
+                    file,
+                    url: URL.createObjectURL(file)
+                });
+            });
+        },
+        removeExtraImage(index) {
+            this.extraImages.splice(index, 1);
+            this.extraImagePreviews.splice(index, 1);
+        },
+        submitProduct() {
+            const formData = new FormData();
+            formData.append('name', this.name);
+            formData.append('category_id', this.category_id);
+            formData.append('price', this.price);
+            formData.append('link_shopee', this.link_shopee);
+            formData.append('description', this.description ?? '');
+            this.selectedTags.forEach(tag => {
+
+                formData.append('tags[]', tag);
+
+            });
+            if (this.mainImage) {
+                formData.append('image', this.mainImage);
+            }
+
+            if (this.extraImages && this.extraImages.length) {
+                for (let i = 0; i < this.extraImages.length; i++) {
+                    formData.append('images[]', this.extraImages[i]);
+                }
+            }
+
+            fetch("{{route('product.store')}}", {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('jwt') // jika pakai auth
+                    },
+                    body: formData
+                })
+                .then(res => {
+                    console.log(res);
+                    res.json()
+                })
+                .then(res => {
+                    alert('Produk berhasil disimpan!');
+                    window.location.href = "{{ route('product.data') }}";
+                    console.log(res);
+                    // reset form atau redirect
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert('Gagal menyimpan produk');
+                });
+        }
+    },
+    mounted() {
+        this.loadKategori()
+        this.loadTags();
+
+    }
+}).mount('#app')
 </script>
 @endpush

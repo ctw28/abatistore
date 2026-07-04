@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\BuyerController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\KategoriController;
+use App\Http\Controllers\Api\TagsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -60,3 +61,14 @@ Route::delete('/sales/{id}', [SaleController::class, 'destroy']);
 Route::apiResource('buyers', BuyerController::class);
 Route::get('buyers-search', [BuyerController::class, 'search']);
 // });
+
+
+Route::get('/tags', [TagsController::class, 'getData']);
+
+Route::get('/tags/grouped', [TagsController::class, 'grouped']);
+
+Route::post('/tags', [TagsController::class, 'store']);
+
+Route::put('/tags/{id}', [TagsController::class, 'update']);
+
+Route::delete('/tags/{id}', [TagsController::class, 'destroy']);

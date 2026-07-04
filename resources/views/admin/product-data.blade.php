@@ -175,7 +175,7 @@
                             <td>@{{ product.name }} (@{{ product.category.name }})<br>
                                 <p v-if="product && product.stocks">Stok: @{{ totalStock(product) }}</p>
                                 <img :src="getImageUrl(product.image)" @click="showImageModal(product)"
-                                    style="cursor:pointer; width:180px;object-fit:cover;" />
+                                    style="cursor:pointer; width:150px;object-fit:cover;" />
                             </td>
 
 

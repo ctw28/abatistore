@@ -111,7 +111,7 @@
 
     <div class="row">
 
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-7">
 
             <div class="small-box bg-success">
 
@@ -126,7 +126,21 @@
             </div>
 
         </div>
+        <div class="col-md-3 col-5">
 
+            <div class="small-box bg-danger">
+
+                <div class="inner">
+
+                    <h3>@{{ summary.total_stock }}</h3>
+
+                    <p>Total Stok Ready</p>
+
+                </div>
+
+            </div>
+
+        </div>
         <div class="col-md-3 col-6">
 
             <div class="small-box bg-info">
@@ -159,21 +173,7 @@
 
         </div>
 
-        <div class="col-md-3 col-6">
 
-            <div class="small-box bg-danger">
-
-                <div class="inner">
-
-                    <h3>@{{ summary.total_stock }}</h3>
-
-                    <p>Total Stok Ready</p>
-
-                </div>
-
-            </div>
-
-        </div>
 
     </div>
 
@@ -269,11 +269,7 @@
 
                             <th>Produk</th>
 
-                            <th class="text-center">
 
-                                Total
-
-                            </th>
                             <th v-for="size in sizes" class="text-center">
 
                                 @{{ size.name }}
@@ -302,13 +298,16 @@
 
                                     @{{ product.name }}
 
+
                                 </div>
+                                <small class="text-success">
 
-                            </td>
-                            <td class="text-center">
+                                    Total Stok:
+                                    <strong>@{{ product.total }}</strong>
 
-                                @{{ product.total }}
+                                </small>
                             </td>
+
                             <td v-for="size in sizes" class="text-center fw-bold"
                                 :class="{'bg-success text-white':getStock(product,size.name)>0}">
 

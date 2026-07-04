@@ -37,12 +37,16 @@
                     </select>
                 </div>
             </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <strong>Total Produk: @{{ products.length }}</strong>
 
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr class="text-center">
-                            <th>No</th>
                             <th>Andalan</th>
                             <th>Gambar</th>
                             <th>Stok</th>
@@ -53,7 +57,6 @@
                     </thead>
                     <tbody>
                         <tr v-for="(product,index) in products" :key="product.id">
-                            <td>@{{index+1}}</td>
                             <td class="text-center">
                                 <button @click="toggleFeatured(product)" class="btn btn-sm"
                                     :class="product.is_featured ? 'btn-warning' : 'btn-outline-secondary'">

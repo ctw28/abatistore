@@ -3,48 +3,79 @@
 
 @section('content')
 <div id="app">
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
+
             <div class="mb-3">
-                <a href="{{ route('product.add') }}" class="btn btn-primary">+ Tambah Produk</a>
+                <a href="{{ route('product.add') }}" class="btn btn-primary">
+                    + Tambah Produk
+                </a>
             </div>
+
+            <!-- Baris 1 -->
             <div class="row mb-3">
-                <div class="col-md-3">
-                    <label>Status Stok</label>
-                    <select class="form-control" v-model="filter.status" @change="fetchProducts">
+
+                <div class="col-md-4">
+
+                    <label>Status</label>
+
+                    <select class="form-control" v-model="filter.status">
+
                         <option value="ada">Masih Ada</option>
                         <option value="habis">Habis</option>
+
                     </select>
+
                 </div>
 
-                <div class="col-md-3" v-if="filter.status === 'ada'">
-                    <label>Filter Size</label>
-                    <select class="form-control" v-model="filter.size_id" @change="fetchProducts">
-                        <option value="">Semua Ukuran</option>
-                        <option v-for="s in sizes" :key="s.id" :value="s.id">
-                            @{{ s.name }}
+                <div class="col-md-4">
+
+                    <label>Kategori</label>
+
+                    <select class="form-control" v-model="filter.category_id">
+
+                        <option value="">Semua Kategori</option>
+
+                        <option v-for="c in categories" :value="c.id">
+
+                            @{{ c.name }}
+
                         </option>
+
                     </select>
+
                 </div>
+
+                <div class="col-md-4">
+
+                    <label>Ukuran</label>
+
+                    <select class="form-control" v-model="filter.size_id">
+
+                        <option value="">Semua Ukuran</option>
+
+                        <option v-for="s in sizes" :value="s.id">
+
+                            @{{ s.name }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- Baris 2 -->
+            <div class="row align-items-end">
 
                 <div class="col-md-3">
-                    <label>Kategori</label>
-                    <select class="form-control" v-model="filter.category_id" @change="fetchProducts">
-                        <option value="">Semua Kategori</option>
-                        <option v-for="c in categories" :key="c.id" :value="c.id">
-                            @{{ c.name }}
-                        </option>
-                    </select>
-                </div>
-                <div class="col-md-2 mb-3">
 
                     <label>Warna</label>
 
-                    <select class="form-control" v-model="filter.color" @change="fetchProducts">
+                    <select class="form-control" v-model="filter.color">
 
-                        <option value="">
-                            Semua
-                        </option>
+                        <option value="">Semua</option>
 
                         <option v-for="tag in colorTags" :value="tag.id">
 
@@ -56,15 +87,13 @@
 
                 </div>
 
-                <div class="col-md-2 mb-3">
+                <div class="col-md-3">
 
                     <label>Model</label>
 
-                    <select class="form-control" v-model="filter.model" @change="fetchProducts">
+                    <select class="form-control" v-model="filter.model">
 
-                        <option value="">
-                            Semua
-                        </option>
+                        <option value="">Semua</option>
 
                         <option v-for="tag in modelTags" :value="tag.id">
 
@@ -76,15 +105,13 @@
 
                 </div>
 
-                <div class="col-md-2 mb-3">
+                <div class="col-md-3">
 
                     <label>Koleksi</label>
 
-                    <select class="form-control" v-model="filter.collection" @change="fetchProducts">
+                    <select class="form-control" v-model="filter.collection">
 
-                        <option value="">
-                            Semua
-                        </option>
+                        <option value="">Semua</option>
 
                         <option v-for="tag in collectionTags" :value="tag.id">
 
@@ -96,83 +123,107 @@
 
                 </div>
 
-            </div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <strong>Total Produk: @{{ products.length }}</strong>
+                <div class="col-md-3">
+
+                    <button class="btn btn-primary me-2" @click="fetchProducts">
+
+                        <i class="fas fa-search"></i>
+                        Filter
+
+                    </button>
+
+                    <button class="btn btn-secondary" @click="resetFilter">
+
+                        <i class="fas fa-undo"></i>
+                        Reset
+
+                    </button>
+
+                </div>
 
             </div>
+
         </div>
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr class="text-center">
-                        <th>Andalan</th>
-                        <th>Gambar</th>
-                        <th>Stok</th>
-                        <th>Harga</th>
-                        <th>Habis</th>
-                        <th>Tags</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(product,index) in products" :key="product.id">
-                        <td class="text-center">
-                            <button @click="toggleFeatured(product)" class="btn btn-sm"
-                                :class="product.is_featured ? 'btn-warning' : 'btn-outline-secondary'">
-                                <i class="nav-icon bi bi-star"></i>
-                            </button>
-                        </td>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <strong>Total Produk: @{{ products.length }}</strong>
 
-                        <td>@{{ product.name }} (@{{ product.category.name }})<br>
-                            <img :src="getImageUrl(product.image)" @click="showImageModal(product)"
-                                class="img-thumbnail" style="cursor:pointer; width:65px;object-fit:cover;" />
-                            <p v-if="product && product.stocks">Total Stok: @{{ totalStock(product) }}</p>
-                        </td>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Andalan</th>
+                            <th>Gambar</th>
+                            <th>Stok</th>
+                            <th>Harga</th>
+                            <th>Habis</th>
+                            <th>Tags</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(product,index) in products" :key="product.id">
+                            <td class="text-center">
+                                <button @click="toggleFeatured(product)" class="btn btn-sm"
+                                    :class="product.is_featured ? 'btn-warning' : 'btn-outline-secondary'">
+                                    <i class="nav-icon bi bi-star"></i>
+                                </button>
+                            </td>
+
+                            <td>@{{ product.name }} (@{{ product.category.name }})<br>
+                                <img :src="getImageUrl(product.image)" @click="showImageModal(product)"
+                                    class="img-thumbnail" style="cursor:pointer; width:150px;object-fit:cover;" />
+                                <p v-if="product && product.stocks">Total Stok: @{{ totalStock(product) }}</p>
+                            </td>
 
 
-                        <td>
-                            <ul class="list-unstyled">
-                                <li v-for="stock in product.stocks.filter(s => s.stock > 0)" :key="stock.size.id">
-                                    @{{ stock.size.name }}: @{{ stock.stock }}
-                                </li>
-                            </ul>
+                            <td>
+                                <ul class="list-unstyled">
+                                    <li v-for="stock in product.stocks.filter(s => s.stock > 0)" :key="stock.size.id">
+                                        @{{ stock.size.name }}: @{{ stock.stock }}
+                                    </li>
+                                </ul>
 
-                        </td>
-                        <td>@{{ formatRupiah(product.price) }}</td>
-                        <td class="text-center">
-                            <button @click="toggleHabis(product)" class="btn btn-sm"
-                                :class="product.is_habis ? 'btn-warning' : 'btn-outline-secondary'">
-                                <i class="nav-icon bi bi-exclamation-octagon-fill"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <span v-for="tag in product.tags" :key="tag.id" class="badge me-1"
-                                :class="'bg-' + tag.color">
+                            </td>
+                            <td>@{{ formatRupiah(product.price) }}</td>
+                            <td class="text-center">
+                                <button @click="toggleHabis(product)" class="btn btn-sm"
+                                    :class="product.is_habis ? 'btn-warning' : 'btn-outline-secondary'">
+                                    <i class="nav-icon bi bi-exclamation-octagon-fill"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <span v-for="tag in product.tags" :key="tag.id" class="badge me-1"
+                                    :class="'bg-' + tag.color">
 
-                                @{{ tag.name }}
+                                    @{{ tag.name }}
 
-                            </span>
-                        <td>
-                            <a :href="'{{ route('product.edit', ['id' => 'REPLACE_ID']) }}'.replace('REPLACE_ID', product.id)"
-                                class="btn btn-sm btns-info">Edit</a>
+                                </span>
+                            <td>
+                                <a :href="'{{ route('product.edit', ['id' => 'REPLACE_ID']) }}'.replace('REPLACE_ID', product.id)"
+                                    class="btn btn-sm btns-info">Edit</a>
 
-                            <button class="btn btn-sm btn-warning" @click="openStockModal(product)">Kelola
-                                Stok</button>
+                                <button class="btn btn-sm btn-warning" @click="openStockModal(product)">Kelola
+                                    Stok</button>
 
-                            <button @click="deleteProduct(product.id)" class="btn btn-sm btn-danger">Hapus</button>
-                        </td>
-                    </tr>
-                    <tr v-if="products.length === 0">
-                        <td colspan="8" class="text-center text-muted py-3">
-                            😢 Tidak ada produk sesuai filter
-                        </td>
-                    </tr>
+                                <button @click="deleteProduct(product.id)" class="btn btn-sm btn-danger">Hapus</button>
+                            </td>
+                        </tr>
+                        <tr v-if="products.length === 0">
+                            <td colspan="8" class="text-center text-muted py-3">
+                                😢 Tidak ada produk sesuai filter
+                            </td>
+                        </tr>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
@@ -474,6 +525,27 @@ new Vue({
                 .then(() => {
                     this.products = this.products.filter(p => p.id !== id)
                 })
+        },
+        resetFilter() {
+
+            this.filter = {
+
+                status: 'ada',
+
+                category_id: '',
+
+                size_id: '',
+
+                color: '',
+
+                model: '',
+
+                collection: ''
+
+            }
+
+            this.fetchProducts();
+
         }
     }
 })

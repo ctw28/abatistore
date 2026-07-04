@@ -65,6 +65,7 @@ class DashboardController extends Controller
                 return [
                     'id' => $product->id,
                     'name' => $product->name,
+                    'image' => $product->image,
                     'total' => $total,
                     'stocks' => $product->stocks->map(function ($stock) {
                         return [

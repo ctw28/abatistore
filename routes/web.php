@@ -16,7 +16,7 @@ Route::get('/penjualan', fn() => view('admin.penjualan'))->name('penjualan');
 
 
 
-Route::get('/install-tags', function () {
+// Route::get('/install-tags', function () {
 
     // Migration 1
     // Artisan::call('migrate', [
@@ -31,12 +31,12 @@ Route::get('/install-tags', function () {
     // ]);
 
     // Seeder
-    Artisan::call('db:seed', [
-        '--force' => true,
-    ]);
+//     Artisan::call('db:seed', [
+//         '--force' => true,
+//     ]);
 
-    return response()->json([
-        'status' => true,
-        'message' => 'Migration & Seeder berhasil dijalankan.'
-    ]);
-});
+//     return response()->json([
+//         'status' => true,
+//         'message' => 'Migration & Seeder berhasil dijalankan.'
+//     ]);
+// });

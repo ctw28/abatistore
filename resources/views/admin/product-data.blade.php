@@ -159,28 +159,23 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr class="text-center">
-                            <th>Andalan</th>
-                            <th>Gambar</th>
+                            <th>Produk</th>
                             <th>Stok</th>
                             <th>Harga</th>
-                            <th>Habis</th>
                             <th>Tags</th>
+                            <th>Andalan</th>
+                            <th>Habis</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(product,index) in products" :key="product.id">
-                            <td class="text-center">
-                                <button @click="toggleFeatured(product)" class="btn btn-sm"
-                                    :class="product.is_featured ? 'btn-warning' : 'btn-outline-secondary'">
-                                    <i class="nav-icon bi bi-star"></i>
-                                </button>
-                            </td>
+
 
                             <td>@{{ product.name }} (@{{ product.category.name }})<br>
+                                <p v-if="product && product.stocks">Stok: @{{ totalStock(product) }}</p>
                                 <img :src="getImageUrl(product.image)" @click="showImageModal(product)"
-                                    class="img-thumbnail" style="cursor:pointer; width:150px;object-fit:cover;" />
-                                <p v-if="product && product.stocks">Total Stok: @{{ totalStock(product) }}</p>
+                                    class="img-thumbnail" style="cursor:pointer; width:180px;object-fit:cover;" />
                             </td>
 
 
@@ -193,12 +188,6 @@
 
                             </td>
                             <td>@{{ formatRupiah(product.price) }}</td>
-                            <td class="text-center">
-                                <button @click="toggleHabis(product)" class="btn btn-sm"
-                                    :class="product.is_habis ? 'btn-warning' : 'btn-outline-secondary'">
-                                    <i class="nav-icon bi bi-exclamation-octagon-fill"></i>
-                                </button>
-                            </td>
                             <td>
                                 <span v-for="tag in product.tags" :key="tag.id" class="badge me-1"
                                     :class="'bg-' + tag.color">
@@ -206,7 +195,22 @@
                                     @{{ tag.name }}
 
                                 </span>
-                            <td>
+                            </td>
+                            <td class="text-center">
+                                <button @click="toggleFeatured(product)" class="btn btn-sm"
+                                    :class="product.is_featured ? 'btn-warning' : 'btn-outline-secondary'">
+                                    <i class="nav-icon bi bi-star"></i>
+                                </button>
+                            </td>
+
+                            <td class="text-center">
+                                <button @click="toggleHabis(product)" class="btn btn-sm"
+                                    :class="product.is_habis ? 'btn-warning' : 'btn-outline-secondary'">
+                                    <i class="nav-icon bi bi-exclamation-octagon-fill"></i>
+                                </button>
+                            </td>
+
+                            <td class="text-center">
                                 <a :href="'{{ route('product.edit', ['id' => 'REPLACE_ID']) }}'.replace('REPLACE_ID', product.id)"
                                     class="btn btn-sm btn-info mb-1">Edit</a>
 

@@ -64,8 +64,7 @@
 
                             <td>@{{ product.name }} <br>
                                 <img :src="getImageUrl(product.image)" @click="showImageModal(product)"
-                                    class="img-thumbnail"
-                                    style="cursor:pointer; width:65px;height:65px;object-fit:cover;" />
+                                    class="img-thumbnail" style="cursor:pointer; width:65px;object-fit:cover;" />
 
                             </td>
 

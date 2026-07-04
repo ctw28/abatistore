@@ -45,7 +45,6 @@
                             <th>No</th>
                             <th>Andalan</th>
                             <th>Gambar</th>
-                            <th>Kategori</th>
                             <th>Stok</th>
                             <th>Harga</th>
                             <th>Habis</th>
@@ -62,22 +61,19 @@
                                 </button>
                             </td>
 
-                            <td>@{{ product.name }} <br>
+                            <td>@{{ product.name }} (@{{ product.category.name }})<br>
                                 <img :src="getImageUrl(product.image)" @click="showImageModal(product)"
                                     class="img-thumbnail" style="cursor:pointer; width:65px;object-fit:cover;" />
-
+                                <p v-if="product && product.stocks">Total Stok: @{{ totalStock(product) }}</p>
                             </td>
 
-                            <td>@{{ product.category.name }}</td>
+
                             <td>
                                 <ul class="list-unstyled">
                                     <li v-for="(stock) in product.stocks" :key="stock.size.id">
                                         @{{ stock.size.name }}: @{{ stock.stock }}
                                     </li>
                                 </ul>
-
-                                <!-- Menampilkan total stok -->
-                                <p v-if="product && product.stocks">Total Stok: @{{ totalStock(product) }}</p>
 
                             </td>
                             <td>@{{ formatRupiah(product.price) }}</td>

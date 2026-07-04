@@ -38,72 +38,75 @@
                 </div>
             </div>
 
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr class="text-center">
+                            <th>No</th>
+                            <th>Andalan</th>
+                            <th>Gambar</th>
+                            <th>Kategori</th>
+                            <th>Stok</th>
+                            <th>Harga</th>
+                            <th>Habis</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(product,index) in products" :key="product.id">
+                            <td>@{{index+1}}</td>
+                            <td class="text-center">
+                                <button @click="toggleFeatured(product)" class="btn btn-sm"
+                                    :class="product.is_featured ? 'btn-warning' : 'btn-outline-secondary'">
+                                    <i class="nav-icon bi bi-star"></i>
+                                </button>
+                            </td>
 
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr class="text-center">
-                        <th>No</th>
-                        <th>Andalan</th>
-                        <th>Gambar</th>
-                        <th>Kategori</th>
-                        <th>Stok</th>
-                        <th>Harga</th>
-                        <th>Habis</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(product,index) in products" :key="product.id">
-                        <td>@{{index+1}}</td>
-                        <td class="text-center">
-                            <button @click="toggleFeatured(product)" class="btn btn-sm"
-                                :class="product.is_featured ? 'btn-warning' : 'btn-outline-secondary'">
-                                <i class="nav-icon bi bi-star"></i>
-                            </button>
-                        </td>
+                            <td>@{{ product.name }} <br>
+                                <img :src="getImageUrl(product.image)" @click="showImageModal(product)"
+                                    class="img-thumbnail"
+                                    style="cursor:pointer; width:65px;height:65px;object-fit:cover;" />
 
-                        <td>@{{ product.name }} <br>
-                            <img :src="getImageUrl(product.image)" style="cursor:pointer"
-                                @click="showImageModal(product)" width="200" />
+                            </td>
 
-                        </td>
+                            <td>@{{ product.category.name }}</td>
+                            <td>
+                                <ul class="list-unstyled">
+                                    <li v-for="(stock) in product.stocks" :key="stock.size.id">
+                                        @{{ stock.size.name }}: @{{ stock.stock }}
+                                    </li>
+                                </ul>
 
-                        <td>@{{ product.category.name }}</td>
-                        <td>
-                            <ul class="list-unstyled">
-                                <li v-for="(stock) in product.stocks" :key="stock.size.id">
-                                    @{{ stock.size.name }}: @{{ stock.stock }}
-                                </li>
-                            </ul>
+                                <!-- Menampilkan total stok -->
+                                <p v-if="product && product.stocks">Total Stok: @{{ totalStock(product) }}</p>
 
-                            <!-- Menampilkan total stok -->
-                            <p v-if="product && product.stocks">Total Stok: @{{ totalStock(product) }}</p>
+                            </td>
+                            <td>@{{ formatRupiah(product.price) }}</td>
+                            <td class="text-center">
+                                <button @click="toggleHabis(product)" class="btn btn-sm"
+                                    :class="product.is_habis ? 'btn-warning' : 'btn-outline-secondary'">
+                                    <i class="nav-icon bi bi-exclamation-octagon-fill"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <a :href="'{{ route('product.edit', ['id' => 'REPLACE_ID']) }}'.replace('REPLACE_ID', product.id)"
+                                    class="btn btn-sm btn-info">Edit</a>
 
-                        </td>
-                        <td>@{{ formatRupiah(product.price) }}</td>
-                        <td class="text-center">
-                            <button @click="toggleHabis(product)" class="btn btn-sm"
-                                :class="product.is_habis ? 'btn-warning' : 'btn-outline-secondary'">
-                                <i class="nav-icon bi bi-exclamation-octagon-fill"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <a :href="'{{ route('product.edit', ['id' => 'REPLACE_ID']) }}'.replace('REPLACE_ID', product.id)"
-                                class="btn btn-sm btn-info">Edit</a>
+                                <button class="btn btn-sm btn-warning" @click="openStockModal(product)">Kelola
+                                    Stok</button>
 
-                            <button class="btn btn-sm btn-warning" @click="openStockModal(product)">Kelola Stok</button>
+                                <button @click="deleteProduct(product.id)" class="btn btn-sm btn-danger">Hapus</button>
+                            </td>
+                        </tr>
+                        <tr v-if="products.length === 0">
+                            <td colspan="8" class="text-center text-muted py-3">
+                                😢 Tidak ada produk sesuai filter
+                            </td>
+                        </tr>
 
-                            <button @click="deleteProduct(product.id)" class="btn btn-sm btn-danger">Hapus</button>
-                        </td>
-                    </tr>
-                    <tr v-if="products.length === 0">
-                        <td colspan="8" class="text-center text-muted py-3">
-                            😢 Tidak ada produk sesuai filter
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <!-- Modal -->

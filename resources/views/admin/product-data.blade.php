@@ -173,16 +173,17 @@
 
 
                             <td>@{{ product.name }} (@{{ product.category.name }})<br>
-                                <p v-if="product && product.stocks">Stok: @{{ totalStock(product) }}</p>
                                 <img :src="getImageUrl(product.image)" @click="showImageModal(product)"
                                     style="cursor:pointer; width:150px;object-fit:cover;" />
                             </td>
 
 
                             <td>
+                                <p v-if="product && product.stocks">Stok: <strong>@{{ totalStock(product) }}</strong>
+                                </p>
                                 <ul class="list-unstyled">
                                     <li v-for="stock in product.stocks.filter(s => s.stock > 0)" :key="stock.size.id">
-                                        @{{ stock.size.name }}: @{{ stock.stock }}
+                                        <strong> @{{ stock.size.name }}: @{{ stock.stock }} </strong>
                                     </li>
                                 </ul>
 

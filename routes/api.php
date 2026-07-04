@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BuyerController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\KategoriController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,8 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SizeController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('product.show');
 

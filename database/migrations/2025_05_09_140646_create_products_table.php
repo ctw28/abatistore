@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_habis')->default(false);
             $table->string('link_shopee')->nullable();
+            $table->decimal('purchase_price', 10, 2)->nullable()->after('description');
 
             $table->timestamps();
         });

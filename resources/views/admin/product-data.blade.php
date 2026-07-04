@@ -142,12 +142,6 @@
 
                         </td>
                         <td>@{{ formatRupiah(product.price) }}</td>
-                        <td class="text-center">
-                            <button @click="toggleHabis(product)" class="btn btn-sm"
-                                :class="product.is_habis ? 'btn-warning' : 'btn-outline-secondary'">
-                                <i class="nav-icon bi bi-exclamation-octagon-fill"></i>
-                            </button>
-                        </td>
                         <td>
                             <span v-for="tag in product.tags" :key="tag.id" class="badge me-1"
                                 :class="'bg-' + tag.color">
@@ -156,13 +150,19 @@
 
                             </span>
                         <td>
-                            <a :href="'{{ route('product.edit', ['id' => 'REPLACE_ID']) }}'.replace('REPLACE_ID', product.id)"
-                                class="btn btn-sm btns-info">Edit</a>
+                        <td class="text-center">
+                            <button @click="toggleHabis(product)" class="btn btn-sm"
+                                :class="product.is_habis ? 'btn-warning' : 'btn-outline-secondary'">
+                                <i class="nav-icon bi bi-exclamation-octagon-fill"></i>
+                            </button>
+                        </td>
+                        <a :href="'{{ route('product.edit', ['id' => 'REPLACE_ID']) }}'.replace('REPLACE_ID', product.id)"
+                            class="btn btn-sm btns-info">Edit</a>
 
-                            <button class="btn btn-sm btn-warning" @click="openStockModal(product)">Kelola
-                                Stok</button>
+                        <button class="btn btn-sm btn-warning" @click="openStockModal(product)">Kelola
+                            Stok</button>
 
-                            <button @click="deleteProduct(product.id)" class="btn btn-sm btn-danger">Hapus</button>
+                        <button @click="deleteProduct(product.id)" class="btn btn-sm btn-danger">Hapus</button>
                         </td>
                     </tr>
                     <tr v-if="products.length === 0">

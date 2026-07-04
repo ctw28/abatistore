@@ -206,9 +206,9 @@
                                 </span>
                             <td>
                                 <a :href="'{{ route('product.edit', ['id' => 'REPLACE_ID']) }}'.replace('REPLACE_ID', product.id)"
-                                    class="btn btn-sm btns-info">Edit</a>
+                                    class="btn btn-sm btn-info mb-1">Edit</a>
 
-                                <button class="btn btn-sm btn-warning" @click="openStockModal(product)">Kelola
+                                <button class="btn btn-sm btn-warning mb-1" @click="openStockModal(product)">Kelola
                                     Stok</button>
 
                                 <button @click="deleteProduct(product.id)" class="btn btn-sm btn-danger">Hapus</button>

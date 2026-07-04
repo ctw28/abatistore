@@ -1,0 +1,33 @@
+.table-sticky th:first-child,
+.table-sticky td:first-child{
+
+    position:sticky;
+
+    left:0;
+
+    width:80px;
+
+    min-width:80px;
+
+    background:white;
+
+    z-index:30;
+
+}
+
+.table-sticky th:nth-child(2),
+.table-sticky td:nth-child(2){
+
+    position:sticky;
+
+    left:80px;
+
+    width:250px;
+
+    min-width:250px;
+
+    background:white;
+
+    z-index:29;
+
+}

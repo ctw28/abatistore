@@ -29,6 +29,7 @@
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="{{ asset('adminlte/css/adminlte.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/abati-admin.css') }}">
     <!--end::Required Plugin(AdminLTE)-->
     <!-- apexcharts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
@@ -222,55 +223,55 @@
     <!--end::Required Plugin(AdminLTE)-->
     <!--begin::OverlayScrollbars Configure-->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
 
-            const protectedPages = ['/dashboard', '/produk', '/penjualan'];
-            const currentPath = window.location.pathname;
+        const protectedPages = ['/dashboard', '/produk', '/penjualan'];
+        const currentPath = window.location.pathname;
 
-            // cek apakah halaman ini butuh login
-            const isProtected = protectedPages.some(path => currentPath.startsWith(path));
+        // cek apakah halaman ini butuh login
+        const isProtected = protectedPages.some(path => currentPath.startsWith(path));
 
-            if (isProtected) {
-                const token = localStorage.getItem('jwt');
+        if (isProtected) {
+            const token = localStorage.getItem('jwt');
 
-                if (!token) {
+            if (!token) {
+                window.location.href = '/my-area';
+                return;
+            }
+
+            fetch('/api/me', {
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error();
+                })
+                .catch(() => {
+                    localStorage.removeItem('jwt');
                     window.location.href = '/my-area';
-                    return;
-                }
-
-                fetch('/api/me', {
-                        headers: {
-                            'Authorization': 'Bearer ' + token
-                        }
-                    })
-                    .then(res => {
-                        if (!res.ok) throw new Error();
-                    })
-                    .catch(() => {
-                        localStorage.removeItem('jwt');
-                        window.location.href = '/my-area';
-                    });
-            }
-
-        });
-        const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
-        const Default = {
-            scrollbarTheme: 'os-theme-light',
-            scrollbarAutoHide: 'leave',
-            scrollbarClickScroll: true,
-        };
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-            if (sidebarWrapper && typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
-                OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
-                    scrollbars: {
-                        theme: Default.scrollbarTheme,
-                        autoHide: Default.scrollbarAutoHide,
-                        clickScroll: Default.scrollbarClickScroll,
-                    },
                 });
-            }
-        });
+        }
+
+    });
+    const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
+    const Default = {
+        scrollbarTheme: 'os-theme-light',
+        scrollbarAutoHide: 'leave',
+        scrollbarClickScroll: true,
+    };
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
+        if (sidebarWrapper && typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
+            OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+                scrollbars: {
+                    theme: Default.scrollbarTheme,
+                    autoHide: Default.scrollbarAutoHide,
+                    clickScroll: Default.scrollbarClickScroll,
+                },
+            });
+        }
+    });
     </script>
     <!--end::OverlayScrollbars Configure-->
     <!-- OPTIONAL SCRIPTS -->
@@ -279,18 +280,18 @@
         integrity="sha256-ipiJrswvAR4VAx/th+6zWsdeYmVae0iJuiR+6OqHJHQ=" crossorigin="anonymous"></script>
     <!-- sortablejs -->
     <script>
-        const connectedSortables = document.querySelectorAll('.connectedSortable');
-        connectedSortables.forEach((connectedSortable) => {
-            let sortable = new Sortable(connectedSortable, {
-                group: 'shared',
-                handle: '.card-header',
-            });
+    const connectedSortables = document.querySelectorAll('.connectedSortable');
+    connectedSortables.forEach((connectedSortable) => {
+        let sortable = new Sortable(connectedSortable, {
+            group: 'shared',
+            handle: '.card-header',
         });
+    });
 
-        const cardHeaders = document.querySelectorAll('.connectedSortable .card-header');
-        cardHeaders.forEach((cardHeader) => {
-            cardHeader.style.cursor = 'move';
-        });
+    const cardHeaders = document.querySelectorAll('.connectedSortable .card-header');
+    cardHeaders.forEach((cardHeader) => {
+        cardHeader.style.cursor = 'move';
+    });
     </script>
     <!-- apexcharts -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"

@@ -111,7 +111,7 @@
 
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
 
             <div class="small-box bg-success">
 
@@ -127,7 +127,7 @@
 
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
 
             <div class="small-box bg-info">
 
@@ -143,7 +143,7 @@
 
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
 
             <div class="small-box bg-warning">
 
@@ -159,7 +159,7 @@
 
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
 
             <div class="small-box bg-danger">
 
@@ -192,43 +192,45 @@
         </div>
 
         <div class="card-body p-0">
+            <div class="table-responsive">
 
-            <table class="table table-bordered mb-0">
+                <table class="table table-bordered table-hover align-middle text-nowrap">
 
-                <thead>
+                    <thead>
 
-                    <tr>
+                        <tr>
 
-                        <th>Ukuran</th>
+                            <th>Ukuran</th>
 
-                        <th>Total</th>
+                            <th>Total</th>
 
-                    </tr>
+                        </tr>
 
-                </thead>
+                    </thead>
 
-                <tbody>
+                    <tbody>
 
-                    <tr v-for="item in stockBySize">
+                        <tr v-for="item in stockBySize">
 
-                        <td>
+                            <td>
 
-                            @{{ item.name }}
+                                @{{ item.name }}
 
-                        </td>
+                            </td>
 
-                        <td>
+                            <td>
 
-                            @{{ item.total }}
+                                @{{ item.total }}
 
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                </tbody>
+                    </tbody>
 
-            </table>
+                </table>
 
+            </div>
         </div>
 
     </div>
@@ -249,17 +251,19 @@
 
         </div>
 
-        <div class="card-body p-0">
+        <div class="card-body">
+            <div class="text-muted small mb-2 d-md-none">
 
+                ← Geser tabel ke samping →
+
+            </div>
             <div class="table-responsive">
-
-                <table class="table table-bordered table-hover mb-0">
+                <table class="table table-bordered table-hover text-nowrap">
 
                     <thead>
 
                         <tr>
-                            <th width="80">
-                                Foto
+                            <th style="width:80px"> Foto
                             </th>
 
 
@@ -305,12 +309,8 @@
 
                                 @{{ product.total }}
                             </td>
-                            <td v-for="size in sizes" class="text-center fw-bold" :class="{
-
-'bg-success text-white':
-getStock(product,size.name)>0
-
-}">
+                            <td v-for="size in sizes" class="text-center fw-bold"
+                                :class="{'bg-success text-white':getStock(product,size.name)>0}">
 
                                 @{{ getStock(product,size.name) }}
 

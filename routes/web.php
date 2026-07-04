@@ -32,7 +32,6 @@ Route::get('/install-tags', function () {
 
     // Seeder
     Artisan::call('db:seed', [
-        '--class' => 'TagSeeder', // ganti dengan nama seeder Anda
         '--force' => true,
     ]);
 

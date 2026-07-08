@@ -233,74 +233,74 @@
 
         </div>
     </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Gambar Pendukung</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div v-if="selectedImages.length">
-                    <div class="row">
-                        <div class="col-md-4 mb-3" v-for="img in selectedImages" :key="img.id">
-                            <img :src="getImageUrl(img.image)" class="img-fluid rounded shadow-sm" />
+
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Gambar Pendukung</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div v-if="selectedImages.length">
+                        <div class="row">
+                            <div class="col-md-4 mb-3" v-for="img in selectedImages" :key="img.id">
+                                <img :src="getImageUrl(img.image)" class="img-fluid rounded shadow-sm" />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div v-else>
-                    <p>Tidak ada gambar pendukung.</p>
+                    <div v-else>
+                        <p>Tidak ada gambar pendukung.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="stockModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Kelola Stok - @{{ currentProduct.name }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Ukuran</th>
-                            <th>Stok</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(stock, index) in stockData" :key="stock.size_id">
-                            <td>@{{ stock.size_name }}</td>
-                            <td>
-                                <input type="number" class="form-control" v-model.number="stock.quantity" />
-                            </td>
-                            <td>
-                                <button class="btn btn-danger btn-sm" @click="removeStock(index)">Hapus</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="modal fade" id="stockModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Kelola Stok - @{{ currentProduct.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Ukuran</th>
+                                <th>Stok</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(stock, index) in stockData" :key="stock.size_id">
+                                <td>@{{ stock.size_name }}</td>
+                                <td>
+                                    <input type="number" class="form-control" v-model.number="stock.quantity" />
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" @click="removeStock(index)">Hapus</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                <div class="mt-3">
-                    <label>Tambah Ukuran</label>
-                    <select v-model="newSizeId" class="form-select">
-                        <option v-for="size in availableSizes" :value="size.id">@{{ size.name }}</option>
-                    </select>
-                    <button class="btn btn-primary mt-2" @click="addSizeToStock">Tambah</button>
+                    <div class="mt-3">
+                        <label>Tambah Ukuran</label>
+                        <select v-model="newSizeId" class="form-select">
+                            <option v-for="size in availableSizes" :value="size.id">@{{ size.name }}</option>
+                        </select>
+                        <button class="btn btn-primary mt-2" @click="addSizeToStock">Tambah</button>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button class="btn btn-success" @click="saveStock">Simpan</button>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button class="btn btn-success" @click="saveStock">Simpan</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 </div>
 
@@ -309,252 +309,252 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
 <script>
-new Vue({
-    el: '#app',
-    data: {
-        products: [],
-        selectedImages: [],
-        currentProduct: {},
-        stockData: [],
-        availableSizes: [], // daftar semua ukuran dari API
-        newSizeId: null,
+    new Vue({
+        el: '#app',
+        data: {
+            products: [],
+            selectedImages: [],
+            currentProduct: {},
+            stockData: [],
+            availableSizes: [], // daftar semua ukuran dari API
+            newSizeId: null,
 
-        sizes: [], // list ukuran
-        categories: [],
-        tags: [],
-        filter: {
-            status: 'ada',
-            category_id: '',
-            size_id: '',
-            color: '',
-            model: '',
-            collection: ''
-        }
-
-    },
-    mounted() {
-        this.fetchProducts()
-        this.fetchSizes()
-        this.fetchCategories()
-        this.fetchTags();
-
-
-
-    },
-    computed: {
-
-        colorTags() {
-            return this.tags.filter(x => x.group === 'Warna');
-        },
-
-        modelTags() {
-            return this.tags.filter(x => x.group === 'Model');
-        },
-
-        collectionTags() {
-            return this.tags.filter(x => x.group === 'Koleksi');
-        }
-
-    },
-    methods: {
-        fetchCategories() {
-            fetch('/api/kategori')
-                .then(res => res.json())
-                .then(data => {
-                    this.categories = data
-                })
-        },
-        formatRupiah(value) {
-            const number = Number(value);
-            if (isNaN(number)) return value;
-            return 'Rp ' + number.toLocaleString('id-ID');
-        },
-        totalStock(product) {
-            if (product && product.stocks) {
-                return product.stocks.reduce((total, stock) => total + stock.stock, 0);
-            }
-            return 0;
-        },
-        async openStockModal(product) {
-            this.currentProduct = product;
-            let urlstock = "{{route('stock.index',':id')}}"
-            urlstock = urlstock.replace(':id', product.id)
-            const [sizes, stock] = await Promise.all([
-                fetch("{{route('size.index')}}").then(res => res.json()),
-                fetch(urlstock).then(res => res.json())
-            ]);
-
-            this.availableSizes = sizes;
-            this.stockData = stock;
-            console.log(stock);
-            this.stockData = stock.map(item => ({
-                ...item,
-                size_id: item.size_id,
-                size_name: item.size.name,
-                quantity: item.stock || 0 // Pastikan ada properti quantity
-            }));
-
-            new bootstrap.Modal(document.getElementById('stockModal')).show();
-        },
-        addSizeToStock() {
-            const size = this.availableSizes.find(s => s.id === this.newSizeId);
-            if (!size || this.stockData.some(s => s.size_id === size.id)) return;
-
-            this.stockData.push({
-                size_id: size.id,
-                size_name: size.name,
-                quantity: 0,
-            });
-
-            this.newSizeId = null;
-        },
-        removeStock(index) {
-            this.stockData.splice(index, 1);
-        },
-        saveStock() {
-            // Menyiapkan array untuk menyimpan data stok yang akan dikirim ke API
-            const stocksToSave = this.stockData.map(stock => ({
-                product_id: this.currentProduct.id, // ID produk yang sedang diedit
-                size_id: stock.size_id, // ID ukuran
-                stock: stock.quantity, // Jumlah stok
-            }));
-
-            // Mengirimkan data stok ke API
-            let url = "{{route('stock.store',':id')}}"
-            url = url.replace(':id', this.currentProduct.id)
-            fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        stocks: stocksToSave, // Data yang akan disimpan
-                    }),
-                })
-                .then(response => response.json())
-                .then(() => {
-                    this.fetchProducts()
-
-                    alert('Stok berhasil disimpan!');
-                    // Menutup modal setelah data berhasil disimpan
-                    bootstrap.Modal.getInstance(document.getElementById('stockModal')).hide();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan saat menyimpan stok.');
-                });
-        },
-        getImageUrl(path) {
-            return path ? `/storage/${path}` : '/images/no-image.png';
-        },
-        showImageModal(product) {
-            console.log(product);
-
-            this.selectedImages = product.images || [];
-            console.log(this.selectedImages);
-
-            const modal = new bootstrap.Modal(document.getElementById('imageModal'));
-            modal.show();
-        },
-        fetchProducts() {
-
-            let url = "{{ route('product.index') }}";
-
-            fetch(url + '?' + new URLSearchParams(this.filter), {
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
-                    }
-                })
-                .then(res => res.json())
-                .then(data => {
-                    this.products = data;
-                });
-
-        },
-        fetchTags() {
-
-            fetch('/api/tags')
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    this.tags = data;
-
-                });
-
-        },
-        fetchSizes() {
-            fetch('/api/sizes')
-                .then(res => res.json())
-                .then(data => {
-                    this.sizes = data
-                })
-        },
-        toggleFeatured(product) {
-            let url = "{{route('toggle.featured',':id')}}"
-            url = url.replace(':id', product.id)
-            fetch(url, {
-                    method: 'PATCH',
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(res => res.json())
-                .then(data => {
-                    product.is_featured = data.is_featured
-                })
-        },
-        toggleHabis(product) {
-            let url = "{{route('toggle.habis',':id')}}"
-            url = url.replace(':id', product.id)
-            fetch(url, {
-                    method: 'PATCH',
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(res => res.json())
-                .then(data => {
-                    product.is_habis = data.is_habis
-                })
-        },
-        deleteProduct(id) {
-            if (!confirm('Yakin ingin menghapus produk ini?')) return;
-            let url = "{{route('product.destroy',':id')}}"
-            url = url.replace(':id', id)
-            fetch(url, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
-                    }
-                })
-                .then(() => {
-                    this.products = this.products.filter(p => p.id !== id)
-                })
-        },
-        resetFilter() {
-
-            this.filter = {
-
+            sizes: [], // list ukuran
+            categories: [],
+            tags: [],
+            filter: {
                 status: 'ada',
-
                 category_id: '',
-
                 size_id: '',
-
                 color: '',
-
                 model: '',
-
                 collection: ''
-
             }
 
-            this.fetchProducts();
+        },
+        mounted() {
+            this.fetchProducts()
+            this.fetchSizes()
+            this.fetchCategories()
+            this.fetchTags();
 
+
+
+        },
+        computed: {
+
+            colorTags() {
+                return this.tags.filter(x => x.group === 'Warna');
+            },
+
+            modelTags() {
+                return this.tags.filter(x => x.group === 'Model');
+            },
+
+            collectionTags() {
+                return this.tags.filter(x => x.group === 'Koleksi');
+            }
+
+        },
+        methods: {
+            fetchCategories() {
+                fetch('/api/kategori')
+                    .then(res => res.json())
+                    .then(data => {
+                        this.categories = data
+                    })
+            },
+            formatRupiah(value) {
+                const number = Number(value);
+                if (isNaN(number)) return value;
+                return 'Rp ' + number.toLocaleString('id-ID');
+            },
+            totalStock(product) {
+                if (product && product.stocks) {
+                    return product.stocks.reduce((total, stock) => total + stock.stock, 0);
+                }
+                return 0;
+            },
+            async openStockModal(product) {
+                this.currentProduct = product;
+                let urlstock = "{{route('stock.index',':id')}}"
+                urlstock = urlstock.replace(':id', product.id)
+                const [sizes, stock] = await Promise.all([
+                    fetch("{{route('size.index')}}").then(res => res.json()),
+                    fetch(urlstock).then(res => res.json())
+                ]);
+
+                this.availableSizes = sizes;
+                this.stockData = stock;
+                console.log(stock);
+                this.stockData = stock.map(item => ({
+                    ...item,
+                    size_id: item.size_id,
+                    size_name: item.size.name,
+                    quantity: item.stock || 0 // Pastikan ada properti quantity
+                }));
+
+                new bootstrap.Modal(document.getElementById('stockModal')).show();
+            },
+            addSizeToStock() {
+                const size = this.availableSizes.find(s => s.id === this.newSizeId);
+                if (!size || this.stockData.some(s => s.size_id === size.id)) return;
+
+                this.stockData.push({
+                    size_id: size.id,
+                    size_name: size.name,
+                    quantity: 0,
+                });
+
+                this.newSizeId = null;
+            },
+            removeStock(index) {
+                this.stockData.splice(index, 1);
+            },
+            saveStock() {
+                // Menyiapkan array untuk menyimpan data stok yang akan dikirim ke API
+                const stocksToSave = this.stockData.map(stock => ({
+                    product_id: this.currentProduct.id, // ID produk yang sedang diedit
+                    size_id: stock.size_id, // ID ukuran
+                    stock: stock.quantity, // Jumlah stok
+                }));
+
+                // Mengirimkan data stok ke API
+                let url = "{{route('stock.store',':id')}}"
+                url = url.replace(':id', this.currentProduct.id)
+                fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            stocks: stocksToSave, // Data yang akan disimpan
+                        }),
+                    })
+                    .then(response => response.json())
+                    .then(() => {
+                        this.fetchProducts()
+
+                        alert('Stok berhasil disimpan!');
+                        // Menutup modal setelah data berhasil disimpan
+                        bootstrap.Modal.getInstance(document.getElementById('stockModal')).hide();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Terjadi kesalahan saat menyimpan stok.');
+                    });
+            },
+            getImageUrl(path) {
+                return path ? `/storage/${path}` : '/images/no-image.png';
+            },
+            showImageModal(product) {
+                console.log(product);
+
+                this.selectedImages = product.images || [];
+                console.log(this.selectedImages);
+
+                const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+                modal.show();
+            },
+            fetchProducts() {
+
+                let url = "{{ route('product.index') }}";
+
+                fetch(url + '?' + new URLSearchParams(this.filter), {
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        this.products = data;
+                    });
+
+            },
+            fetchTags() {
+
+                fetch('/api/tags')
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        this.tags = data;
+
+                    });
+
+            },
+            fetchSizes() {
+                fetch('/api/sizes')
+                    .then(res => res.json())
+                    .then(data => {
+                        this.sizes = data
+                    })
+            },
+            toggleFeatured(product) {
+                let url = "{{route('toggle.featured',':id')}}"
+                url = url.replace(':id', product.id)
+                fetch(url, {
+                        method: 'PATCH',
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        product.is_featured = data.is_featured
+                    })
+            },
+            toggleHabis(product) {
+                let url = "{{route('toggle.habis',':id')}}"
+                url = url.replace(':id', product.id)
+                fetch(url, {
+                        method: 'PATCH',
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        product.is_habis = data.is_habis
+                    })
+            },
+            deleteProduct(id) {
+                if (!confirm('Yakin ingin menghapus produk ini?')) return;
+                let url = "{{route('product.destroy',':id')}}"
+                url = url.replace(':id', id)
+                fetch(url, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+                        }
+                    })
+                    .then(() => {
+                        this.products = this.products.filter(p => p.id !== id)
+                    })
+            },
+            resetFilter() {
+
+                this.filter = {
+
+                    status: 'ada',
+
+                    category_id: '',
+
+                    size_id: '',
+
+                    color: '',
+
+                    model: '',
+
+                    collection: ''
+
+                }
+
+                this.fetchProducts();
+
+            }
         }
-    }
-})
+    })
 </script>
 @endpush

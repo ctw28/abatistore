@@ -489,11 +489,8 @@
 
                             <!-- STATUS -->
                             <div class="mb-2">
-                                <span v-if="!selectedProduct.is_habis" class="badge bg-success">
-                                    Ready Stok
-                                </span>
-                                <span v-else class="badge bg-dark">
-                                    Stok Habis
+                                <span v-if="selectedProduct.is_habis" class="badge bg-dark">
+                                    Habis
                                 </span>
                             </div>
                             <!-- UKURAN -->
@@ -526,7 +523,7 @@
                         <a :href="getWhatsappLink(selectedProduct.name)" @click="trackWhatsAppClick(selectedProduct)"
                             target="_blank" class="btn btn-success w-100 mb-2">
                             <i class="fa fa-whatsapp me-1"></i>
-                            Tanya / Beli via WhatsApp
+                            Saya mau ambil diskon ini! (Chat WA)
                         </a>
 
                         <!-- SHOPEE (SECONDARY) -->

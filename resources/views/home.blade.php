@@ -29,17 +29,17 @@
     @include('admin.layouts.analytics')
     @endif
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
 
-            let modal = new bootstrap.Modal(
-                document.getElementById('infoModal')
-            );
+        let modal = new bootstrap.Modal(
+            document.getElementById('infoModal')
+        );
 
-            setTimeout(function() {
-                modal.show();
-            }, 1000);
+        setTimeout(function() {
+            modal.show();
+        }, 1000);
 
-        });
+    });
     </script>
 </head>
 
@@ -55,8 +55,8 @@
                     <span style="color:rgb(250, 255, 174)">ibadah</span> dan <span
                         style="color:rgb(250, 255, 174)">keseharianmu</span>
                 </div>
-                <a class="btn btn-danger btn-xl text-uppercase btn-bounce" href="#portofolio"><i
-                        class="fa fa-angle-double-down me-1"></i>Selengkapnya</a>
+                <a class="btn btn-danger btn-xl text-uppercase btn-bounce" href="#katalog"><i
+                        class="fa fa-angle-double-down me-1"></i>Diskon Kemerdekaan</a>
 
                 <div class="d-flex flex-wrap justify-content-center gap-2 mt-3 mb-3">
 
@@ -248,7 +248,7 @@
                 </div>
 
                 <!-- FILTER WRAPPER (STICKY) -->
-                <div class="sticky-filter bg-light py-2 mb-3">
+                <div id='katalog' class="sticky-filter bg-light py-2 mb-3">
 
                     <!-- KATEGORI -->
                     <div class="text-center mb-2">
@@ -280,8 +280,8 @@
 
                             <!-- BADGE -->
                             <div style="position:absolute; top:10px; right:10px; z-index:10;">
-                                <span v-if="!product.is_habis" class="badge bg-success" style="font-size: 0.6rem;">
-                                    Ready
+                                <span v-if="!product.is_habis" class="badge bg-danger" style="font-size: 0.6rem;">
+                                    Diskon @{{ getDiscountPercent(product) }}%
                                 </span>
                                 <span v-else class="badge bg-dark" style="font-size: 0.6rem;">
                                     Habis
@@ -301,10 +301,27 @@
                             </div>
 
                             <!-- INFO -->
+
+                            <!-- INFO -->
                             <div class="card-body text-center">
                                 <small class="text-muted">@{{ product.category.name }}</small>
+
                                 <div class="fw-bold">@{{ product.name }}</div>
-                                <div class="text-dark">@{{ formatRupiah(product.price) }}</div>
+
+                                <!-- HARGA NORMAL CORET -->
+                                <div class="text-muted text-decoration-line-through small">
+                                    @{{ formatRupiah(product.price) }}
+                                </div>
+
+                                <!-- HARGA DISKON -->
+                                <div class="fw-bold text-success">
+                                    @{{ formatRupiah(getDiscountPrice(product)) }}
+                                </div>
+
+                                <!-- INFO DISKON -->
+                                <!-- <span class="badge bg-danger mt-1"> -->
+
+                                <!-- </span> -->
                             </div>
 
                         </div>
@@ -461,9 +478,13 @@
                             </div>
 
                             <h5 class="fw-bold">@{{ selectedProduct.name }}</h5>
-
-                            <div class="mb-2 fs-5">
+                            <div class="text-muted text-decoration-line-through small">
                                 @{{ formatRupiah(selectedProduct.price) }}
+                            </div>
+
+                            <!-- HARGA DISKON -->
+                            <div class="fw-bold text-success">
+                                @{{ formatRupiah(getDiscountPrice(selectedProduct)) }}
                             </div>
 
                             <!-- STATUS -->
@@ -594,224 +615,239 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: false,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: false,
-        });
+    const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: false,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: false,
+    });
     </script>
 
     <script>
-        const {
-            createApp
-        } = Vue;
+    const {
+        createApp
+    } = Vue;
 
-        createApp({
-            data() {
-                return {
-                    featuredProducts: [],
-                    otherProducts: [],
-                    selectedProduct: {},
+    createApp({
+        data() {
+            return {
+                featuredProducts: [],
+                otherProducts: [],
+                selectedProduct: {},
 
-                    // NEW
-                    categories: [],
-                    selectedCategory: null,
-                    visibleCount: 500,
+                // NEW
+                categories: [],
+                selectedCategory: null,
+                visibleCount: 500,
 
-                    activeImageIndex: 0,
-                    slideInterval: null,
-                    showOutOfStock: false,
-                    stockFilter: 'available', // default: tampil yang ada stok
+                activeImageIndex: 0,
+                slideInterval: null,
+                showOutOfStock: false,
+                stockFilter: 'available', // default: tampil yang ada stok
 
-                }
-            },
-
-            mounted() {
-                this.fetchProducts();
-            },
-
-            computed: {
-                availableSizes() {
-                    return this.selectedProduct.stocks?.filter(
-                        item => item.stock > 0
-                    ) ?? []
-                },
-                filteredProducts() {
-                    let all = [...this.featuredProducts, ...this.otherProducts];
-
-                    // 🔥 PRIORITAS: kalau mode HABIS
-                    if (this.stockFilter === 'out') {
-                        return all.filter(p => p.is_habis);
-                    }
-
-                    // mode normal
-                    if (this.selectedCategory) {
-                        all = all.filter(p => p.category.id === this.selectedCategory);
-                    }
-
-                    // hanya tampil yang tersedia
-                    all = all.filter(p => !p.is_habis);
-
-                    return all;
-                },
-
-                visibleProducts() {
-                    return this.filteredProducts.slice(0, this.visibleCount);
-                },
-
-                allImages() {
-                    if (!this.selectedProduct) return [];
-                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                    const others = this.selectedProduct.images?.map(img => img.image) || [];
-                    return main.concat(others);
-                },
-
-                activeImage() {
-                    return this.allImages[this.activeImageIndex] || '';
-                }
-            },
-
-            methods: {
-
-                changeStock(type) {
-                    this.stockFilter = type;
-                    this.selectedCategory = null; // 🔥 reset kategori
-                },
-                // 🔥 FILTER
-                changeCategory(catId) {
-                    this.stockFilter = 'available'
-                    this.selectedCategory = catId;
-                    this.visibleCount = 500; // reset load more
-                },
-
-                loadMore() {
-                    this.visibleCount += 500;
-                },
-
-                // 🔥 TRACKING
-                trackWhatsAppClick(product) {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('track', 'InitiateCheckout', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        });
-                    }
-                },
-
-                trackShopeeClick(product) {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('trackCustom', 'ShopeeClick', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        });
-                    }
-                },
-
-                trackDetailClick(product) {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('trackCustom', 'DetailClick', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        });
-                    }
-                },
-
-                // 🔥 WHATSAPP
-                getWhatsappLink(productName) {
-                    const phoneNumber = '6285241800852';
-                    const message = `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-
-                // 🔥 MODAL
-                openModal(product) {
-                    this.selectedProduct = product;
-                    this.activeImageIndex = 0;
-                    this.startSlide();
-
-                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                    modal.show();
-                },
-
-                nextImage() {
-                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-                },
-
-                prevImage() {
-                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
-                        .length;
-                },
-
-                startSlide() {
-                    this.slideInterval = setInterval(() => {
-                        this.nextImage();
-                    }, 5000);
-                },
-
-                stopSlide() {
-                    clearInterval(this.slideInterval);
-                },
-
-                // 🔥 FETCH DATA
-                async fetchProducts() {
-                    let url = "{{route('product.index')}}";
-
-                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
-
-                    this.featuredProducts = featured;
-                    this.otherProducts = others;
-
-                    // ambil kategori unik
-                    const allProducts = [...featured, ...others];
-                    const uniqueCategories = {};
-
-                    allProducts.forEach(p => {
-                        uniqueCategories[p.category.id] = p.category;
-                    });
-
-                    this.categories = Object.values(uniqueCategories);
-                },
-
-                // 🔥 HELPER
-                getImageUrl(path) {
-                    if (!path) return '/assets/no-image.png';
-                    return `/storage/${path}`;
-                },
-
-                getFile(path) {
-                    return path ? `${path}` : '';
-                },
-
-                formatRupiah(value) {
-                    const number = Number(value);
-                    if (isNaN(number)) return value;
-                    return 'Rp ' + number.toLocaleString('id-ID');
-                },
-                getWhatsappLinkSeragam() {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-            },
-
-            beforeUnmount() {
-                this.stopSlide();
             }
+        },
 
-        }).mount('#app');
+        mounted() {
+            this.fetchProducts();
+        },
+
+        computed: {
+            availableSizes() {
+                return this.selectedProduct.stocks?.filter(
+                    item => item.stock > 0
+                ) ?? []
+            },
+            filteredProducts() {
+                let all = [...this.featuredProducts, ...this.otherProducts];
+
+                // 🔥 PRIORITAS: kalau mode HABIS
+                if (this.stockFilter === 'out') {
+                    return all.filter(p => p.is_habis);
+                }
+
+                // mode normal
+                if (this.selectedCategory) {
+                    all = all.filter(p => p.category.id === this.selectedCategory);
+                }
+
+                // hanya tampil yang tersedia
+                all = all.filter(p => !p.is_habis);
+
+                return all;
+            },
+
+            visibleProducts() {
+                return this.filteredProducts.slice(0, this.visibleCount);
+            },
+
+            allImages() {
+                if (!this.selectedProduct) return [];
+                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                const others = this.selectedProduct.images?.map(img => img.image) || [];
+                return main.concat(others);
+            },
+
+            activeImage() {
+                return this.allImages[this.activeImageIndex] || '';
+            }
+        },
+
+        methods: {
+            getDiscountPercent(product) {
+                if (product.category?.name.toLowerCase() === 'koko') {
+                    return 15;
+                }
+
+                return 5;
+            },
+
+
+            getDiscountPrice(product) {
+                console.table(product)
+                let diskon = this.getDiscountPercent(product);
+
+                return product.price - (product.price * diskon / 100);
+
+            },
+            changeStock(type) {
+                this.stockFilter = type;
+                this.selectedCategory = null; // 🔥 reset kategori
+            },
+            // 🔥 FILTER
+            changeCategory(catId) {
+                this.stockFilter = 'available'
+                this.selectedCategory = catId;
+                this.visibleCount = 500; // reset load more
+            },
+
+            loadMore() {
+                this.visibleCount += 500;
+            },
+
+            // 🔥 TRACKING
+            trackWhatsAppClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateCheckout', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+                }
+            },
+
+            trackShopeeClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'ShopeeClick', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+                }
+            },
+
+            trackDetailClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'DetailClick', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+                }
+            },
+
+            // 🔥 WHATSAPP
+            getWhatsappLink(productName) {
+                const phoneNumber = '6285241800852';
+                const message = `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+
+            // 🔥 MODAL
+            openModal(product) {
+                this.selectedProduct = product;
+                this.activeImageIndex = 0;
+                this.startSlide();
+
+                const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                modal.show();
+            },
+
+            nextImage() {
+                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+            },
+
+            prevImage() {
+                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                    .length;
+            },
+
+            startSlide() {
+                this.slideInterval = setInterval(() => {
+                    this.nextImage();
+                }, 5000);
+            },
+
+            stopSlide() {
+                clearInterval(this.slideInterval);
+            },
+
+            // 🔥 FETCH DATA
+            async fetchProducts() {
+                let url = "{{route('product.index')}}";
+
+                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+
+                this.featuredProducts = featured;
+                this.otherProducts = others;
+
+                // ambil kategori unik
+                const allProducts = [...featured, ...others];
+                const uniqueCategories = {};
+
+                allProducts.forEach(p => {
+                    uniqueCategories[p.category.id] = p.category;
+                });
+
+                this.categories = Object.values(uniqueCategories);
+            },
+
+            // 🔥 HELPER
+            getImageUrl(path) {
+                if (!path) return '/assets/no-image.png';
+                return `/storage/${path}`;
+            },
+
+            getFile(path) {
+                return path ? `${path}` : '';
+            },
+
+            formatRupiah(value) {
+                const number = Number(value);
+                if (isNaN(number)) return value;
+                return 'Rp ' + number.toLocaleString('id-ID');
+            },
+            getWhatsappLinkSeragam() {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+        },
+
+        beforeUnmount() {
+            this.stopSlide();
+        }
+
+    }).mount('#app');
     </script>
 </body>
 

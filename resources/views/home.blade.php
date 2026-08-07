@@ -477,9 +477,10 @@
                         <!-- INFO -->
                         <div class="text-center">
 
-                            <h5 class="fw-bold">@{{ selectedProduct.name }}</h5>
+                            <h5 class="fw-bold">@{{ selectedProduct.name }} ( @{{ selectedProduct.category?.name }})
+                            </h5>
                             <div class="text-muted text-decoration-line-through small">
-                                @{{ formatRupiah(selectedProduct.price) }} ( @{{ selectedProduct.category?.name }})
+                                @{{ formatRupiah(selectedProduct.price) }}
                             </div>
 
                             <!-- HARGA DISKON -->
@@ -509,9 +510,9 @@
                                 </small>
                             </div>
                             <!-- INFO TAMBAHAN -->
-                            <small class="text-muted d-block mb-3">
+                            <!-- <small class="text-muted d-block mb-3">
                                 Mohon Chat untuk memastikan kembali ukuran & ketersediaan 🙌
-                            </small>
+                            </small> -->
                         </div>
 
                     </div>

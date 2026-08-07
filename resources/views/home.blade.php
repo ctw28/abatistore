@@ -476,13 +476,10 @@
 
                         <!-- INFO -->
                         <div class="text-center">
-                            <div class="text-muted mb-1">
-                                @{{ selectedProduct.category?.name }}
-                            </div>
 
                             <h5 class="fw-bold">@{{ selectedProduct.name }}</h5>
                             <div class="text-muted text-decoration-line-through small">
-                                @{{ formatRupiah(selectedProduct.price) }}
+                                @{{ formatRupiah(selectedProduct.price) }} ( @{{ selectedProduct.category?.name }})
                             </div>
 
                             <!-- HARGA DISKON -->
@@ -501,15 +498,15 @@
 
                                 <small class="text-muted d-block mb-2">
                                     Ukuran tersedia:
+
+
+                                    <span v-for="item in availableSizes" :key="item.id"
+                                        class="badge bg-light text-dark border me-1">
+
+                                        @{{ item.size.name }}
+
+                                    </span>
                                 </small>
-
-                                <span v-for="item in availableSizes" :key="item.id"
-                                    class="badge bg-light text-dark border me-1">
-
-                                    @{{ item.size.name }}
-
-                                </span>
-
                             </div>
                             <!-- INFO TAMBAHAN -->
                             <small class="text-muted d-block mb-3">

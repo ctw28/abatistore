@@ -55,9 +55,12 @@
                     <span style="color:rgb(250, 255, 174)">ibadah</span> dan <span
                         style="color:rgb(250, 255, 174)">keseharianmu</span>
                 </div>
-                <a class="btn btn-danger btn-xl text-uppercase btn-bounce" href="#katalog"><i
-                        class="fa fa-angle-double-down me-1"></i>Diskon Kemerdekaan</a>
-
+                <!-- <a class="btn btn-danger btn-xl text-uppercase btn-bounce" href="#katalog"><i
+                        class="fa fa-angle-double-down me-1"></i>Diskon Kemerdekaan</a> -->
+                <!-- PROMO KEMERDEKAAN -->
+                <a class="btn btn-danger btn-xl text-uppercase btn-bounce" href="#katalog">
+                    🇮🇩 Promo Kemerdekaan 🇮🇩
+                </a>
                 <div class="d-flex flex-wrap justify-content-center gap-2 mt-3 mb-3">
 
                     <a class="btn btn-light text-uppercase" @click="trackClickWaAdmin"

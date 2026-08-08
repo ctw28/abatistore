@@ -839,6 +839,29 @@
                     `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
                 return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             },
+
+
+            trackSeragamClick() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'SeragamClick');
+                }
+            },
+            trackSeragamClickWA() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'SeragamClickWA');
+                }
+            },
+            trackClickWaAdmin() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'WaAdminClick');
+                }
+            },
+            trackClickIg() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'IgClick');
+                }
+            },
+
         },
 
         beforeUnmount() {

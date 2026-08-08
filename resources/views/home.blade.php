@@ -436,7 +436,6 @@
                                             original sound - Fadkhera Kendari</a>
                                     </section>
                                 </blockquote>
-                                <script async src="https://www.tiktok.com/embed.js"></script>
                             </div>
                         </div>
 
@@ -605,6 +604,8 @@
         </div>
 
     </div>
+    <script async src="https://www.tiktok.com/embed.js"></script>
+
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
@@ -859,6 +860,11 @@
             trackClickIg() {
                 if (typeof fbq !== 'undefined') {
                     fbq('trackCustom', 'IgClick');
+                }
+            },
+            trackClickTiktok() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'TiktokClick');
                 }
             },
 

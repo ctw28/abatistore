@@ -706,7 +706,7 @@
 
 
             getDiscountPrice(product) {
-                console.table(product)
+                // console.table(product)
                 let diskon = this.getDiscountPercent(product);
 
                 return product.price - (product.price * diskon / 100);

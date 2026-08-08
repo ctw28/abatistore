@@ -23,135 +23,135 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
-        .btn-bounce {
-            display: inline-block;
-            padding: 12px 24px;
-            color: white;
-            font-weight: bold;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
-            animation: bounce 1.5s infinite;
+    .btn-bounce {
+        display: inline-block;
+        padding: 12px 24px;
+        color: white;
+        font-weight: bold;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        animation: bounce 1.5s infinite;
+    }
+
+    .portfolio-card {
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .portfolio-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .portfolio-img {
+        max-height: 160px;
+        object-fit: contain;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
         }
 
-        .portfolio-card {
-            padding: 20px;
-            transition: all 0.3s ease;
+        50% {
+            transform: translateY(-6px);
+        }
+    }
+
+    .btn-shake {
+        display: inline-block;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        animation: shake 5.5s infinite;
+    }
+
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translateX(0);
         }
 
-        .portfolio-card:hover {
-            transform: translateY(-5px);
+        25% {
+            transform: translateX(-3px);
         }
 
-        .portfolio-img {
-            max-height: 160px;
-            object-fit: contain;
+        50% {
+            transform: translateX(3px);
         }
 
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-6px);
-            }
+        75% {
+            transform: translateX(-3px);
         }
+    }
 
-        .btn-shake {
-            display: inline-block;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-            animation: shake 5.5s infinite;
-        }
+    header.masthead {
+        padding-top: 2.5rem;
+        padding-bottom: 4rem;
+    }
 
-        @keyframes shake {
+    .video-container {
+        overflow-x: auto;
+        display: flex;
+        gap: 1rem;
+        padding-bottom: 1rem;
+    }
 
-            0%,
-            100% {
-                transform: translateX(0);
-            }
+    .video-wrapper {
+        min-width: 250px;
+        flex: 0 0 auto;
+    }
 
-            25% {
-                transform: translateX(-3px);
-            }
-
-            50% {
-                transform: translateX(3px);
-            }
-
-            75% {
-                transform: translateX(-3px);
-            }
-        }
-
-        header.masthead {
-            padding-top: 2.5rem;
-            padding-bottom: 4rem;
-        }
-
+    @media (min-width: 768px) {
         .video-container {
-            overflow-x: auto;
-            display: flex;
-            gap: 1rem;
-            padding-bottom: 1rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            overflow-x: unset;
         }
 
         .video-wrapper {
-            min-width: 250px;
-            flex: 0 0 auto;
+            flex: 0 0 calc(33.33% - 1rem);
+            min-width: unset;
         }
-
-        @media (min-width: 768px) {
-            .video-container {
-                flex-wrap: wrap;
-                justify-content: space-between;
-                overflow-x: unset;
-            }
-
-            .video-wrapper {
-                flex: 0 0 calc(33.33% - 1rem);
-                min-width: unset;
-            }
-        }
+    }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-71X4PVE1XD"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-        gtag('config', 'G-71X4PVE1XD');
+    gtag('config', 'G-71X4PVE1XD');
     </script>
     <!-- Meta Pixel Code -->
     <script>
-        ! function(f, b, e, v, n, t, s) {
-            if (f.fbq) return;
-            n = f.fbq = function() {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '638215716027703');
-        fbq('track', 'PageView');
+    ! function(f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function() {
+            n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '638215716027703');
+    fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=638215716027703&ev=PageView&noscript=1" /></noscript>
@@ -650,178 +650,178 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: false,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: false,
-        });
+    const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: false,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: false,
+    });
     </script>
 
     <script>
-        const {
-            createApp
-        } = Vue;
+    const {
+        createApp
+    } = Vue;
 
-        createApp({
-            data() {
-                return {
-                    featuredProducts: [],
-                    otherProducts: [],
-                    selectedProduct: {},
-                    activeImageIndex: 0,
-                    slideInterval: null,
+    createApp({
+        data() {
+            return {
+                featuredProducts: [],
+                otherProducts: [],
+                selectedProduct: {},
+                activeImageIndex: 0,
+                slideInterval: null,
 
-                }
-            },
-            mounted() {
-                this.fetchProducts();
-            },
-            computed: {
-                allImages() {
-                    // Gabungkan gambar utama + gambar pendukung
-                    if (!this.selectedProduct) return [];
-                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                    const others = this.selectedProduct.images?.map(img => img.image) || [];
-                    return main.concat(others);
-                },
-                activeImage() {
-                    return this.allImages[this.activeImageIndex] || '';
-                }
-            },
-            methods: {
-                trackWhatsAppClick(product) {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('track', 'InitiateCheckout', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            content_type: 'product',
-                            value: product.price,
-                            currency: 'IDR'
-                        });
-                    }
-                },
-                trackShopeeClick(product) {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('trackCustom', 'ShopeeClick', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        });
-
-                    }
-                },
-                trackDetailClick(product) {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('trackCustom', 'DetailClick', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        });
-
-                    }
-                },
-                trackSeragamClick() {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('trackCustom', 'SeragamClick');
-                    }
-                },
-                trackSeragamClickWA() {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('trackCustom', 'SeragamClickWA');
-                    }
-                },
-                trackClickWaAdmin() {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('trackCustom', 'WaAdminClick');
-                    }
-                },
-                trackClickIg() {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('trackCustom', 'IgClick');
-                    }
-                },
-                getWhatsappLink(productName) {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                getWhatsappLinkPO(productName) {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                getWhatsappLinkPOUkuran(productName) {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                getWhatsappLinkSeragam() {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                nextImage() {
-                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-                },
-                prevImage() {
-                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
-                        .length;
-                },
-                startSlide() {
-                    this.slideInterval = setInterval(() => {
-                        this.nextImage();
-                    }, 5000); // 3 detik
-                },
-                stopSlide() {
-                    clearInterval(this.slideInterval);
-                },
-                openModal(product) {
-                    this.selectedProduct = product;
-                    this.activeImageIndex = 0;
-                    this.startSlide();
-                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                    modal.show();
-                },
-                async fetchProducts() {
-                    let url = "{{route('product.index')}}"
-                    const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-                    const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
-                    console.log(featured);
-                    console.log(others);
-
-                    this.featuredProducts = featured;
-                    this.otherProducts = others;
-                },
-                getImageUrl(path) {
-                    if (!path) return '/assets/no-image.png'
-                    return `/storage/${path}`
-                },
-
-                getFile(path) {
-                    return path ? `${path}` : ''
-                },
-
-                formatRupiah(value) {
-                    const number = Number(value);
-                    if (isNaN(number)) return value;
-                    return 'Rp ' + number.toLocaleString('id-ID');
-                },
-            },
-            beforeUnmount() {
-                this.stopSlide();
             }
-        }).mount('#app');
+        },
+        mounted() {
+            this.fetchProducts();
+        },
+        computed: {
+            allImages() {
+                // Gabungkan gambar utama + gambar pendukung
+                if (!this.selectedProduct) return [];
+                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
+                const others = this.selectedProduct.images?.map(img => img.image) || [];
+                return main.concat(others);
+            },
+            activeImage() {
+                return this.allImages[this.activeImageIndex] || '';
+            }
+        },
+        methods: {
+            trackWhatsAppClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateCheckout', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        content_type: 'product',
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+                }
+            },
+            trackShopeeClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'ShopeeClick', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+
+                }
+            },
+            trackDetailClick(product) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'DetailClick', {
+                        content_ids: [product.id],
+                        content_name: product.name,
+                        value: product.price,
+                        currency: 'IDR'
+                    });
+
+                }
+            },
+            trackSeragamClick() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'SeragamClick');
+                }
+            },
+            trackSeragamClickWA() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'SeragamClickWA');
+                }
+            },
+            trackClickWaAdmin() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'WaAdminClick');
+                }
+            },
+            trackClickIg() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'IgClick');
+                }
+            },
+            getWhatsappLink(productName) {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            getWhatsappLinkPO(productName) {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            getWhatsappLinkPOUkuran(productName) {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Bismillah, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            getWhatsappLinkSeragam() {
+                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+                const message =
+                    `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            },
+            nextImage() {
+                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
+            },
+            prevImage() {
+                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
+                    .length;
+            },
+            startSlide() {
+                this.slideInterval = setInterval(() => {
+                    this.nextImage();
+                }, 5000); // 3 detik
+            },
+            stopSlide() {
+                clearInterval(this.slideInterval);
+            },
+            openModal(product) {
+                this.selectedProduct = product;
+                this.activeImageIndex = 0;
+                this.startSlide();
+                const modal = new bootstrap.Modal(document.getElementById('productModal'));
+                modal.show();
+            },
+            async fetchProducts() {
+                let url = "{{route('product.index')}}"
+                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
+                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
+                console.log(featured);
+                console.log(others);
+
+                this.featuredProducts = featured;
+                this.otherProducts = others;
+            },
+            getImageUrl(path) {
+                if (!path) return '/assets/no-image.png'
+                return `/storage/${path}`
+            },
+
+            getFile(path) {
+                return path ? `${path}` : ''
+            },
+
+            formatRupiah(value) {
+                const number = Number(value);
+                if (isNaN(number)) return value;
+                return 'Rp ' + number.toLocaleString('id-ID');
+            },
+        },
+        beforeUnmount() {
+            this.stopSlide();
+        }
+    }).mount('#app');
     </script>
 </body>
 

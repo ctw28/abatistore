@@ -293,7 +293,8 @@
 
                             <!-- IMAGE -->
                             <div style="position: relative;">
-                                <img class="card-img-top" :src="getImageUrl(product.image)">
+                                <img class="card-img-top" :src="getImageUrl(product.image)"
+                                    style="height: 250px; object-fit: cover;">
 
                                 <!-- Overlay habis -->
                                 <div v-if="product.is_habis"

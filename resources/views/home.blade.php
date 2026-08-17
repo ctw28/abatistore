@@ -702,6 +702,9 @@
                 if (product.category?.name.toLowerCase() === 'koko') {
                     return 15;
                 }
+                if (product.category?.name.toLowerCase() === 'celana') {
+                    return 10;
+                }
 
                 return 5;
             },
@@ -719,6 +722,7 @@
                 if (product.price == 289000) {
                     return 219000;
                 }
+
                 return product.price - (product.price * diskon / 100);
 
             },

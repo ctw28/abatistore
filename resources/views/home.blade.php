@@ -703,7 +703,7 @@
                     return 15;
                 }
                 if (product.category?.name.toLowerCase() === 'celana') {
-                    return 10;
+                    return 17;
                 }
 
                 return 5;

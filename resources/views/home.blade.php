@@ -735,7 +735,7 @@
                 }
 
                 if (product.name == "Khura") {
-                    return 179000;
+                    return 169000;
                 }
 
 

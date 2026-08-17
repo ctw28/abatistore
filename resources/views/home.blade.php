@@ -727,6 +727,9 @@
                 if (product.name == "Baraka Long") {
                     return 179000;
                 }
+                if (product.name == "Elbara Long") {
+                    return 179000;
+                }
 
 
 

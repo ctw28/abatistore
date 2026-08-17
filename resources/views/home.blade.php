@@ -703,7 +703,8 @@
                     'kurta') {
                     return 15;
                 }
-                if (product.category?.name.toLowerCase() === 'celana') {
+                if (product.category?.name.toLowerCase() === 'celana' || product.category?.name
+                    .toLowerCase() === 'jacket') {
                     return 16;
                 }
 

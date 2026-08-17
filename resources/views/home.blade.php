@@ -716,6 +716,9 @@
                 if (product.price == 294000) {
                     return 179000;
                 }
+                if (product.price == 289000) {
+                    return 219000;
+                }
                 return product.price - (product.price * diskon / 100);
 
             },

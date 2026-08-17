@@ -730,7 +730,13 @@
                 if (product.name == "Elbara Long") {
                     return 179000;
                 }
+                if (product.name == "Khura Long") {
+                    return 179000;
+                }
 
+                if (product.name == "Khura") {
+                    return 179000;
+                }
 
 
                 return product.price - (product.price * diskon / 100);

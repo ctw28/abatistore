@@ -710,10 +710,10 @@
             getDiscountPrice(product) {
                 // console.table(product)
                 let diskon = this.getDiscountPercent(product);
-                if (product.price == "269000") {
+                if (product.price == 269000) {
                     return 169000;
                 }
-                if (product.price == "294000") {
+                if (product.price == 294000) {
                     return 179000;
                 }
                 return product.price - (product.price * diskon / 100);

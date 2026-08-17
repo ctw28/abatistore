@@ -724,6 +724,11 @@
                 if (product.price == 289000) {
                     return 219000;
                 }
+                if (product.name == "Baraka Long") {
+                    return 179000;
+                }
+
+
 
                 return product.price - (product.price * diskon / 100);
 

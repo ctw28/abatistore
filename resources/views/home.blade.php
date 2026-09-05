@@ -59,7 +59,7 @@
                         class="fa fa-angle-double-down me-1"></i>Diskon Kemerdekaan</a> -->
                 <!-- PROMO KEMERDEKAAN -->
                 <a class="btn btn-danger btn-xl text-uppercase btn-bounce" href="#katalog">
-                    🇮🇩 Promo Kemerdekaan 🇮🇩
+                    Lihat Katalog
                 </a>
                 <div class="d-flex flex-wrap justify-content-center gap-2 mt-3 mb-3">
 

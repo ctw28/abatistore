@@ -705,7 +705,7 @@
                 }
                 if (product.category?.name.toLowerCase() === 'celana' || product.category?.name
                     .toLowerCase() === 'jacket') {
-                    return 16;
+                    return 10;
                 }
 
                 return 5;
@@ -715,28 +715,28 @@
             getDiscountPrice(product) {
                 // console.table(product)
                 let diskon = this.getDiscountPercent(product);
-                if (product.price == 269000) {
-                    return 169000;
-                }
-                if (product.price == 294000) {
-                    return 179000;
-                }
-                if (product.price == 289000) {
-                    return 219000;
-                }
-                if (product.name == "Baraka Long") {
-                    return 179000;
-                }
-                if (product.name == "Elbara Long") {
-                    return 179000;
-                }
-                if (product.name == "Khura Long") {
-                    return 179000;
-                }
+                // if (product.price == 269000) {
+                //     return 169000;
+                // }
+                // if (product.price == 294000) {
+                //     return 179000;
+                // }
+                // if (product.price == 289000) {
+                //     return 219000;
+                // }
+                // if (product.name == "Baraka Long") {
+                //     return 179000;
+                // }
+                // if (product.name == "Elbara Long") {
+                //     return 179000;
+                // }
+                // if (product.name == "Khura Long") {
+                //     return 179000;
+                // }
 
-                if (product.name == "Khura") {
-                    return 169000;
-                }
+                // if (product.name == "Khura") {
+                //     return 169000;
+                // }
 
 
                 return product.price - (product.price * diskon / 100);

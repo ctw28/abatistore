@@ -701,7 +701,7 @@
             getDiscountPercent(product) {
                 if (product.category?.name.toLowerCase() === 'koko' || product.category?.name.toLowerCase() ===
                     'kurta') {
-                    return 12;
+                    return 10;
                 }
                 if (product.category?.name.toLowerCase() === 'celana' || product.category?.name
                     .toLowerCase() === 'jacket') {

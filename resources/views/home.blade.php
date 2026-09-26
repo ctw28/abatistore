@@ -284,7 +284,7 @@
                             <!-- BADGE -->
                             <div style="position:absolute; top:10px; right:10px; z-index:10;">
                                 <span v-if="!product.is_habis" class="badge bg-danger" style="font-size: 0.6rem;">
-                                    Diskon @{{ getDiscountPercent(product) }}%
+                                    <!-- Diskon @{{ getDiscountPercent(product) }}% -->
                                 </span>
                                 <span v-else class="badge bg-dark" style="font-size: 0.6rem;">
                                     Habis

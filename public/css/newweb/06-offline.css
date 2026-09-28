@@ -1,0 +1,34 @@
+/* =========================================================
+   06 - TOKO OFFLINE + MODAL GALERI
+   ========================================================= */
+.offline-store { background:#faf8f4; padding-top:50px; padding-bottom:50px; }
+.offline-box { background:#fff; border:1px solid #ebe4d9; border-radius:18px; overflow:hidden; box-shadow:0 8px 30px rgba(45,35,20,.06); }
+.offline-main { height:360px; position:relative; overflow:hidden; background:#30251b; }
+.offline-main>img { width:100%; height:100%; object-fit:cover; }
+.offline-main::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(22,17,12,.88),rgba(22,17,12,.48) 52%,rgba(22,17,12,.08)); }
+.offline-overlay { position:absolute; z-index:2; left:48px; top:50%; transform:translateY(-50%); max-width:500px; color:#fff; }
+.offline-overlay small { font-size:12px; letter-spacing:1.6px; color:#e4c899; font-weight:700; }
+.offline-overlay h2 { font-size:32px; margin:9px 0 8px; }
+.offline-overlay p { font-size:15px; line-height:1.7; color:#eee; margin:0 0 18px; }
+.offline-actions { display:flex; gap:8px; align-items:center; }
+.offline-primary,.offline-secondary { border:0; border-radius:7px; padding:11px 15px; font-size:13px; cursor:pointer; }
+.offline-primary { background:#b7833c; color:#fff; }
+.offline-secondary { background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.5); color:#fff; }
+.store-gallery { padding:25px; }
+.offline-heading { display:flex; justify-content:space-between; align-items:end; margin-bottom:15px; }
+.offline-heading h3 { font:600 22px Georgia,serif; margin:0 0 4px; }
+.offline-heading p { margin:0; color:#888; font-size:15px; }
+.offline-heading>a { font-size:14px; color:#8e6129; }
+.gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.gallery-item { position:relative; height:170px; padding:0; border:0; border-radius:10px; overflow:hidden; cursor:pointer; background:#eee; }
+.gallery-item img { width:100%; height:100%; object-fit:cover; transition:.25s; }
+.gallery-item:hover img { transform:scale(1.04); }
+.gallery-item::after { content:""; position:absolute; inset:45% 0 0; background:linear-gradient(transparent,rgba(0,0,0,.7)); }
+.gallery-item span { position:absolute; z-index:2; bottom:10px; left:11px; color:#fff; font-size:13px; font-weight:700; }
+.store-modal { display:none; position:fixed; inset:0; z-index:200; background:rgba(0,0,0,.82); align-items:center; justify-content:center; padding:20px; }
+.store-modal.open { display:flex; }
+.modal-content { max-width:min(900px,94vw); max-height:90vh; text-align:center; }
+.image-modal-content img { max-width:100%; max-height:80vh; border-radius:10px; object-fit:contain; }
+.image-modal-content p,.video-modal-content p { color:#fff; font-size:12px; margin:9px 0 0; }
+.video-modal-content video { display:block; width:min(850px,92vw); max-height:78vh; border-radius:10px; background:#000; }
+.modal-close { position:absolute; right:22px; top:16px; border:0; background:rgba(255,255,255,.14); color:#fff; width:42px; height:42px; border-radius:50%; font-size:28px; cursor:pointer; z-index:3; }

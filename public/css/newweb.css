@@ -762,7 +762,7 @@
 
     /* Abati Store header */
     header {
-        background: #181818;
+        /* background: #181818; */
         border-bottom: 1px solid #2d2d2d
     }
 
@@ -878,8 +878,8 @@
         }
 
         .logo-img img {
-            width: 116px;
-            max-height: 32px
+            width: 150px;
+            max-height: 50px
         }
 
         .header-wa {

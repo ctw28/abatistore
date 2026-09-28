@@ -1,0 +1,108 @@
+/* =========================================================
+   05 - SECTION KONTEN
+   Kategori, rekomendasi, produk, showcase, dan seragam.
+   ========================================================= */
+.sectionHead { display: flex; justify-content: space-between; align-items: end; margin-bottom: 18px; }
+.sectionHead p { margin: 5px 0 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.see { font-size: 14px; color: #555; }
+
+/* Kategori */
+#kategori { padding-top: 34px; background: #fff; }
+.categories { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; }
+.cat {
+  min-height: 150px;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #e8e4dd;
+  box-shadow: 0 3px 14px rgba(0,0,0,.045);
+}
+.cat img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cat::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.72),transparent 70%); }
+.cat b { position:absolute; z-index:2; left:13px; bottom:11px; color:#fff; font-size:15px; }
+
+/* Rekomendasi */
+.recs { display:grid; grid-template-columns:repeat(5,1fr); gap:9px; }
+.rec { height:275px; border-radius:11px; overflow:hidden; position:relative; }
+.rec img { width:100%; height:100%; object-fit:cover; }
+.rec::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.82),transparent 62%); }
+.recText { position:absolute; z-index:2; bottom:11px; left:11px; color:#fff; }
+.recText b { display:block; font-size:14px; }
+.recText span { font-size:12px; display:block; margin:3px 0 7px; }
+.recText button { border:0; background:#bd8942; color:#fff; border-radius:5px; padding:6px 9px; font-size:11px; }
+
+/* Produk */
+.latest { background:#faf9f7; }
+.products { display:grid; grid-template-columns:repeat(4,1fr); gap:17px; }
+.photo { height:290px; border-radius:12px; overflow:hidden; background:#eee; }
+.photo img { width:100%; height:100%; object-fit:cover; display:block; }
+.product { cursor:pointer; transition:.2s; }
+.product:hover { transform:translateY(-3px); }
+.product strong { display:block; font-size:15px; line-height:1.4; margin-top:9px; }
+.sub { display:block; font-size:13px; color:#888; margin-top:3px; }
+.price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+}
+
+.price del {
+    font-size: 12px;
+    color: #a0a0a0;
+    font-weight: 500;
+}
+
+.price b {
+    font-size: 20px;
+    font-weight: 800;
+    color: #222;
+    letter-spacing: -0.3px;
+}
+.ready { font-size:12px; color:#21834d; margin-top:7px; }
+
+/* Showcase kategori */
+.showcase { border-top:1px solid #f0ede7; background:#fff; }
+.banner { height:275px; border-radius:16px; overflow:hidden; position:relative; background:#30251b; }
+.banner img { width:100%; height:100%; object-fit:cover; }
+.banner::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(20,15,10,.88),rgba(20,15,10,.45) 48%,transparent); }
+.bannerText { position:absolute; z-index:2; left:40px; top:50%; transform:translateY(-50%); max-width:470px; color:#fff; }
+.bannerText small { color:#e4c899; font-size:10px; letter-spacing:1.4px; }
+.bannerText h2 { font-size:29px; margin:7px 0; }
+.bannerText p { font-size:15px; line-height:1.6; margin:0 0 13px; color:#eee; }
+.bannerText a { display:inline-block; background:#bd8942; padding:9px 13px; border-radius:6px; font-size:14px; }
+.showProducts { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin-top:23px; }
+.showProducts .photo { height:300px; }
+.more { text-align:center; margin-top:22px; }
+.more a { border:1px solid #d7c6ae; color:var(--gold-dark); padding:9px 17px; border-radius:7px; font-size:14px; }
+
+/* Seragam */
+.uniform { background:var(--cream); }
+.uniformBox { display:grid; grid-template-columns:1fr 1fr; background:#30251b; border-radius:16px; overflow:hidden; }
+.uniformImg img { width:100%; height:100%; object-fit:cover; display:block; }
+.uniformText { padding:38px; color:#fff; display:flex; flex-direction:column; justify-content:center; }
+.uniformText small { color:#e4c899; font-size:10px; letter-spacing:1.3px; }
+.uniformText h2 { margin:8px 0; font-size:30px; }
+.uniformText p,.uniformText li { font-size:13px; line-height:1.7; color:#ddd; }
+.uniformText ul { padding-left:17px; }
+.photo {
+    position: relative;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    background: #d92323;
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    padding: 5px 8px;
+    border-radius: 4px;
+
+    line-height: 1;
+}

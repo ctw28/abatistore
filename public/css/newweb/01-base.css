@@ -1,0 +1,44 @@
+/* =========================================================
+   01 - UMUM / BASE
+   Ubah warna, lebar website, font, dan aturan dasar di sini.
+   ========================================================= */
+:root {
+  --gold: #b7833c;
+  --gold-dark: #8e6129;
+  --text: #242424;
+  --muted: #6f6f6f;
+  --line: #ece8e1;
+  --cream: #f8f3eb;
+  --max: 1180px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+.wrap { width: min(calc(100% - 40px), var(--max)); margin: auto; }
+
+section { padding: 52px 0; }
+h2 { margin: 0; font: 600 28px/1.25 Georgia, serif; }
+
+/* Tombol umum */
+.wa,
+.slide button,
+.uniform button {
+  border: 0;
+  border-radius: 7px;
+  background: var(--gold);
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 13px;
+}

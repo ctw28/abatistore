@@ -5,25 +5,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Abati Store — Toko Virtual</title>
-    <!-- custom css -->
-    <link href="{{ asset('css/newweb.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{asset('css/newweb/01-base.css')}}">
+    <link rel="stylesheet" href="{{asset('css/newweb/02-header.css')}}">
+    <link rel="stylesheet" href="{{asset('css/newweb/03-menu.css')}}">
+    <link rel="stylesheet" href="{{asset('css/newweb/04-slider.css')}}">
+    <link rel="stylesheet" href="{{asset('css/newweb/05-sections.css')}}">
+    <link rel="stylesheet" href="{{asset('css/newweb/06-offline.css')}}">
+    <link rel="stylesheet" href="{{asset('css/newweb/07-footer.css')}}">
+    <link rel="stylesheet" href="{{asset('css/newweb/08-responsive.css')}}">
 </head>
 
 <body>
 
     <header>
         <div class="wrap head">
-            <button class="menu" aria-label="Buka menu kategori">☰</button>
+            <button class="menu" aria-label="Buka menu kategori" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 6H20M4 12H20M4 18H20" />
+                </svg>
+            </button>
             <a class="logo-img" href="/" aria-label="Abati Store">
-                <img src="https://abatistore.com/logo-abati-store-white.png" alt="Abati Store">
+                <img src="https://abatistore.com/logo-abati-store.png" alt="Abati Store">
             </a>
             <nav class="desktop-nav">
                 <a href="#kategori">Kategori</a><a href="#rekomendasi">Rekomendasi</a><a href="#koleksi">Koleksi</a><a
                     href="#offline">Toko</a><a href="#seragam">Seragam</a><a href="#promo">Promo</a>
             </nav>
-            <div class="search">⌕<input placeholder="Cari baju koko, kurta..."></div>
-            <a class="wa header-wa" href="https://wa.me/6281234567890" target="_blank">Chat WhatsApp</a>
+            <div class="search desktop-search">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.5"></circle>
+                    <path d="M16 16L20 20"></path>
+                </svg>
+                <input placeholder="Cari baju koko, kurta...">
+            </div>
+            <button class="mobile-search-toggle" type="button" aria-label="Buka pencarian" aria-expanded="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.5"></circle>
+                    <path d="M16 16L20 20"></path>
+                </svg>
+            </button>
         </div>
         <div class="mobile-menu">
             <div class="mobile-menu-head"><strong>Kategori</strong><button class="close-menu">×</button></div>
@@ -33,6 +53,16 @@
         </div>
         <div class="menu-backdrop"></div>
     </header>
+
+    <div class="mobile-search-panel" aria-hidden="true">
+        <div class="mobile-search-inner">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5"></circle>
+                <path d="M16 16L20 20"></path>
+            </svg>
+            <input id="mobileSearchInput" type="search" placeholder="Cari baju koko, kurta..." autocomplete="off">
+        </div>
+    </div>
 
     <!-- 1. BANNER SLIDER -->
     <div class="slider">
@@ -66,12 +96,6 @@
     <!-- 2. KATEGORI -->
     <section id="kategori">
         <div class="wrap">
-            <div class="sectionHead">
-                <div>
-                    <h2>Kategori</h2>
-                    <p>Temukan pakaian yang Anda cari dengan lebih mudah.</p>
-                </div><a class="see" href="kategori.html">Lihat Semua →</a>
-            </div>
             <div class="categories">
                 <a class="cat" href="#cat-koko"><img
                         src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"><b>Baju
@@ -134,20 +158,25 @@
         <div class="wrap">
             <div class="sectionHead">
                 <div>
-                    <h2>Koleksi Terbaru & Best Seller</h2>
-                    <p>Harga coret dan ukuran ready langsung terlihat.</p>
+                    <h2>Koleksi Terbaru</h2>
+                    <!-- <p>Harga coret dan ukuran ready langsung terlihat.</p> -->
                 </div><a class="see">Lihat Semua →</a>
             </div>
             <div class="products">
                 <article class="product" data-product-card>
-                    <div class="photo"><img
-                            src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
-                            alt="Koko Premium Navy"></div>
-                    <strong>Koko Premium Navy</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
-                    <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
+                            alt="Koko Modern Cream">
 
+                        <span class="discount-badge">-17%</span>
+                    </div>
+
+                    <strong>Koko Modern Cream</strong>
+
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
                 </article>
 
                 <article class="product" data-product-card>
@@ -155,9 +184,9 @@
                             src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
                             alt="Koko Modern Cream"></div>
                     <strong>Koko Modern Cream</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -166,9 +195,9 @@
                             src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
                             alt="Jubah Premium"></div>
                     <strong>Jubah Premium</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -177,9 +206,9 @@
                             src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
                             alt="Kurta Premium"></div>
                     <strong>Kurta Premium</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
             </div>
@@ -204,9 +233,9 @@
                             src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
                             alt="Koko Navy"></div>
                     <strong>Koko Navy</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -215,9 +244,9 @@
                             src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
                             alt="Koko Cream"></div>
                     <strong>Koko Cream</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -226,9 +255,9 @@
                             src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
                             alt="Koko Putih"></div>
                     <strong>Koko Putih</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -237,9 +266,9 @@
                             src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
                             alt="Koko Dark Grey"></div>
                     <strong>Koko Dark Grey</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -248,9 +277,9 @@
                             src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
                             alt="Koko Black"></div>
                     <strong>Koko Black</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -259,9 +288,9 @@
                             src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
                             alt="Koko Grey"></div>
                     <strong>Koko Grey</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
             </div>
@@ -285,9 +314,9 @@
                             src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
                             alt="Kurta Cream"></div>
                     <strong>Kurta Cream</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -296,9 +325,9 @@
                             src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
                             alt="Kurta Navy"></div>
                     <strong>Kurta Navy</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -307,9 +336,9 @@
                             src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
                             alt="Kurta White"></div>
                     <strong>Kurta White</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -318,9 +347,9 @@
                             src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
                             alt="Kurta Grey"></div>
                     <strong>Kurta Grey</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -329,9 +358,9 @@
                             src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
                             alt="Kurta Black"></div>
                     <strong>Kurta Black</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -340,9 +369,9 @@
                             src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
                             alt="Kurta Olive"></div>
                     <strong>Kurta Olive</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
             </div>
@@ -366,9 +395,9 @@
                             src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
                             alt="Jubah Premium Grey"></div>
                     <strong>Jubah Premium Grey</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -377,9 +406,9 @@
                             src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
                             alt="Jubah Premium Navy"></div>
                     <strong>Jubah Premium Navy</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -388,9 +417,9 @@
                             src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
                             alt="Jubah Premium Cream"></div>
                     <strong>Jubah Premium Cream</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -399,9 +428,9 @@
                             src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
                             alt="Jubah Black"></div>
                     <strong>Jubah Black</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -410,9 +439,9 @@
                             src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
                             alt="Jubah White"></div>
                     <strong>Jubah White</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
 
@@ -421,9 +450,9 @@
                             src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
                             alt="Jubah Daily"></div>
                     <strong>Jubah Daily</strong>
-                    <span class="sub">Premium • Nyaman dipakai</span>
+
                     <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-                    <div class="ready">● Ready: M • L • XL • XXL</div>
+
 
                 </article>
             </div>
@@ -674,6 +703,25 @@
     });
     </script>
 
+
+    <script>
+    const mobileSearchToggle = document.querySelector('.mobile-search-toggle');
+    const mobileSearchPanel = document.querySelector('.mobile-search-panel');
+    const mobileSearchInput = document.querySelector('#mobileSearchInput');
+
+    function toggleMobileSearch(force) {
+        const open = typeof force === 'boolean' ? force : !mobileSearchPanel.classList.contains('open');
+        mobileSearchPanel.classList.toggle('open', open);
+        mobileSearchPanel.setAttribute('aria-hidden', String(!open));
+        mobileSearchToggle.setAttribute('aria-expanded', String(open));
+        if (open) setTimeout(() => mobileSearchInput.focus(), 80);
+    }
+    mobileSearchToggle.addEventListener('click', () => toggleMobileSearch());
+    document.addEventListener('click', e => {
+        if (mobileSearchPanel.classList.contains('open') && !mobileSearchPanel.contains(e.target) && !
+            mobileSearchToggle.contains(e.target)) toggleMobileSearch(false);
+    });
+    </script>
 </body>
 
 </html>

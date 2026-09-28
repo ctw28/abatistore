@@ -1,0 +1,147 @@
+/* =========================================================
+   02 - HEADER
+   Desktop: logo lebih besar, header tipis, padding kecil.
+   Mobile: hamburger + logo + icon search.
+   ========================================================= */
+header {
+  height: 86px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+}
+
+.head {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 3px 8px;
+}
+
+.logo-img {
+  display: flex;
+  align-items: center;
+  width: 170px;
+  height: 80px;
+  flex: 0 0 170px;
+}
+.logo-img img {
+  display: block;
+  width: 150px;
+  height: 80px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex: 1;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+}
+.desktop-nav a:hover { color: var(--gold-dark); }
+
+/* Pencarian desktop */
+.desktop-search {
+  width: 210px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  background: #fff;
+}
+.desktop-search svg,
+.mobile-search-toggle svg,
+.mobile-search-inner svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  flex: 0 0 auto;
+}
+.desktop-search input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  font-size: 14px;
+  color: var(--text);
+  background: transparent;
+}
+
+/* Icon hamburger */
+.menu {
+  display: none;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  color: #222;
+}
+.menu svg {
+  display: block;
+  width: 29px;
+  height: 29px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+/* Icon search khusus mobile */
+.mobile-search-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  color: #222;
+}
+.mobile-search-toggle svg { width: 26px; height: 26px; }
+
+/* Panel search mobile: muncul di bawah header, di atas banner */
+.mobile-search-panel {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  z-index: 25;
+  padding: 10px 14px 12px;
+  background: rgba(255,255,255,.98);
+  border-bottom: 1px solid #e9e5de;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+.mobile-search-inner {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 13px;
+  border: 1px solid #ded9d0;
+  border-radius: 10px;
+  background: #fff;
+}
+.mobile-search-inner input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: 15px;
+  color: var(--text);
+}

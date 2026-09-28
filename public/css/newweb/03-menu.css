@@ -1,0 +1,50 @@
+/* =========================================================
+   03 - MENU MOBILE
+   ========================================================= */
+.mobile-menu,
+.menu-backdrop { display: none; }
+
+@media (max-width: 700px) {
+  .mobile-menu {
+    display: flex;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: min(310px, 82vw);
+    background: #fff;
+    flex-direction: column;
+    transform: translateX(-105%);
+    transition: .25s;
+    box-shadow: 10px 0 30px rgba(0,0,0,.15);
+  }
+  .mobile-menu.open { transform: translateX(0); }
+  .mobile-menu-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+  }
+  .mobile-menu-head strong { font: 600 22px Georgia, serif; }
+  .close-menu {
+    border: 0;
+    background: none;
+    font-size: 28px;
+    color: #777;
+  }
+  .mobile-menu > a {
+    padding: 17px 20px;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 15px;
+    color: #333;
+  }
+  .menu-backdrop.open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 90;
+  }
+}

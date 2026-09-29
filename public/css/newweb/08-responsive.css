@@ -101,3 +101,104 @@
         font-size: 18px;
     }
 }
+
+/* =========================================================
+   RESPONSIVE - KATEGORI
+   ========================================================= */
+
+/* Tablet */
+@media (max-width: 900px) {
+
+    #kategori {
+        padding: 24px 0 18px;
+    }
+
+    #kategori .categories {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    #kategori .cat {
+        min-height: 100px;
+    }
+
+    .size-shortcut {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .size-buttons {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* HP */
+@media (max-width: 600px) {
+
+    #kategori {
+        padding: 18px 0 14px;
+    }
+
+    #kategori .categories {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    #kategori .cat {
+        min-height: 88px;
+        padding: 10px 4px;
+        border-radius: 10px;
+    }
+
+    #kategori .cat span {
+        width: 38px;
+        height: 38px;
+
+        margin-bottom: 7px;
+
+        font-size: 20px;
+    }
+
+    #kategori .cat b {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+
+
+    /* Cari ukuran */
+    .size-shortcut {
+        margin-top: 16px;
+        padding: 15px;
+
+        border-radius: 10px;
+        gap: 12px;
+    }
+
+    .size-shortcut strong {
+        font-size: 17px;
+    }
+
+    .size-shortcut small {
+        font-size: 14px;
+    }
+
+    .size-buttons {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 5px;
+        width: 100%;
+    }
+
+    .size-buttons a {
+        min-width: 0;
+        height: 36px;
+
+        padding: 0 3px;
+
+        border-radius: 6px;
+        font-size: 11px;
+    }
+}

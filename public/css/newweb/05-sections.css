@@ -6,21 +6,186 @@
 .sectionHead p { margin: 5px 0 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
 .see { font-size: 14px; color: #555; }
 
-/* Kategori */
-#kategori { padding-top: 34px; background: #fff; }
-.categories { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; }
-.cat {
-  min-height: 150px;
-  border-radius: 14px;
-  overflow: hidden;
-  position: relative;
-  border: 1px solid #e8e4dd;
-  box-shadow: 0 3px 14px rgba(0,0,0,.045);
-}
-.cat img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.cat::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.72),transparent 70%); }
-.cat b { position:absolute; z-index:2; left:13px; bottom:11px; color:#fff; font-size:15px; }
+/* =========================================================
+   KATEGORI
+   ========================================================= */
 
+#kategori {
+    padding: 28px 0 20px;
+}
+
+#kategori .categories {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 12px;
+}
+
+#kategori .cat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    color: #222;
+
+    min-height: 105px;
+    padding: 14px 8px;
+
+    background: #fff;
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#kategori .cat:hover {
+    transform: translateY(-2px);
+    border-color: #d9d9d9;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.06);
+}
+
+#kategori .cat span {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 9px;
+
+    border-radius: 50%;
+    background: #f7f7f7;
+
+    color: #333;
+    font-size: 25px;
+    line-height: 1;
+}
+
+#kategori .cat b {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.25;
+}
+
+/* Tombol Semua */
+#kategori .all-category {
+    background: #fafafa;
+}
+
+#kategori .all-category span {
+    background: #222;
+    color: #fff;
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   CARI BERDASARKAN UKURAN
+   ========================================================= */
+
+.size-shortcut {
+    margin-top: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding: 18px 20px;
+
+    background: #fafafa;
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+}
+
+.size-shortcut > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.size-shortcut strong {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+}
+
+.size-shortcut small {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.4;
+}
+
+
+/* Tombol ukuran */
+.size-buttons {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+}
+
+.size-buttons a {
+    min-width: 42px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 9px;
+
+    border: 1px solid #dcdcdc;
+    border-radius: 7px;
+
+    background: #fff;
+    color: #222;
+
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.size-buttons a:hover {
+    background: #222;
+    border-color: #222;
+    color: #fff;
+}
+/* ICON KATEGORI */
+#kategori .cat span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#kategori .cat span img {
+    width: 26px;
+    height: 26px;
+    display: block;
+    object-fit: contain;
+}
+
+#kategori .all-category span img {
+    width: 25px;
+    height: 25px;
+}
+
+/* Supaya icon tetap ringan dan tajam */
+#kategori .cat span img {
+    max-width: 100%;
+    max-height: 100%;
+}
 /* Rekomendasi */
 .recs { display:grid; grid-template-columns:repeat(5,1fr); gap:9px; }
 .rec { height:275px; border-radius:11px; overflow:hidden; position:relative; }

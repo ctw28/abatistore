@@ -93,26 +93,76 @@
         </div>
     </div>
 
-    <!-- 2. KATEGORI -->
+
+    <!-- =========================================================
+     KATEGORI + CARI BERDASARKAN UKURAN
+     ========================================================= -->
     <section id="kategori">
         <div class="wrap">
+
             <div class="categories">
-                <a class="cat" href="#cat-koko"><img
-                        src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"><b>Baju
-                        Koko</b></a>
-                <a class="cat" href="#cat-kurta"><img
-                        src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"><b>Kurta</b></a>
-                <a class="cat" href="#cat-jubah"><img
-                        src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"><b>Jubah</b></a>
-                <a class="cat" href="#cat-sarung"><img
-                        src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"><b>Sarung</b></a>
-                <a class="cat" href="#cat-peci"><img
-                        src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"><b>Peci</b></a>
-                <a class="cat" href="#cat-sandal"><img
-                        src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"><b>Sandal</b></a>
+
+                <a class="cat cat-icon" href="katalog.html?kategori=koko">
+                    <span><img src="assets/icons/koko.svg" alt=""></span>
+                    <b>Baju Koko</b>
+                </a>
+
+                <a class="cat cat-icon" href="katalog.html?kategori=jubah">
+                    <span><img src="assets/icons/jubah.svg" alt=""></span>
+                    <b>Jubah</b>
+                </a>
+
+                <a class="cat cat-icon" href="katalog.html?kategori=jaket">
+                    <span><img src="assets/icons/jaket.svg" alt=""></span>
+                    <b>Jaket</b>
+                </a>
+
+                <a class="cat cat-icon" href="katalog.html?kategori=oversize">
+                    <span><img src="assets/icons/oversize.svg" alt=""></span>
+                    <b>Oversize</b>
+                </a>
+
+                <a class="cat cat-icon" href="katalog.html?kategori=kaos">
+                    <span><img src="assets/icons/kaos.svg" alt=""></span>
+                    <b>Kaos</b>
+                </a>
+
+                <a class="cat cat-icon" href="katalog.html?kategori=kemeja">
+                    <span><img src="assets/icons/kemeja.svg" alt=""></span>
+                    <b>Kemeja</b>
+                </a>
+
+                <a class="cat cat-icon" href="katalog.html?kategori=sarung">
+                    <span><img src="assets/icons/sarung.svg" alt=""></span>
+                    <b>Sarung</b>
+                </a>
+
+                <a class="cat cat-icon all-category" href="katalog.html">
+                    <span><img src="assets/icons/semua.svg" alt=""></span>
+                    <b>Semua</b>
+                </a>
+
             </div>
+
+            <div class="size-shortcut">
+                <div>
+                    <strong>Cari berdasarkan ukuran</strong>
+                    <small>Pilih ukuran, lalu lihat semua produk yang tersedia.</small>
+                </div>
+
+                <div class="size-buttons">
+                    <a href="katalog.html?ukuran=S">S</a>
+                    <a href="katalog.html?ukuran=M">M</a>
+                    <a href="katalog.html?ukuran=L">L</a>
+                    <a href="katalog.html?ukuran=XL">XL</a>
+                    <a href="katalog.html?ukuran=XXL">XXL</a>
+                    <a href="katalog.html?ukuran=XXXL">XXXL</a>
+                </div>
+            </div>
+
         </div>
     </section>
+
 
     <!-- 3. REKOMENDASI -->
     <section id="rekomendasi">
@@ -121,7 +171,8 @@
                 <div>
                     <h2>Rekomendasi Untuk Anda</h2>
                     <p>Pilihan berdasarkan kebutuhan yang paling sering dicari.</p>
-                </div><a class="see">Lihat Semua →</a>
+                </div>
+                <!-- <a class="see">Lihat Semua →</a> -->
             </div>
             <div class="recs">
                 <article class="rec"><img

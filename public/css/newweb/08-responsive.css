@@ -202,3 +202,210 @@
         font-size: 11px;
     }
 }
+/* =========================================================
+   CATEGORY BANNER - MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .category-showcase {
+        padding: 22px 0 14px;
+    }
+
+
+    /* =====================================================
+       BANNER
+       ===================================================== */
+
+    .category-banner-clean {
+
+        display: flex;
+
+        flex-direction: column;
+
+        min-height: 0;
+
+        border-radius: 11px;
+    }
+
+
+    /* =====================================================
+       FOTO
+       ===================================================== */
+
+    .category-banner-visual {
+
+        order: 1;
+
+        width: 100%;
+
+        height: 185px;
+
+        min-height: 185px;
+    }
+
+    .category-banner-visual img {
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        /*
+         * Bisa disesuaikan berdasarkan posisi
+         * model di gambar.
+         */
+        object-position: center;
+    }
+
+
+    /*
+       Hilangkan fade besar desktop.
+    */
+
+    .category-banner-visual::before {
+
+        width: 100%;
+
+        height: 70px;
+
+        top: auto;
+        bottom: 0;
+
+        background:
+            linear-gradient(
+                0deg,
+                #eef4f5,
+                rgba(238,244,245,0)
+            );
+    }
+
+
+    /* =====================================================
+       INFORMASI
+       ===================================================== */
+
+    .category-banner-info {
+
+        order: 2;
+
+        width: 100%;
+
+        padding: 24px 22px 25px;
+
+        align-items: flex-start;
+    }
+
+
+    /* dekorasi */
+
+    .category-banner-info::before {
+
+        width: 130px;
+        height: 130px;
+
+        left: -60px;
+        bottom: -60px;
+    }
+
+    .category-banner-info::after {
+
+        width: 120px;
+        height: 120px;
+
+        right: -65px;
+        top: -65px;
+    }
+
+
+    /* =====================================================
+       ICON
+       ===================================================== */
+
+    .category-banner-icon {
+
+        width: 42px;
+        height: 42px;
+
+        margin-bottom: 12px;
+    }
+
+    .category-banner-icon img {
+
+        width: 25px;
+        height: 25px;
+    }
+
+
+    /* =====================================================
+       LABEL
+       ===================================================== */
+
+    .category-banner-info small {
+
+        margin-bottom: 4px;
+
+        font-size: 7px;
+
+        letter-spacing: 2px;
+    }
+
+
+    /* =====================================================
+       JUDUL
+       ===================================================== */
+
+    .category-banner-info h2 {
+
+        margin-bottom: 8px;
+
+        font-size: 25px;
+    }
+
+
+    /* =====================================================
+       DESKRIPSI
+       ===================================================== */
+
+    .category-banner-info p {
+
+        max-width: none;
+
+        margin-bottom: 16px;
+
+        font-size: 11px;
+
+        line-height: 1.55;
+    }
+
+
+    /* =====================================================
+       TOMBOL
+       ===================================================== */
+
+    .category-banner-button {
+
+        padding: 9px 15px;
+
+        gap: 9px;
+
+        font-size: 10px;
+    }
+
+    .category-banner-button b {
+
+        font-size: 15px;
+    }
+}
+@media (max-width: 600px) {
+
+    .category-banner-icon {
+        display: none;
+    }
+
+    .category-banner-info {
+        padding-top: 24px;
+        padding-bottom: 26px;
+    }
+
+}

@@ -520,3 +520,310 @@
         font-size: 14px;
     }
 }
+/* =========================================================
+   CATEGORY SHOWCASE
+   ========================================================= */
+
+.category-showcase {
+    padding: 34px 0 20px;
+}
+
+
+/* =========================================================
+   CATEGORY BANNER
+   ========================================================= */
+
+.category-banner-clean {
+
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 58% 42%;
+
+    min-height: 300px;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background: #eef4f5;
+
+    color: #203636;
+
+    text-decoration: none;
+
+    isolation: isolate;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.category-banner-clean:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   FOTO / VISUAL
+   ========================================================= */
+
+.category-banner-visual {
+
+    position: relative;
+
+    order: 2;
+
+    min-height: 300px;
+
+    overflow: hidden;
+
+    background: #e9f0f2;
+}
+
+.category-banner-visual img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+}
+
+
+/*
+   Sedikit fade supaya transisi foto
+   ke area informasi lebih halus.
+*/
+
+.category-banner-visual::before {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: 2;
+
+    left: 0;
+    top: 0;
+
+    width: 120px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #eef4f5 0%,
+            rgba(238,244,245,.75) 35%,
+            transparent 100%
+        );
+}
+
+
+/* =========================================================
+   AREA INFORMASI
+   ========================================================= */
+
+.category-banner-info {
+
+    position: relative;
+
+    z-index: 4;
+
+    order: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding: 42px 45px;
+
+    background: #eef4f5;
+}
+
+
+/* dekorasi lingkaran */
+
+.category-banner-info::before {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: -1;
+
+    width: 210px;
+    height: 210px;
+
+    left: -70px;
+    bottom: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(210,225,228,.55);
+}
+
+.category-banner-info::after {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: -1;
+
+    width: 230px;
+    height: 230px;
+
+    right: -140px;
+    top: -130px;
+
+    border-radius: 50%;
+
+    background: rgba(220,232,234,.45);
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.category-banner-icon {
+
+    width: 58px;
+    height: 58px;
+
+    margin-bottom: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.7);
+
+    border: 1px solid rgba(32,54,54,.10);
+}
+
+.category-banner-icon img {
+
+    width: 34px;
+    height: 34px;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.category-banner-info small {
+
+    margin-bottom: 5px;
+
+    color: #52716f;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================================================
+   JUDUL
+   ========================================================= */
+
+.category-banner-info h2 {
+
+    margin: 0 0 12px;
+
+    color: #183332;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 34px;
+
+    line-height: 1.1;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   DESKRIPSI
+   ========================================================= */
+
+.category-banner-info p {
+
+    max-width: 430px;
+
+    margin: 0 0 23px;
+
+    color: #536463;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   TOMBOL
+   ========================================================= */
+
+.category-banner-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 11px 19px;
+
+    border-radius: 999px;
+
+    background: #183332;
+
+    color: #fff;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+}
+
+.category-banner-button b {
+
+    font-size: 17px;
+
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+.category-banner-clean:hover
+.category-banner-button {
+
+    background: #264c4a;
+
+    transform: translateX(2px);
+}

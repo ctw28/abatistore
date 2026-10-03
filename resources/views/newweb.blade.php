@@ -265,6 +265,172 @@
             </div>
         </div>
     </section>
+
+    <!-- =========================================================
+     KATEGORI BAJU KOKO
+     ========================================================= -->
+
+    <section class="showcase category-showcase">
+
+        <div class="wrap">
+
+            <a href="katalog.html?kategori=koko" class="category-banner category-banner-clean">
+
+                <!-- AREA FOTO -->
+                <div class="category-banner-visual">
+
+                    <img src="toko.jpeg" alt="Koleksi Baju Koko">
+
+                </div>
+
+
+                <!-- AREA INFORMASI -->
+                <div class="category-banner-info">
+
+                    <div class="category-banner-icon">
+                        <img src="assets/icons/koko.svg" alt="">
+                    </div>
+
+                    <small>KOLEKSI BAJU KOKO</small>
+
+                    <h2>Baju Koko</h2>
+
+                    <p>
+                        Koko modern untuk ibadah, kantor, kajian,
+                        Jumat, kondangan dan berbagai kesempatan.
+                        Pilihan bahan nyaman dengan desain yang
+                        tetap rapi dan berkelas.
+                    </p>
+
+                    <span class="category-banner-button">
+                        Lihat Selengkapnya
+                        <b>→</b>
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <!-- =================================================
+             PRODUK KOKO
+             ================================================= -->
+
+            <div class="showProducts">
+
+                <article class="product" data-product-card>
+
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
+                            alt="Koko Navy">
+                    </div>
+
+                    <strong>Koko Navy</strong>
+
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
+
+                </article>
+
+
+                <article class="product" data-product-card>
+
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
+                            alt="Koko Cream">
+                    </div>
+
+                    <strong>Koko Cream</strong>
+
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
+
+                </article>
+
+
+                <article class="product" data-product-card>
+
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
+                            alt="Koko Putih">
+                    </div>
+
+                    <strong>Koko Putih</strong>
+
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
+
+                </article>
+
+
+                <article class="product" data-product-card>
+
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
+                            alt="Koko Dark Grey">
+                    </div>
+
+                    <strong>Koko Dark Grey</strong>
+
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
+
+                </article>
+
+
+                <article class="product" data-product-card>
+
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
+                            alt="Koko Black">
+                    </div>
+
+                    <strong>Koko Black</strong>
+
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
+
+                </article>
+
+
+                <article class="product" data-product-card>
+
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
+                            alt="Koko Grey">
+                    </div>
+
+                    <strong>Koko Grey</strong>
+
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <div class="more">
+                <a href="katalog.html?kategori=koko">
+                    Lihat Semua Baju Koko →
+                </a>
+            </div>
+
+        </div>
+
+    </section>
     <!-- =========================================================
      KATEGORI PRODUK - BAJU KOKO
      ========================================================= -->

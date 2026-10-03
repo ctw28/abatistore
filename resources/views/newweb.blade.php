@@ -265,21 +265,23 @@
             </div>
         </div>
     </section>
+    <!-- =========================================================
+     KATEGORI PRODUK - BAJU KOKO
+     ========================================================= -->
 
-    <!-- 5. KATEGORI KOKO -->
     <section class="showcase">
 
         <div class="wrap">
 
-            <!-- CATEGORY BANNER -->
-            <a href="katalog.html?kategori=koko" class="category-banner category-banner-dark">
+            <a href="katalog.html?kategori=koko" class="category-banner category-banner-v2">
 
-                <div class="category-banner-pattern"></div>
-
+                <!-- ICON -->
                 <div class="category-banner-icon">
                     <img src="assets/icons/koko.svg" alt="">
                 </div>
 
+
+                <!-- KONTEN -->
                 <div class="category-banner-content">
 
                     <small>KOLEKSI BAJU KOKO</small>
@@ -291,19 +293,17 @@
                         Jumat, kondangan dan berbagai kesempatan.
                     </p>
 
-                </div>
+                    <span class="category-banner-button">
+                        Lihat Selengkapnya
+                        <b>→</b>
+                    </span>
 
-                <div class="category-banner-image">
-                    <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
-                        alt="Koleksi Baju Koko">
                 </div>
-
-                <span class="category-banner-arrow">→</span>
 
             </a>
 
 
-            <!-- PRODUK -->
+            <!-- PRODUK KOKO -->
             <div class="showProducts">
 
                 <article class="product" data-product-card>
@@ -407,6 +407,7 @@
         </div>
 
     </section>
+
     <section class="showcase">
         <div class="wrap">
             <div class="banner"><img

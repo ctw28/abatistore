@@ -79,7 +79,7 @@
 }
 
 #kategori .all-category span {
-    background: #222;
+    /* background: #222; */
     color: #fff;
     font-size: 25px;
 }
@@ -270,4 +270,261 @@
     border-radius: 4px;
 
     line-height: 1;
+}
+/* =========================================================
+   CATEGORY BANNER - DARK PREMIUM
+   ========================================================= */
+
+.category-banner {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 175px;
+
+    margin-bottom: 24px;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    color: #fff;
+
+    background: #17201f;
+
+    isolation: isolate;
+}
+
+
+/* ---------------------------------------------------------
+   PANEL GELAP KIRI
+   --------------------------------------------------------- */
+
+.category-banner-content {
+    position: relative;
+
+    z-index: 4;
+
+    width: 48%;
+
+    padding: 28px 25px 28px 30px;
+}
+
+.category-banner-content small {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #e2c58d;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+.category-banner-content h2 {
+    margin: 0 0 8px;
+
+    color: #fff;
+
+    font-size: 30px;
+    line-height: 1.1;
+
+    font-weight: 700;
+}
+
+.category-banner-content p {
+    max-width: 410px;
+
+    margin: 0;
+
+    color: rgba(255,255,255,.78);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* ---------------------------------------------------------
+   ICON
+   --------------------------------------------------------- */
+
+.category-banner-icon {
+    position: relative;
+
+    z-index: 5;
+
+    width: 72px;
+    min-width: 72px;
+    height: 72px;
+
+    margin-left: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #c9a96b;
+
+    border-radius: 50%;
+}
+
+.category-banner-icon img {
+    width: 44px;
+    height: 44px;
+
+    display: block;
+
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(77%)
+        sepia(24%)
+        saturate(650%)
+        hue-rotate(358deg)
+        brightness(94%);
+}
+
+
+/* ---------------------------------------------------------
+   FOTO MODEL
+   --------------------------------------------------------- */
+
+.category-banner-image {
+    position: absolute;
+
+    z-index: 1;
+
+    top: 0;
+    right: 0;
+
+    width: 57%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.category-banner-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* ---------------------------------------------------------
+   TRANSISI DIAGONAL
+   --------------------------------------------------------- */
+
+.category-banner-image::before {
+    content: "";
+
+    position: absolute;
+
+    z-index: 2;
+
+    left: -1px;
+    top: -10%;
+
+    width: 190px;
+    height: 120%;
+
+    background: #17201f;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        55% 100%,
+        0 100%
+    );
+}
+
+
+/* ---------------------------------------------------------
+   POLA HALUS DI PANEL KIRI
+   --------------------------------------------------------- */
+
+.category-banner-pattern {
+    position: absolute;
+
+    z-index: 2;
+
+    top: 0;
+    left: 32%;
+
+    width: 180px;
+    height: 100%;
+
+    opacity: .12;
+
+    background-image:
+        radial-gradient(
+            circle at 20% 20%,
+            #c9a96b 1px,
+            transparent 1.5px
+        );
+
+    background-size: 10px 10px;
+
+    mask-image: linear-gradient(
+        90deg,
+        transparent,
+        #000 60%,
+        transparent
+    );
+}
+
+
+/* ---------------------------------------------------------
+   PANAH
+   --------------------------------------------------------- */
+
+.category-banner-arrow {
+    position: absolute;
+
+    z-index: 10;
+
+    right: 25px;
+    top: 50%;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+
+    background: #17201f;
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    color: #fff;
+
+    font-size: 27px;
+    font-weight: 300;
+
+    line-height: 1;
+
+    transition: .2s ease;
+}
+
+.category-banner:hover .category-banner-arrow {
+    background: #c9a96b;
+
+    color: #17201f;
+
+    transform:
+        translateY(-50%)
+        translateX(3px);
 }

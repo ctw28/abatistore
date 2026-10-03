@@ -25,7 +25,7 @@
                 </svg>
             </button>
             <a class="logo-img" href="/" aria-label="Abati Store">
-                <img src="https://abatistore.com/logo-abati-store.png" alt="Abati Store">
+                <img src="logo-abati-store-2.png" alt="Abati Store">
             </a>
             <nav class="desktop-nav">
                 <a href="#kategori">Kategori</a><a href="#rekomendasi">Rekomendasi</a><a href="#koleksi">Koleksi</a><a
@@ -266,89 +266,147 @@
         </div>
     </section>
 
-    <!-- 5-7. KATEGORI PRODUK -->
+    <!-- 5. KATEGORI KOKO -->
     <section class="showcase">
+
         <div class="wrap">
-            <div class="banner"><img
-                    src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp">
-                <div class="bannerText"><small>KOLEKSI BAJU KOKO</small>
-                    <h2>Baju Koko</h2>
-                    <p>Koko modern untuk ibadah, kantor, kajian, Jumat, kondangan dan berbagai kesempatan. Pilihan bahan
-                        nyaman dengan desain yang tetap rapi dan berkelas.</p><a href="kategori.html">Lihat Selengkapnya
-                        →</a>
+
+            <!-- CATEGORY BANNER -->
+            <a href="katalog.html?kategori=koko" class="category-banner category-banner-dark">
+
+                <div class="category-banner-pattern"></div>
+
+                <div class="category-banner-icon">
+                    <img src="assets/icons/koko.svg" alt="">
                 </div>
-            </div>
+
+                <div class="category-banner-content">
+
+                    <small>KOLEKSI BAJU KOKO</small>
+
+                    <h2>Baju Koko</h2>
+
+                    <p>
+                        Koko modern untuk ibadah, kantor, kajian,
+                        Jumat, kondangan dan berbagai kesempatan.
+                    </p>
+
+                </div>
+
+                <div class="category-banner-image">
+                    <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
+                        alt="Koleksi Baju Koko">
+                </div>
+
+                <span class="category-banner-arrow">→</span>
+
+            </a>
+
+
+            <!-- PRODUK -->
             <div class="showProducts">
+
                 <article class="product" data-product-card>
-                    <div class="photo"><img
-                            src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
-                            alt="Koko Navy"></div>
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
+                            alt="Koko Navy">
+                    </div>
+
                     <strong>Koko Navy</strong>
 
-                    <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-
-
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
                 </article>
 
+
                 <article class="product" data-product-card>
-                    <div class="photo"><img
-                            src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
-                            alt="Koko Cream"></div>
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
+                            alt="Koko Cream">
+                    </div>
+
                     <strong>Koko Cream</strong>
 
-                    <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-
-
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
                 </article>
 
+
                 <article class="product" data-product-card>
-                    <div class="photo"><img
-                            src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
-                            alt="Koko Putih"></div>
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
+                            alt="Koko Putih">
+                    </div>
+
                     <strong>Koko Putih</strong>
 
-                    <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-
-
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
                 </article>
 
+
                 <article class="product" data-product-card>
-                    <div class="photo"><img
-                            src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
-                            alt="Koko Dark Grey"></div>
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
+                            alt="Koko Dark Grey">
+                    </div>
+
                     <strong>Koko Dark Grey</strong>
 
-                    <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-
-
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
                 </article>
 
+
                 <article class="product" data-product-card>
-                    <div class="photo"><img
-                            src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
-                            alt="Koko Black"></div>
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
+                            alt="Koko Black">
+                    </div>
+
                     <strong>Koko Black</strong>
 
-                    <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-
-
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
                 </article>
+
 
                 <article class="product" data-product-card>
-                    <div class="photo"><img
-                            src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
-                            alt="Koko Grey"></div>
+                    <div class="photo">
+                        <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
+                            alt="Koko Grey">
+                    </div>
+
                     <strong>Koko Grey</strong>
 
-                    <div class="price"><del>Rp399.000</del><b>Rp329.000</b></div>
-
-
+                    <div class="price">
+                        <del>Rp399.000</del>
+                        <b>Rp329.000</b>
+                    </div>
                 </article>
-            </div>
-            <div class="more"><a href="#">Lihat Semua Baju Koko →</a></div>
-        </div>
-    </section>
 
+            </div>
+
+
+            <div class="more">
+                <a href="katalog.html?kategori=koko">
+                    Lihat Semua Baju Koko →
+                </a>
+            </div>
+
+        </div>
+
+    </section>
     <section class="showcase">
         <div class="wrap">
             <div class="banner"><img
@@ -653,125 +711,125 @@
     </footer>
 
     <script>
-    const slides = [...document.querySelectorAll('.slide')],
-        dots = [...document.querySelectorAll('.dot')];
-    let i = 0,
-        t;
+        const slides = [...document.querySelectorAll('.slide')],
+            dots = [...document.querySelectorAll('.dot')];
+        let i = 0,
+            t;
 
-    function show(n) {
-        i = (n + slides.length) % slides.length;
-        slides.forEach((s, k) => s.classList.toggle('on', k === i));
-        dots.forEach((d, k) => d.classList.toggle('on', k === i))
-    }
-
-    function restart() {
-        clearInterval(t);
-        t = setInterval(() => show(i + 1), 5000)
-    }
-    document.querySelector('.next').onclick = () => {
-        show(i + 1);
-        restart()
-    };
-    document.querySelector('.prev').onclick = () => {
-        show(i - 1);
-        restart()
-    };
-    dots.forEach((d, k) => d.onclick = () => {
-        show(k);
-        restart()
-    });
-    restart();
-    </script>
-
-    <script>
-    const menuBtn = document.querySelector('.menu'),
-        mobileMenu = document.querySelector('.mobile-menu'),
-        backdrop = document.querySelector('.menu-backdrop'),
-        closeMenu = document.querySelector('.close-menu');
-
-    function openMenu() {
-        mobileMenu.classList.add('open');
-        backdrop.classList.add('open');
-        document.body.style.overflow = 'hidden'
-    }
-
-    function closeMobileMenu() {
-        mobileMenu.classList.remove('open');
-        backdrop.classList.remove('open');
-        document.body.style.overflow = ''
-    }
-    menuBtn.addEventListener('click', openMenu);
-    closeMenu.addEventListener('click', closeMobileMenu);
-    backdrop.addEventListener('click', closeMobileMenu);
-    document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', closeMobileMenu));
-
-    document.querySelectorAll('[data-product-card]').forEach(card => {
-        const name = card.querySelector('strong')?.textContent.trim() || 'produk';
-        const slug = name.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
-        card.addEventListener('click', () => location.href = 'detail.html?produk=' + encodeURIComponent(slug));
-    });
-    </script>
-
-
-    <script>
-    function openStoreImage(src, caption) {
-        document.getElementById('storeModalImage').src = src;
-        document.getElementById('storeModalImage').alt = caption;
-        document.getElementById('storeModalCaption').textContent = caption;
-        document.getElementById('storeImageModal').classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeStoreImage(e) {
-        if (e && e.target && !e.target.classList.contains('store-modal') && e.target.id !== 'storeImageModal') return;
-        document.getElementById('storeImageModal').classList.remove('open');
-        document.getElementById('storeModalImage').src = '';
-        document.body.style.overflow = '';
-    }
-
-    function openStoreVideo() {
-        const modal = document.getElementById('storeVideoModal');
-        const video = document.getElementById('storeGuideVideo');
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        video.currentTime = 0;
-        video.play().catch(() => {});
-    }
-
-    function closeStoreVideo(e) {
-        if (e && e.target && !e.target.classList.contains('store-modal') && e.target.id !== 'storeVideoModal') return;
-        const modal = document.getElementById('storeVideoModal');
-        const video = document.getElementById('storeGuideVideo');
-        video.pause();
-        modal.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            closeStoreImage();
-            closeStoreVideo();
+        function show(n) {
+            i = (n + slides.length) % slides.length;
+            slides.forEach((s, k) => s.classList.toggle('on', k === i));
+            dots.forEach((d, k) => d.classList.toggle('on', k === i))
         }
-    });
+
+        function restart() {
+            clearInterval(t);
+            t = setInterval(() => show(i + 1), 5000)
+        }
+        document.querySelector('.next').onclick = () => {
+            show(i + 1);
+            restart()
+        };
+        document.querySelector('.prev').onclick = () => {
+            show(i - 1);
+            restart()
+        };
+        dots.forEach((d, k) => d.onclick = () => {
+            show(k);
+            restart()
+        });
+        restart();
+    </script>
+
+    <script>
+        const menuBtn = document.querySelector('.menu'),
+            mobileMenu = document.querySelector('.mobile-menu'),
+            backdrop = document.querySelector('.menu-backdrop'),
+            closeMenu = document.querySelector('.close-menu');
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            backdrop.classList.add('open');
+            document.body.style.overflow = 'hidden'
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            backdrop.classList.remove('open');
+            document.body.style.overflow = ''
+        }
+        menuBtn.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMobileMenu);
+        backdrop.addEventListener('click', closeMobileMenu);
+        document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', closeMobileMenu));
+
+        document.querySelectorAll('[data-product-card]').forEach(card => {
+            const name = card.querySelector('strong')?.textContent.trim() || 'produk';
+            const slug = name.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
+            card.addEventListener('click', () => location.href = 'detail.html?produk=' + encodeURIComponent(slug));
+        });
     </script>
 
 
     <script>
-    const mobileSearchToggle = document.querySelector('.mobile-search-toggle');
-    const mobileSearchPanel = document.querySelector('.mobile-search-panel');
-    const mobileSearchInput = document.querySelector('#mobileSearchInput');
+        function openStoreImage(src, caption) {
+            document.getElementById('storeModalImage').src = src;
+            document.getElementById('storeModalImage').alt = caption;
+            document.getElementById('storeModalCaption').textContent = caption;
+            document.getElementById('storeImageModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
 
-    function toggleMobileSearch(force) {
-        const open = typeof force === 'boolean' ? force : !mobileSearchPanel.classList.contains('open');
-        mobileSearchPanel.classList.toggle('open', open);
-        mobileSearchPanel.setAttribute('aria-hidden', String(!open));
-        mobileSearchToggle.setAttribute('aria-expanded', String(open));
-        if (open) setTimeout(() => mobileSearchInput.focus(), 80);
-    }
-    mobileSearchToggle.addEventListener('click', () => toggleMobileSearch());
-    document.addEventListener('click', e => {
-        if (mobileSearchPanel.classList.contains('open') && !mobileSearchPanel.contains(e.target) && !
-            mobileSearchToggle.contains(e.target)) toggleMobileSearch(false);
-    });
+        function closeStoreImage(e) {
+            if (e && e.target && !e.target.classList.contains('store-modal') && e.target.id !== 'storeImageModal') return;
+            document.getElementById('storeImageModal').classList.remove('open');
+            document.getElementById('storeModalImage').src = '';
+            document.body.style.overflow = '';
+        }
+
+        function openStoreVideo() {
+            const modal = document.getElementById('storeVideoModal');
+            const video = document.getElementById('storeGuideVideo');
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            video.currentTime = 0;
+            video.play().catch(() => {});
+        }
+
+        function closeStoreVideo(e) {
+            if (e && e.target && !e.target.classList.contains('store-modal') && e.target.id !== 'storeVideoModal') return;
+            const modal = document.getElementById('storeVideoModal');
+            const video = document.getElementById('storeGuideVideo');
+            video.pause();
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeStoreImage();
+                closeStoreVideo();
+            }
+        });
+    </script>
+
+
+    <script>
+        const mobileSearchToggle = document.querySelector('.mobile-search-toggle');
+        const mobileSearchPanel = document.querySelector('.mobile-search-panel');
+        const mobileSearchInput = document.querySelector('#mobileSearchInput');
+
+        function toggleMobileSearch(force) {
+            const open = typeof force === 'boolean' ? force : !mobileSearchPanel.classList.contains('open');
+            mobileSearchPanel.classList.toggle('open', open);
+            mobileSearchPanel.setAttribute('aria-hidden', String(!open));
+            mobileSearchToggle.setAttribute('aria-expanded', String(open));
+            if (open) setTimeout(() => mobileSearchInput.focus(), 80);
+        }
+        mobileSearchToggle.addEventListener('click', () => toggleMobileSearch());
+        document.addEventListener('click', e => {
+            if (mobileSearchPanel.classList.contains('open') && !mobileSearchPanel.contains(e.target) && !
+                mobileSearchToggle.contains(e.target)) toggleMobileSearch(false);
+        });
     </script>
 </body>
 

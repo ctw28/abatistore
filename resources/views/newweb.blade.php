@@ -772,17 +772,17 @@
                         <!-- Ganti 3 file berikut dengan foto asli toko -->
                         <button class="gallery-item" type="button"
                             onclick="openStoreImage('assets/toko-depan.jpg','Bagian depan Abati Store')">
-                            <img src="assets/toko-depan.jpg" alt="Bagian depan Abati Store">
+                            <img src="toko.jpeg" alt="Bagian depan Abati Store">
                             <span>Depan Toko</span>
                         </button>
                         <button class="gallery-item" type="button"
                             onclick="openStoreImage('assets/toko-interior.jpg','Interior Abati Store')">
-                            <img src="assets/toko-interior.jpg" alt="Interior Abati Store">
+                            <img src="toko4.jpeg" alt="Interior Abati Store">
                             <span>Interior Toko</span>
                         </button>
                         <button class="gallery-item" type="button"
                             onclick="openStoreImage('assets/toko-koleksi.jpg','Koleksi Abati Store')">
-                            <img src="assets/toko-koleksi.jpg" alt="Koleksi Abati Store">
+                            <img src="toko3.jpeg" alt="Koleksi Abati Store">
                             <span>Koleksi Kami</span>
                         </button>
                     </div>
@@ -818,8 +818,7 @@
     <section id="seragam" class="uniform">
         <div class="wrap">
             <div class="uniformBox">
-                <div class="uniformImg"><img
-                        src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp">
+                <div class="uniformImg"><img src="assets/pelanggan/WhatsApp Image 2026-06-24 at 08.42.56.webp">
                 </div>
                 <div class="uniformText"><small>PESANTREN • SEKOLAH • KOMUNITAS • INSTANSI</small>
                     <h2>Pesan Seragam di Abati Store</h2>

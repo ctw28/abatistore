@@ -409,3 +409,176 @@
     }
 
 }
+
+/* =========================================================
+   OFFLINE STORE - MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .offline-store {
+        padding: 42px 0 50px;
+    }
+
+    .offline-main {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        border-radius: 14px;
+    }
+
+    .offline-store-image {
+        min-height: 300px;
+        height: 300px;
+    }
+
+    .offline-overlay {
+        padding: 32px 30px 34px;
+    }
+
+    .offline-overlay h2 {
+        font-size: 32px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .offline-store {
+        padding: 30px 0 42px;
+    }
+
+
+    /* FOTO TOKO */
+
+    .offline-main {
+        border-radius: 11px;
+    }
+
+    .offline-store-image {
+        height: 215px;
+        min-height: 215px;
+    }
+
+
+    /* INFORMASI */
+
+    .offline-overlay {
+        padding: 25px 21px 27px;
+    }
+
+    .offline-overlay small {
+        margin-bottom: 6px;
+
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
+
+    .offline-overlay h2 {
+        margin-bottom: 9px;
+
+        font-size: 26px;
+        line-height: 1.12;
+    }
+
+    .offline-overlay p {
+        margin-bottom: 18px;
+
+        font-size: 11px;
+        line-height: 1.55;
+    }
+
+
+    /* BUTTON */
+
+    .offline-actions {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 7px;
+    }
+
+    .offline-primary,
+    .offline-secondary {
+        min-height: 39px;
+
+        width: 100%;
+
+        padding: 0 8px;
+
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+
+    /* GALLERY */
+
+    .store-gallery {
+        padding-top: 35px;
+    }
+
+
+    .offline-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .offline-heading small {
+        margin-bottom: 5px;
+
+        font-size: 7px;
+        letter-spacing: 2px;
+    }
+
+
+    .offline-heading h3 {
+        margin-bottom: 6px;
+
+        font-size: 23px;
+        line-height: 1.15;
+    }
+
+
+    .offline-heading p {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+
+    .offline-heading > a {
+        font-size: 11px;
+    }
+
+
+    /* 2 KOLOM DI HP */
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 8px;
+    }
+
+
+    .gallery-item {
+        border-radius: 9px;
+    }
+
+
+    .gallery-item::after {
+        display: none;
+    }
+
+}

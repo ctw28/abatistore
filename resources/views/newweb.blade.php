@@ -415,15 +415,19 @@
                             </p>
 
                             <div class="offline-actions">
+
                                 <a class="offline-primary"
                                     href="https://www.google.com/maps/dir/?api=1&destination=-3.9986246,122.5113538"
-                                    target="_blank">
+                                    target="_blank" rel="noopener">
                                     📍 Lihat Lokasi
                                 </a>
 
-                                <button class="offline-secondary" type="button" onclick="openStoreVideo()">
-                                    ▶ Petunjuk ke Toko
-                                </button>
+                                <a class="offline-secondary"
+                                    href="https://www.tiktok.com/@fadkhera.kendari/video/7608130662645681416"
+                                    target="_blank" rel="noopener">
+                                    ▶ Lihat Video Lokasi
+                                </a>
+
                             </div>
                         </div>
                     </div>
@@ -505,14 +509,7 @@
             </div>
         </section>
 
-        <!-- Modal Gallery -->
-        <div class="store-modal" id="storeImageModal" onclick="closeStoreImage(event)">
-            <button class="modal-close" type="button" onclick="closeStoreImage()">×</button>
-            <div class="modal-content image-modal-content" onclick="event.stopPropagation()">
-                <img id="storeModalImage" src="" alt="">
-                <p id="storeModalCaption"></p>
-            </div>
-        </div>
+
 
         <!-- 9. SERAGAM -->
 
@@ -580,401 +577,1163 @@
                     INIMI DIA</span></div>
     </div>
     </footer>
+
+    <!-- =========================================================
+     JAVASCRIPT
+     Abati Store Homepage
+     ========================================================= -->
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script>
-    const slides = [...document.querySelectorAll('.slide')],
-        dots = [...document.querySelectorAll('.dot')];
-    let i = 0,
-        t;
-
-    function show(n) {
-        i = (n + slides.length) % slides.length;
-        slides.forEach((s, k) => s.classList.toggle('on', k === i));
-        dots.forEach((d, k) => d.classList.toggle('on', k === i))
-    }
-
-    function restart() {
-        clearInterval(t);
-        t = setInterval(() => show(i + 1), 5000)
-    }
-    document.querySelector('.next').onclick = () => {
-        show(i + 1);
-        restart()
-    };
-    document.querySelector('.prev').onclick = () => {
-        show(i - 1);
-        restart()
-    };
-    dots.forEach((d, k) => d.onclick = () => {
-        show(k);
-        restart()
-    });
-    restart();
-    </script>
 
     <script>
-    const menuBtn = document.querySelector('.menu'),
-        mobileMenu = document.querySelector('.mobile-menu'),
-        backdrop = document.querySelector('.menu-backdrop'),
-        closeMenu = document.querySelector('.close-menu');
+    /* =========================================================
+   1. HOMEPAGE UI
+   Slider + Menu Mobile + Search Mobile
+   ========================================================= */
 
-    function openMenu() {
-        mobileMenu.classList.add('open');
-        backdrop.classList.add('open');
-        document.body.style.overflow = 'hidden'
-    }
+    function initHomepageUI() {
 
-    function closeMobileMenu() {
-        mobileMenu.classList.remove('open');
-        backdrop.classList.remove('open');
-        document.body.style.overflow = ''
-    }
-    menuBtn.addEventListener('click', openMenu);
-    closeMenu.addEventListener('click', closeMobileMenu);
-    backdrop.addEventListener('click', closeMobileMenu);
-    document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', closeMobileMenu));
+        /* ---------------------------------------------------------
+           SLIDER
+           --------------------------------------------------------- */
 
-    document.querySelectorAll('[data-product-card]').forEach(card => {
-        const name = card.querySelector('strong')?.textContent.trim() || 'produk';
-        const slug = name.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
-        card.addEventListener('click', () => location.href = 'detail.html?produk=' + encodeURIComponent(slug));
-    });
-    </script>
+        const slider = document.querySelector('.slider');
+
+        if (slider) {
+
+            const slides = [...slider.querySelectorAll('.slide')];
+            const dots = [...slider.querySelectorAll('.dot')];
+            const nextButton = slider.querySelector('.next');
+            const prevButton = slider.querySelector('.prev');
+
+            let currentSlide = 0;
+            let sliderTimer = null;
+
+            function showSlide(index) {
+
+                if (!slides.length) return;
+
+                currentSlide =
+                    (index + slides.length) % slides.length;
+
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle(
+                        'on',
+                        index === currentSlide
+                    );
+                });
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle(
+                        'on',
+                        index === currentSlide
+                    );
+                });
+            }
 
 
-    <script>
-    function openStoreImage(src, caption) {
-        document.getElementById('storeModalImage').src = src;
-        document.getElementById('storeModalImage').alt = caption;
-        document.getElementById('storeModalCaption').textContent = caption;
-        document.getElementById('storeImageModal').classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
+            function startSlider() {
 
-    function closeStoreImage(e) {
-        if (e && e.target && !e.target.classList.contains('store-modal') && e.target.id !== 'storeImageModal') return;
-        document.getElementById('storeImageModal').classList.remove('open');
-        document.getElementById('storeModalImage').src = '';
-        document.body.style.overflow = '';
-    }
+                clearInterval(sliderTimer);
 
-    function openStoreVideo() {
-        const modal = document.getElementById('storeVideoModal');
-        const video = document.getElementById('storeGuideVideo');
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
+                if (slides.length <= 1) return;
 
-    }
+                sliderTimer = setInterval(() => {
+                    showSlide(currentSlide + 1);
+                }, 5000);
+            }
 
-    function closeStoreVideo(e) {
-        if (e && e.target && !e.target.classList.contains('store-modal') && e.target.id !== 'storeVideoModal') return;
-        const modal = document.getElementById('storeVideoModal');
-        const video = document.getElementById('storeGuideVideo');
 
-        modal.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            closeStoreImage();
-            closeStoreVideo();
+            nextButton?.addEventListener('click', () => {
+
+                showSlide(currentSlide + 1);
+                startSlider();
+
+            });
+
+
+            prevButton?.addEventListener('click', () => {
+
+                showSlide(currentSlide - 1);
+                startSlider();
+
+            });
+
+
+            dots.forEach((dot, index) => {
+
+                dot.addEventListener('click', () => {
+
+                    showSlide(index);
+                    startSlider();
+
+                });
+
+            });
+
+
+            showSlide(0);
+            startSlider();
+
+
+            /*
+             * Hentikan autoplay ketika mouse berada
+             * di atas slider.
+             */
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(sliderTimer);
+            });
+
+
+            slider.addEventListener('mouseleave', () => {
+                startSlider();
+            });
+
+
+            /*
+             * Support swipe sederhana untuk HP.
+             */
+            let touchStartX = 0;
+
+            slider.addEventListener('touchstart', event => {
+
+                touchStartX =
+                    event.touches[0].clientX;
+
+            }, {
+                passive: true
+            });
+
+
+            slider.addEventListener('touchend', event => {
+
+                const touchEndX =
+                    event.changedTouches[0].clientX;
+
+                const distance =
+                    touchEndX - touchStartX;
+
+                if (Math.abs(distance) < 50) return;
+
+                if (distance < 0) {
+                    showSlide(currentSlide + 1);
+                } else {
+                    showSlide(currentSlide - 1);
+                }
+
+                startSlider();
+
+            }, {
+                passive: true
+            });
         }
-    });
-    </script>
 
 
-    <script>
-    const mobileSearchToggle = document.querySelector('.mobile-search-toggle');
-    const mobileSearchPanel = document.querySelector('.mobile-search-panel');
-    const mobileSearchInput = document.querySelector('#mobileSearchInput');
+        /* ---------------------------------------------------------
+           MENU MOBILE
+           --------------------------------------------------------- */
 
-    function toggleMobileSearch(force) {
-        const open = typeof force === 'boolean' ? force : !mobileSearchPanel.classList.contains('open');
-        mobileSearchPanel.classList.toggle('open', open);
-        mobileSearchPanel.setAttribute('aria-hidden', String(!open));
-        mobileSearchToggle.setAttribute('aria-expanded', String(open));
-        if (open) setTimeout(() => mobileSearchInput.focus(), 80);
+        const menuButton =
+            document.querySelector('.menu');
+
+        const mobileMenu =
+            document.querySelector('.mobile-menu');
+
+        const menuBackdrop =
+            document.querySelector('.menu-backdrop');
+
+        const closeMenuButton =
+            document.querySelector('.close-menu');
+
+
+        function openMobileMenu() {
+
+            if (!mobileMenu || !menuBackdrop) return;
+
+            mobileMenu.classList.add('open');
+            menuBackdrop.classList.add('open');
+
+            document.body.style.overflow = 'hidden';
+        }
+
+
+        function closeMobileMenu() {
+
+            if (!mobileMenu || !menuBackdrop) return;
+
+            mobileMenu.classList.remove('open');
+            menuBackdrop.classList.remove('open');
+
+            document.body.style.overflow = '';
+        }
+
+
+        menuButton?.addEventListener(
+            'click',
+            openMobileMenu
+        );
+
+
+        closeMenuButton?.addEventListener(
+            'click',
+            closeMobileMenu
+        );
+
+
+        menuBackdrop?.addEventListener(
+            'click',
+            closeMobileMenu
+        );
+
+
+        mobileMenu?.querySelectorAll('a').forEach(link => {
+
+            link.addEventListener(
+                'click',
+                closeMobileMenu
+            );
+
+        });
+
+
+        /* ---------------------------------------------------------
+           SEARCH MOBILE
+           --------------------------------------------------------- */
+
+        const searchButton =
+            document.querySelector('.mobile-search-toggle');
+
+        const searchPanel =
+            document.querySelector('.mobile-search-panel');
+
+        const searchInput =
+            document.querySelector('#mobileSearchInput');
+
+
+        function setMobileSearch(open) {
+
+            if (!searchPanel) return;
+
+            searchPanel.classList.toggle(
+                'open',
+                open
+            );
+
+            searchPanel.setAttribute(
+                'aria-hidden',
+                String(!open)
+            );
+
+            searchButton?.setAttribute(
+                'aria-expanded',
+                String(open)
+            );
+
+
+            if (open) {
+
+                setTimeout(() => {
+                    searchInput?.focus();
+                }, 100);
+
+            }
+
+        }
+
+
+        searchButton?.addEventListener(
+            'click',
+            () => {
+
+                const isOpen =
+                    searchPanel?.classList.contains('open');
+
+                setMobileSearch(!isOpen);
+
+            }
+        );
+
+
+        document.addEventListener(
+            'click',
+            event => {
+
+                if (!searchPanel?.classList.contains('open')) {
+                    return;
+                }
+
+                const clickedInsidePanel =
+                    searchPanel.contains(event.target);
+
+                const clickedButton =
+                    searchButton?.contains(event.target);
+
+                if (
+                    !clickedInsidePanel &&
+                    !clickedButton
+                ) {
+                    setMobileSearch(false);
+                }
+
+            }
+        );
+
+
+        /* ---------------------------------------------------------
+           ESCAPE
+           --------------------------------------------------------- */
+
+        document.addEventListener(
+            'keydown',
+            event => {
+
+                if (event.key !== 'Escape') return;
+
+                closeMobileMenu();
+                setMobileSearch(false);
+
+            }
+        );
     }
-    mobileSearchToggle.addEventListener('click', () => toggleMobileSearch());
-    document.addEventListener('click', e => {
-        if (mobileSearchPanel.classList.contains('open') && !mobileSearchPanel.contains(e.target) && !
-            mobileSearchToggle.contains(e.target)) toggleMobileSearch(false);
-    });
-    </script>
-    <script>
+
+
+    /* =========================================================
+       2. VUE APP
+       ========================================================= */
+
     const {
         createApp
     } = Vue;
 
+
     createApp({
+
+        /* ---------------------------------------------------------
+           DATA
+           --------------------------------------------------------- */
+
         data() {
+
             return {
+
                 featuredProducts: [],
                 otherProducts: [],
+
+                categories: [],
+
                 selectedProduct: {},
 
-                // NEW
-                categories: [],
                 selectedCategory: null,
+
                 visibleCount: 500,
 
                 activeImageIndex: 0,
-                slideInterval: null,
-                showOutOfStock: false,
-                stockFilter: 'available', // default: tampil yang ada stok
 
-            }
+                slideInterval: null,
+
+                stockFilter: 'available',
+
+            };
+
         },
+
+
+        /* ---------------------------------------------------------
+           MOUNTED
+           --------------------------------------------------------- */
 
         mounted() {
+
             this.fetchProducts();
+
+            /*
+             * PENTING:
+             * UI seperti slider/menu/search diinisialisasi
+             * SETELAH Vue selesai melakukan mount.
+             *
+             * Ini yang memperbaiki masalah slider sebelumnya.
+             */
+            this.$nextTick(() => {
+
+                initHomepageUI();
+
+            });
+
         },
+
+
+        /* =========================================================
+           COMPUTED
+           ========================================================= */
 
         computed: {
+
+            /* -----------------------------------------------------
+               SEMUA PRODUK
+               ----------------------------------------------------- */
+
+            allProducts() {
+
+                return [
+                    ...this.featuredProducts,
+                    ...this.otherProducts
+                ];
+
+            },
+
+
+            /* -----------------------------------------------------
+               PRODUK KOKO
+               ----------------------------------------------------- */
+
+            kokoProducts() {
+
+                return this.allProducts
+                    .filter(product =>
+                        product.category &&
+                        product.category.name &&
+                        product.category.name.toLowerCase() === 'koko'
+                    )
+                    .slice(0, 6);
+
+            },
+
+
+            /* -----------------------------------------------------
+               PRODUK JUBAH
+               ----------------------------------------------------- */
+
+            jubahProducts() {
+
+                return this.allProducts
+                    .filter(product =>
+                        product.category &&
+                        product.category.name &&
+                        product.category.name.toLowerCase() === 'jubah'
+                    )
+                    .slice(0, 6);
+
+            },
+
+
+            /* -----------------------------------------------------
+               PRODUK JAKET
+               ----------------------------------------------------- */
+
+            jaketProducts() {
+
+                return this.allProducts
+                    .filter(product =>
+                        product.category &&
+                        product.category.name &&
+                        product.category.name.toLowerCase() === 'jaket'
+                    )
+                    .slice(0, 6);
+
+            },
+
+
+            /* -----------------------------------------------------
+               PRODUK OVERSIZE
+               ----------------------------------------------------- */
+
+            oversizeProducts() {
+
+                return this.allProducts
+                    .filter(product =>
+                        product.category &&
+                        product.category.name &&
+                        product.category.name.toLowerCase() === 'oversize'
+                    )
+                    .slice(0, 6);
+
+            },
+
+
+            /* -----------------------------------------------------
+               PRODUK KAOS
+               ----------------------------------------------------- */
+
+            kaosProducts() {
+
+                return this.allProducts
+                    .filter(product =>
+                        product.category &&
+                        product.category.name &&
+                        product.category.name.toLowerCase() === 'kaos'
+                    )
+                    .slice(0, 6);
+
+            },
+
+
+            /* -----------------------------------------------------
+               PRODUK KEMEJA
+               ----------------------------------------------------- */
+
+            kemejaProducts() {
+
+                return this.allProducts
+                    .filter(product =>
+                        product.category &&
+                        product.category.name &&
+                        product.category.name.toLowerCase() === 'kemeja'
+                    )
+                    .slice(0, 6);
+
+            },
+
+
+            /* -----------------------------------------------------
+               PRODUK SARUNG
+               ----------------------------------------------------- */
+
+            sarungProducts() {
+
+                return this.allProducts
+                    .filter(product =>
+                        product.category &&
+                        product.category.name &&
+                        product.category.name.toLowerCase() === 'sarung'
+                    )
+                    .slice(0, 6);
+
+            },
+
+
+            /* -----------------------------------------------------
+               UKURAN PRODUK DETAIL
+               ----------------------------------------------------- */
+
             availableSizes() {
-                return this.selectedProduct.stocks?.filter(
-                    item => item.stock > 0
-                ) ?? []
+
+                return this.selectedProduct?.stocks
+                    ?.filter(item => item.stock > 0) ?? [];
+
             },
+
+
+            /* -----------------------------------------------------
+               FILTER KATALOG / MODAL
+               ----------------------------------------------------- */
+
             filteredProducts() {
-                let all = [...this.featuredProducts, ...this.otherProducts];
 
-                // 🔥 PRIORITAS: kalau mode HABIS
+                let products = [
+                    ...this.featuredProducts,
+                    ...this.otherProducts
+                ];
+
+
+                /* Produk habis */
+
                 if (this.stockFilter === 'out') {
-                    return all.filter(p => p.is_habis);
+
+                    return products.filter(
+                        product => product.is_habis
+                    );
+
                 }
 
-                // mode normal
+
+                /* Filter kategori */
+
                 if (this.selectedCategory) {
-                    all = all.filter(p => p.category.id === this.selectedCategory);
+
+                    products = products.filter(
+                        product =>
+                        product.category &&
+                        product.category.id ===
+                        this.selectedCategory
+                    );
+
                 }
 
-                // hanya tampil yang tersedia
-                all = all.filter(p => !p.is_habis);
 
-                return all;
+                /* Hanya produk tersedia */
+
+                products = products.filter(
+                    product => !product.is_habis
+                );
+
+
+                return products;
+
             },
+
 
             visibleProducts() {
-                return this.filteredProducts.slice(0, this.visibleCount);
+
+                return this.filteredProducts.slice(
+                    0,
+                    this.visibleCount
+                );
+
             },
+
+
+            /* -----------------------------------------------------
+               GAMBAR PRODUK DETAIL
+               ----------------------------------------------------- */
 
             allImages() {
-                if (!this.selectedProduct) return [];
-                const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                const others = this.selectedProduct.images?.map(img => img.image) || [];
-                return main.concat(others);
+
+                if (!this.selectedProduct) {
+                    return [];
+                }
+
+
+                const mainImage =
+                    this.selectedProduct.image ? [this.selectedProduct.image] : [];
+
+
+                const otherImages =
+                    this.selectedProduct.images
+                    ?.map(image => image.image) || [];
+
+
+                return [
+                    ...mainImage,
+                    ...otherImages
+                ];
+
             },
 
+
             activeImage() {
-                return this.allImages[this.activeImageIndex] || '';
+
+                return (
+                    this.allImages[
+                        this.activeImageIndex
+                    ] || ''
+                );
+
             }
+
         },
 
+
+        /* =========================================================
+           METHODS
+           ========================================================= */
+
         methods: {
+
+            /* -----------------------------------------------------
+               DISKON
+               ----------------------------------------------------- */
+
             getDiscountPercent(product) {
-                if (product.category?.name.toLowerCase() === 'koko' || product.category?.name.toLowerCase() ===
-                    'kurta') {
+
+                const category =
+                    product.category?.name
+                    ?.toLowerCase() || '';
+
+
+                if (
+                    category === 'koko' ||
+                    category === 'kurta' ||
+                    category === 'celana' ||
+                    category === 'jacket'
+                ) {
+
                     return 10;
-                }
-                if (product.category?.name.toLowerCase() === 'celana' || product.category?.name
-                    .toLowerCase() === 'jacket') {
-                    return 10;
+
                 }
 
+
                 return 5;
+
             },
 
 
             getDiscountPrice(product) {
-                // console.table(product)
-                let diskon = this.getDiscountPercent(product);
-                // if (product.price == 269000) {
-                //     return 169000;
-                // }
-                // if (product.price == 294000) {
-                //     return 179000;
-                // }
-                // if (product.price == 289000) {
-                //     return 219000;
-                // }
-                // if (product.name == "Baraka Long") {
-                //     return 179000;
-                // }
-                // if (product.name == "Elbara Long") {
-                //     return 179000;
-                // }
-                // if (product.name == "Khura Long") {
-                //     return 179000;
-                // }
 
-                // if (product.name == "Khura") {
-                //     return 169000;
-                // }
+                const discount =
+                    this.getDiscountPercent(product);
+
+                const price =
+                    Number(product.price) || 0;
 
 
-                return product.price - (product.price * diskon / 100);
+                return price -
+                    (price * discount / 100);
 
             },
+
+
+            /* -----------------------------------------------------
+               FILTER
+               ----------------------------------------------------- */
+
             changeStock(type) {
+
                 this.stockFilter = type;
-                this.selectedCategory = null; // 🔥 reset kategori
+
+                this.selectedCategory = null;
+
             },
-            // 🔥 FILTER
-            changeCategory(catId) {
-                this.stockFilter = 'available'
-                this.selectedCategory = catId;
-                this.visibleCount = 500; // reset load more
+
+
+            changeCategory(categoryId) {
+
+                this.stockFilter = 'available';
+
+                this.selectedCategory =
+                    categoryId;
+
+                this.visibleCount = 500;
+
             },
+
 
             loadMore() {
+
                 this.visibleCount += 500;
+
             },
 
-            // 🔥 TRACKING
-            trackWhatsAppClick(product) {
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'InitiateCheckout', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    });
-                }
-            },
 
-            trackShopeeClick(product) {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'ShopeeClick', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    });
-                }
-            },
+            /* -----------------------------------------------------
+               IMAGE
+               ----------------------------------------------------- */
 
-            trackDetailClick(product) {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'DetailClick', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    });
-                }
-            },
-
-            // 🔥 WHATSAPP
-            getWhatsappLink(productName) {
-                const phoneNumber = '6285241800852';
-                const message = `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            },
-
-            // 🔥 MODAL
-            openModal(product) {
-                this.selectedProduct = product;
-                this.activeImageIndex = 0;
-                this.startSlide();
-
-                const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                modal.show();
-            },
-
-            nextImage() {
-                this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-            },
-
-            prevImage() {
-                this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
-                    .length;
-            },
-
-            startSlide() {
-                this.slideInterval = setInterval(() => {
-                    this.nextImage();
-                }, 5000);
-            },
-
-            stopSlide() {
-                clearInterval(this.slideInterval);
-            },
-
-            // 🔥 FETCH DATA
-            async fetchProducts() {
-                let url = "{{route('product.index')}}";
-
-                const featured = await fetch(`${url}?is_featured=1`).then(res => res.json());
-                const others = await fetch(`${url}?is_featured=0`).then(res => res.json());
-
-                this.featuredProducts = featured;
-                this.otherProducts = others;
-
-                // ambil kategori unik
-                const allProducts = [...featured, ...others];
-                const uniqueCategories = {};
-
-                allProducts.forEach(p => {
-                    uniqueCategories[p.category.id] = p.category;
-                });
-
-                this.categories = Object.values(uniqueCategories);
-            },
-
-            // 🔥 HELPER
             getImageUrl(path) {
-                if (!path) return '/assets/no-image.png';
+
+                if (!path) {
+                    return '/assets/no-image.png';
+                }
+
                 return `/storage/${path}`;
+
             },
+
 
             getFile(path) {
-                return path ? `${path}` : '';
+
+                return path || '';
+
             },
 
+
+            /* -----------------------------------------------------
+               FORMAT RUPIAH
+               ----------------------------------------------------- */
+
             formatRupiah(value) {
-                const number = Number(value);
-                if (isNaN(number)) return value;
-                return 'Rp ' + number.toLocaleString('id-ID');
+
+                const number =
+                    Number(value);
+
+                if (isNaN(number)) {
+                    return value;
+                }
+
+
+                return 'Rp ' +
+                    number.toLocaleString('id-ID');
+
             },
-            getWhatsappLinkSeragam() {
-                const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
+
+
+            /* =====================================================
+               PRODUCT MODAL
+               ===================================================== */
+
+            openModal(product) {
+
+                this.selectedProduct = product;
+
+                this.activeImageIndex = 0;
+
+                this.startProductSlide();
+
+
+                const modalElement =
+                    document.getElementById(
+                        'productModal'
+                    );
+
+
+                if (!modalElement) return;
+
+
+                const modal =
+                    new bootstrap.Modal(
+                        modalElement
+                    );
+
+
+                modal.show();
+
+            },
+
+
+            nextImage() {
+
+                if (this.allImages.length <= 1) {
+                    return;
+                }
+
+
+                this.activeImageIndex =
+                    (
+                        this.activeImageIndex + 1
+                    ) %
+                    this.allImages.length;
+
+            },
+
+
+            prevImage() {
+
+                if (this.allImages.length <= 1) {
+                    return;
+                }
+
+
+                this.activeImageIndex =
+                    (
+                        this.activeImageIndex -
+                        1 +
+                        this.allImages.length
+                    ) %
+                    this.allImages.length;
+
+            },
+
+
+            startProductSlide() {
+
+                this.stopProductSlide();
+
+
+                if (this.allImages.length <= 1) {
+                    return;
+                }
+
+
+                this.slideInterval =
+                    setInterval(() => {
+
+                        this.nextImage();
+
+                    }, 5000);
+
+            },
+
+
+            stopProductSlide() {
+
+                if (this.slideInterval) {
+
+                    clearInterval(
+                        this.slideInterval
+                    );
+
+                    this.slideInterval = null;
+
+                }
+
+            },
+
+
+            /* =====================================================
+               FETCH PRODUCTS
+               ===================================================== */
+
+            async fetchProducts() {
+
+                try {
+
+                    const url =
+                        "{{ route('product.index') }}";
+
+
+                    const [
+                        featuredResponse,
+                        otherResponse
+                    ] = await Promise.all([
+
+                        fetch(
+                            `${url}?is_featured=1`
+                        ),
+
+                        fetch(
+                            `${url}?is_featured=0`
+                        )
+
+                    ]);
+
+
+                    if (
+                        !featuredResponse.ok ||
+                        !otherResponse.ok
+                    ) {
+
+                        throw new Error(
+                            'Gagal mengambil data produk.'
+                        );
+
+                    }
+
+
+                    const [
+                        featured,
+                        others
+                    ] = await Promise.all([
+
+                        featuredResponse.json(),
+                        otherResponse.json()
+
+                    ]);
+
+
+                    this.featuredProducts =
+                        Array.isArray(featured) ?
+                        featured : [];
+
+
+                    this.otherProducts =
+                        Array.isArray(others) ?
+                        others : [];
+
+
+                    /* ---------------------------------------------
+                       KATEGORI UNIK
+                       --------------------------------------------- */
+
+                    const uniqueCategories = {};
+
+
+                    [
+                        ...this.featuredProducts,
+                        ...this.otherProducts
+                    ].forEach(product => {
+
+                        if (
+                            product.category &&
+                            product.category.id
+                        ) {
+
+                            uniqueCategories[
+                                product.category.id
+                            ] = product.category;
+
+                        }
+
+                    });
+
+
+                    this.categories =
+                        Object.values(
+                            uniqueCategories
+                        );
+
+
+                } catch (error) {
+
+                    console.error(
+                        'Gagal mengambil produk:',
+                        error
+                    );
+
+                }
+
+            },
+
+
+            /* =====================================================
+               WHATSAPP
+               ===================================================== */
+
+            getWhatsappLink(productName) {
+
+                const phoneNumber =
+                    '6285241800852';
+
+
                 const message =
-                    `Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?`;
+                    `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
+
+
                 return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            },
+
+
+            getWhatsappLinkSeragam() {
+
+                const phoneNumber =
+                    '6285241800852';
+
+
+                const message =
+                    'Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?';
+
+
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            },
+
+
+            /* =====================================================
+               FACEBOOK PIXEL
+               ===================================================== */
+
+            trackWhatsAppClick(product) {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'track',
+                        'InitiateCheckout', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        }
+                    );
+
+                }
+
+            },
+
+
+            trackShopeeClick(product) {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'ShopeeClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        }
+                    );
+
+                }
+
+            },
+
+
+            trackDetailClick(product) {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'DetailClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        }
+                    );
+
+                }
+
             },
 
 
             trackSeragamClick() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'SeragamClick');
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'SeragamClick'
+                    );
+
                 }
+
             },
+
+
             trackSeragamClickWA() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'SeragamClickWA');
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'SeragamClickWA'
+                    );
+
                 }
+
             },
+
+
             trackClickWaAdmin() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'WaAdminClick');
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'WaAdminClick'
+                    );
+
                 }
+
             },
+
+
             trackClickIg() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'IgClick');
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'IgClick'
+                    );
+
                 }
+
             },
+
+
             trackClickTiktok() {
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'TiktokClick');
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'TiktokClick'
+                    );
+
                 }
-            },
+
+            }
 
         },
 
+
+        /* =========================================================
+           BEFORE UNMOUNT
+           ========================================================= */
+
         beforeUnmount() {
-            this.stopSlide();
+
+            this.stopProductSlide();
+
         }
 
     }).mount('#app');

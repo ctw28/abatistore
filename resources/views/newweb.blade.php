@@ -1638,7 +1638,7 @@
                             fetchCategory(CATEGORY_IDS.jubah),
                             fetchCategory(CATEGORY_IDS.kaos),
                         ]);
-
+                        console.log('Produk Koko:', koko);
                         this.kokoProducts = koko;
                         this.jubahProducts = jubah;
                         this.kaosProducts = kaos;

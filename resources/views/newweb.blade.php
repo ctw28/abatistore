@@ -471,61 +471,125 @@
         </section>
 
 
-        <!-- =========================================================
-     KATEGORI JUBAH
-     ========================================================= -->
-        <section id="cat-jubah" class="showcase category-showcase">
-            <div class="wrap">
 
-                <a href="katalog.html?kategori=jubah" class="category-banner category-banner-clean">
+        <section class="essential-section">
+            <div class="essential-wrap">
 
-                    <div class="category-banner-visual">
-                        <img src="toko.jpeg" alt="Koleksi Jubah">
-                    </div>
-
-                    <div class="category-banner-info">
-                        <div class="category-banner-icon">
-                            <img src="assets/icons/jubah.svg" alt="">
-                        </div>
-
-                        <small>KOLEKSI JUBAH</small>
-                        <h2>Jubah</h2>
-
+                <!-- Header -->
+                <div class="essential-header">
+                    <div class="essential-heading">
+                        <span class="essential-eyebrow">KOLEKSI ESENSIAL</span>
+                        <h2>Pilihan Terbaik untuk<br class="desktop-only"> Setiap Aktivitas</h2>
                         <p>
-                            Jubah dengan potongan yang nyaman dan tampilan
-                            rapi untuk ibadah, kajian, kegiatan keagamaan
-                            maupun aktivitas sehari-hari.
+                            Tampil kasual, tetap rapi dan percaya diri.
+                            Temukan pilihan pakaian untuk melengkapi gaya harian Anda.
                         </p>
-
-                        <span class="category-banner-button">
-                            Lihat Koleksi Jubah <b>→</b>
-                        </span>
                     </div>
-                </a>
-
-                <div class="showProducts">
-                    <article class="product" data-product-card v-for="product in jubahProducts" :key="product.id"
-                        @click="openModal(product); trackDetailClick(product)" style="cursor:pointer;">
-                        <div class="photo">
-                            <img :src="getImageUrl(product.image)" :alt="product.name" loading="lazy">
-
-                            <span class="discount-badge">
-                                @{{ getDiscountPercent(product) }}% OFF
-                            </span>
-                        </div>
-
-                        <strong>@{{ product.name }}</strong>
-
-                        <div class="price">
-                            <del>@{{ formatRupiah(product.price) }}</del>
-                            <b>@{{ formatRupiah(getDiscountPrice(product)) }}</b>
-                        </div>
-                    </article>
                 </div>
 
-                <div class="more">
-                    <a href="katalog.html?kategori=jubah">
-                        Lihat Semua Jubah →
+                <!-- Kartu kategori -->
+                <div class="essential-grid">
+
+                    <!-- Kaos -->
+                    <a href="/katalog?category_id=5" class="essential-card">
+                        <img src="https://abatistore.com/storage/products/S0N4UKre09fzdMMWXTZHp5JLZPo10Jnrz28xkQXB.webp"
+                            alt="Koleksi Kaos Abati Store" loading="lazy">
+
+                        <div class="essential-overlay">
+                            <div class="essential-card-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="m16 4 5 3-3 5-3-2v10H9V10l-3 2-3-5 5-3a5 5 0 0 0 8 0Z" />
+                                </svg>
+                                <span>Kaos</span>
+                            </div>
+                            <span class="essential-arrow" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Jaket -->
+                    <a href="/katalog?category_id=6" class="essential-card">
+                        <img src="https://abatistore.com/storage/products/TvOpprsGKXK27OfozNosbpcldlTRC563PSqnzqTO.webp"
+                            alt="Koleksi Jaket Abati Store" loading="lazy">
+
+                        <div class="essential-overlay">
+                            <div class="essential-card-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="m16 4 5 3-3 5-3-2v10H9V10l-3 2-3-5 5-3a5 5 0 0 0 8 0Z" />
+                                    <path d="M12 5v15M10 9h4" />
+                                </svg>
+                                <span>Jaket</span>
+                            </div>
+                            <span class="essential-arrow" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Oversize -->
+                    <a href="/katalog?category_id=7" class="essential-card">
+                        <img src="https://abatistore.com/storage/products/x2HcWyDYMwm6g4KkwG0Z6SOBLtRgzkW3yhhjKbsc.webp"
+                            alt="Koleksi Oversize Abati Store" loading="lazy">
+
+                        <div class="essential-overlay">
+                            <div class="essential-card-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="m16 4 5 3-3 5-3-2v10H9V10l-3 2-3-5 5-3a5 5 0 0 0 8 0Z" />
+                                </svg>
+                                <span>Oversize</span>
+                            </div>
+                            <span class="essential-arrow" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Kemeja -->
+                    <a href="/katalog?category_id=8" class="essential-card">
+                        <img src="https://abatistore.com/storage/products/Q51npArOY3u9el0OVleQzPZLxD3wMUsHBvA84HHx.webp"
+                            alt="Koleksi Kemeja Abati Store" loading="lazy">
+
+                        <div class="essential-overlay">
+                            <div class="essential-card-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="m8 4 4 3 4-3 5 3-3 5-3-2v10H9V10l-3 2-3-5 5-3Z" />
+                                    <path d="m9 4 3 3 3-3M12 8v12" />
+                                </svg>
+                                <span>Kemeja</span>
+                            </div>
+                            <span class="essential-arrow" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- CTA -->
+                <div class="essential-footer">
+                    <a href="/katalog" class="essential-button">
+                        Lihat Semua Koleksi Esensial
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
                     </a>
                 </div>
 
@@ -619,68 +683,6 @@
                         </div>
                     </div>
 
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- =========================================================
-     KATEGORI KAOS
-     ========================================================= -->
-        <section id="cat-kaos" class="showcase category-showcase">
-            <div class="wrap">
-
-                <a href="katalog.html?kategori=kaos" class="category-banner category-banner-clean">
-
-                    <div class="category-banner-visual">
-                        <img src="toko.jpeg" alt="Koleksi Kaos">
-                    </div>
-
-                    <div class="category-banner-info">
-                        <div class="category-banner-icon">
-                            <img src="assets/icons/kaos.svg" alt="">
-                        </div>
-
-                        <small>KOLEKSI KAOS</small>
-                        <h2>Kaos</h2>
-
-                        <p>
-                            Pilihan kaos untuk aktivitas sehari-hari
-                            dengan gaya simpel, nyaman, dan mudah
-                            dipadukan dengan berbagai outfit.
-                        </p>
-
-                        <span class="category-banner-button">
-                            Lihat Koleksi Kaos <b>→</b>
-                        </span>
-                    </div>
-                </a>
-
-                <div class="showProducts">
-                    <article class="product" data-product-card v-for="product in kaosProducts" :key="product.id"
-                        @click="openModal(product); trackDetailClick(product)" style="cursor:pointer;">
-                        <div class="photo">
-                            <img :src="getImageUrl(product.image)" :alt="product.name" loading="lazy">
-
-                            <span class="discount-badge">
-                                @{{ getDiscountPercent(product) }}% OFF
-                            </span>
-                        </div>
-
-                        <strong>@{{ product.name }}</strong>
-
-                        <div class="price">
-                            <del>@{{ formatRupiah(product.price) }}</del>
-                            <b>@{{ formatRupiah(getDiscountPrice(product)) }}</b>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="more">
-                    <a href="katalog.html?kategori=kaos">
-                        Lihat Semua Kaos →
-                    </a>
                 </div>
 
             </div>

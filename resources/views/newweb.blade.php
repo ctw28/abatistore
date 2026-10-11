@@ -1150,17 +1150,6 @@
                    PRODUK KOKO
                    ----------------------------------------------------- */
 
-                kokoProducts() {
-
-                    return this.allProducts
-                        .filter(product =>
-                            product.category &&
-                            product.category.name &&
-                            product.category.name.toLowerCase() === 'koko'
-                        )
-                        .slice(0, 6);
-
-                },
 
 
                 /* -----------------------------------------------------
@@ -1605,24 +1594,6 @@
                 /* =====================================================
                    FETCH PRODUCTS
                    ===================================================== */
-                async fetchHomepageProducts() {
-                    const baseUrl = "{{ route('product.index') }}";
-
-                    const [koko, jubah, kaos] = await Promise.all([
-                        fetch(`${baseUrl}?category_id=ID_KOKO&limit=6`)
-                        .then(res => res.json()),
-
-                        fetch(`${baseUrl}?category_id=ID_JUBAH&limit=6`)
-                        .then(res => res.json()),
-
-                        fetch(`${baseUrl}?category_id=ID_KAOS&limit=6`)
-                        .then(res => res.json())
-                    ]);
-
-                    this.kokoProducts = koko;
-                    this.jubahProducts = jubah;
-                    this.kaosProducts = kaos;
-                },
                 async fetchProducts() {
                     const url = "{{ route('product.index') }}";
 

@@ -25,7 +25,7 @@
                     </svg>
                 </button>
                 <a class="logo-img" href="/" aria-label="Abati Store">
-                    <img src="logo-abati-store-2.png" alt="Abati Store">
+                    <img src="logo-abati-store.png" alt="Abati Store">
                 </a>
                 <nav class="desktop-nav">
                     <a href="#kategori">Kategori</a><a href="#rekomendasi">Rekomendasi</a><a
@@ -46,12 +46,150 @@
                     </svg>
                 </button>
             </div>
-            <div class="mobile-menu">
-                <div class="mobile-menu-head"><strong>Kategori</strong><button class="close-menu">×</button></div>
-                <a href="#cat-koko">Baju Koko</a><a href="#cat-kurta">Kurta</a><a href="#cat-jubah">Jubah</a>
-                <a href="#cat-sarung">Sarung</a><a href="#cat-peci">Peci</a><a href="#cat-sandal">Sandal</a><a
-                    href="#offline">Toko Abati Store</a>
+            <div class="mobile-menu" id="mobileMenu">
+                <!-- Header menu -->
+                <div class="mobile-menu-head">
+                    <a href="/" class="mobile-menu-logo" aria-label="Abati Store">
+                        <img src="logo-abati-store.png" alt="Abati Store">
+                    </a>
+
+                    <button class="close-menu" type="button" aria-label="Tutup menu">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M6 6L18 18M18 6L6 18" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Kategori -->
+                <div class="mobile-menu-section">
+                    <h3>Kategori</h3>
+
+                    <nav class="mobile-menu-categories" aria-label="Kategori produk">
+                        <a href="katalog.html?kategori=koko">
+                            <span class="menu-category-icon">
+                                <img src="assets/icons/koko.svg" alt="">
+                            </span>
+                            <span class="menu-category-name">Baju Koko</span>
+                            <span class="menu-arrow">›</span>
+                        </a>
+
+                        <a href="katalog.html?kategori=kurta">
+                            <span class="menu-category-icon">
+                                <img src="assets/icons/koko.svg" alt="">
+                            </span>
+                            <span class="menu-category-name">Kurta</span>
+                            <span class="menu-arrow">›</span>
+                        </a>
+
+                        <a href="katalog.html?kategori=jubah">
+                            <span class="menu-category-icon">
+                                <img src="assets/icons/jubah.svg" alt="">
+                            </span>
+                            <span class="menu-category-name">Jubah</span>
+                            <span class="menu-arrow">›</span>
+                        </a>
+
+                        <a href="katalog.html?kategori=sarung">
+                            <span class="menu-category-icon">
+                                <img src="assets/icons/sarung.svg" alt="">
+                            </span>
+                            <span class="menu-category-name">Sarung</span>
+                            <span class="menu-arrow">›</span>
+                        </a>
+
+                        <a href="katalog.html?kategori=peci">
+                            <span class="menu-category-icon menu-symbol">◠</span>
+                            <span class="menu-category-name">Peci</span>
+                            <span class="menu-arrow">›</span>
+                        </a>
+
+                        <a href="katalog.html?kategori=sandal">
+                            <span class="menu-category-icon menu-symbol">♧</span>
+                            <span class="menu-category-name">Sandal</span>
+                            <span class="menu-arrow">›</span>
+                        </a>
+                    </nav>
+
+                    <a href="katalog.html" class="mobile-menu-all">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="4" y="4" width="6" height="6" rx="1" />
+                            <rect x="14" y="4" width="6" height="6" rx="1" />
+                            <rect x="4" y="14" width="6" height="6" rx="1" />
+                            <rect x="14" y="14" width="6" height="6" rx="1" />
+                        </svg>
+                        <span>Lihat Semua Koleksi</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+                </div>
+
+                <!-- Toko dan kontak -->
+                <div class="mobile-menu-links">
+                    <a href="#offline" class="mobile-menu-link">
+                        <span class="menu-link-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 10L12 3L21 10V21H3Z" />
+                                <path d="M9 21V14H15V21" />
+                            </svg>
+                        </span>
+
+                        <span class="menu-link-content">
+                            <strong>Toko Abati Store</strong>
+                            <small>Alamat dan lokasi toko</small>
+                        </span>
+
+                        <span class="menu-arrow">›</span>
+                    </a>
+
+                    <a href="https://wa.me/6281234567890" class="mobile-menu-link" target="_blank" rel="noopener">
+                        <span class="menu-link-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M20 11.5A8.5 8.5 0 0 1 7.4 19L3 20.5L4.5 16.3A8.5 8.5 0 1 1 20 11.5Z" />
+                                <path d="M8 8.5C8.5 11 10 12.5 12.5 14L14 12.8L16 14L15.5 16C11 16.5 7 12.5 7.5 8Z" />
+                            </svg>
+                        </span>
+
+                        <span class="menu-link-content">
+                            <strong>Hubungi Kami</strong>
+                            <small>Konsultasi produk melalui WhatsApp</small>
+                        </span>
+
+                        <span class="menu-arrow">›</span>
+                    </a>
+                </div>
+
+                <!-- Media sosial -->
+                <div class="mobile-menu-social">
+                    <p>Ikuti media sosial Abati Store</p>
+
+                    <div class="mobile-menu-social-icons">
+                        <a href="https://www.instagram.com/fadkhera.kendari/" target="_blank" rel="noopener"
+                            aria-label="Instagram Abati Store">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="5" />
+                                <circle cx="12" cy="12" r="4" />
+                                <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
+                            </svg>
+                        </a>
+
+                        <a href="https://www.tiktok.com/@fadkhera.kendari" target="_blank" rel="noopener"
+                            aria-label="TikTok Abati Store">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M14 3V15.5A4.5 4.5 0 1 1 10 11V14.5A1.5 1.5 0 1 0 11 16V3H14C14 6 16 8 19 8V11C17 11 15 10 14 9Z" />
+                            </svg>
+                        </a>
+
+                        <!-- Ganti href dengan URL halaman Facebook resmi -->
+                        <a href="URL_FACEBOOK_KAMU" target="_blank" rel="noopener" aria-label="Facebook Abati Store">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M14 21V13H17L17.5 9.5H14V7.5C14 6.5 14.5 6 15.8 6H17.5V3.1C16.7 3 15.8 3 14.8 3C11.8 3 10 4.8 10 7.8V9.5H7V13H10V21Z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
+
             <div class="menu-backdrop"></div>
         </header>
 
@@ -269,33 +407,25 @@
             </div>
         </section>
 
+
         <!-- =========================================================
      KATEGORI BAJU KOKO
      ========================================================= -->
-
-        <section class="showcase category-showcase">
-
+        <section id="cat-koko" class="showcase category-showcase">
             <div class="wrap">
 
                 <a href="katalog.html?kategori=koko" class="category-banner category-banner-clean">
 
-                    <!-- AREA FOTO -->
                     <div class="category-banner-visual">
-
                         <img src="toko.jpeg" alt="Koleksi Baju Koko">
-
                     </div>
 
-
-                    <!-- AREA INFORMASI -->
                     <div class="category-banner-info">
-
                         <div class="category-banner-icon">
                             <img src="assets/icons/koko.svg" alt="">
                         </div>
 
                         <small>KOLEKSI BAJU KOKO</small>
-
                         <h2>Baju Koko</h2>
 
                         <p>
@@ -306,72 +436,30 @@
                         </p>
 
                         <span class="category-banner-button">
-                            Lihat Selengkapnya
-                            <b>→</b>
+                            Lihat Koleksi Baju Koko <b>→</b>
                         </span>
-
                     </div>
-
                 </a>
 
-
-                <!-- =================================================
-             PRODUK KOKO
-             ================================================= -->
-
                 <div class="showProducts">
-
-                    <article class="product" data-product-card v-for="product in [...featuredProducts, ...otherProducts]
-            
-            .slice(0, 6)" :key="product.id" @click="openModal(product); trackDetailClick(product)"
-                        style="cursor:pointer;">
-
-                        <!-- FOTO -->
+                    <article class="product" data-product-card v-for="product in kokoProducts" :key="product.id"
+                        @click="openModal(product); trackDetailClick(product)" style="cursor:pointer;">
                         <div class="photo">
+                            <img :src="getImageUrl(product.image)" :alt="product.name" loading="lazy">
 
-                            <img :src="getImageUrl(product.image)" :alt="product.name">
-
-                            <!-- BADGE -->
-                            <span v-if="!product.is_habis" class="discount-badge">
+                            <span class="discount-badge">
                                 @{{ getDiscountPercent(product) }}% OFF
                             </span>
-
-                            <!-- HABIS -->
-                            <span v-else class="discount-badge" style="background:#222;">
-                                HABIS
-                            </span>
-
-                            <!-- OVERLAY HABIS -->
-                            <div v-if="product.is_habis" class="product-habis">
-                                HABIS
-                            </div>
-
                         </div>
 
+                        <strong>@{{ product.name }}</strong>
 
-                        <!-- NAMA -->
-                        <strong>
-                            @{{ product.name }}
-                        </strong>
-
-
-                        <!-- HARGA -->
                         <div class="price">
-
-                            <del>
-                                @{{ formatRupiah(product.price) }}
-                            </del>
-
-                            <b>
-                                @{{ formatRupiah(getDiscountPrice(product)) }}
-                            </b>
-
+                            <del>@{{ formatRupiah(product.price) }}</del>
+                            <b>@{{ formatRupiah(getDiscountPrice(product)) }}</b>
                         </div>
-
                     </article>
-
                 </div>
-
 
                 <div class="more">
                     <a href="katalog.html?kategori=koko">
@@ -380,19 +468,73 @@
                 </div>
 
             </div>
-
         </section>
-        <!-- =========================================================
-        KATEGORI PRODUK - BAJU KOKO
-        ========================================================= -->
-        <!-- PRODUK KOKO -->
 
+
+        <!-- =========================================================
+     KATEGORI JUBAH
+     ========================================================= -->
+        <section id="cat-jubah" class="showcase category-showcase">
+            <div class="wrap">
+
+                <a href="katalog.html?kategori=jubah" class="category-banner category-banner-clean">
+
+                    <div class="category-banner-visual">
+                        <img src="toko.jpeg" alt="Koleksi Jubah">
+                    </div>
+
+                    <div class="category-banner-info">
+                        <div class="category-banner-icon">
+                            <img src="assets/icons/jubah.svg" alt="">
+                        </div>
+
+                        <small>KOLEKSI JUBAH</small>
+                        <h2>Jubah</h2>
+
+                        <p>
+                            Jubah dengan potongan yang nyaman dan tampilan
+                            rapi untuk ibadah, kajian, kegiatan keagamaan
+                            maupun aktivitas sehari-hari.
+                        </p>
+
+                        <span class="category-banner-button">
+                            Lihat Koleksi Jubah <b>→</b>
+                        </span>
+                    </div>
+                </a>
+
+                <div class="showProducts">
+                    <article class="product" data-product-card v-for="product in jubahProducts" :key="product.id"
+                        @click="openModal(product); trackDetailClick(product)" style="cursor:pointer;">
+                        <div class="photo">
+                            <img :src="getImageUrl(product.image)" :alt="product.name" loading="lazy">
+
+                            <span class="discount-badge">
+                                @{{ getDiscountPercent(product) }}% OFF
+                            </span>
+                        </div>
+
+                        <strong>@{{ product.name }}</strong>
+
+                        <div class="price">
+                            <del>@{{ formatRupiah(product.price) }}</del>
+                            <b>@{{ formatRupiah(getDiscountPrice(product)) }}</b>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="more">
+                    <a href="katalog.html?kategori=jubah">
+                        Lihat Semua Jubah →
+                    </a>
+                </div>
+
+            </div>
+        </section>
 
 
         <!-- 8. BELANJA OFFLINE -->
-        <!-- =========================================================
-     8. BELANJA OFFLINE
-     ========================================================= -->
+        <!-- ========================================================= -->
         <section id="offline" class="offline-store">
             <div class="wrap">
 
@@ -435,73 +577,46 @@
 
                     <!-- SUASANA TOKO & PELANGGAN -->
                     <div class="store-gallery">
-
-                        <div class="offline-heading">
-                            <div>
-                                <small>KENALAN DENGAN TOKO KAMI</small>
-
-                                <h3>Suasana Toko & Pelanggan Kami</h3>
-
-                                <p>
-                                    Kalau ingin datang langsung, berikut gambaran
-                                    suasana belanja di Abati Store.
-                                </p>
-                            </div>
-
-                            <a href="https://www.google.com/maps/search/?api=1&query=Abati+Store+Kendari"
-                                target="_blank">
-                                Buka Maps →
-                            </a>
-                        </div>
-
-
                         <div class="gallery-grid">
-
                             <!-- FOTO PELANGGAN 1 -->
-                            <button class="gallery-item" type="button" onclick="openStoreImage(
-                                'assets/pelanggan/pelanggan-1.jpg',
-                                'Pelanggan Abati Store'
-                            )">
-
-                                <img src="assets/pelanggan/pelanggan-1.jpg" alt="Pelanggan Abati Store">
-
+                            <button class="gallery-item" type="button"
+                                onclick="openStoreImage('toko1.jpeg','Pelanggan Abati Store')">
+                                <img src="toko4.jpeg" alt="Pelanggan Abati Store">
                             </button>
 
 
                             <!-- FOTO PELANGGAN 2 -->
-                            <button class="gallery-item" type="button" onclick="openStoreImage(
-                                'assets/pelanggan/pelanggan-2.jpg',
-                                'Pelanggan Abati Store'
-                            )">
-
-                                <img src="assets/pelanggan/pelanggan-2.jpg" alt="Pelanggan Abati Store">
-
+                            <button class="gallery-item" type="button"
+                                onclick="openStoreImage('toko2.jpeg','Pelanggan Abati Store')">
+                                <img src="toko2.jpeg" alt="Pelanggan Abati Store">
                             </button>
-
 
                             <!-- FOTO PELANGGAN 3 -->
-                            <button class="gallery-item" type="button" onclick="openStoreImage(
-                                'assets/pelanggan/pelanggan-3.jpg',
-                                'Pelanggan Abati Store'
-                            )">
-
-                                <img src="assets/pelanggan/pelanggan-3.jpg" alt="Pelanggan Abati Store">
+                            <button class="gallery-item" type="button"
+                                onclick="openStoreImage('toko3.jpeg','Pelanggan Abati Store')">
+                                <img src="toko3.jpeg" alt="Pelanggan Abati Store">
 
                             </button>
 
-
                             <!-- FOTO PELANGGAN 4 -->
-                            <button class="gallery-item" type="button" onclick="openStoreImage(
-                                'assets/pelanggan/pelanggan-4.jpg',
-                                'Pelanggan Abati Store'
-                            )">
+                            <button class="gallery-item" type="button"
+                                onclick="openStoreImage('toko4.jpeg','Pelanggan Abati Store')">
+                                <img src="toko4.jpeg" alt="Pelanggan Abati Store">s
+                            </button>
+                            <!-- FOTO PELANGGAN 5 -->
+                            <button class="gallery-item" type="button"
+                                onclick="openStoreImage('toko3.jpeg','Pelanggan Abati Store')">
+                                <img src="toko3.jpeg" alt="Pelanggan Abati Store">
 
-                                <img src="assets/pelanggan/pelanggan-4.jpg" alt="Pelanggan Abati Store">
+                            </button>
 
+                            <!-- FOTO PELANGGAN 6 -->
+                            <button class="gallery-item" type="button"
+                                onclick="openStoreImage('toko4.jpeg','Pelanggan Abati Store')">
+                                <img src="toko4.jpeg" alt="Pelanggan Abati Store">s
                             </button>
 
                         </div>
-
                     </div>
 
                 </div>
@@ -509,6 +624,67 @@
             </div>
         </section>
 
+
+        <!-- =========================================================
+     KATEGORI KAOS
+     ========================================================= -->
+        <section id="cat-kaos" class="showcase category-showcase">
+            <div class="wrap">
+
+                <a href="katalog.html?kategori=kaos" class="category-banner category-banner-clean">
+
+                    <div class="category-banner-visual">
+                        <img src="toko.jpeg" alt="Koleksi Kaos">
+                    </div>
+
+                    <div class="category-banner-info">
+                        <div class="category-banner-icon">
+                            <img src="assets/icons/kaos.svg" alt="">
+                        </div>
+
+                        <small>KOLEKSI KAOS</small>
+                        <h2>Kaos</h2>
+
+                        <p>
+                            Pilihan kaos untuk aktivitas sehari-hari
+                            dengan gaya simpel, nyaman, dan mudah
+                            dipadukan dengan berbagai outfit.
+                        </p>
+
+                        <span class="category-banner-button">
+                            Lihat Koleksi Kaos <b>→</b>
+                        </span>
+                    </div>
+                </a>
+
+                <div class="showProducts">
+                    <article class="product" data-product-card v-for="product in kaosProducts" :key="product.id"
+                        @click="openModal(product); trackDetailClick(product)" style="cursor:pointer;">
+                        <div class="photo">
+                            <img :src="getImageUrl(product.image)" :alt="product.name" loading="lazy">
+
+                            <span class="discount-badge">
+                                @{{ getDiscountPercent(product) }}% OFF
+                            </span>
+                        </div>
+
+                        <strong>@{{ product.name }}</strong>
+
+                        <div class="price">
+                            <del>@{{ formatRupiah(product.price) }}</del>
+                            <b>@{{ formatRupiah(getDiscountPrice(product)) }}</b>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="more">
+                    <a href="katalog.html?kategori=kaos">
+                        Lihat Semua Kaos →
+                    </a>
+                </div>
+
+            </div>
+        </section>
 
 
         <!-- 9. SERAGAM -->
@@ -533,21 +709,33 @@
             </div>
         </section>
 
+
         <section id="promo">
             <div class="wrap">
-                <div
-                    style="background:var(--cream);border-radius:14px;padding:25px;display:flex;align-items:center;justify-content:space-between;gap:20px">
-                    <div>
-                        <h2>Belanja di Abati Store</h2>
-                        <p style="color:#777;font-size:12px">Cek koleksi dari rumah, lihat ukuran yang ready, lalu chat
-                            kami
-                            jika sudah menemukan yang cocok.</p>
-                    </div><button class="wa">Chat WhatsApp</button>
+                <div class="promo-box">
+                    <div class="promo-text">
+                        <h2>Belanja Dari Rumah Sekarang!</h2>
+                        <p>
+                            Cek koleksi dari rumah, lihat ukuran yang ready,
+                            lalu chat kami jika sudah menemukan yang cocok.
+                        </p>
+                    </div>
+
+                    <div class="promo-actions">
+                        <a class="promo-wa" href="https://wa.me/6281234567890" target="_blank" rel="noopener">
+                            Chat WhatsApp Sekarang
+                        </a>
+
+                        <a class="promo-catalog" href="katalog.html">
+                            Lihat Koleksi Sekarang
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <a class="floating-wa" href="https://wa.me/6281234567890" target="_blank" aria-label="Chat WhatsApp"><span>Ada
+
+        <a class="floating-wa" href="https://wa.me/6285241800852" target="_blank" aria-label="Chat WhatsApp"><span>Ada
                 yang
                 ingin ditanyakan?</span>✆</a>
         <footer>
@@ -586,1157 +774,1108 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <script>
-    /* =========================================================
+        /* =========================================================
    1. HOMEPAGE UI
    Slider + Menu Mobile + Search Mobile
    ========================================================= */
 
-    function initHomepageUI() {
+        function initHomepageUI() {
 
-        /* ---------------------------------------------------------
-           SLIDER
-           --------------------------------------------------------- */
+            /* ---------------------------------------------------------
+               SLIDER
+               --------------------------------------------------------- */
 
-        const slider = document.querySelector('.slider');
+            const slider = document.querySelector('.slider');
 
-        if (slider) {
+            if (slider) {
 
-            const slides = [...slider.querySelectorAll('.slide')];
-            const dots = [...slider.querySelectorAll('.dot')];
-            const nextButton = slider.querySelector('.next');
-            const prevButton = slider.querySelector('.prev');
+                const slides = [...slider.querySelectorAll('.slide')];
+                const dots = [...slider.querySelectorAll('.dot')];
+                const nextButton = slider.querySelector('.next');
+                const prevButton = slider.querySelector('.prev');
 
-            let currentSlide = 0;
-            let sliderTimer = null;
+                let currentSlide = 0;
+                let sliderTimer = null;
 
-            function showSlide(index) {
+                function showSlide(index) {
 
-                if (!slides.length) return;
+                    if (!slides.length) return;
 
-                currentSlide =
-                    (index + slides.length) % slides.length;
+                    currentSlide =
+                        (index + slides.length) % slides.length;
 
-                slides.forEach((slide, index) => {
-                    slide.classList.toggle(
-                        'on',
-                        index === currentSlide
-                    );
-                });
+                    slides.forEach((slide, index) => {
+                        slide.classList.toggle(
+                            'on',
+                            index === currentSlide
+                        );
+                    });
 
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle(
-                        'on',
-                        index === currentSlide
-                    );
-                });
-            }
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle(
+                            'on',
+                            index === currentSlide
+                        );
+                    });
+                }
 
 
-            function startSlider() {
+                function startSlider() {
 
-                clearInterval(sliderTimer);
+                    clearInterval(sliderTimer);
 
-                if (slides.length <= 1) return;
+                    if (slides.length <= 1) return;
 
-                sliderTimer = setInterval(() => {
+                    sliderTimer = setInterval(() => {
+                        showSlide(currentSlide + 1);
+                    }, 5000);
+                }
+
+
+                nextButton?.addEventListener('click', () => {
+
                     showSlide(currentSlide + 1);
-                }, 5000);
-            }
-
-
-            nextButton?.addEventListener('click', () => {
-
-                showSlide(currentSlide + 1);
-                startSlider();
-
-            });
-
-
-            prevButton?.addEventListener('click', () => {
-
-                showSlide(currentSlide - 1);
-                startSlider();
-
-            });
-
-
-            dots.forEach((dot, index) => {
-
-                dot.addEventListener('click', () => {
-
-                    showSlide(index);
                     startSlider();
 
                 });
 
-            });
 
+                prevButton?.addEventListener('click', () => {
 
-            showSlide(0);
-            startSlider();
-
-
-            /*
-             * Hentikan autoplay ketika mouse berada
-             * di atas slider.
-             */
-            slider.addEventListener('mouseenter', () => {
-                clearInterval(sliderTimer);
-            });
-
-
-            slider.addEventListener('mouseleave', () => {
-                startSlider();
-            });
-
-
-            /*
-             * Support swipe sederhana untuk HP.
-             */
-            let touchStartX = 0;
-
-            slider.addEventListener('touchstart', event => {
-
-                touchStartX =
-                    event.touches[0].clientX;
-
-            }, {
-                passive: true
-            });
-
-
-            slider.addEventListener('touchend', event => {
-
-                const touchEndX =
-                    event.changedTouches[0].clientX;
-
-                const distance =
-                    touchEndX - touchStartX;
-
-                if (Math.abs(distance) < 50) return;
-
-                if (distance < 0) {
-                    showSlide(currentSlide + 1);
-                } else {
                     showSlide(currentSlide - 1);
-                }
+                    startSlider();
 
+                });
+
+
+                dots.forEach((dot, index) => {
+
+                    dot.addEventListener('click', () => {
+
+                        showSlide(index);
+                        startSlider();
+
+                    });
+
+                });
+
+
+                showSlide(0);
                 startSlider();
 
-            }, {
-                passive: true
+
+                /*
+                 * Hentikan autoplay ketika mouse berada
+                 * di atas slider.
+                 */
+                slider.addEventListener('mouseenter', () => {
+                    clearInterval(sliderTimer);
+                });
+
+
+                slider.addEventListener('mouseleave', () => {
+                    startSlider();
+                });
+
+
+                /*
+                 * Support swipe sederhana untuk HP.
+                 */
+                let touchStartX = 0;
+
+                slider.addEventListener('touchstart', event => {
+
+                    touchStartX =
+                        event.touches[0].clientX;
+
+                }, {
+                    passive: true
+                });
+
+
+                slider.addEventListener('touchend', event => {
+
+                    const touchEndX =
+                        event.changedTouches[0].clientX;
+
+                    const distance =
+                        touchEndX - touchStartX;
+
+                    if (Math.abs(distance) < 50) return;
+
+                    if (distance < 0) {
+                        showSlide(currentSlide + 1);
+                    } else {
+                        showSlide(currentSlide - 1);
+                    }
+
+                    startSlider();
+
+                }, {
+                    passive: true
+                });
+            }
+
+
+            /* ---------------------------------------------------------
+               MENU MOBILE
+               --------------------------------------------------------- */
+
+            /* =====================================================
+   MENU MOBILE — ABATI STORE
+   ===================================================== */
+
+            const menuButton = document.querySelector('.menu');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const menuBackdrop = document.querySelector('.menu-backdrop');
+            const closeMenuButton = document.querySelector('.close-menu');
+
+            function openMobileMenu() {
+                if (!mobileMenu || !menuBackdrop) return;
+
+                mobileMenu.classList.add('open');
+                menuBackdrop.classList.add('open');
+
+                document.body.classList.add('menu-open');
+                document.body.style.overflow = 'hidden';
+
+                menuButton?.setAttribute('aria-expanded', 'true');
+                closeMenuButton?.focus();
+            }
+
+            function closeMobileMenu() {
+                if (!mobileMenu || !menuBackdrop) return;
+
+                mobileMenu.classList.remove('open');
+                menuBackdrop.classList.remove('open');
+
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+
+                menuButton?.setAttribute('aria-expanded', 'false');
+            }
+
+            menuButton?.addEventListener('click', openMobileMenu);
+            closeMenuButton?.addEventListener('click', closeMobileMenu);
+            menuBackdrop?.addEventListener('click', closeMobileMenu);
+
+            mobileMenu?.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
             });
-        }
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape') {
+                    closeMobileMenu();
+                }
+            });
 
 
-        /* ---------------------------------------------------------
-           MENU MOBILE
-           --------------------------------------------------------- */
+            /* ---------------------------------------------------------
+               SEARCH MOBILE
+               --------------------------------------------------------- */
 
-        const menuButton =
-            document.querySelector('.menu');
+            const searchButton =
+                document.querySelector('.mobile-search-toggle');
 
-        const mobileMenu =
-            document.querySelector('.mobile-menu');
+            const searchPanel =
+                document.querySelector('.mobile-search-panel');
 
-        const menuBackdrop =
-            document.querySelector('.menu-backdrop');
-
-        const closeMenuButton =
-            document.querySelector('.close-menu');
+            const searchInput =
+                document.querySelector('#mobileSearchInput');
 
 
-        function openMobileMenu() {
+            function setMobileSearch(open) {
 
-            if (!mobileMenu || !menuBackdrop) return;
+                if (!searchPanel) return;
 
-            mobileMenu.classList.add('open');
-            menuBackdrop.classList.add('open');
+                searchPanel.classList.toggle(
+                    'open',
+                    open
+                );
 
-            document.body.style.overflow = 'hidden';
-        }
+                searchPanel.setAttribute(
+                    'aria-hidden',
+                    String(!open)
+                );
 
-
-        function closeMobileMenu() {
-
-            if (!mobileMenu || !menuBackdrop) return;
-
-            mobileMenu.classList.remove('open');
-            menuBackdrop.classList.remove('open');
-
-            document.body.style.overflow = '';
-        }
+                searchButton?.setAttribute(
+                    'aria-expanded',
+                    String(open)
+                );
 
 
-        menuButton?.addEventListener(
-            'click',
-            openMobileMenu
-        );
+                if (open) {
+
+                    setTimeout(() => {
+                        searchInput?.focus();
+                    }, 100);
+
+                }
+
+            }
 
 
-        closeMenuButton?.addEventListener(
-            'click',
-            closeMobileMenu
-        );
-
-
-        menuBackdrop?.addEventListener(
-            'click',
-            closeMobileMenu
-        );
-
-
-        mobileMenu?.querySelectorAll('a').forEach(link => {
-
-            link.addEventListener(
+            searchButton?.addEventListener(
                 'click',
-                closeMobileMenu
-            );
+                () => {
 
-        });
+                    const isOpen =
+                        searchPanel?.classList.contains('open');
 
+                    setMobileSearch(!isOpen);
 
-        /* ---------------------------------------------------------
-           SEARCH MOBILE
-           --------------------------------------------------------- */
-
-        const searchButton =
-            document.querySelector('.mobile-search-toggle');
-
-        const searchPanel =
-            document.querySelector('.mobile-search-panel');
-
-        const searchInput =
-            document.querySelector('#mobileSearchInput');
-
-
-        function setMobileSearch(open) {
-
-            if (!searchPanel) return;
-
-            searchPanel.classList.toggle(
-                'open',
-                open
-            );
-
-            searchPanel.setAttribute(
-                'aria-hidden',
-                String(!open)
-            );
-
-            searchButton?.setAttribute(
-                'aria-expanded',
-                String(open)
+                }
             );
 
 
-            if (open) {
-
-                setTimeout(() => {
-                    searchInput?.focus();
-                }, 100);
-
-            }
-
-        }
-
-
-        searchButton?.addEventListener(
-            'click',
-            () => {
-
-                const isOpen =
-                    searchPanel?.classList.contains('open');
-
-                setMobileSearch(!isOpen);
-
-            }
-        );
-
-
-        document.addEventListener(
-            'click',
-            event => {
-
-                if (!searchPanel?.classList.contains('open')) {
-                    return;
-                }
-
-                const clickedInsidePanel =
-                    searchPanel.contains(event.target);
-
-                const clickedButton =
-                    searchButton?.contains(event.target);
-
-                if (
-                    !clickedInsidePanel &&
-                    !clickedButton
-                ) {
-                    setMobileSearch(false);
-                }
-
-            }
-        );
-
-
-        /* ---------------------------------------------------------
-           ESCAPE
-           --------------------------------------------------------- */
-
-        document.addEventListener(
-            'keydown',
-            event => {
-
-                if (event.key !== 'Escape') return;
-
-                closeMobileMenu();
-                setMobileSearch(false);
-
-            }
-        );
-    }
-
-
-    /* =========================================================
-       2. VUE APP
-       ========================================================= */
-
-    const {
-        createApp
-    } = Vue;
-
-
-    createApp({
-
-        /* ---------------------------------------------------------
-           DATA
-           --------------------------------------------------------- */
-
-        data() {
-
-            return {
-
-                featuredProducts: [],
-                otherProducts: [],
-
-                categories: [],
-
-                selectedProduct: {},
-
-                selectedCategory: null,
-
-                visibleCount: 500,
-
-                activeImageIndex: 0,
-
-                slideInterval: null,
-
-                stockFilter: 'available',
-
-            };
-
-        },
-
-
-        /* ---------------------------------------------------------
-           MOUNTED
-           --------------------------------------------------------- */
-
-        mounted() {
-
-            this.fetchProducts();
-
-            /*
-             * PENTING:
-             * UI seperti slider/menu/search diinisialisasi
-             * SETELAH Vue selesai melakukan mount.
-             *
-             * Ini yang memperbaiki masalah slider sebelumnya.
-             */
-            this.$nextTick(() => {
-
-                initHomepageUI();
-
-            });
-
-        },
-
-
-        /* =========================================================
-           COMPUTED
-           ========================================================= */
-
-        computed: {
-
-            /* -----------------------------------------------------
-               SEMUA PRODUK
-               ----------------------------------------------------- */
-
-            allProducts() {
-
-                return [
-                    ...this.featuredProducts,
-                    ...this.otherProducts
-                ];
-
-            },
-
-
-            /* -----------------------------------------------------
-               PRODUK KOKO
-               ----------------------------------------------------- */
-
-            kokoProducts() {
-
-                return this.allProducts
-                    .filter(product =>
-                        product.category &&
-                        product.category.name &&
-                        product.category.name.toLowerCase() === 'koko'
-                    )
-                    .slice(0, 6);
-
-            },
-
-
-            /* -----------------------------------------------------
-               PRODUK JUBAH
-               ----------------------------------------------------- */
-
-            jubahProducts() {
-
-                return this.allProducts
-                    .filter(product =>
-                        product.category &&
-                        product.category.name &&
-                        product.category.name.toLowerCase() === 'jubah'
-                    )
-                    .slice(0, 6);
-
-            },
-
-
-            /* -----------------------------------------------------
-               PRODUK JAKET
-               ----------------------------------------------------- */
-
-            jaketProducts() {
-
-                return this.allProducts
-                    .filter(product =>
-                        product.category &&
-                        product.category.name &&
-                        product.category.name.toLowerCase() === 'jaket'
-                    )
-                    .slice(0, 6);
-
-            },
-
-
-            /* -----------------------------------------------------
-               PRODUK OVERSIZE
-               ----------------------------------------------------- */
-
-            oversizeProducts() {
-
-                return this.allProducts
-                    .filter(product =>
-                        product.category &&
-                        product.category.name &&
-                        product.category.name.toLowerCase() === 'oversize'
-                    )
-                    .slice(0, 6);
-
-            },
-
-
-            /* -----------------------------------------------------
-               PRODUK KAOS
-               ----------------------------------------------------- */
-
-            kaosProducts() {
-
-                return this.allProducts
-                    .filter(product =>
-                        product.category &&
-                        product.category.name &&
-                        product.category.name.toLowerCase() === 'kaos'
-                    )
-                    .slice(0, 6);
-
-            },
-
-
-            /* -----------------------------------------------------
-               PRODUK KEMEJA
-               ----------------------------------------------------- */
-
-            kemejaProducts() {
-
-                return this.allProducts
-                    .filter(product =>
-                        product.category &&
-                        product.category.name &&
-                        product.category.name.toLowerCase() === 'kemeja'
-                    )
-                    .slice(0, 6);
-
-            },
-
-
-            /* -----------------------------------------------------
-               PRODUK SARUNG
-               ----------------------------------------------------- */
-
-            sarungProducts() {
-
-                return this.allProducts
-                    .filter(product =>
-                        product.category &&
-                        product.category.name &&
-                        product.category.name.toLowerCase() === 'sarung'
-                    )
-                    .slice(0, 6);
-
-            },
-
-
-            /* -----------------------------------------------------
-               UKURAN PRODUK DETAIL
-               ----------------------------------------------------- */
-
-            availableSizes() {
-
-                return this.selectedProduct?.stocks
-                    ?.filter(item => item.stock > 0) ?? [];
-
-            },
-
-
-            /* -----------------------------------------------------
-               FILTER KATALOG / MODAL
-               ----------------------------------------------------- */
-
-            filteredProducts() {
-
-                let products = [
-                    ...this.featuredProducts,
-                    ...this.otherProducts
-                ];
-
-
-                /* Produk habis */
-
-                if (this.stockFilter === 'out') {
-
-                    return products.filter(
-                        product => product.is_habis
-                    );
-
-                }
-
-
-                /* Filter kategori */
-
-                if (this.selectedCategory) {
-
-                    products = products.filter(
-                        product =>
-                        product.category &&
-                        product.category.id ===
-                        this.selectedCategory
-                    );
-
-                }
-
-
-                /* Hanya produk tersedia */
-
-                products = products.filter(
-                    product => !product.is_habis
-                );
-
-
-                return products;
-
-            },
-
-
-            visibleProducts() {
-
-                return this.filteredProducts.slice(
-                    0,
-                    this.visibleCount
-                );
-
-            },
-
-
-            /* -----------------------------------------------------
-               GAMBAR PRODUK DETAIL
-               ----------------------------------------------------- */
-
-            allImages() {
-
-                if (!this.selectedProduct) {
-                    return [];
-                }
-
-
-                const mainImage =
-                    this.selectedProduct.image ? [this.selectedProduct.image] : [];
-
-
-                const otherImages =
-                    this.selectedProduct.images
-                    ?.map(image => image.image) || [];
-
-
-                return [
-                    ...mainImage,
-                    ...otherImages
-                ];
-
-            },
-
-
-            activeImage() {
-
-                return (
-                    this.allImages[
-                        this.activeImageIndex
-                    ] || ''
-                );
-
-            }
-
-        },
-
-
-        /* =========================================================
-           METHODS
-           ========================================================= */
-
-        methods: {
-
-            /* -----------------------------------------------------
-               DISKON
-               ----------------------------------------------------- */
-
-            getDiscountPercent(product) {
-
-                const category =
-                    product.category?.name
-                    ?.toLowerCase() || '';
-
-
-                if (
-                    category === 'koko' ||
-                    category === 'kurta' ||
-                    category === 'celana' ||
-                    category === 'jacket'
-                ) {
-
-                    return 10;
-
-                }
-
-
-                return 5;
-
-            },
-
-
-            getDiscountPrice(product) {
-
-                const discount =
-                    this.getDiscountPercent(product);
-
-                const price =
-                    Number(product.price) || 0;
-
-
-                return price -
-                    (price * discount / 100);
-
-            },
-
-
-            /* -----------------------------------------------------
-               FILTER
-               ----------------------------------------------------- */
-
-            changeStock(type) {
-
-                this.stockFilter = type;
-
-                this.selectedCategory = null;
-
-            },
-
-
-            changeCategory(categoryId) {
-
-                this.stockFilter = 'available';
-
-                this.selectedCategory =
-                    categoryId;
-
-                this.visibleCount = 500;
-
-            },
-
-
-            loadMore() {
-
-                this.visibleCount += 500;
-
-            },
-
-
-            /* -----------------------------------------------------
-               IMAGE
-               ----------------------------------------------------- */
-
-            getImageUrl(path) {
-
-                if (!path) {
-                    return '/assets/no-image.png';
-                }
-
-                return `/storage/${path}`;
-
-            },
-
-
-            getFile(path) {
-
-                return path || '';
-
-            },
-
-
-            /* -----------------------------------------------------
-               FORMAT RUPIAH
-               ----------------------------------------------------- */
-
-            formatRupiah(value) {
-
-                const number =
-                    Number(value);
-
-                if (isNaN(number)) {
-                    return value;
-                }
-
-
-                return 'Rp ' +
-                    number.toLocaleString('id-ID');
-
-            },
-
-
-            /* =====================================================
-               PRODUCT MODAL
-               ===================================================== */
-
-            openModal(product) {
-
-                this.selectedProduct = product;
-
-                this.activeImageIndex = 0;
-
-                this.startProductSlide();
-
-
-                const modalElement =
-                    document.getElementById(
-                        'productModal'
-                    );
-
-
-                if (!modalElement) return;
-
-
-                const modal =
-                    new bootstrap.Modal(
-                        modalElement
-                    );
-
-
-                modal.show();
-
-            },
-
-
-            nextImage() {
-
-                if (this.allImages.length <= 1) {
-                    return;
-                }
-
-
-                this.activeImageIndex =
-                    (
-                        this.activeImageIndex + 1
-                    ) %
-                    this.allImages.length;
-
-            },
-
-
-            prevImage() {
-
-                if (this.allImages.length <= 1) {
-                    return;
-                }
-
-
-                this.activeImageIndex =
-                    (
-                        this.activeImageIndex -
-                        1 +
-                        this.allImages.length
-                    ) %
-                    this.allImages.length;
-
-            },
-
-
-            startProductSlide() {
-
-                this.stopProductSlide();
-
-
-                if (this.allImages.length <= 1) {
-                    return;
-                }
-
-
-                this.slideInterval =
-                    setInterval(() => {
-
-                        this.nextImage();
-
-                    }, 5000);
-
-            },
-
-
-            stopProductSlide() {
-
-                if (this.slideInterval) {
-
-                    clearInterval(
-                        this.slideInterval
-                    );
-
-                    this.slideInterval = null;
-
-                }
-
-            },
-
-
-            /* =====================================================
-               FETCH PRODUCTS
-               ===================================================== */
-
-            async fetchProducts() {
-
-                try {
-
-                    const url =
-                        "{{ route('product.index') }}";
-
-
-                    const [
-                        featuredResponse,
-                        otherResponse
-                    ] = await Promise.all([
-
-                        fetch(
-                            `${url}?is_featured=1`
-                        ),
-
-                        fetch(
-                            `${url}?is_featured=0`
-                        )
-
-                    ]);
-
+            document.addEventListener(
+                'click',
+                event => {
+
+                    if (!searchPanel?.classList.contains('open')) {
+                        return;
+                    }
+
+                    const clickedInsidePanel =
+                        searchPanel.contains(event.target);
+
+                    const clickedButton =
+                        searchButton?.contains(event.target);
 
                     if (
-                        !featuredResponse.ok ||
-                        !otherResponse.ok
+                        !clickedInsidePanel &&
+                        !clickedButton
                     ) {
+                        setMobileSearch(false);
+                    }
 
-                        throw new Error(
-                            'Gagal mengambil data produk.'
+                }
+            );
+
+
+            /* ---------------------------------------------------------
+               ESCAPE
+               --------------------------------------------------------- */
+
+            document.addEventListener(
+                'keydown',
+                event => {
+
+                    if (event.key !== 'Escape') return;
+
+                    closeMobileMenu();
+                    setMobileSearch(false);
+
+                }
+            );
+        }
+
+
+        /* =========================================================
+           2. VUE APP
+           ========================================================= */
+
+        const {
+            createApp
+        } = Vue;
+
+
+        createApp({
+
+            /* ---------------------------------------------------------
+               DATA
+               --------------------------------------------------------- */
+
+            data() {
+
+                return {
+
+                    featuredProducts: [],
+                    otherProducts: [],
+                    categories: [],
+                    selectedProduct: {},
+                    selectedCategory: null,
+                    visibleCount: 500,
+                    activeImageIndex: 0,
+                    slideInterval: null,
+                    stockFilter: 'available',
+                    kokoProducts: [],
+                    jubahProducts: [],
+                    kaosProducts: [],
+                };
+            },
+
+
+            /* ---------------------------------------------------------
+            MOUNTED
+            --------------------------------------------------------- */
+
+            mounted() {
+
+                // this.fetchHomepageProducts();
+                this.fetchProducts();
+                /*
+                 * PENTING:
+                 * UI seperti slider/menu/search diinisialisasi
+                 * SETELAH Vue selesai melakukan mount.
+                 *
+                 * Ini yang memperbaiki masalah slider sebelumnya.
+                 */
+                this.$nextTick(() => {
+                    initHomepageUI();
+                });
+
+            },
+
+
+            /* =========================================================
+               COMPUTED
+               ========================================================= */
+
+            computed: {
+                /* -----------------------------------------------------
+                   SEMUA PRODUK
+                   ----------------------------------------------------- */
+                allProducts() {
+
+                    return [
+                        ...this.featuredProducts,
+                        ...this.otherProducts
+                    ];
+
+                },
+
+
+                /* -----------------------------------------------------
+                   PRODUK KOKO
+                   ----------------------------------------------------- */
+
+                kokoProducts() {
+
+                    return this.allProducts
+                        .filter(product =>
+                            product.category &&
+                            product.category.name &&
+                            product.category.name.toLowerCase() === 'koko'
+                        )
+                        .slice(0, 6);
+
+                },
+
+
+                /* -----------------------------------------------------
+                   PRODUK JUBAH
+                   ----------------------------------------------------- */
+
+                jubahProducts() {
+
+                    return this.allProducts
+                        .filter(product =>
+                            product.category &&
+                            product.category.name &&
+                            product.category.name.toLowerCase() === 'jubah'
+                        )
+                        .slice(0, 6);
+
+                },
+
+
+                /* -----------------------------------------------------
+                   PRODUK JAKET
+                   ----------------------------------------------------- */
+
+                jaketProducts() {
+
+                    return this.allProducts
+                        .filter(product =>
+                            product.category &&
+                            product.category.name &&
+                            product.category.name.toLowerCase() === 'jaket'
+                        )
+                        .slice(0, 6);
+
+                },
+
+
+                /* -----------------------------------------------------
+                   PRODUK OVERSIZE
+                   ----------------------------------------------------- */
+
+                oversizeProducts() {
+
+                    return this.allProducts
+                        .filter(product =>
+                            product.category &&
+                            product.category.name &&
+                            product.category.name.toLowerCase() === 'oversize'
+                        )
+                        .slice(0, 6);
+
+                },
+
+
+                /* -----------------------------------------------------
+                   PRODUK KAOS
+                   ----------------------------------------------------- */
+
+                kaosProducts() {
+
+                    return this.allProducts
+                        .filter(product =>
+                            product.category &&
+                            product.category.name &&
+                            product.category.name.toLowerCase() === 'kaos'
+                        )
+                        .slice(0, 6);
+
+                },
+
+
+                /* -----------------------------------------------------
+                   PRODUK KEMEJA
+                   ----------------------------------------------------- */
+
+                kemejaProducts() {
+
+                    return this.allProducts
+                        .filter(product =>
+                            product.category &&
+                            product.category.name &&
+                            product.category.name.toLowerCase() === 'kemeja'
+                        )
+                        .slice(0, 6);
+
+                },
+
+
+                /* -----------------------------------------------------
+                   PRODUK SARUNG
+                   ----------------------------------------------------- */
+
+                sarungProducts() {
+
+                    return this.allProducts
+                        .filter(product =>
+                            product.category &&
+                            product.category.name &&
+                            product.category.name.toLowerCase() === 'sarung'
+                        )
+                        .slice(0, 6);
+
+                },
+
+
+                /* -----------------------------------------------------
+                   UKURAN PRODUK DETAIL
+                   ----------------------------------------------------- */
+
+                availableSizes() {
+
+                    return this.selectedProduct?.stocks
+                        ?.filter(item => item.stock > 0) ?? [];
+
+                },
+
+
+                /* -----------------------------------------------------
+                   FILTER KATALOG / MODAL
+                   ----------------------------------------------------- */
+
+                filteredProducts() {
+
+                    let products = [
+                        ...this.featuredProducts,
+                        ...this.otherProducts
+                    ];
+
+
+                    /* Produk habis */
+
+                    if (this.stockFilter === 'out') {
+
+                        return products.filter(
+                            product => product.is_habis
                         );
 
                     }
 
 
-                    const [
-                        featured,
-                        others
-                    ] = await Promise.all([
+                    /* Filter kategori */
 
-                        featuredResponse.json(),
-                        otherResponse.json()
+                    if (this.selectedCategory) {
 
-                    ]);
-
-
-                    this.featuredProducts =
-                        Array.isArray(featured) ?
-                        featured : [];
-
-
-                    this.otherProducts =
-                        Array.isArray(others) ?
-                        others : [];
-
-
-                    /* ---------------------------------------------
-                       KATEGORI UNIK
-                       --------------------------------------------- */
-
-                    const uniqueCategories = {};
-
-
-                    [
-                        ...this.featuredProducts,
-                        ...this.otherProducts
-                    ].forEach(product => {
-
-                        if (
+                        products = products.filter(
+                            product =>
                             product.category &&
-                            product.category.id
-                        ) {
+                            product.category.id ===
+                            this.selectedCategory
+                        );
 
-                            uniqueCategories[
-                                product.category.id
-                            ] = product.category;
-
-                        }
-
-                    });
+                    }
 
 
-                    this.categories =
-                        Object.values(
-                            uniqueCategories
+                    /* Hanya produk tersedia */
+
+                    products = products.filter(
+                        product => !product.is_habis
+                    );
+
+
+                    return products;
+
+                },
+
+
+                visibleProducts() {
+
+                    return this.filteredProducts.slice(
+                        0,
+                        this.visibleCount
+                    );
+
+                },
+
+
+                /* -----------------------------------------------------
+                   GAMBAR PRODUK DETAIL
+                   ----------------------------------------------------- */
+
+                allImages() {
+
+                    if (!this.selectedProduct) {
+                        return [];
+                    }
+
+
+                    const mainImage =
+                        this.selectedProduct.image ? [this.selectedProduct.image] : [];
+
+
+                    const otherImages =
+                        this.selectedProduct.images
+                        ?.map(image => image.image) || [];
+
+
+                    return [
+                        ...mainImage,
+                        ...otherImages
+                    ];
+
+                },
+
+
+                activeImage() {
+
+                    return (
+                        this.allImages[
+                            this.activeImageIndex
+                        ] || ''
+                    );
+
+                }
+
+            },
+
+
+            /* =========================================================
+               METHODS
+               ========================================================= */
+
+            methods: {
+
+                /* -----------------------------------------------------
+                   DISKON
+                   ----------------------------------------------------- */
+
+                getDiscountPercent(product) {
+
+                    const category =
+                        product.category?.name
+                        ?.toLowerCase() || '';
+
+
+                    if (
+                        category === 'koko' ||
+                        category === 'kurta' ||
+                        category === 'celana' ||
+                        category === 'jacket'
+                    ) {
+
+                        return 10;
+
+                    }
+
+
+                    return 5;
+
+                },
+
+
+                getDiscountPrice(product) {
+
+                    const discount =
+                        this.getDiscountPercent(product);
+
+                    const price =
+                        Number(product.price) || 0;
+
+
+                    return price -
+                        (price * discount / 100);
+
+                },
+
+
+                /* -----------------------------------------------------
+                   FILTER
+                   ----------------------------------------------------- */
+
+                changeStock(type) {
+
+                    this.stockFilter = type;
+
+                    this.selectedCategory = null;
+
+                },
+
+
+                changeCategory(categoryId) {
+
+                    this.stockFilter = 'available';
+
+                    this.selectedCategory =
+                        categoryId;
+
+                    this.visibleCount = 500;
+
+                },
+
+
+                loadMore() {
+
+                    this.visibleCount += 500;
+
+                },
+
+
+                /* -----------------------------------------------------
+                   IMAGE
+                   ----------------------------------------------------- */
+
+                getImageUrl(path) {
+
+                    if (!path) {
+                        return '/assets/no-image.png';
+                    }
+
+                    return `/storage/${path}`;
+
+                },
+
+
+                getFile(path) {
+
+                    return path || '';
+
+                },
+
+
+                /* -----------------------------------------------------
+                   FORMAT RUPIAH
+                   ----------------------------------------------------- */
+
+                formatRupiah(value) {
+
+                    const number =
+                        Number(value);
+
+                    if (isNaN(number)) {
+                        return value;
+                    }
+
+
+                    return 'Rp ' +
+                        number.toLocaleString('id-ID');
+
+                },
+
+
+                /* =====================================================
+                   PRODUCT MODAL
+                   ===================================================== */
+
+                openModal(product) {
+
+                    this.selectedProduct = product;
+
+                    this.activeImageIndex = 0;
+
+                    this.startProductSlide();
+
+
+                    const modalElement =
+                        document.getElementById(
+                            'productModal'
                         );
 
 
-                } catch (error) {
+                    if (!modalElement) return;
 
-                    console.error(
-                        'Gagal mengambil produk:',
-                        error
-                    );
+
+                    const modal =
+                        new bootstrap.Modal(
+                            modalElement
+                        );
+
+
+                    modal.show();
+
+                },
+
+
+                nextImage() {
+
+                    if (this.allImages.length <= 1) {
+                        return;
+                    }
+
+
+                    this.activeImageIndex =
+                        (
+                            this.activeImageIndex + 1
+                        ) %
+                        this.allImages.length;
+
+                },
+
+
+                prevImage() {
+
+                    if (this.allImages.length <= 1) {
+                        return;
+                    }
+
+
+                    this.activeImageIndex =
+                        (
+                            this.activeImageIndex -
+                            1 +
+                            this.allImages.length
+                        ) %
+                        this.allImages.length;
+
+                },
+
+
+                startProductSlide() {
+
+                    this.stopProductSlide();
+
+
+                    if (this.allImages.length <= 1) {
+                        return;
+                    }
+
+
+                    this.slideInterval =
+                        setInterval(() => {
+
+                            this.nextImage();
+
+                        }, 5000);
+
+                },
+
+
+                stopProductSlide() {
+
+                    if (this.slideInterval) {
+
+                        clearInterval(
+                            this.slideInterval
+                        );
+
+                        this.slideInterval = null;
+
+                    }
+
+                },
+
+
+                /* =====================================================
+                   FETCH PRODUCTS
+                   ===================================================== */
+                async fetchHomepageProducts() {
+                    const baseUrl = "{{ route('product.index') }}";
+
+                    const [koko, jubah, kaos] = await Promise.all([
+                        fetch(`${baseUrl}?category_id=ID_KOKO&limit=6`)
+                        .then(res => res.json()),
+
+                        fetch(`${baseUrl}?category_id=ID_JUBAH&limit=6`)
+                        .then(res => res.json()),
+
+                        fetch(`${baseUrl}?category_id=ID_KAOS&limit=6`)
+                        .then(res => res.json())
+                    ]);
+
+                    this.kokoProducts = koko;
+                    this.jubahProducts = jubah;
+                    this.kaosProducts = kaos;
+                },
+                async fetchProducts() {
+                    const url = "{{ route('product.index') }}";
+
+                    // GANTI dengan ID kategori yang benar di database
+                    const CATEGORY_IDS = {
+                        koko: 1,
+                        jubah: 10,
+                        kaos: 5,
+                    };
+
+                    try {
+                        const fetchCategory = async (categoryId) => {
+                            const params = new URLSearchParams({
+                                category_id: categoryId,
+                                is_habis: 0,
+                                limit: 6,
+                            });
+
+                            const response = await fetch(`${url}?${params}`);
+
+                            if (!response.ok) {
+                                throw new Error(`Gagal mengambil produk: ${response.status}`);
+                            }
+
+                            const data = await response.json();
+
+                            // Mendukung API yang mengembalikan array langsung
+                            // maupun array di dalam properti data.
+                            const products = Array.isArray(data) ? data : data.data;
+
+                            if (!Array.isArray(products)) {
+                                throw new Error('Format respons API produk tidak sesuai.');
+                            }
+
+                            return products.filter(product =>
+                                Number(product.is_habis) === 0
+                            ).slice(0, 6);
+                        };
+
+                        const [koko, jubah, kaos] = await Promise.all([
+                            fetchCategory(CATEGORY_IDS.koko),
+                            fetchCategory(CATEGORY_IDS.jubah),
+                            fetchCategory(CATEGORY_IDS.kaos),
+                        ]);
+
+                        this.kokoProducts = koko;
+                        this.jubahProducts = jubah;
+                        this.kaosProducts = kaos;
+
+                    } catch (error) {
+                        console.error('Gagal memuat produk homepage:', error);
+
+                        this.kokoProducts = [];
+                        this.jubahProducts = [];
+                        this.kaosProducts = [];
+                    }
+                },
+
+
+                /* =====================================================
+                   WHATSAPP
+                   ===================================================== */
+
+                getWhatsappLink(productName) {
+
+                    const phoneNumber =
+                        '6285241800852';
+
+
+                    const message =
+                        `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
+
+
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+                },
+
+
+                getWhatsappLinkSeragam() {
+
+                    const phoneNumber =
+                        '6285241800852';
+
+
+                    const message =
+                        'Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?';
+
+
+                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+                },
+
+
+                /* =====================================================
+                   FACEBOOK PIXEL
+                   ===================================================== */
+
+                trackWhatsAppClick(product) {
+
+                    if (
+                        typeof fbq === 'function'
+                    ) {
+
+                        fbq(
+                            'track',
+                            'InitiateCheckout', {
+                                content_ids: [product.id],
+                                content_name: product.name,
+                                value: product.price,
+                                currency: 'IDR'
+                            }
+                        );
+
+                    }
+
+                },
+
+
+                trackShopeeClick(product) {
+
+                    if (
+                        typeof fbq === 'function'
+                    ) {
+
+                        fbq(
+                            'trackCustom',
+                            'ShopeeClick', {
+                                content_ids: [product.id],
+                                content_name: product.name,
+                                value: product.price,
+                                currency: 'IDR'
+                            }
+                        );
+
+                    }
+
+                },
+
+
+                trackDetailClick(product) {
+
+                    if (
+                        typeof fbq === 'function'
+                    ) {
+
+                        fbq(
+                            'trackCustom',
+                            'DetailClick', {
+                                content_ids: [product.id],
+                                content_name: product.name,
+                                value: product.price,
+                                currency: 'IDR'
+                            }
+                        );
+
+                    }
+
+                },
+
+
+                trackSeragamClick() {
+
+                    if (
+                        typeof fbq === 'function'
+                    ) {
+
+                        fbq(
+                            'trackCustom',
+                            'SeragamClick'
+                        );
+
+                    }
+
+                },
+
+
+                trackSeragamClickWA() {
+
+                    if (
+                        typeof fbq === 'function'
+                    ) {
+
+                        fbq(
+                            'trackCustom',
+                            'SeragamClickWA'
+                        );
+
+                    }
+
+                },
+
+
+                trackClickWaAdmin() {
+
+                    if (
+                        typeof fbq === 'function'
+                    ) {
+
+                        fbq(
+                            'trackCustom',
+                            'WaAdminClick'
+                        );
+
+                    }
+
+                },
+
+
+                trackClickIg() {
+
+                    if (
+                        typeof fbq === 'function'
+                    ) {
+
+                        fbq(
+                            'trackCustom',
+                            'IgClick'
+                        );
+
+                    }
+
+                },
+
+
+                trackClickTiktok() {
+
+                    if (
+                        typeof fbq === 'function'
+                    ) {
+
+                        fbq(
+                            'trackCustom',
+                            'TiktokClick'
+                        );
+
+                    }
 
                 }
 
             },
 
 
-            /* =====================================================
-               WHATSAPP
-               ===================================================== */
+            /* =========================================================
+               BEFORE UNMOUNT
+               ========================================================= */
 
-            getWhatsappLink(productName) {
+            beforeUnmount() {
 
-                const phoneNumber =
-                    '6285241800852';
-
-
-                const message =
-                    `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
-
-
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-            },
-
-
-            getWhatsappLinkSeragam() {
-
-                const phoneNumber =
-                    '6285241800852';
-
-
-                const message =
-                    'Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?';
-
-
-                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-            },
-
-
-            /* =====================================================
-               FACEBOOK PIXEL
-               ===================================================== */
-
-            trackWhatsAppClick(product) {
-
-                if (
-                    typeof fbq === 'function'
-                ) {
-
-                    fbq(
-                        'track',
-                        'InitiateCheckout', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        }
-                    );
-
-                }
-
-            },
-
-
-            trackShopeeClick(product) {
-
-                if (
-                    typeof fbq === 'function'
-                ) {
-
-                    fbq(
-                        'trackCustom',
-                        'ShopeeClick', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        }
-                    );
-
-                }
-
-            },
-
-
-            trackDetailClick(product) {
-
-                if (
-                    typeof fbq === 'function'
-                ) {
-
-                    fbq(
-                        'trackCustom',
-                        'DetailClick', {
-                            content_ids: [product.id],
-                            content_name: product.name,
-                            value: product.price,
-                            currency: 'IDR'
-                        }
-                    );
-
-                }
-
-            },
-
-
-            trackSeragamClick() {
-
-                if (
-                    typeof fbq === 'function'
-                ) {
-
-                    fbq(
-                        'trackCustom',
-                        'SeragamClick'
-                    );
-
-                }
-
-            },
-
-
-            trackSeragamClickWA() {
-
-                if (
-                    typeof fbq === 'function'
-                ) {
-
-                    fbq(
-                        'trackCustom',
-                        'SeragamClickWA'
-                    );
-
-                }
-
-            },
-
-
-            trackClickWaAdmin() {
-
-                if (
-                    typeof fbq === 'function'
-                ) {
-
-                    fbq(
-                        'trackCustom',
-                        'WaAdminClick'
-                    );
-
-                }
-
-            },
-
-
-            trackClickIg() {
-
-                if (
-                    typeof fbq === 'function'
-                ) {
-
-                    fbq(
-                        'trackCustom',
-                        'IgClick'
-                    );
-
-                }
-
-            },
-
-
-            trackClickTiktok() {
-
-                if (
-                    typeof fbq === 'function'
-                ) {
-
-                    fbq(
-                        'trackCustom',
-                        'TiktokClick'
-                    );
-
-                }
+                this.stopProductSlide();
 
             }
 
-        },
-
-
-        /* =========================================================
-           BEFORE UNMOUNT
-           ========================================================= */
-
-        beforeUnmount() {
-
-            this.stopProductSlide();
-
-        }
-
-    }).mount('#app');
+        }).mount('#app');
     </script>
 </body>
 

@@ -1,113 +1,79 @@
 /* =========================================================
    08 - RESPONSIVE
-   Semua perubahan ukuran tablet/mobile dikumpulkan di sini.
+   Abati Store
+   Semua perubahan tablet / mobile dikumpulkan di sini.
    ========================================================= */
-@media (max-width:950px) {
-  .desktop-nav { gap:13px; }
-  .desktop-search { width:150px; }
-  .categories { grid-template-columns:repeat(3,1fr); }
-  .recs { grid-template-columns:repeat(5,180px); overflow-x:auto; }
-  .products { grid-template-columns:repeat(3,1fr); }
-  .footerGrid { grid-template-columns:1fr 1fr; }
-}
 
-@media (max-width:700px) {
-  .wrap { width:calc(100% - 28px); }
-
-  /* Header mobile: 70px, logo 60px, padding kecil */
-  header { height:70px; }
-  .head { min-height:70px; height:70px; padding:0px; gap:6px; }
-  .menu { display:flex; align-items:center; justify-content:center; }
-  .desktop-nav,.desktop-search { display:none; }
-  .logo-img { flex:1; width:auto; height:62px; }
-  .logo-img img { width:130px; height:60px; max-height:60px; }
-  .mobile-search-toggle { display:flex; align-items:center; justify-content:center; }
-  .mobile-search-panel { display:block; transform:translateY(-130%); transition:transform .22s ease; }
-  .mobile-search-panel.open { transform:translateY(0); }
-
-  .slider { height:340px; margin:0 -14px; border-radius:0; }
-  .slideText { left:28px; right:35px; }
-  .slideText h1 { font-size:29px; }
-  .slideText p { font-size:13px; }
-
-  section { padding-top:10px; padding-bottom:38px; }
-  #kategori { padding-top:22px; padding-bottom:34px; }
-  /* #kategori .categories { grid-template-columns:repeat(2,1fr); gap:11px; } */
-  #kategori .categories {gap:11px; }
-  #kategori .cat { min-height:135px; }
-  #kategori .cat b { font-size:14px; }
-  h2 { font-size:24px; }
-  .sectionHead p,.offline-heading p { font-size:14px; }
-
-  .recs { display:flex; overflow-x:auto; gap:7px; scrollbar-width:none; margin-right:-14px; }
-  .recs::-webkit-scrollbar { display:none; }
-  .rec { flex:0 0 145px; height:225px; }
-  .products { grid-template-columns:repeat(2,1fr); gap:12px; }
-  .photo { height:210px; }
-  .showProducts { grid-template-columns:repeat(2,1fr); gap:10px; }
-  .showProducts .photo { height:210px; }
-  .product strong { font-size:14px; }
-  .sub { font-size:12px; }
-  .price b { font-size:14px; }
-  .price del { font-size:12px; }
-  .ready { font-size:14px; }
-
-  .banner { height:245px; border-radius:12px; }
-  .bannerText { left:22px; right:20px; }
-  .bannerText h2 { font-size:25px; }
-  .bannerText p { font-size:14px; }
-
-  .uniformBox { grid-template-columns:1fr; }
-  .uniformImg { height:210px; }
-  .uniformText { padding:27px; }
-
-  .offline-store { padding-top:35px; padding-bottom:35px; }
-  .offline-main { height:390px; }
-  .offline-overlay { left:24px; right:24px; }
-  .offline-overlay h2 { font-size:26px; }
-  .offline-overlay p { font-size:14px; }
-  .offline-actions { flex-wrap:wrap; }
-  .offline-primary,.offline-secondary { font-size:12px; }
-  .store-gallery { padding:18px 14px; }
-  .offline-heading { align-items:start; gap:10px; }
-  .offline-heading h3 { font-size:20px; }
-  .offline-heading>a { white-space:nowrap; }
-  .gallery-grid { grid-template-columns:repeat(3,1fr); gap:7px; }
-  .gallery-item { height:105px; border-radius:8px; }
-  .gallery-item span { font-size:11px; left:7px; bottom:7px; }
-  .store-modal { padding:12px; }
-  .video-modal-content video { width:94vw; }
-
-  .footerGrid { grid-template-columns:1fr 1fr; gap:28px; }
-  .floating-wa { width:57px; height:57px; right:16px; bottom:16px; }
-  .floating-wa span { display:none; }
-}
-
-@media (max-width:480px) {
-  .footerGrid { grid-template-columns:1fr; }
-  .bottom { flex-direction:column; gap:5px; }
-}
-@media (max-width: 600px) {
-    .price {
-        gap: 6px;
-        margin-top: 5px;
-    }
-
-    .price del {
-        font-size: 11px;
-    }
-
-    .price b {
-        font-size: 15px;
-    }
-}
 
 /* =========================================================
-   RESPONSIVE - KATEGORI
+   TABLET / LAPTOP KECIL
+   max-width: 950px
    ========================================================= */
 
-/* Tablet */
+@media (max-width: 950px) {
+
+    /* -----------------------------------------------------
+       HEADER
+       ----------------------------------------------------- */
+
+    .desktop-nav {
+        gap: 13px;
+    }
+
+    .desktop-search {
+        width: 150px;
+    }
+
+
+    /* -----------------------------------------------------
+       KATEGORI
+       ----------------------------------------------------- */
+
+    .categories {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    /* -----------------------------------------------------
+       REKOMENDASI
+       ----------------------------------------------------- */
+
+    .recs {
+        grid-template-columns: repeat(5, 180px);
+        overflow-x: auto;
+    }
+
+
+    /* -----------------------------------------------------
+       PRODUK
+       ----------------------------------------------------- */
+
+    .products {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    /* -----------------------------------------------------
+       FOOTER
+       ----------------------------------------------------- */
+
+    .footerGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   max-width: 900px
+   ========================================================= */
+
 @media (max-width: 900px) {
+
+    /* -----------------------------------------------------
+       KATEGORI
+       ----------------------------------------------------- */
 
     #kategori {
         padding: 24px 0 18px;
@@ -122,6 +88,11 @@
         min-height: 100px;
     }
 
+
+    /* -----------------------------------------------------
+       SIZE SHORTCUT
+       ----------------------------------------------------- */
+
     .size-shortcut {
         flex-direction: column;
         align-items: stretch;
@@ -132,14 +103,247 @@
         justify-content: flex-start;
         flex-wrap: wrap;
     }
+
+
+    /* -----------------------------------------------------
+       OFFLINE STORE
+       ----------------------------------------------------- */
+
+    .offline-store {
+        padding: 42px 0 50px;
+    }
+
+    /*
+     * Desktop:
+     * .offline-main = 2 kolom
+     *
+     * Tablet:
+     * foto di atas
+     * informasi di bawah
+     */
+
+    .offline-main {
+        display: flex;
+        flex-direction: column;
+
+        height: auto;
+        min-height: 0;
+
+        overflow: hidden;
+
+        border-radius: 14px;
+    }
+
+
+    /* FOTO TOKO */
+
+    .offline-store-image {
+        width: 100%;
+
+        height: 300px;
+        min-height: 300px;
+
+        overflow: hidden;
+    }
+
+    .offline-store-image img {
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        object-fit: cover;
+        object-position: center;
+    }
+
+
+    /* INFORMASI */
+
+    .offline-overlay {
+        position: relative;
+
+        left: auto;
+        right: auto;
+        top: auto;
+
+        transform: none;
+
+        width: 100%;
+        height: auto;
+
+        padding: 32px 30px 34px;
+
+        box-sizing: border-box;
+    }
+
+    .offline-overlay h2 {
+        font-size: 32px;
+    }
+
+    .offline-overlay p {
+        font-size: 14px;
+    }
+
+
+    /* TOMBOL */
+
+    .offline-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .offline-primary,
+    .offline-secondary {
+        font-size: 12px;
+    }
+
+
+    /* -----------------------------------------------------
+       GALLERY PELANGGAN
+       ----------------------------------------------------- */
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
 }
 
 
-/* HP */
-@media (max-width: 600px) {
+/* =========================================================
+   MOBILE
+   max-width: 700px
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* -----------------------------------------------------
+       GLOBAL
+       ----------------------------------------------------- */
+
+    .wrap {
+        width: calc(100% - 28px);
+    }
+
+
+    section {
+        padding-top: 10px;
+        padding-bottom: 38px;
+    }
+
+
+    h2 {
+        font-size: 24px;
+    }
+
+
+    .sectionHead p,
+    .offline-heading p {
+        font-size: 14px;
+    }
+
+
+    /* =====================================================
+       HEADER MOBILE
+       ===================================================== */
+
+    header {
+        height: 70px;
+    }
+
+    .head {
+        min-height: 70px;
+        height: 70px;
+
+        padding: 0;
+
+        gap: 6px;
+    }
+
+    .menu {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .desktop-nav,
+    .desktop-search {
+        display: none;
+    }
+
+    .logo-img {
+        flex: 1;
+
+        width: auto;
+        height: 62px;
+    }
+
+    .logo-img img {
+        width: 130px;
+        height: 60px;
+        max-height: 60px;
+    }
+
+    .mobile-search-toggle {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE SEARCH
+       ----------------------------------------------------- */
+
+    .mobile-search-panel {
+        display: block;
+
+        transform: translateY(-130%);
+
+        transition:
+            transform .22s ease;
+    }
+
+    .mobile-search-panel.open {
+        transform: translateY(0);
+    }
+
+
+    /* =====================================================
+       SLIDER
+       ===================================================== */
+
+    .slider {
+        height: 340px;
+
+        margin: 0 -14px;
+
+        border-radius: 0;
+    }
+
+    .slideText {
+        left: 28px;
+        right: 35px;
+    }
+
+    .slideText h1 {
+        font-size: 29px;
+    }
+
+    .slideText p {
+        font-size: 13px;
+    }
+
+
+    /* =====================================================
+       KATEGORI
+       ===================================================== */
 
     #kategori {
-        padding: 18px 0 14px;
+        padding-top: 22px;
+        padding-bottom: 34px;
     }
 
     #kategori .categories {
@@ -149,7 +353,9 @@
 
     #kategori .cat {
         min-height: 88px;
+
         padding: 10px 4px;
+
         border-radius: 10px;
     }
 
@@ -168,12 +374,17 @@
     }
 
 
-    /* Cari ukuran */
+    /* -----------------------------------------------------
+       SIZE SHORTCUT
+       ----------------------------------------------------- */
+
     .size-shortcut {
         margin-top: 16px;
+
         padding: 15px;
 
         border-radius: 10px;
+
         gap: 12px;
     }
 
@@ -187,38 +398,145 @@
 
     .size-buttons {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+
+        grid-template-columns:
+            repeat(6, 1fr);
+
         gap: 5px;
+
         width: 100%;
     }
 
     .size-buttons a {
         min-width: 0;
+
         height: 36px;
 
         padding: 0 3px;
 
         border-radius: 6px;
+
         font-size: 11px;
     }
-}
-/* =========================================================
-   CATEGORY BANNER - MOBILE
-   ========================================================= */
 
-@media (max-width: 600px) {
+
+    /* =====================================================
+       REKOMENDASI
+       ===================================================== */
+
+    .recs {
+        display: flex;
+
+        overflow-x: auto;
+
+        gap: 7px;
+
+        scrollbar-width: none;
+
+        margin-right: -14px;
+    }
+
+    .recs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .rec {
+        flex: 0 0 145px;
+
+        height: 225px;
+    }
+
+
+    /* =====================================================
+       PRODUK
+       ===================================================== */
+
+    .products {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .photo {
+        height: 210px;
+    }
+
+    .showProducts {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+    .showProducts .photo {
+        height: 210px;
+    }
+
+    .product strong {
+        font-size: 14px;
+    }
+
+    .sub {
+        font-size: 12px;
+    }
+
+    .ready {
+        font-size: 14px;
+    }
+
+
+    /* -----------------------------------------------------
+       HARGA
+       ----------------------------------------------------- */
+
+    .price {
+        gap: 6px;
+        margin-top: 5px;
+    }
+
+    .price del {
+        font-size: 11px;
+    }
+
+    .price b {
+        font-size: 15px;
+    }
+
+
+    /* =====================================================
+       BANNER / SHOWCASE LAMA
+       ===================================================== */
+
+    .banner {
+        height: 245px;
+
+        border-radius: 12px;
+    }
+
+    .bannerText {
+        left: 22px;
+        right: 20px;
+    }
+
+    .bannerText h2 {
+        font-size: 25px;
+    }
+
+    .bannerText p {
+        font-size: 14px;
+    }
+
+
+    /* =====================================================
+       CATEGORY BANNER
+       ===================================================== */
 
     .category-showcase {
         padding: 22px 0 14px;
     }
 
-
-    /* =====================================================
-       BANNER
-       ===================================================== */
-
     .category-banner-clean {
-
         display: flex;
 
         flex-direction: column;
@@ -229,44 +547,38 @@
     }
 
 
-    /* =====================================================
-       FOTO
-       ===================================================== */
+    /* -----------------------------------------------------
+       FOTO CATEGORY
+       ----------------------------------------------------- */
 
     .category-banner-visual {
-
         order: 1;
 
         width: 100%;
 
         height: 185px;
-
         min-height: 185px;
+
+        overflow: hidden;
     }
 
     .category-banner-visual img {
-
         width: 100%;
         height: 100%;
 
-        object-fit: cover;
+        display: block;
 
-        /*
-         * Bisa disesuaikan berdasarkan posisi
-         * model di gambar.
-         */
+        object-fit: cover;
         object-position: center;
     }
 
 
     /*
-       Hilangkan fade besar desktop.
-    */
+     * Fade bawah foto.
+     */
 
     .category-banner-visual::before {
-
         width: 100%;
-
         height: 70px;
 
         top: auto;
@@ -281,26 +593,26 @@
     }
 
 
-    /* =====================================================
-       INFORMASI
-       ===================================================== */
+    /* -----------------------------------------------------
+       INFORMASI CATEGORY
+       ----------------------------------------------------- */
 
     .category-banner-info {
-
         order: 2;
 
         width: 100%;
 
-        padding: 24px 22px 25px;
+        padding: 24px 22px 26px;
 
         align-items: flex-start;
+
+        box-sizing: border-box;
     }
 
 
-    /* dekorasi */
+    /* Dekorasi */
 
     .category-banner-info::before {
-
         width: 130px;
         height: 130px;
 
@@ -309,7 +621,6 @@
     }
 
     .category-banner-info::after {
-
         width: 120px;
         height: 120px;
 
@@ -318,170 +629,142 @@
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        ICON
-       ===================================================== */
+       ----------------------------------------------------- */
+
+    /*
+     * Icon sengaja disembunyikan di HP.
+     */
 
     .category-banner-icon {
-
-        width: 42px;
-        height: 42px;
-
-        margin-bottom: 12px;
-    }
-
-    .category-banner-icon img {
-
-        width: 25px;
-        height: 25px;
+        display: none;
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        LABEL
-       ===================================================== */
+       ----------------------------------------------------- */
 
     .category-banner-info small {
-
         margin-bottom: 4px;
 
-        font-size: 7px;
+        /* font-size: 7px; */
 
         letter-spacing: 2px;
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        JUDUL
-       ===================================================== */
+       ----------------------------------------------------- */
 
     .category-banner-info h2 {
-
         margin-bottom: 8px;
 
         font-size: 25px;
     }
 
 
-    /* =====================================================
+    /* -----------------------------------------------------
        DESKRIPSI
-       ===================================================== */
+       ----------------------------------------------------- */
 
     .category-banner-info p {
-
         max-width: none;
 
         margin-bottom: 16px;
 
-        font-size: 11px;
+        font-size: 14px;
 
         line-height: 1.55;
     }
 
 
-    /* =====================================================
-       TOMBOL
-       ===================================================== */
+    /* -----------------------------------------------------
+       TOMBOL CATEGORY
+       ----------------------------------------------------- */
 
     .category-banner-button {
-
         padding: 9px 15px;
 
         gap: 9px;
 
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .category-banner-button b {
-
         font-size: 15px;
     }
-}
-@media (max-width: 600px) {
 
-    .category-banner-icon {
-        display: none;
-    }
 
-    .category-banner-info {
-        padding-top: 24px;
-        padding-bottom: 26px;
-    }
+    /* =====================================================
+       SERAGAM
+       ===================================================== */
 
-}
-
-/* =========================================================
-   OFFLINE STORE - MOBILE
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    .offline-store {
-        padding: 42px 0 50px;
-    }
-
-    .offline-main {
+    .uniformBox {
         grid-template-columns: 1fr;
-        min-height: 0;
-        border-radius: 14px;
     }
 
-    .offline-store-image {
-        min-height: 300px;
-        height: 300px;
+    .uniformImg {
+        height: 210px;
     }
 
-    .offline-overlay {
-        padding: 32px 30px 34px;
+    .uniformText {
+        padding: 27px;
     }
 
-    .offline-overlay h2 {
-        font-size: 32px;
-    }
 
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-}
-
-
-@media (max-width: 600px) {
+    /* =====================================================
+       OFFLINE STORE
+       ===================================================== */
 
     .offline-store {
         padding: 30px 0 42px;
     }
 
+
+    /*
+     * PENTING:
+     * height HARUS auto.
+     *
+     * Jangan gunakan:
+     * height:390px;
+     */
+
     .offline-main {
         display: flex;
+
         flex-direction: column;
 
-        min-height: 0;
+        width: 100%;
+
         height: auto;
+        min-height: 0;
 
         overflow: hidden;
 
-        border-radius: 11px;
-
         position: relative;
+
+        border-radius: 11px;
     }
 
 
-    /* =========================
+    /* -----------------------------------------------------
        FOTO TOKO
-       ========================= */
+       ----------------------------------------------------- */
 
     .offline-store-image {
         position: relative;
 
+        z-index: 1;
+
         width: 100%;
+
         height: 215px;
         min-height: 215px;
 
         overflow: hidden;
-
-        z-index: 1;
     }
 
     .offline-store-image img {
@@ -495,26 +778,35 @@
     }
 
 
-    /* =========================
-       INFORMASI
-       ========================= */
+    /* -----------------------------------------------------
+       INFORMASI TOKO
+       ----------------------------------------------------- */
 
     .offline-overlay {
         position: relative;
 
         z-index: 5;
 
+        left: auto;
+        right: auto;
+        top: auto;
+
+        transform: none;
+
         width: 100%;
+        height: auto;
 
         display: flex;
+
         flex-direction: column;
+
         align-items: flex-start;
 
         padding: 25px 21px 27px;
 
-        background: #eef4f5;
-
         box-sizing: border-box;
+
+        background: #eef4f5;
     }
 
 
@@ -523,8 +815,10 @@
 
         margin-bottom: 6px;
 
-        font-size: 8px;
+        /* font-size: 8px; */
+
         line-height: 1.2;
+
         letter-spacing: 2px;
 
         color: #52716f;
@@ -535,6 +829,7 @@
         margin: 0 0 9px;
 
         font-size: 26px;
+
         line-height: 1.12;
 
         color: #183332;
@@ -542,20 +837,22 @@
 
 
     .offline-overlay p {
+
         max-width: 100%;
 
         margin: 0 0 18px;
 
-        font-size: 11px;
+        font-size: 14px;
+
         line-height: 1.55;
 
         color: #536463;
     }
 
 
-    /* =========================
-       TOMBOL
-       ========================= */
+    /* -----------------------------------------------------
+       TOMBOL OFFLINE
+       ----------------------------------------------------- */
 
     .offline-actions {
         position: relative;
@@ -565,7 +862,9 @@
         width: 100%;
 
         display: grid;
-        grid-template-columns: 1fr 1fr;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
 
         gap: 7px;
 
@@ -585,6 +884,7 @@
         min-height: 42px;
 
         display: flex;
+
         align-items: center;
         justify-content: center;
 
@@ -595,6 +895,7 @@
         border-radius: 999px;
 
         font-size: 10px;
+
         font-weight: 600;
 
         line-height: 1.2;
@@ -607,12 +908,14 @@
 
         cursor: pointer;
 
-        -webkit-tap-highlight-color: transparent;
+        -webkit-tap-highlight-color:
+            transparent;
     }
 
 
     .offline-primary {
         background: #183332;
+
         color: #fff;
 
         border: 1px solid #183332;
@@ -621,9 +924,645 @@
 
     .offline-secondary {
         background: transparent;
+
         color: #183332;
 
         border: 1px solid #9fb2b1;
     }
 
+
+    /* =====================================================
+       GALLERY PELANGGAN
+       ===================================================== */
+
+    .store-gallery {
+        padding: 15px 0 0;
+    }
+
+
+    .offline-heading {
+        display: flex;
+
+        align-items: flex-start;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .offline-heading h3 {
+        font-size: 20px;
+    }
+
+
+    .offline-heading p {
+        font-size: 12px;
+    }
+
+
+    .offline-heading > a {
+        flex-shrink: 0;
+
+        white-space: nowrap;
+    }
+
+
+    .gallery-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 8px;
+    }
+
+
+    .gallery-item {
+        width: 100%;
+
+        height: auto;
+
+        aspect-ratio: 1 / 1;
+
+        border-radius: 8px;
+    }
+
+
+    .gallery-item span {
+        font-size: 11px;
+
+        left: 7px;
+        bottom: 7px;
+    }
+
+
+    /* =====================================================
+       MODAL
+       ===================================================== */
+
+    /*
+     * Tetap dipertahankan kalau modal gallery
+     * masih ada di HTML.
+     */
+
+    .store-modal {
+        padding: 12px;
+    }
+
+    .video-modal-content video {
+        width: 94vw;
+    }
+
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    .footerGrid {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 28px;
+    }
+
+
+    /* -----------------------------------------------------
+       FLOATING WHATSAPP
+       ----------------------------------------------------- */
+
+    .floating-wa {
+        width: 57px;
+        height: 57px;
+
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .floating-wa span {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   HP KECIL
+   max-width: 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /*
+     * Sedikit pengecilan harga supaya tidak terlalu
+     * memenuhi kartu produk.
+     */
+
+    .price {
+        gap: 6px;
+        margin-top: 5px;
+    }
+
+    .price del {
+        font-size: 11px;
+    }
+
+    .price b {
+        font-size: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   HP SANGAT KECIL
+   max-width: 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    /* -----------------------------------------------------
+       FOOTER
+       ----------------------------------------------------- */
+
+    .footerGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+
+    /* -----------------------------------------------------
+       TOMBOL OFFLINE
+       ----------------------------------------------------- */
+
+    /*
+     * Di HP yang sangat kecil, tombol tetap dua kolom,
+     * tetapi teks sedikit diperkecil.
+     */
+
+    .offline-primary,
+    .offline-secondary {
+        padding-left: 5px;
+        padding-right: 5px;
+
+        font-size: 12px;
+    }
+
+
+    /* -----------------------------------------------------
+       OFFLINE HEADING
+       ----------------------------------------------------- */
+
+    .offline-heading {
+        flex-direction: column;
+    }
+
+    .offline-heading > a {
+        align-self: flex-start;
+    }
+
+}
+
+
+/* =========================================================
+   PROMO - MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+    #promo {
+        padding: 12px 0 35px;
+    }
+
+    .promo-box {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 44%;
+        align-items: center;
+        gap: 12px;
+        padding: 20px 14px;
+        border-radius: 12px;
+    }
+
+    .promo-text h2 {
+        font-size: 20px;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+
+    .promo-text p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .promo-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .promo-wa,
+    .promo-catalog {
+        width: 100%;
+        min-width: 0;
+        min-height: 42px;
+        padding: 8px 5px;
+        box-sizing: border-box;
+        white-space: normal;
+        text-align: center;
+        font-size: 10px;
+        line-height: 1.3;
+        border-radius: 8px;
+    }
+}
+/* =====================================================
+   MOBILE MENU — ABATI STORE
+   Tempelkan di bagian paling bawah 08-responsive.css
+   ===================================================== */
+
+@media (max-width: 767px) {
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+
+        width: min(88vw, 390px);
+        height: 100vh;
+        height: 100dvh;
+        box-sizing: border-box;
+
+        padding: 20px 22px 28px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+
+        background: #fffdf9;
+        color: #183332;
+
+        z-index: 1002;
+
+        transform: translateX(100%);
+        visibility: hidden;
+        pointer-events: none;
+
+        transition:
+            transform .28s ease,
+            visibility .28s ease;
+    }
+
+    .mobile-menu.open {
+        transform: translateX(0);
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .menu-backdrop {
+        position: fixed;
+        inset: 0;
+
+        background: rgba(16, 25, 24, .58);
+        z-index: 1001;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition:
+            opacity .28s ease,
+            visibility .28s ease;
+    }
+
+    .menu-backdrop.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+        touch-action: none;
+    }
+
+    /* Header menu */
+    .mobile-menu-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+
+        min-height: 72px;
+        padding-bottom: 17px;
+        border-bottom: 1px solid #e5e6df;
+    }
+
+    .mobile-menu-logo {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .mobile-menu-logo img {
+        display: block;
+        width: 80px;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .mobile-menu .close-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex: 0 0 42px;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        color: #183332;
+
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu .close-menu svg {
+        width: 27px;
+        height: 27px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+    }
+
+    /* Judul kategori */
+    .mobile-menu-section {
+        padding: 22px 0 24px;
+    }
+
+    .mobile-menu-section h3 {
+        margin: 0 0 10px;
+        color: #183332;
+        font-size: 21px;
+        line-height: 1.3;
+        font-weight: 700;
+    }
+
+    /* Daftar kategori */
+    .mobile-menu-categories a {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+
+        min-height: 58px;
+        padding: 7px 2px;
+        box-sizing: border-box;
+
+        border-bottom: 1px solid #e8e9e3;
+        color: #183332;
+        text-decoration: none;
+
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .menu-category-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex: 0 0 34px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .menu-category-icon img {
+        display: block;
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+    }
+
+    .menu-category-name {
+        flex: 1;
+        min-width: 0;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .menu-arrow {
+        flex-shrink: 0;
+        color: #536d69;
+        font-size: 27px;
+        font-weight: 400;
+        line-height: 1;
+    }
+
+    .menu-symbol {
+        color: #183332;
+        font-size: 29px;
+        font-weight: 500;
+    }
+
+    /* Tombol semua koleksi */
+    .mobile-menu-all {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        min-height: 56px;
+        margin-top: 14px;
+        padding: 0 13px;
+        box-sizing: border-box;
+
+        border-radius: 12px;
+        background: #edf1ed;
+        color: #183332;
+        text-decoration: none;
+
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu-all > svg {
+        flex: 0 0 25px;
+        width: 25px;
+        height: 25px;
+
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+    }
+
+    .mobile-menu-all > span:nth-child(2) {
+        flex: 1;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    /* Toko dan WhatsApp */
+    .mobile-menu-links {
+        border-top: 1px solid #e5e6df;
+    }
+
+    .mobile-menu-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        min-height: 83px;
+        padding: 14px 3px;
+        box-sizing: border-box;
+
+        border-bottom: 1px solid #e5e6df;
+        color: #183332;
+        text-decoration: none;
+
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .menu-link-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex: 0 0 37px;
+        width: 37px;
+        height: 37px;
+    }
+
+    .menu-link-icon svg {
+        display: block;
+        width: 30px;
+        height: 30px;
+
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .menu-link-content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 5px;
+        min-width: 0;
+    }
+
+    .menu-link-content strong {
+        font-size: 14px;
+        line-height: 1.3;
+        font-weight: 700;
+    }
+
+    .menu-link-content small {
+        color: #737d79;
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    /* Media sosial */
+    .mobile-menu-social {
+        padding: 23px 0 5px;
+        text-align: center;
+    }
+
+    .mobile-menu-social p {
+        margin: 0 0 16px;
+        color: #737d79;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .mobile-menu-social-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 13px;
+    }
+
+    .mobile-menu-social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+
+        background: #183332;
+        color: #fff;
+        text-decoration: none;
+
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu-social-icons svg {
+        display: block;
+        width: 21px;
+        height: 21px;
+
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .mobile-menu-social-icons a:nth-child(2) svg,
+    .mobile-menu-social-icons a:nth-child(3) svg {
+        fill: currentColor;
+        stroke: none;
+    }
+
+    /* Efek sentuh */
+    .mobile-menu-categories a:active,
+    .mobile-menu-link:active {
+        background: #f1f3ee;
+    }
+
+    .mobile-menu-all:active {
+        background: #dfe7e0;
+    }
+}
+
+/* Jangan tampilkan menu drawer pada desktop */
+@media (min-width: 768px) {
+    .mobile-menu,
+    .menu-backdrop {
+        display: none !important;
+    }
+}
+
+/* HP kecil */
+@media (max-width: 360px) {
+    .mobile-menu {
+        width: 92vw;
+        padding-right: 17px;
+        padding-left: 17px;
+    }
+
+    .mobile-menu-categories a {
+        min-height: 53px;
+    }
+
+    .mobile-menu-link {
+        gap: 9px;
+    }
+}
+
+/* Kurangi animasi jika pengguna memilih reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .menu-backdrop {
+        transition: none;
+    }
 }

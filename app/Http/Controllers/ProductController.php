@@ -80,11 +80,15 @@ class ProductController extends Controller
             });
         }
 
-        return response()->json(
-            $products
-                ->orderBy('name')
-                ->get()
-        );
+        $products->orderBy('name');
+
+        if ($request->filled('limit')) {
+            $limit = min(max((int) $request->limit, 1), 6);
+
+            $products->limit($limit);
+        }
+
+        return response()->json($products->get());
     }
 
 

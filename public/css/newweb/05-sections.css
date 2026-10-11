@@ -796,7 +796,7 @@
 
     padding: 11px 19px;
 
-    border-radius: 999px;
+    border-radius: 5px;
 
     background: #183332;
 
@@ -817,7 +817,7 @@
 
     font-weight: 400;
 
-    line-height: 1;
+    /* line-height: 1; */
 }
 
 .category-banner-clean:hover
@@ -826,4 +826,91 @@
     background: #264c4a;
 
     transform: translateX(2px);
+}
+
+
+/* =========================================================
+   PROMO BELANJA ABATI STORE
+   ========================================================= */
+
+#promo {
+    padding: 25px 0 45px;
+}
+
+.promo-box {
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.promo-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.promo-text h2 {
+    margin: 0 0 8px;
+}
+
+.promo-text p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.promo-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.promo-wa,
+.promo-catalog {
+    min-height: 44px;
+    padding: 0 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    transition: background .2s ease, transform .2s ease;
+}
+
+.promo-wa {
+    background: #183332;
+    color: #fff;
+    border: 1px solid #183332;
+}
+
+.promo-catalog {
+    background: transparent;
+    color: #183332;
+    border: 1px solid #9fb2b1;
+}
+
+.promo-wa:hover,
+.promo-catalog:hover {
+    transform: translateY(-1px);
+}
+
+.promo-wa:hover {
+    background: #264c4a;
+}
+
+.promo-catalog:hover {
+    background: #fff;
 }

@@ -1608,7 +1608,7 @@
                         const fetchCategory = async (categoryId) => {
                             const params = new URLSearchParams({
                                 category_id: categoryId,
-                                is_habis: 0,
+                                status: "ada",
                                 limit: 6,
                             });
 

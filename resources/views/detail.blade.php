@@ -1,268 +1,627 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts')
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>ABATI STORE KENDARI - AGEN FADKHERA</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{{asset('logo-only.png')}}" />
-    <!-- Font Awesome icons (free version)-->
-    <!-- <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script> -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css"
-        integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy" crossorigin="anonymous">
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{asset('/')}}css/styles.css" rel="stylesheet" />
-    <link href="{{asset('/')}}assets/fontawesome/css/font-awesome.css" rel="stylesheet" />
-    <style>
-        .btn-bounce {
-            display: inline-block;
-            padding: 12px 24px;
-            color: white;
-            font-weight: bold;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
-            animation: bounce 1.5s infinite;
-        }
+@section('title', 'Koko Premium Modern — Abati Store')
 
-        @keyframes bounce {
+@push('styles')
+<!-- CSS Khusus Detail Produk -->
+<link rel="stylesheet" href="{{ asset('css/newweb/09-product-detail.css') }}">
+<style>
+/* Penyesuaian khusus elemen baru halaman detail */
+.pd-occasion-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 8px;
+}
 
-            0%,
-            100% {
-                transform: translateY(0);
-            }
+.pd-occasion-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary, #183332);
+    background: #f2f7f6;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
 
-            50% {
-                transform: translateY(-6px);
-            }
-        }
+.pd-occasion-item i {
+    color: #25d366;
+    font-style: normal;
+    font-weight: 800;
+}
 
-        .btn-shake {
-            display: inline-block;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-            animation: shake 5.5s infinite;
-        }
+/* Penyesuaian Tombol Shopee Sekunder & Catatan Luar Kota */
+.pd-shopee-wrapper {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed #e2e8e8;
+}
 
-        @keyframes shake {
+.pd-shopee-note {
+    font-size: 12px;
+    color: #6f6f6f;
+    margin-bottom: 8px;
+    display: block;
+}
 
-            0%,
-            100% {
-                transform: translateX(0);
-            }
+.pd-btn-shopee-subtle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: #ee4d2d;
+    border: 1px solid #ee4d2d;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
 
-            25% {
-                transform: translateX(-3px);
-            }
+.pd-btn-shopee-subtle:hover {
+    background: #ffeeeb;
+}
 
-            50% {
-                transform: translateX(3px);
-            }
+/* Thumbnail Video Badge */
+.pd-thumb-video {
+    position: relative;
+}
 
-            75% {
-                transform: translateX(-3px);
-            }
-        }
+.pd-thumb-video::after {
+    content: "▶";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
 
-        header.masthead {
-            padding-top: 3rem;
-        }
-    </style>
-</head>
+/* Floating WhatsApp Button */
+.pd-floating-wa {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99;
+    background: #25d366;
+    color: #fff;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+    transition: transform 0.25s ease;
+    text-decoration: none;
+}
 
-<body id="page-top">
-    <div id="app">
-        <section class="page-section bg-light" id="portfolio">
-            <div class="container">
-                <h1>@{{selectedProduct.name}}</h1>
-                <!-- Galeri Utama -->
-                <div class="position-relative">
-                    <img :src="getImageUrl(activeImage)" class="img-fluid mb-3 rounded shadow"
-                        style="object-fit: contain;" alt="Gambar Produk">
+.pd-floating-wa:hover {
+    transform: scale(1.08);
+}
 
-                    <!-- Tombol navigasi manual -->
-                    <button @click="prevImage"
-                        class="btn btn-sm btn-light position-absolute top-50 start-0 translate-middle-y">
-                        <i class="fa fa-chevron-left"></i>
+.pd-floating-wa svg {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
+}
+</style>
+@endpush
+
+@section('content')
+<main class="pd-page">
+    <div class="pd-container">
+
+        <section class="pd-main" style="padding-top: 20px;">
+            <!-- Galeri Foto & Video Produk -->
+            <div class="pd-gallery">
+                <div class="pd-main-image">
+                    <!-- Media Utama: Bisa berupa Img atau Video -->
+                    <img id="pdMainImage"
+                        src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
+                        alt="Koko Premium Modern">
+
+                    <video id="pdMainVideo" controls
+                        style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                        <source id="pdVideoSource" src="" type="video/mp4">
+                        Browser Anda tidak mendukung penayangan video.
+                    </video>
+
+                    <span class="pd-image-count" id="pdImageCount">1/5</span>
+                    <button class="pd-gallery-arrow pd-prev" aria-label="Foto sebelumnya">‹</button>
+                    <button class="pd-gallery-arrow pd-next" aria-label="Foto berikutnya">›</button>
+                </div>
+
+                <div class="pd-thumbnails">
+                    <button class="pd-thumb is-active" data-index="0" data-type="image" aria-label="Foto 1">
+                        <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
+                            alt="">
                     </button>
-                    <button @click="nextImage"
-                        class="btn btn-sm btn-light position-absolute top-50 end-0 translate-middle-y">
-                        <i class="fa fa-chevron-right"></i>
+                    <button class="pd-thumb" data-index="1" data-type="image" aria-label="Foto 2">
+                        <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
+                            alt="">
+                    </button>
+                    <!-- Contoh Item Video -->
+                    <button class="pd-thumb pd-thumb-video" data-index="2" data-type="video"
+                        data-video-url="https://www.w3schools.com/html/mov_bbb.mp4" aria-label="Video Produk">
+                        <img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
+                            alt="">
+                    </button>
+                    <button class="pd-thumb" data-index="3" data-type="image" aria-label="Foto 4">
+                        <img src="https://abatistore.com/storage/products/S0N4UKre09fzdMMWXTZHp5JLZPo10Jnrz28xkQXB.webp"
+                            alt="">
+                    </button>
+                    <button class="pd-thumb" data-index="4" data-type="image" aria-label="Foto 5">
+                        <img src="https://abatistore.com/storage/products/TvOpprsGKXK27OfozNosbpcldlTRC563PSqnzqTO.webp"
+                            alt="">
                     </button>
                 </div>
 
-                <!-- Thumbnail Preview -->
-                <div class="d-flex justify-content-center gap-2 mt-2 flex-wrap">
-                    <img v-for="(img, index) in allImages" :key="index" :src="getImageUrl(img)"
-                        @click="activeImageIndex = index" class="rounded"
-                        style="width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid #ddd;"
-                        :class="{ 'border-primary': index === activeImageIndex }" />
+                <div class="pd-benefits">
+                    <div><i>✳</i><span><b>Bahan pilihan</b><small>Nyaman dipakai</small></span></div>
+                    <div><i>◇</i><span><b>Detail rapi</b><small>Perhatikan detail</small></span></div>
+                    <div><i>↻</i><span><b>Easy care</b><small>Mudah dirawat</small></span></div>
                 </div>
-                <a :href="getWhatsappLink(selectedProduct.name)" @click="trackWhatsAppClick(selectedProduct.name)"
-                    target="_blank" class="btn btn-success my-3 me-2">
-                    <i class="fa fa-whatsapp me-1"></i> Info / Pemesanan
-                </a>
-                <a v-if="selectedProduct.is_habis" :href="getWhatsappLinkPO(selectedProduct.name)"
-                    @click="trackWhatsAppClick(selectedProduct.name)" target="_blank" class="btn btn-secondary">
-                    <i class="fa fa-whatsapp me-1"></i> Ajukan PO
-                </a>
-                <a v-if="!selectedProduct.is_habis" :href="getWhatsappLinkPOUkuran(selectedProduct.name)"
-                    @click="trackWhatsAppClick(selectedProduct.name)" target="_blank" class="btn btn-secondary">
-                    <i class="fa fa-whatsapp me-1"></i> Request Ukuran
-                </a>
-                <p><strong>Harga:</strong> @{{ formatRupiah(selectedProduct.price) }}</p>
-                Ukuran tersedia
-                <ul class="list-group">
-                    <li class="list-group-item" v-for="stock in selectedProduct.stocks" :key="stock.size.id">
-                        @{{ stock.size.name }}: @{{ stock.stock }}
-                    </li>
-                </ul>
             </div>
 
+            <!-- Informasi Produk -->
+            <div class="pd-info">
+                <div class="pd-badges">
+                    <span class="pd-category">BAJU KOKO</span>
+                    <span class="pd-discount">Diskon 17%</span>
+                </div>
+
+                <h1>Koko Premium Modern<br>Lengan Panjang</h1>
+
+                <div class="pd-price-row">
+                    <strong class="pd-price">Rp329.000</strong>
+                    <del>Rp399.000</del>
+                    <span class="pd-discount-small">-17%</span>
+                </div>
+
+                <p class="pd-short-desc">Koko modern dengan desain minimalis yang cocok untuk ibadah, bekerja, kajian,
+                    dan acara formal.</p>
+
+                <!-- Penjelasan Penggunaan (Centang Hijau) -->
+                <div class="pd-occasion">
+                    <h2>Cocok untuk</h2>
+                    <div class="pd-occasion-list">
+                        <span class="pd-occasion-item"><i>✓</i> Kantor</span>
+                        <span class="pd-occasion-item"><i>✓</i> Kajian</span>
+                        <span class="pd-occasion-item"><i>✓</i> Sholat Jumat</span>
+                        <span class="pd-occasion-item"><i>✓</i> Kondangan / Acara Formal</span>
+                    </div>
+                </div>
+
+                <!-- Penjelasan Ukuran Tersedia (Statis / Informasi Only) -->
+                <div class="pd-size-section">
+                    <div class="pd-size-heading">
+                        <h2>Ukuran tersedia</h2>
+                        <button type="button" id="pdOpenSizeGuide">Panduan ukuran ↗</button>
+                    </div>
+                    <div class="pd-size-badges">
+                        <span class="size-badge is-ready">S</span>
+                        <span class="size-badge is-ready">M</span>
+                        <span class="size-badge is-empty">L</span>
+                        <span class="size-badge is-ready">XL</span>
+                        <span class="size-badge is-empty">XXL</span>
+                        <span class="size-badge is-empty">XXXL</span>
+                    </div>
+                    <p id="pdSizeHelp" style="margin-top: 8px; font-size: 12px; color: #888;">Cek ketersediaan ukuran
+                        sebelum konfirmasi ke admin.</p>
+                </div>
+
+                <!-- Tombol Utama Pesan via WA -->
+                <div class="pd-actions" style="margin-top: 20px;">
+                    <a class="pd-btn pd-btn-wa" id="pdWhatsapp" href="https://wa.me/6285241800852" target="_blank"
+                        rel="noopener" style="width: 100%; justify-content: center;">
+                        ☏ Pesan via WhatsApp
+                    </a>
+                </div>
+
+                <!-- Opsi Pembelian via Shopee (Luar Kendari) -->
+                <div class="pd-shopee-wrapper">
+                    <span class="pd-shopee-note">📍 Dari luar Kota Kendari? Anda dapat meminta/request link produk
+                        melalui Shopee.</span>
+                    <a class="pd-btn-shopee-subtle" href="https://shopee.co.id/" target="_blank" rel="noopener">
+                        <span>🛍 Request via Shopee</span>
+                    </a>
+                </div>
+
+                <!-- Bagian Pengiriman -->
+                <section class="pd-shipping">
+                    <div class="pd-shipping-promo">
+                        <span class="pd-shipping-icon">↗</span>
+                        <div>
+                            <b>Gratis ongkir hingga Rp10.000</b>
+                            <small>Subsidi sesuai tarif dan wilayah layanan.</small>
+                        </div>
+                    </div>
+                    <details class="pd-shipping-details">
+                        <summary>Cek tabel ongkir per kecamatan <span>⌄</span></summary>
+                        <p class="pd-shipping-note">Tarif berikut contoh. Ganti sesuai tarif yang ditentukan Abati
+                            Store.</p>
+                        <div class="pd-table-scroll">
+                            <table class="pd-shipping-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kecamatan</th>
+                                        <th>Tarif</th>
+                                        <th>Subsidi</th>
+                                        <th>Dibayar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Mandonga</td>
+                                        <td>Rp5.000</td>
+                                        <td>Rp5.000</td>
+                                        <td class="pd-free">Gratis</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kadia</td>
+                                        <td>Rp5.000</td>
+                                        <td>Rp5.000</td>
+                                        <td class="pd-free">Gratis</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wua-Wua</td>
+                                        <td>Rp7.000</td>
+                                        <td>Rp7.000</td>
+                                        <td class="pd-free">Gratis</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Poasia</td>
+                                        <td>Rp10.000</td>
+                                        <td>Rp10.000</td>
+                                        <td class="pd-free">Gratis</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Baruga</td>
+                                        <td>Rp12.000</td>
+                                        <td>Rp10.000</td>
+                                        <td>Rp2.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <small class="pd-shipping-footnote">Subsidi maksimal Rp10.000. Admin mengonfirmasi ongkir
+                            sebelum pembayaran.</small>
+                    </details>
+                </section>
+
+                <!-- Tombol Bagikan dengan Ikon Ringkas -->
+                <div class="pd-share">
+                    <span>Bagikan:</span>
+                    <a id="pdShareWa" href="#" target="_blank" rel="noopener" title="Bagikan ke WhatsApp"
+                        aria-label="Bagikan ke WhatsApp">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M20 11.5A8.5 8.5 0 0 1 7.4 19L3 20.5L4.5 16.3A8.5 8.5 0 1 1 20 11.5Z" />
+                        </svg>
+                    </a>
+                    <button id="pdCopyLink" type="button" title="Salin Tautan" aria-label="Salin Tautan">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                        </svg>
+                    </button>
+                    <small id="pdCopyStatus" aria-live="polite"></small>
+                </div>
+            </div>
         </section>
-    </div>
-    <footer class="footer py-4">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-4 text-lg-start">Copyright &copy; ABATI STORE - AGEN RESMI FADKHERA 2025</div>
-                <div class="col-lg-4 my-3 my-lg-0">
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i
-                            class="fa fa-instagram"></i></a>
+
+        <!-- Tab Informasi (Deskripsi, Real Pict, Video) -->
+        <section class="pd-tabs-section">
+            <div class="pd-tabs" role="tablist">
+                <button class="pd-tab is-active" data-tab="description" role="tab"
+                    aria-selected="true">Deskripsi</button>
+                <button class="pd-tab" data-tab="realpic" role="tab" aria-selected="false">Real Pict</button>
+                <button class="pd-tab" data-tab="video" role="tab" aria-selected="false">Video</button>
+            </div>
+            <div class="pd-tab-panel is-active" id="pdTab-description" role="tabpanel">
+                <div>
+                    <h2>Deskripsi produk</h2>
+                    <p>Koko dengan desain modern dan tampilan rapi untuk menemani aktivitas harian. Periksa detail
+                        bahan, potongan, dan ukuran melalui foto produk atau tanyakan langsung kepada admin sebelum
+                        memesan.</p>
+                    <ul>
+                        <li><b>Kategori:</b> Baju koko</li>
+                        <li><b>Penggunaan:</b> Ibadah, kerja, kajian, dan acara formal</li>
+                        <li><b>Perawatan:</b> Ikuti petunjuk pada label produk</li>
+                    </ul>
+                </div>
+                <div class="pd-detail-highlights">
+                    <article><b>01 — Model modern</b><small>Tampilan rapi dan sederhana</small></article>
+                    <article><b>02 — Pilihan aktivitas</b><small>Untuk kegiatan formal maupun ibadah</small></article>
+                    <article><b>03 — Bantuan ukuran</b><small>Tanyakan ukuran sebelum transaksi</small></article>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!-- Portfolio Modals-->
-    <!-- Portfolio item 1 modal popup-->
-    <!-- Modal untuk Detail Produk -->
+            <div class="pd-tab-panel" id="pdTab-realpic" role="tabpanel" hidden>
+                <h2>Foto asli produk</h2>
+                <p>Ganti gambar contoh berikut dengan foto asli stok Abati Store.</p>
+                <div class="pd-real-gallery">
+                    <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
+                        alt="Foto produk 1">
+                    <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
+                        alt="Foto produk 2">
+                    <img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
+                        alt="Foto produk 3">
+                </div>
+            </div>
+            <div class="pd-tab-panel" id="pdTab-video" role="tabpanel" hidden>
+                <h2>Video produk</h2>
+                <div class="pd-video-placeholder">
+                    <span>▶</span>
+                    <div>
+                        <b>Video produk belum ditambahkan</b>
+                        <p>Tambahkan URL video produk asli ketika tersedia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Cara Belanja -->
+        <section class="pd-howto" id="cara-belanja">
+            <div class="pd-section-heading">
+                <span>MUDAH DAN PRAKTIS</span>
+                <h2>Belanja di Abati Store</h2>
+                <p>Konfirmasi dulu supaya detail pesanan dan biaya pengiriman jelas.</p>
+            </div>
+            <div class="pd-howto-grid">
+                <article><i>01</i>
+                    <h3>Chat & konfirmasi</h3>
+                    <p>Tanyakan stok, ukuran, dan detail produk kepada admin.</p>
+                </article>
+                <article><i>02</i>
+                    <h3>Sepakati total</h3>
+                    <p>Admin mengonfirmasi harga produk, subsidi, dan ongkir.</p>
+                </article>
+                <article><i>03</i>
+                    <h3>Pesanan diproses</h3>
+                    <p>Setelah kesepakatan, pesanan disiapkan untuk diantar atau dikirim.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Produk Terkait -->
+        <section class="pd-related">
+            <div class="pd-section-heading pd-related-heading">
+                <div>
+                    <span>JELAJAHI LAGI</span>
+                    <h2>Produk terkait</h2>
+                </div>
+                <a href="/katalog">Lihat semua →</a>
+            </div>
+            <div class="pd-related-grid">
+                <a class="pd-product-card" href="#">
+                    <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
+                        alt="Koko lengan pendek">
+                    <div>
+                        <small>BAJU KOKO</small>
+                        <h3>Koko Premium Lengan Pendek</h3>
+                        <b>Rp299.000</b>
+                    </div>
+                </a>
+                <a class="pd-product-card" href="#">
+                    <img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
+                        alt="Kemeja pilihan">
+                    <div>
+                        <small>KEMEJA</small>
+                        <h3>Kemeja pilihan</h3>
+                        <b>Lihat harga</b>
+                    </div>
+                </a>
+                <a class="pd-product-card" href="#">
+                    <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
+                        alt="Koko pilihan">
+                    <div>
+                        <small>KOLEKSI</small>
+                        <h3>Koko pilihan lainnya</h3>
+                        <b>Lihat produk</b>
+                    </div>
+                </a>
+                <a class="pd-product-card" href="#">
+                    <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
+                        alt="Koleksi pilihan">
+                    <div>
+                        <small>KOLEKSI</small>
+                        <h3>Koleksi pilihan</h3>
+                        <b>Lihat produk</b>
+                    </div>
+                </a>
+                <a class="pd-product-card" href="#">
+                    <img src="https://abatistore.com/storage/products/S0N4UKre09fzdMMWXTZHp5JLZPo10Jnrz28xkQXB.webp"
+                        alt="Kaos Harian">
+                    <div>
+                        <small>KAOS</small>
+                        <h3>Kaos Harian Nyaman</h3>
+                        <b>Rp149.000</b>
+                    </div>
+                </a>
+                <a class="pd-product-card" href="#">
+                    <img src="https://abatistore.com/storage/products/TvOpprsGKXK27OfozNosbpcldlTRC563PSqnzqTO.webp"
+                        alt="Jaket Casual">
+                    <div>
+                        <small>JAKET</small>
+                        <h3>Jaket Casual Modern</h3>
+                        <b>Rp350.000</b>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Informasi Belanja Offline -->
+        <section class="pd-offline-banner"
+            style="margin-top: 40px; background: var(--cream, #f8f3eb); border: 1px solid var(--line, #ece8e1); border-radius: 16px; padding: 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+            <div>
+                <span
+                    style="color: var(--accent-gold-dark, #8e6129); font-size: 11px; font-weight: 700; letter-spacing: 2px; display: block; margin-bottom: 6px;">MAU
+                    BELANJA OFFLINE?</span>
+                <h2
+                    style="font-family: Georgia, serif; font-size: 24px; color: var(--primary, #183332); margin: 0 0 8px;">
+                    Kunjungi Toko Abati Store</h2>
+                <p style="margin: 0; color: #555; font-size: 14px;">Lihat langsung koleksi kami, rasakan bahannya, dan
+                    coba ukuran yang tersedia.</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=-3.9986246,122.5113538" target="_blank"
+                    rel="noopener"
+                    style="background: var(--primary, #183332); color: #fff; padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 600; text-decoration: none;">📍
+                    Lihat Lokasi</a>
+            </div>
+        </section>
 
     </div>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script>
-        const {
-            createApp
-        } = Vue;
+</main>
 
-        createApp({
-            data() {
-                return {
-                    featuredProducts: [],
-                    otherProducts: [],
-                    selectedProduct: {},
-                    activeImageIndex: 0,
-                    slideInterval: null,
-                    productId: null
+<!-- Floating WhatsApp Button (Menggantikan Sticky Bar Mobile) -->
+<a class="pd-floating-wa" href="https://wa.me/6285241800852" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+    <svg viewBox="0 0 24 24">
+        <path d="M20 11.5A8.5 8.5 0 0 1 7.4 19L3 20.5L4.5 16.3A8.5 8.5 0 1 1 20 11.5Z" />
+    </svg>
+</a>
 
-                }
-            },
-            mounted() {
-                this.productId = this.getProductIdFromUrl();
-                this.fetchProducts();
-            },
-            computed: {
+<!-- Modal Panduan Ukuran -->
+<div class="pd-modal" id="pdSizeModal" aria-hidden="true">
+    <div class="pd-modal-backdrop" data-close-size></div>
+    <section class="pd-modal-card" role="dialog" aria-modal="true" aria-labelledby="pdSizeTitle">
+        <button class="pd-modal-close" type="button" data-close-size aria-label="Tutup">×</button>
+        <span class="pd-modal-eyebrow">BANTUAN UKURAN</span>
+        <h2 id="pdSizeTitle">Panduan ukuran</h2>
+        <p>Isi dengan ukuran resmi produk sebelum digunakan di situs.</p>
+        <div class="pd-table-scroll">
+            <table class="pd-size-table">
+                <thead>
+                    <tr>
+                        <th>Ukuran</th>
+                        <th>Lebar dada</th>
+                        <th>Panjang baju</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>S</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>M</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>L</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>XL</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>XXL</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>XXXL</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <small>Belum yakin? Chat admin untuk dibantu memilih ukuran.</small>
+    </section>
+</div>
+@endsection
 
-                allImages() {
-                    // Gabungkan gambar utama + gambar pendukung
-                    if (!this.selectedProduct) return [];
-                    const main = this.selectedProduct.image ? [this.selectedProduct.image] : [];
-                    const others = this.selectedProduct.images?.map(img => img.image) || [];
-                    return main.concat(others);
-                },
-                activeImage() {
-                    return this.allImages[this.activeImageIndex] || '';
-                }
-            },
+@push('scripts')
+<script>
+(function() {
+    let current = 0;
+    const mainImg = document.getElementById('pdMainImage');
+    const mainVid = document.getElementById('pdMainVideo');
+    const vidSource = document.getElementById('pdVideoSource');
+    const count = document.getElementById('pdImageCount');
+    const thumbs = [...document.querySelectorAll('.pd-thumb')];
 
-            methods: {
-                trackWhatsAppClick(productName) {
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'click_whatsapp', {
-                            'event_category': 'Engagement',
-                            'event_label': productName,
-                        });
-                    }
-                },
-                getWhatsappLink(productName) {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Halo, saya tertarik dengan produk fadkhera - ${productName}. Apakah masih tersedia?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                getWhatsappLinkPO(productName) {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Halo, saya tertarik dengan produk fadkhera - ${productName} Namun Sudah habis. Apakah bisa PO?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                getWhatsappLinkPOUkuran(productName) {
-                    const phoneNumber = '6285241800852'; // ganti dengan nomor WA kamu tanpa +
-                    const message =
-                        `Halo, saya tertarik dengan produk fadkhera - ${productName} Namun Ukuran saya kosong. Apakah bisa request ukuran?`;
-                    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                },
-                nextImage() {
-                    this.activeImageIndex = (this.activeImageIndex + 1) % this.allImages.length;
-                },
-                prevImage() {
-                    this.activeImageIndex = (this.activeImageIndex - 1 + this.allImages.length) % this.allImages
-                        .length;
-                },
-                startSlide() {
-                    this.slideInterval = setInterval(() => {
-                        this.nextImage();
-                    }, 5000); // 3 detik
-                },
-                stopSlide() {
-                    clearInterval(this.slideInterval);
-                },
-                openModal(product) {
-                    this.selectedProduct = product;
-                    this.activeImageIndex = 0;
-                    this.startSlide();
-                    const modal = new bootstrap.Modal(document.getElementById('productModal'));
-                    modal.show();
-                },
-                getProductIdFromUrl() {
-                    const segments = window.location.pathname.split('/');
-                    return segments[segments.length - 1]; // karena terakhir biasanya "edit"
-                },
-                async fetchProducts() {
-                    let url = "{{route('product.show',':id')}}"
-                    url = url.replace(':id', this.productId)
-                    fetch(url)
-                        .then(res => res.json())
-                        .then(data => {
-                            this.selectedProduct = data;
+    function showMedia(index) {
+        current = (index + thumbs.length) % thumbs.length;
+        const targetThumb = thumbs[current];
+        const mediaType = targetThumb.dataset.type;
 
-                        });
-                },
-                getImageUrl(path) {
-                    return path ? `/storage/${path}` : '/images/no-image.png';
-                },
-                formatRupiah(value) {
-                    const number = Number(value);
-                    if (isNaN(number)) return value;
-                    return 'Rp ' + number.toLocaleString('id-ID');
-                },
-            },
-            beforeUnmount() {
-                this.stopSlide();
-            }
-        }).mount('#app');
-    </script>
-</body>
+        if (mediaType === 'video') {
+            mainImg.style.display = 'none';
+            mainVid.style.display = 'block';
+            vidSource.src = targetThumb.dataset.videoUrl;
+            mainVid.load();
+        } else {
+            mainVid.pause();
+            mainVid.style.display = 'none';
+            mainImg.style.display = 'block';
+            mainImg.src = targetThumb.querySelector('img').src;
+        }
 
-</html>
+        count.textContent = (current + 1) + '/' + thumbs.length;
+        thumbs.forEach((t, n) => t.classList.toggle('is-active', n === current));
+    }
+
+    thumbs.forEach(t => t.addEventListener('click', () => showMedia(+t.dataset.index)));
+    document.querySelector('.pd-prev')?.addEventListener('click', () => showMedia(current - 1));
+    document.querySelector('.pd-next')?.addEventListener('click', () => showMedia(current + 1));
+
+    const product = 'Koko Premium Modern Lengan Panjang',
+        phone = '6285241800852';
+    const msg = "Assalamu'alaikum Abati Store, saya ingin pesan " + product + ". Mohon konfirmasi stok dan ongkir.";
+    const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+    document.getElementById('pdWhatsapp').href = url;
+
+    document.getElementById('pdShareWa').href = 'https://wa.me/?text=' + encodeURIComponent(product + ' — ' +
+        location.href);
+    document.getElementById('pdCopyLink').addEventListener('click', async () => {
+        const status = document.getElementById('pdCopyStatus');
+        try {
+            await navigator.clipboard.writeText(location.href);
+            status.textContent = 'Tautan disalin';
+        } catch (e) {
+            status.textContent = 'Salin URL dari bilah alamat';
+        }
+    });
+
+    // Tab Switcher
+    document.querySelectorAll('.pd-tab').forEach(t => t.addEventListener('click', () => {
+        const name = t.dataset.tab;
+        document.querySelectorAll('.pd-tab').forEach(x => {
+            x.classList.toggle('is-active', x === t);
+            x.setAttribute('aria-selected', x === t ? 'true' : 'false');
+        });
+        document.querySelectorAll('.pd-tab-panel').forEach(p => {
+            p.hidden = p.id !== 'pdTab-' + name;
+            p.classList.toggle('is-active', !p.hidden);
+        });
+    }));
+
+    // Modal Panduan Ukuran
+    const modal = document.getElementById('pdSizeModal');
+    document.getElementById('pdOpenSizeGuide').addEventListener('click', () => {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('pd-modal-open');
+    });
+
+    document.querySelectorAll('[data-close-size]').forEach(x => x.addEventListener('click', () => {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('pd-modal-open');
+    }));
+})();
+</script>
+@endpush

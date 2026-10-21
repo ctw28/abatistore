@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', fn() => view('home'));
 Route::get('/beranda', fn() => view('beranda'));
-Route::get('/katalog', fn() => view('katalog'));
+Route::get('/katalog', fn() => view('katalog'))->name('katalog');
 Route::get('/new', fn() => view('newweb'));
-Route::get('/produk/detail', fn() => view('detail'));
+Route::get('/produk/detail', fn() => view('detail'))
+    ->name('produk.detail');
 Route::get('/old', fn() => view('home-old'));
 Route::get('/detail/{id}', fn() => view('detail'))->name('detail');
 Route::get('/my-area', fn() => view('admin.login'))->name('login.page');

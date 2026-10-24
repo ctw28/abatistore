@@ -33,7 +33,7 @@
                         <path d="M4 6H20M4 12H20M4 18H20" />
                     </svg>
                 </button>
-                <a class="logo-img" href="/" aria-label="Abati Store">
+                <a class="logo-img" href="/beranda" aria-label="Abati Store">
                     <img src="{{ asset('logo-abati-store.png') }}" alt="Abati Store">
                 </a>
                 <nav class="desktop-nav">
@@ -74,45 +74,81 @@
 
                 <!-- Kategori Mobile -->
                 <div class="mobile-menu-section">
+                    <!-- Toko & Kontak -->
+                    <div class="mobile-menu-links">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=-3.9986246,122.5113538"
+                            class="mobile-menu-link">
+                            <span class="menu-link-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M3 10L12 3L21 10V21H3Z" />
+                                    <path d="M9 21V14H15V21" />
+                                </svg>
+                            </span>
+                            <span class="menu-link-content">
+                                <strong>Toko Abati Store</strong>
+                                <small>Alamat dan lokasi toko</small>
+                            </span>
+                            <span class="menu-arrow">›</span>
+                        </a>
+                        <a href="https://wa.me/6285241800852" class="mobile-menu-link" target="_blank" rel="noopener">
+                            <span class="menu-link-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M20 11.5A8.5 8.5 0 0 1 7.4 19L3 20.5L4.5 16.3A8.5 8.5 0 1 1 20 11.5Z" />
+                                    <path
+                                        d="M8 8.5C8.5 11 10 12.5 12.5 14L14 12.8L16 14L15.5 16C11 16.5 7 12.5 7.5 8Z" />
+                                </svg>
+                            </span>
+                            <span class="menu-link-content">
+                                <strong>Hubungi Kami</strong>
+                                <small>Konsultasi kebutuhanmu</small>
+                            </span>
+                            <span class="menu-arrow">›</span>
+                        </a>
+                    </div>
+
+                    <!-- Medsos -->
+                    <div class="mobile-menu-social">
+                        <p>Ikuti media sosial Abati Store</p>
+                        <div class="mobile-menu-social-icons">
+                            <a href="https://www.instagram.com/fadkhera.kendari/" target="_blank" rel="noopener"
+                                aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                                    <circle cx="12" cy="12" r="4" />
+                                    <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
+                                </svg>
+                            </a>
+                            <a href="https://www.tiktok.com/@fadkhera.kendari" target="_blank" rel="noopener"
+                                aria-label="TikTok">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path
+                                        d="M14 3V15.5A4.5 4.5 0 1 1 10 11V14.5A1.5 1.5 0 1 0 11 16V3H14C14 6 16 8 19 8V11C17 11 15 10 14 9Z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                     <h3>Kategori</h3>
                     <nav class="mobile-menu-categories" aria-label="Kategori produk">
-                        <a href="/katalog?kategori=koko">
+                        <a href="{{ route('katalog', ['kategori' => 'Koko']) }}">
                             <span class="menu-category-icon"><img src="{{ asset('assets/icons/koko.svg') }}"
                                     alt=""></span>
                             <span class="menu-category-name">Baju Koko</span>
                             <span class="menu-arrow">›</span>
                         </a>
-                        <a href="/katalog?kategori=kurta">
-                            <span class="menu-category-icon"><img src="{{ asset('assets/icons/koko.svg') }}"
+                        <a href="{{ route('katalog', ['kategori' => 'Celana']) }}">
+                            <span class="menu-category-icon"><img src="{{ asset('assets/icons/celana.svg') }}"
                                     alt=""></span>
-                            <span class="menu-category-name">Kurta</span>
+                            <span class="menu-category-name">Celana</span>
                             <span class="menu-arrow">›</span>
                         </a>
-                        <a href="/katalog?kategori=jubah">
+                        <a href="{{ route('katalog', ['kategori' => 'Jubah']) }}">
                             <span class="menu-category-icon"><img src="{{ asset('assets/icons/jubah.svg') }}"
                                     alt=""></span>
                             <span class="menu-category-name">Jubah</span>
                             <span class="menu-arrow">›</span>
-                        </a>
-                        <a href="/katalog?kategori=sarung">
-                            <span class="menu-category-icon"><img src="{{ asset('assets/icons/sarung.svg') }}"
-                                    alt=""></span>
-                            <span class="menu-category-name">Sarung</span>
-                            <span class="menu-arrow">›</span>
-                        </a>
-                        <a href="/katalog?kategori=peci">
-                            <span class="menu-category-icon menu-symbol">◠</span>
-                            <span class="menu-category-name">Peci</span>
-                            <span class="menu-arrow">›</span>
-                        </a>
-                        <a href="/katalog?kategori=sandal">
-                            <span class="menu-category-icon menu-symbol">♧</span>
-                            <span class="menu-category-name">Sandal</span>
-                            <span class="menu-arrow">›</span>
-                        </a>
                     </nav>
 
-                    <a href="/katalog" class="mobile-menu-all">
+                    <a href="{{ route('katalog') }}" class="mobile-menu-all">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <rect x="4" y="4" width="6" height="6" rx="1" />
                             <rect x="14" y="4" width="6" height="6" rx="1" />
@@ -124,57 +160,7 @@
                     </a>
                 </div>
 
-                <!-- Toko & Kontak -->
-                <div class="mobile-menu-links">
-                    <a href="/#offline" class="mobile-menu-link">
-                        <span class="menu-link-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M3 10L12 3L21 10V21H3Z" />
-                                <path d="M9 21V14H15V21" />
-                            </svg>
-                        </span>
-                        <span class="menu-link-content">
-                            <strong>Toko Abati Store</strong>
-                            <small>Alamat dan lokasi toko</small>
-                        </span>
-                        <span class="menu-arrow">›</span>
-                    </a>
-                    <a href="https://wa.me/6285241800852" class="mobile-menu-link" target="_blank" rel="noopener">
-                        <span class="menu-link-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M20 11.5A8.5 8.5 0 0 1 7.4 19L3 20.5L4.5 16.3A8.5 8.5 0 1 1 20 11.5Z" />
-                                <path d="M8 8.5C8.5 11 10 12.5 12.5 14L14 12.8L16 14L15.5 16C11 16.5 7 12.5 7.5 8Z" />
-                            </svg>
-                        </span>
-                        <span class="menu-link-content">
-                            <strong>Hubungi Kami</strong>
-                            <small>Konsultasi produk melalui WhatsApp</small>
-                        </span>
-                        <span class="menu-arrow">›</span>
-                    </a>
-                </div>
 
-                <!-- Medsos -->
-                <div class="mobile-menu-social">
-                    <p>Ikuti media sosial Abati Store</p>
-                    <div class="mobile-menu-social-icons">
-                        <a href="https://www.instagram.com/fadkhera.kendari/" target="_blank" rel="noopener"
-                            aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <rect x="3" y="3" width="18" height="18" rx="5" />
-                                <circle cx="12" cy="12" r="4" />
-                                <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
-                            </svg>
-                        </a>
-                        <a href="https://www.tiktok.com/@fadkhera.kendari" target="_blank" rel="noopener"
-                            aria-label="TikTok">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M14 3V15.5A4.5 4.5 0 1 1 10 11V14.5A1.5 1.5 0 1 0 11 16V3H14C14 6 16 8 19 8V11C17 11 15 10 14 9Z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
             </div>
 
             <div class="menu-backdrop"></div>

@@ -27,7 +27,11 @@ class ProductController extends Controller
         if ($request->has('is_featured')) {
             $products->where('is_featured', $request->is_featured);
         }
-
+        if ($request->boolean('in_stock')) {
+            $products->whereHas('stocks', function ($query) {
+                $query->where('stock', '>', 0);
+            });
+        }
         // STATUS
         if ($request->status === 'habis') {
             $products->where('is_habis', 1);

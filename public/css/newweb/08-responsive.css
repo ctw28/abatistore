@@ -1205,7 +1205,7 @@
         background: #fffdf9;
         color: #183332;
 
-        z-index: 1002;
+        z-index: 3002;
 
         transform: translateX(-100%);
         visibility: hidden;
@@ -1227,7 +1227,7 @@
         inset: 0;
 
         background: rgba(16, 25, 24, .58);
-        z-index: 1001;
+        z-index: 3001;
 
         opacity: 0;
         visibility: hidden;
@@ -1258,7 +1258,7 @@
 
         min-height: 72px;
         padding-bottom: 17px;
-        border-bottom: 1px solid #e5e6df;
+        /* border-bottom: 1px solid #e5e6df; */
     }
 
     .mobile-menu-logo {
@@ -1494,8 +1494,8 @@
         align-items: center;
         justify-content: center;
 
-        width: 42px;
-        height: 42px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
 
         background: #183332;
@@ -1564,5 +1564,67 @@
     .mobile-menu,
     .menu-backdrop {
         transition: none;
+    }
+}
+/* FILTER KATALOG: tetap terlihat di bawah header */
+.catalog-filter-bar {
+    position: sticky;
+    top: 86px;
+    z-index: 29;
+    background: #fff;
+}
+
+/* Header mobile tingginya 70px */
+@media (max-width: 700px) {
+    .catalog-filter-bar {
+        top: 70px;
+    }
+}
+header.catalog-heading {
+    position: static;
+    height: auto;
+    z-index: auto;
+    box-shadow: none;
+    border-bottom: 0;
+}
+
+/* Heading katalog ikut alur halaman, tidak sticky */
+header.catalog-heading {
+    position: static;
+    height: auto;
+    z-index: auto;
+    box-shadow: none;
+    border-bottom: 0;
+}
+
+/* Filter mobile menempel stabil di bawah header utama */
+.catalog-sticky-mobile {
+    position: sticky;
+    top: 70px;
+    z-index: 29;
+    background: #fff;
+    margin: 0;
+    transform: none;
+    transition: none;
+    animation: none;
+    will-change: auto;
+    backface-visibility: visible;
+}
+
+/* Hilangkan jarak bekas search */
+.catalog-sticky-mobile .catalog-filter-row {
+    margin-top: 0;
+}
+
+/* Header utama tetap di atas filter */
+header:not(.catalog-heading) {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+}
+
+@media (min-width: 701px) {
+    .catalog-sticky-mobile {
+        position: static;
     }
 }

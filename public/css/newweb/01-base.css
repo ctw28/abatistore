@@ -34,11 +34,14 @@ h2 { margin: 0; font: 600 28px/1.25 Georgia, serif; }
 /* Tombol umum */
 .wa,
 .slide button,
-.uniform button {
+.uniform button, .uniform a{
   border: 0;
   border-radius: 7px;
   background: var(--gold);
   color: #fff;
   padding: 10px 15px;
   font-size: 13px;
+}
+.uniform a{
+  text-align: center;
 }

@@ -6,115 +6,115 @@
 <!-- CSS Khusus Detail Produk -->
 <link rel="stylesheet" href="{{ asset('css/newweb/09-product-detail.css') }}">
 <style>
-/* Penyesuaian khusus elemen baru halaman detail */
-.pd-occasion-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    margin-top: 8px;
-}
+    /* Penyesuaian khusus elemen baru halaman detail */
+    .pd-occasion-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        margin-top: 8px;
+    }
 
-.pd-occasion-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--primary, #183332);
-    background: #f2f7f6;
-    padding: 6px 12px;
-    border-radius: 20px;
-}
+    .pd-occasion-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary, #183332);
+        background: #f2f7f6;
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
 
-.pd-occasion-item i {
-    color: #25d366;
-    font-style: normal;
-    font-weight: 800;
-}
+    .pd-occasion-item i {
+        color: #25d366;
+        font-style: normal;
+        font-weight: 800;
+    }
 
-/* Penyesuaian Tombol Shopee Sekunder & Catatan Luar Kota */
-.pd-shopee-wrapper {
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px dashed #e2e8e8;
-}
+    /* Penyesuaian Tombol Shopee Sekunder & Catatan Luar Kota */
+    .pd-shopee-wrapper {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px dashed #e2e8e8;
+    }
 
-.pd-shopee-note {
-    font-size: 12px;
-    color: #6f6f6f;
-    margin-bottom: 8px;
-    display: block;
-}
+    .pd-shopee-note {
+        font-size: 12px;
+        color: #6f6f6f;
+        margin-bottom: 8px;
+        display: block;
+    }
 
-.pd-btn-shopee-subtle {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #fff;
-    color: #ee4d2d;
-    border: 1px solid #ee4d2d;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
+    .pd-btn-shopee-subtle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        color: #ee4d2d;
+        border: 1px solid #ee4d2d;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
 
-.pd-btn-shopee-subtle:hover {
-    background: #ffeeeb;
-}
+    .pd-btn-shopee-subtle:hover {
+        background: #ffeeeb;
+    }
 
-/* Thumbnail Video Badge */
-.pd-thumb-video {
-    position: relative;
-}
+    /* Thumbnail Video Badge */
+    .pd-thumb-video {
+        position: relative;
+    }
 
-.pd-thumb-video::after {
-    content: "▶";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-}
+    .pd-thumb-video::after {
+        content: "▶";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+    }
 
-/* Floating WhatsApp Button */
-.pd-floating-wa {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 99;
-    background: #25d366;
-    color: #fff;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
-    transition: transform 0.25s ease;
-    text-decoration: none;
-}
+    /* Floating WhatsApp Button */
+    .pd-floating-wa {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 99;
+        background: #25d366;
+        color: #fff;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+        transition: transform 0.25s ease;
+        text-decoration: none;
+    }
 
-.pd-floating-wa:hover {
-    transform: scale(1.08);
-}
+    .pd-floating-wa:hover {
+        transform: scale(1.08);
+    }
 
-.pd-floating-wa svg {
-    width: 30px;
-    height: 30px;
-    fill: currentColor;
-}
+    .pd-floating-wa svg {
+        width: 30px;
+        height: 30px;
+        fill: currentColor;
+    }
 </style>
 @endpush
 
 @section('content')
-<main class="pd-page">
+<main class="pd-page" id="productDetailApp">
     <div class="pd-container">
 
         <section class="pd-main" style="padding-top: 20px;">
@@ -122,9 +122,7 @@
             <div class="pd-gallery">
                 <div class="pd-main-image">
                     <!-- Media Utama: Bisa berupa Img atau Video -->
-                    <img id="pdMainImage"
-                        src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
-                        alt="Koko Premium Modern">
+                    <img id="pdMainImage" :src="getImageUrl(product.image)" :alt="product.name || 'Foto produk'">
 
                     <video id="pdMainVideo" controls
                         style="display: none; width: 100%; height: 100%; object-fit: cover;">
@@ -137,30 +135,16 @@
                     <button class="pd-gallery-arrow pd-next" aria-label="Foto berikutnya">›</button>
                 </div>
 
+
                 <div class="pd-thumbnails">
-                    <button class="pd-thumb is-active" data-index="0" data-type="image" aria-label="Foto 1">
-                        <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
-                            alt="">
-                    </button>
-                    <button class="pd-thumb" data-index="1" data-type="image" aria-label="Foto 2">
-                        <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
-                            alt="">
-                    </button>
-                    <!-- Contoh Item Video -->
-                    <button class="pd-thumb pd-thumb-video" data-index="2" data-type="video"
-                        data-video-url="https://www.w3schools.com/html/mov_bbb.mp4" aria-label="Video Produk">
-                        <img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
-                            alt="">
-                    </button>
-                    <button class="pd-thumb" data-index="3" data-type="image" aria-label="Foto 4">
-                        <img src="https://abatistore.com/storage/products/S0N4UKre09fzdMMWXTZHp5JLZPo10Jnrz28xkQXB.webp"
-                            alt="">
-                    </button>
-                    <button class="pd-thumb" data-index="4" data-type="image" aria-label="Foto 5">
-                        <img src="https://abatistore.com/storage/products/TvOpprsGKXK27OfozNosbpcldlTRC563PSqnzqTO.webp"
-                            alt="">
+                    <button v-for="(img, index) in (product.images || [])" :key="img.id || index" class="pd-thumb"
+                        :class="{ 'is-active': index === 0 }" type="button"
+                        @click="document.getElementById('pdMainImage').src = getImageUrl(img.image)">
+                        <img :src="getImageUrl(img.image)" :alt="(product.name || 'Produk') + ' ' + (index + 1)"
+                            loading="lazy">
                     </button>
                 </div>
+
 
                 <div class="pd-benefits">
                     <div><i>✳</i><span><b>Bahan pilihan</b><small>Nyaman dipakai</small></span></div>
@@ -172,20 +156,23 @@
             <!-- Informasi Produk -->
             <div class="pd-info">
                 <div class="pd-badges">
-                    <span class="pd-category">BAJU KOKO</span>
-                    <span class="pd-discount">Diskon 17%</span>
+                    <span class="pd-category"> @{{ product.category ? product.category.name : 'Produk' }}
+                    </span>
+                    <span class="pd-discount">Diskon -@{{ getDiscountPercent(product) }}%
+                    </span></span>
                 </div>
 
-                <h1>Koko Premium Modern<br>Lengan Panjang</h1>
+                <h1>@{{ product.name || 'Memuat produk...' }}</h1>
 
                 <div class="pd-price-row">
-                    <strong class="pd-price">Rp329.000</strong>
-                    <del>Rp399.000</del>
-                    <span class="pd-discount-small">-17%</span>
+                    <strong class="pd-price">@{{ formatRupiah(getDiscountPrice(product)) }}</strong>
+                    <del>@{{ formatRupiah(product.price) }}</del>
+                    <span class="pd-discount-small"> -@{{ getDiscountPercent(product) }}%
+                    </span></span>
                 </div>
 
-                <p class="pd-short-desc">Koko modern dengan desain minimalis yang cocok untuk ibadah, bekerja, kajian,
-                    dan acara formal.</p>
+                <p class="pd-short-desc"> @{{ product.description || 'Hubungi admin untuk informasi produk.' }}
+                </p>
 
                 <!-- Penjelasan Penggunaan (Centang Hijau) -->
                 <div class="pd-occasion">
@@ -389,6 +376,7 @@
             </div>
         </section>
 
+
         <!-- Produk Terkait -->
         <section class="pd-related">
             <div class="pd-section-heading pd-related-heading">
@@ -396,65 +384,32 @@
                     <span>JELAJAHI LAGI</span>
                     <h2>Produk terkait</h2>
                 </div>
-                <a href="/katalog">Lihat semua →</a>
+
+                <a href="{{ route('katalog') }}">Lihat semua →</a>
             </div>
-            <div class="pd-related-grid">
-                <a class="pd-product-card" href="#">
-                    <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
-                        alt="Koko lengan pendek">
+
+            <div v-if="relatedLoading" class="pd-related-loading">
+                Memuat produk lainnya...
+            </div>
+
+            <div v-else-if="relatedProducts.length === 0" class="pd-related-empty">
+                Belum ada produk lainnya.
+            </div>
+
+            <div v-else class="pd-related-grid">
+                <a v-for="item in relatedProducts" :key="item.id" class="pd-product-card"
+                    :href="productDetailUrl(item.id)">
+                    <img :src="getImageUrl(item.image)" :alt="item.name" loading="lazy">
+
                     <div>
-                        <small>BAJU KOKO</small>
-                        <h3>Koko Premium Lengan Pendek</h3>
-                        <b>Rp299.000</b>
-                    </div>
-                </a>
-                <a class="pd-product-card" href="#">
-                    <img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp"
-                        alt="Kemeja pilihan">
-                    <div>
-                        <small>KEMEJA</small>
-                        <h3>Kemeja pilihan</h3>
-                        <b>Lihat harga</b>
-                    </div>
-                </a>
-                <a class="pd-product-card" href="#">
-                    <img src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp"
-                        alt="Koko pilihan">
-                    <div>
-                        <small>KOLEKSI</small>
-                        <h3>Koko pilihan lainnya</h3>
-                        <b>Lihat produk</b>
-                    </div>
-                </a>
-                <a class="pd-product-card" href="#">
-                    <img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp"
-                        alt="Koleksi pilihan">
-                    <div>
-                        <small>KOLEKSI</small>
-                        <h3>Koleksi pilihan</h3>
-                        <b>Lihat produk</b>
-                    </div>
-                </a>
-                <a class="pd-product-card" href="#">
-                    <img src="https://abatistore.com/storage/products/S0N4UKre09fzdMMWXTZHp5JLZPo10Jnrz28xkQXB.webp"
-                        alt="Kaos Harian">
-                    <div>
-                        <small>KAOS</small>
-                        <h3>Kaos Harian Nyaman</h3>
-                        <b>Rp149.000</b>
-                    </div>
-                </a>
-                <a class="pd-product-card" href="#">
-                    <img src="https://abatistore.com/storage/products/TvOpprsGKXK27OfozNosbpcldlTRC563PSqnzqTO.webp"
-                        alt="Jaket Casual">
-                    <div>
-                        <small>JAKET</small>
-                        <h3>Jaket Casual Modern</h3>
-                        <b>Rp350.000</b>
+                        <small>@{{ item.category?.name || 'KOLEKSI' }}</small>
+                        <h3>@{{ item.name }}</h3>
+                        <b>@{{ formatRupiah(item.price) }}</b>
                     </div>
                 </a>
             </div>
         </section>
+
 
         <!-- Informasi Belanja Offline -->
         <section class="pd-offline-banner"
@@ -545,83 +500,219 @@
 
 @push('scripts')
 <script>
-(function() {
-    let current = 0;
-    const mainImg = document.getElementById('pdMainImage');
-    const mainVid = document.getElementById('pdMainVideo');
-    const vidSource = document.getElementById('pdVideoSource');
-    const count = document.getElementById('pdImageCount');
-    const thumbs = [...document.querySelectorAll('.pd-thumb')];
+    (function() {
+        let current = 0;
+        const mainImg = document.getElementById('pdMainImage');
+        const mainVid = document.getElementById('pdMainVideo');
+        const vidSource = document.getElementById('pdVideoSource');
+        const count = document.getElementById('pdImageCount');
+        const thumbs = [...document.querySelectorAll('.pd-thumb')];
 
-    function showMedia(index) {
-        current = (index + thumbs.length) % thumbs.length;
-        const targetThumb = thumbs[current];
-        const mediaType = targetThumb.dataset.type;
+        function showMedia(index) {
+            current = (index + thumbs.length) % thumbs.length;
+            const targetThumb = thumbs[current];
+            const mediaType = targetThumb.dataset.type;
 
-        if (mediaType === 'video') {
-            mainImg.style.display = 'none';
-            mainVid.style.display = 'block';
-            vidSource.src = targetThumb.dataset.videoUrl;
-            mainVid.load();
-        } else {
-            mainVid.pause();
-            mainVid.style.display = 'none';
-            mainImg.style.display = 'block';
-            mainImg.src = targetThumb.querySelector('img').src;
+            if (mediaType === 'video') {
+                mainImg.style.display = 'none';
+                mainVid.style.display = 'block';
+                vidSource.src = targetThumb.dataset.videoUrl;
+                mainVid.load();
+            } else {
+                mainVid.pause();
+                mainVid.style.display = 'none';
+                mainImg.style.display = 'block';
+                mainImg.src = targetThumb.querySelector('img').src;
+            }
+
+            count.textContent = (current + 1) + '/' + thumbs.length;
+            thumbs.forEach((t, n) => t.classList.toggle('is-active', n === current));
         }
 
-        count.textContent = (current + 1) + '/' + thumbs.length;
-        thumbs.forEach((t, n) => t.classList.toggle('is-active', n === current));
-    }
+        thumbs.forEach(t => t.addEventListener('click', () => showMedia(+t.dataset.index)));
+        document.querySelector('.pd-prev')?.addEventListener('click', () => showMedia(current - 1));
+        document.querySelector('.pd-next')?.addEventListener('click', () => showMedia(current + 1));
 
-    thumbs.forEach(t => t.addEventListener('click', () => showMedia(+t.dataset.index)));
-    document.querySelector('.pd-prev')?.addEventListener('click', () => showMedia(current - 1));
-    document.querySelector('.pd-next')?.addEventListener('click', () => showMedia(current + 1));
+        const product = 'Koko Premium Modern Lengan Panjang',
+            phone = '6285241800852';
+        const msg = "Assalamu'alaikum Abati Store, saya ingin pesan " + product + ". Mohon konfirmasi stok dan ongkir.";
+        const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+        document.getElementById('pdWhatsapp').href = url;
 
-    const product = 'Koko Premium Modern Lengan Panjang',
-        phone = '6285241800852';
-    const msg = "Assalamu'alaikum Abati Store, saya ingin pesan " + product + ". Mohon konfirmasi stok dan ongkir.";
-    const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
-    document.getElementById('pdWhatsapp').href = url;
-
-    document.getElementById('pdShareWa').href = 'https://wa.me/?text=' + encodeURIComponent(product + ' — ' +
-        location.href);
-    document.getElementById('pdCopyLink').addEventListener('click', async () => {
-        const status = document.getElementById('pdCopyStatus');
-        try {
-            await navigator.clipboard.writeText(location.href);
-            status.textContent = 'Tautan disalin';
-        } catch (e) {
-            status.textContent = 'Salin URL dari bilah alamat';
-        }
-    });
-
-    // Tab Switcher
-    document.querySelectorAll('.pd-tab').forEach(t => t.addEventListener('click', () => {
-        const name = t.dataset.tab;
-        document.querySelectorAll('.pd-tab').forEach(x => {
-            x.classList.toggle('is-active', x === t);
-            x.setAttribute('aria-selected', x === t ? 'true' : 'false');
+        document.getElementById('pdShareWa').href = 'https://wa.me/?text=' + encodeURIComponent(product + ' — ' +
+            location.href);
+        document.getElementById('pdCopyLink').addEventListener('click', async () => {
+            const status = document.getElementById('pdCopyStatus');
+            try {
+                await navigator.clipboard.writeText(location.href);
+                status.textContent = 'Tautan disalin';
+            } catch (e) {
+                status.textContent = 'Salin URL dari bilah alamat';
+            }
         });
-        document.querySelectorAll('.pd-tab-panel').forEach(p => {
-            p.hidden = p.id !== 'pdTab-' + name;
-            p.classList.toggle('is-active', !p.hidden);
+
+        // Tab Switcher
+        document.querySelectorAll('.pd-tab').forEach(t => t.addEventListener('click', () => {
+            const name = t.dataset.tab;
+            document.querySelectorAll('.pd-tab').forEach(x => {
+                x.classList.toggle('is-active', x === t);
+                x.setAttribute('aria-selected', x === t ? 'true' : 'false');
+            });
+            document.querySelectorAll('.pd-tab-panel').forEach(p => {
+                p.hidden = p.id !== 'pdTab-' + name;
+                p.classList.toggle('is-active', !p.hidden);
+            });
+        }));
+
+        // Modal Panduan Ukuran
+        const modal = document.getElementById('pdSizeModal');
+        document.getElementById('pdOpenSizeGuide').addEventListener('click', () => {
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('pd-modal-open');
         });
-    }));
 
-    // Modal Panduan Ukuran
-    const modal = document.getElementById('pdSizeModal');
-    document.getElementById('pdOpenSizeGuide').addEventListener('click', () => {
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('pd-modal-open');
-    });
-
-    document.querySelectorAll('[data-close-size]').forEach(x => x.addEventListener('click', () => {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('pd-modal-open');
-    }));
-})();
+        document.querySelectorAll('[data-close-size]').forEach(x => x.addEventListener('click', () => {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('pd-modal-open');
+        }));
+    })();
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
+<script>
+    new Vue({
+        el: '#productDetailApp',
+        delimiters: ['@{{', '}}'],
+
+        data() {
+            return {
+                product: {},
+                loading: true,
+                error: '',
+                relatedProducts: [],
+                relatedLoading: false,
+            };
+        },
+
+        mounted() {
+            this.fetchProduct();
+            this.fetchRelatedProducts();
+        },
+
+        methods: {
+
+            async fetchRelatedProducts() {
+                const productId = @json($productId);
+
+                this.relatedLoading = true;
+
+                try {
+                    const response = await fetch(
+                        @json(url('/api/products'))
+                    );
+
+                    if (!response.ok) {
+                        throw new Error('Gagal mengambil produk terkait');
+                    }
+
+                    const data = await response.json();
+
+                    // Mendukung respons array langsung maupun { data: [...] }
+                    const products = Array.isArray(data) ?
+                        data :
+                        (Array.isArray(data.data) ? data.data : []);
+
+                    // Keluarkan produk yang sedang dibuka
+                    const currentId = String(this.productId);
+
+                    const candidates = products.filter(product =>
+                        String(product.id) !== currentId
+                    );
+
+                    // Acak urutan produk
+                    for (let i = candidates.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+                    }
+
+                    // Tampilkan maksimal 6 produk
+                    this.relatedProducts = candidates.slice(0, 6);
+
+                } catch (error) {
+                    console.error('Produk terkait gagal dimuat:', error);
+                    this.relatedProducts = [];
+                } finally {
+                    this.relatedLoading = false;
+                }
+            },
+
+            productDetailUrl(id) {
+                const template = @json(route('produk.detail', ['id' => '__ID__']));
+
+                return template.replace('__ID__', encodeURIComponent(id));
+            },
+
+            async fetchProduct() {
+                try {
+                    const productId = @json($productId);
+
+                    let url = @json(route('product.show', ['id' => '__ID__']));
+                    url = url.replace('__ID__', productId);
+
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error('Produk tidak ditemukan.');
+                    }
+
+                    const data = await response.json();
+
+                    // Mendukung API yang mengembalikan objek produk langsung
+                    // maupun objek produk di dalam properti "data".
+                    this.product = data.data || data;
+                } catch (error) {
+                    console.error('Gagal mengambil detail produk:', error);
+                    this.error = 'Produk gagal dimuat. Silakan coba kembali.';
+                } finally {
+                    this.loading = false;
+                }
+            },
+
+            getImageUrl(path) {
+                if (!path) return '/images/no-image.png';
+
+                if (/^https?:\/\//i.test(path)) {
+                    return path;
+                }
+
+                return '/storage/' + path.replace(/^\/?storage\//, '');
+            },
+
+            formatRupiah(value) {
+                return new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    maximumFractionDigits: 0
+                }).format(Number(value) || 0);
+            },
+
+            getDiscountPercent(product) {
+                // Diskon contoh mengikuti tampilan beranda.
+                // Ubah jika diskon produk sebenarnya berbeda.
+                return 17;
+            },
+
+            getDiscountPrice(product) {
+                return Math.round(
+                    (Number(product.price) || 0) *
+                    (1 - this.getDiscountPercent(product) / 100)
+                );
+            }
+        }
+    });
+</script>
+
 @endpush

@@ -91,8 +91,8 @@
                                 </svg>
                             </span>
                             <span class="menu-link-content">
-                                <strong>Toko Abati Store</strong>
-                                <small>Alamat dan lokasi toko</small>
+                                <strong>Toko dan Pelanggan</strong>
+                                <small>Alamat, lokasi toko, Foto toko dan Pelanggan</small>
                             </span>
                             <span class="menu-arrow">›</span>
                         </a>

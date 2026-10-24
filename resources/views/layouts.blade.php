@@ -33,16 +33,22 @@
                         <path d="M4 6H20M4 12H20M4 18H20" />
                     </svg>
                 </button>
-                <a class="logo-img" href="/beranda" aria-label="Abati Store">
+                <a class="logo-img" href="{{route('beranda')}}" aria-label="Abati Store">
                     <img src="{{ asset('logo-abati-store.png') }}" alt="Abati Store">
                 </a>
                 <nav class="desktop-nav">
-                    <a href="/">Beranda</a>
-                    <a href="/katalog">Katalog</a>
-                    <a href="/#kategori">Kategori</a>
-                    <a href="/#rekomendasi">Rekomendasi</a>
-                    <a href="/#offline">Toko</a>
-                    <a href="/#seragam">Seragam</a>
+                    <a href="{{ route('beranda') }}">Beranda</a>
+                    <a href="{{ route('katalog') }}">Katalog</a>
+                    <button type="button" data-open-modal="sizeModal">
+                        Panduan Ukuran
+                    </button>
+                    <button type="button" data-open-modal="shippingModal">
+                        Cek Ongkir Lokal
+                    </button>
+                    <a href="https://wa.me/6281234567890?text={{ urlencode('Assalamu’alaikum Abati Store, saya ingin bertanya tentang pemesanan seragam.') }}"
+                        target="_blank" rel="noopener">
+                        Pesan Seragam
+                    </a>
                 </nav>
                 <div class="search desktop-search">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -62,7 +68,7 @@
             <!-- DRAWER MENU MOBILE -->
             <div class="mobile-menu" id="mobileMenu">
                 <div class="mobile-menu-head">
-                    <a href="/" class="mobile-menu-logo" aria-label="Abati Store">
+                    <a href="{{route('beranda')}}" class="mobile-menu-logo" aria-label="Abati Store">
                         <img src="{{ asset('logo-abati-store.png') }}" alt="Abati Store">
                     </a>
                     <button class="close-menu" type="button" aria-label="Tutup menu">
@@ -90,7 +96,58 @@
                             </span>
                             <span class="menu-arrow">›</span>
                         </a>
-                        <a href="https://wa.me/6285241800852" class="mobile-menu-link" target="_blank" rel="noopener">
+
+
+                        <!-- Menu Panduan Ukuran -->
+                        <button type="button" class="mobile-menu-link" data-open-modal="sizeModal">
+                            <span class="menu-link-icon">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <!-- Bentuk baju -->
+                                    <path d="M8 4L4 6.5 2.8 11l3.4 1.2L8 9.5V20h8V9.5l1.8 2.7 3.4-1.2L20 6.5 16 4" />
+                                    <path d="M8 4c.8 1.4 2.1 2.1 4 2.1S15.2 5.4 16 4" />
+
+                                    <!-- Garis ukur horizontal dan panah dua arah -->
+                                    <path d="M8.5 14.2h7" />
+                                    <path d="m10 12.9-1.5 1.3 1.5 1.3" />
+                                    <path d="m14 12.9 1.5 1.3-1.5 1.3" />
+
+                                    <!-- Garis ukur vertikal -->
+                                    <path d="M18.8 13.5v5" />
+                                    <path d="m17.7 14.6 1.1-1.1 1.1 1.1" />
+                                    <path d="m17.7 17.4 1.1 1.1 1.1-1.1" />
+                                </svg>
+
+                            </span>
+                            <span class="menu-link-content">
+                                <strong>Panduan Ukuran</strong>
+                                <small>Bantu pilih ukuran yang pas</small>
+                            </span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+
+                        <!-- Menu Ongkir -->
+                        <button type="button" class="mobile-menu-link" data-open-modal="shippingModal">
+                            <span class="menu-link-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M3 6h11v12H3z" />
+                                    <path d="M14 10h4l3 3v5h-7z" />
+                                    <circle cx="7.5" cy="18" r="1.8" />
+                                    <circle cx="17.5" cy="18" r="1.8" />
+                                </svg>
+                            </span>
+                            <span class="menu-link-content">
+                                <strong>Ongkir & Pengiriman</strong>
+                                <small>Informasi biaya dan pengiriman</small>
+                            </span>
+                            <span class="mobile-menu-arrow">›</span>
+                        </button>
+
+                        <!-- Menu Pesan Seragam -->
+                        <a class="mobile-menu-link"
+                            href="https://wa.me/6281234567890?text={{ urlencode('Assalamu’alaikum Abati Store, saya ingin bertanya tentang pemesanan seragam.') }}"
+                            target="_blank" rel="noopener">
                             <span class="menu-link-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M20 11.5A8.5 8.5 0 0 1 7.4 19L3 20.5L4.5 16.3A8.5 8.5 0 1 1 20 11.5Z" />
@@ -99,11 +156,12 @@
                                 </svg>
                             </span>
                             <span class="menu-link-content">
-                                <strong>Hubungi Kami</strong>
-                                <small>Konsultasi kebutuhanmu</small>
+                                <strong>Pesan Seragam</strong>
+                                <small>Konsultasi seragam via WhatsApp</small>
                             </span>
-                            <span class="menu-arrow">›</span>
+                            <span class="mobile-menu-arrow">›</span>
                         </a>
+
                     </div>
 
                     <!-- Medsos -->
@@ -174,6 +232,57 @@
                     <path d="M16 16L20 20"></path>
                 </svg>
                 <input id="mobileSearchInput" type="search" placeholder="Cari baju koko, kurta..." autocomplete="off">
+            </div>
+        </div>
+
+        <!-- Modal Panduan Ukuran -->
+        <div class="info-modal" id="sizeModal" aria-hidden="true">
+            <div class="info-modal-backdrop" data-close-modal></div>
+
+            <div class="info-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="sizeModalTitle">
+                <button type="button" class="info-modal-close" data-close-modal aria-label="Tutup">&times;</button>
+
+                <span class="info-modal-eyebrow">BANTUAN BELANJA</span>
+                <h2 id="sizeModalTitle">Panduan Ukuran</h2>
+                <p>
+                    Setiap model pakaian bisa memiliki ukuran yang berbeda.
+                    Periksa ukuran yang tersedia pada katalog dan tanyakan
+                    kepada admin jika ragu memilih ukuran.
+                </p>
+
+                <div class="info-modal-note">
+                    <strong>Butuh bantuan memilih ukuran?</strong>
+                    <p>Chat admin untuk memastikan ukuran sebelum memesan.</p>
+                    <a href="https://wa.me/6281234567890?text={{ urlencode('Assalamu’alaikum Abati Store, saya ingin dibantu memilih ukuran pakaian.') }}"
+                        target="_blank" rel="noopener" class="info-modal-cta">
+                        Tanya Ukuran via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Ongkir -->
+        <div class="info-modal" id="shippingModal" aria-hidden="true">
+            <div class="info-modal-backdrop" data-close-modal></div>
+
+            <div class="info-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="shippingModalTitle">
+                <button type="button" class="info-modal-close" data-close-modal aria-label="Tutup">&times;</button>
+
+                <span class="info-modal-eyebrow">INFORMASI PENGIRIMAN</span>
+                <h2 id="shippingModalTitle">Ongkir & Pengiriman</h2>
+                <p>
+                    Biaya pengiriman bergantung pada alamat tujuan,
+                    metode pengiriman, dan jumlah pesanan.
+                </p>
+
+                <div class="info-modal-note">
+                    <strong>Ingin mengetahui ongkir?</strong>
+                    <p>Kirim alamat atau kecamatan tujuan kepada admin untuk konfirmasi biaya pengiriman.</p>
+                    <a href="https://wa.me/6281234567890?text={{ urlencode('Assalamu’alaikum Abati Store, saya ingin menanyakan ongkir. Alamat atau kecamatan tujuan saya: ') }}"
+                        target="_blank" rel="noopener" class="info-modal-cta">
+                        Tanya Ongkir via WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -283,6 +392,47 @@
                 setMobileSearch(false);
             }
         });
+
+
+        document.addEventListener('click', function(event) {
+            const opener = event.target.closest('[data-open-modal]');
+            const closer = event.target.closest('[data-close-modal]');
+
+            if (opener) {
+                const modal = document.getElementById(
+                    opener.dataset.openModal
+                );
+
+                if (modal) {
+                    modal.classList.add('is-open');
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            if (closer) {
+                const modal = closer.closest('.info-modal');
+
+                if (modal) {
+                    modal.classList.remove('is-open');
+                    modal.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.info-modal.is-open')
+                    .forEach(function(modal) {
+                        modal.classList.remove('is-open');
+                        modal.setAttribute('aria-hidden', 'true');
+                    });
+
+                document.body.style.overflow = '';
+            }
+        });
+
     });
     </script>
 

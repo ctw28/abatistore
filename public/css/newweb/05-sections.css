@@ -194,7 +194,7 @@
 .recText { position:absolute; z-index:2; bottom:11px; left:11px; color:#fff; }
 .recText b { display:block; font-size:14px; }
 .recText span { font-size:12px; display:block; margin:3px 0 7px; }
-.recText button { border:0; background:#bd8942; color:#fff; border-radius:5px; padding:6px 9px; font-size:11px; }
+.recButton { border:0; background:#bd8942; color:#fff; border-radius:5px; padding:6px 9px; font-size:11px; }
 
 /* Produk */
 .latest { background:#faf9f7; }

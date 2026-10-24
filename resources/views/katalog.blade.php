@@ -493,6 +493,549 @@
         transition: none;
     }
 }
+
+/* Rekomendasi: kontrol ringkas */
+.catalog-recommendation-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.catalog-recommendation-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 0;
+    border: 0;
+    background: transparent;
+    color: var(--primary, #183332);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.catalog-recommendation-trigger:hover {
+    text-decoration: underline;
+}
+
+.catalog-active-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 8px;
+    border: 1px solid #d7e3d8;
+    border-radius: 6px;
+    background: #f0f5f0;
+    color: #315c43;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.catalog-active-tag button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Modal */
+.recommendation-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, .45);
+}
+
+.recommendation-modal {
+    width: 100%;
+    max-width: 410px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 20px;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, .2);
+}
+
+.recommendation-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 5px;
+}
+
+.recommendation-modal-header h2 {
+    margin: 0;
+    color: var(--primary, #183332);
+    font-size: 19px;
+}
+
+.recommendation-modal-close {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #f3f3f0;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.recommendation-modal-description {
+    margin: 0 0 16px;
+    color: var(--muted, #6f6f6f);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.recommendation-options {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.recommendation-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px;
+    border: 1px solid #e8e8e2;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.recommendation-option:has(input:checked) {
+    border-color: var(--primary, #183332);
+    background: #f2f6f2;
+}
+
+.recommendation-option input {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    accent-color: var(--primary, #183332);
+}
+
+.recommendation-option span {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.recommendation-option strong {
+    color: var(--text, #222);
+    font-size: 13px;
+}
+
+.recommendation-option small {
+    color: var(--muted, #6f6f6f);
+    font-size: 11px;
+}
+
+.recommendation-modal-actions {
+    display: flex;
+    gap: 9px;
+    margin-top: 17px;
+}
+
+.recommendation-modal-actions button {
+    flex: 1;
+    min-height: 42px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.recommendation-cancel {
+    border: 1px solid var(--line, #ece8e1);
+    background: #fff;
+    color: var(--text, #222);
+}
+
+.recommendation-apply {
+    border: 1px solid var(--primary, #183332);
+    background: var(--primary, #183332);
+    color: #fff;
+}
+
+.recommendation-apply:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+/* Rekomendasi: kontrol ringkas */
+.catalog-recommendation-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.catalog-recommendation-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 0;
+    border: 0;
+    background: transparent;
+    color: var(--primary, #183332);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.catalog-recommendation-trigger:hover {
+    text-decoration: underline;
+}
+
+.catalog-active-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 8px;
+    border: 1px solid #d7e3d8;
+    border-radius: 6px;
+    background: #f0f5f0;
+    color: #315c43;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.catalog-active-tag button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Modal */
+.recommendation-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, .45);
+}
+
+.recommendation-modal {
+    width: 100%;
+    max-width: 410px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 20px;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, .2);
+}
+
+.recommendation-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 5px;
+}
+
+.recommendation-modal-header h2 {
+    margin: 0;
+    color: var(--primary, #183332);
+    font-size: 19px;
+}
+
+.recommendation-modal-close {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #f3f3f0;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.recommendation-modal-description {
+    margin: 0 0 16px;
+    color: var(--muted, #6f6f6f);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.recommendation-options {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.recommendation-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px;
+    border: 1px solid #e8e8e2;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.recommendation-option:has(input:checked) {
+    border-color: var(--primary, #183332);
+    background: #f2f6f2;
+}
+
+.recommendation-option input {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    accent-color: var(--primary, #183332);
+}
+
+.recommendation-option span {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.recommendation-option strong {
+    color: var(--text, #222);
+    font-size: 13px;
+}
+
+.recommendation-option small {
+    color: var(--muted, #6f6f6f);
+    font-size: 11px;
+}
+
+.recommendation-modal-actions {
+    display: flex;
+    gap: 9px;
+    margin-top: 17px;
+}
+
+.recommendation-modal-actions button {
+    flex: 1;
+    min-height: 42px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.recommendation-cancel {
+    border: 1px solid var(--line, #ece8e1);
+    background: #fff;
+    color: var(--text, #222);
+}
+
+.recommendation-apply {
+    border: 1px solid var(--primary, #183332);
+    background: var(--primary, #183332);
+    color: #fff;
+}
+
+.recommendation-apply:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+/* Rekomendasi: kontrol ringkas */
+.catalog-recommendation-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.catalog-recommendation-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 0;
+    border: 0;
+    background: transparent;
+    color: var(--primary, #183332);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.catalog-recommendation-trigger:hover {
+    text-decoration: underline;
+}
+
+.catalog-active-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 8px;
+    border: 1px solid #d7e3d8;
+    border-radius: 6px;
+    background: #f0f5f0;
+    color: #315c43;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.catalog-active-tag button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Modal */
+.recommendation-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, .45);
+}
+
+.recommendation-modal {
+    width: 100%;
+    max-width: 410px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 20px;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, .2);
+}
+
+.recommendation-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 5px;
+}
+
+.recommendation-modal-header h2 {
+    margin: 0;
+    color: var(--primary, #183332);
+    font-size: 19px;
+}
+
+.recommendation-modal-close {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #f3f3f0;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.recommendation-modal-description {
+    margin: 0 0 16px;
+    color: var(--muted, #6f6f6f);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.recommendation-options {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.recommendation-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px;
+    border: 1px solid #e8e8e2;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.recommendation-option:has(input:checked) {
+    border-color: var(--primary, #183332);
+    background: #f2f6f2;
+}
+
+.recommendation-option input {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    accent-color: var(--primary, #183332);
+}
+
+.recommendation-option span {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.recommendation-option strong {
+    color: var(--text, #222);
+    font-size: 13px;
+}
+
+.recommendation-option small {
+    color: var(--muted, #6f6f6f);
+    font-size: 11px;
+}
+
+.recommendation-modal-actions {
+    display: flex;
+    gap: 9px;
+    margin-top: 17px;
+}
+
+.recommendation-modal-actions button {
+    flex: 1;
+    min-height: 42px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.recommendation-cancel {
+    border: 1px solid var(--line, #ece8e1);
+    background: #fff;
+    color: var(--text, #222);
+}
+
+.recommendation-apply {
+    border: 1px solid var(--primary, #183332);
+    background: var(--primary, #183332);
+    color: #fff;
+}
+
+.recommendation-apply:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
 </style>
 @endpush
 
@@ -544,6 +1087,66 @@
                             </select>
                         </div>
                     </div>
+
+
+                    <div class="catalog-recommendation-row">
+                        <button type="button" class="catalog-recommendation-trigger" @click="openRecommendationModal">
+                            + Rekomendasi
+                        </button>
+
+                        <span v-if="selectedRecommendationTag" class="catalog-active-tag">
+                            @{{ selectedRecommendationTag.name }}
+
+                            <button type="button" aria-label="Hapus rekomendasi" @click="clearRecommendation">×</button>
+                        </span>
+                    </div>
+
+
+                </div>
+
+                <div v-if="recommendationModalOpen" class="recommendation-modal-backdrop"
+                    @click.self="closeRecommendationModal">
+                    <section class="recommendation-modal" role="dialog" aria-modal="true"
+                        aria-labelledby="recommendationModalTitle">
+                        <div class="recommendation-modal-header">
+                            <h2 id="recommendationModalTitle">Rekomendasi pakaian</h2>
+
+                            <button type="button" class="recommendation-modal-close" aria-label="Tutup modal"
+                                @click="closeRecommendationModal">×</button>
+                        </div>
+
+                        <p class="recommendation-modal-description">
+                            Pilih kebutuhan pakaian yang sedang kamu cari.
+                        </p>
+
+                        <div v-if="loadingTags" class="catalog-loading">
+                            Memuat rekomendasi...
+                        </div>
+
+                        <div v-else-if="recommendationTags.length === 0" class="catalog-empty">
+                            Belum ada tag rekomendasi yang tersedia.
+                        </div>
+
+                        <div v-else class="recommendation-options">
+                            <label v-for="tag in recommendationTags" :key="tag.id" class="recommendation-option">
+                                <input type="radio" name="productRecommendation" :value="String(tag.id)"
+                                    v-model="draftRecommendation">
+
+                                <span>
+                                    <strong>@{{ tag.name }}</strong>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="recommendation-modal-actions">
+                            <button type="button" class="recommendation-cancel"
+                                @click="closeRecommendationModal">Batal</button>
+
+                            <button type="button" class="recommendation-apply"
+                                :disabled="!draftRecommendation || loadingTags" @click="applyRecommendation">Terapkan
+                                Filter</button>
+                        </div>
+                    </section>
                 </div>
 
                 {{-- Desktop: pencarian dan filter ukuran di atas produk --}}
@@ -624,9 +1227,14 @@
                 </div>
             </section>
         </div>
+
+
+
     </div>
+
 </main>
 @endsection
+
 
 @push('scripts')
 <script>
@@ -638,6 +1246,7 @@ createApp({
     data() {
         return {
             products: [],
+
             categories: [{
                     id: 1,
                     name: 'Baju Koko',
@@ -679,11 +1288,24 @@ createApp({
                     slug: 'jubah'
                 }
             ],
+
             sizeOptions: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+
+            // Tag rekomendasi dari database
+            tags: [],
+            loadingTags: false,
+
+            // Filter rekomendasi
+            recommendationModalOpen: false,
+            selectedRecommendation: '',
+            draftRecommendation: '',
+
+            // Filter katalog
             searchQuery: '',
             selectedCategory: '',
-            selectedSize: new URLSearchParams(window.location.search)
-                .get('ukuran')?.toUpperCase() || '',
+            selectedSize: '',
+
+            // Tampilan katalog
             visibleLimit: 8,
             loading: false,
             loadError: false
@@ -691,118 +1313,419 @@ createApp({
     },
 
     computed: {
+        recommendationTags() {
+            return this.tags;
+        },
+
+        selectedRecommendationTag() {
+            return this.recommendationTags.find(tag =>
+                String(tag.id) === String(this.selectedRecommendation)
+            ) || null;
+        },
+
         filteredProducts() {
+            const query = this.searchQuery.trim().toLowerCase();
+
             return this.products.filter(product => {
                 const name = String(product.name || '').toLowerCase();
-                const query = this.searchQuery.toLowerCase();
-                const matchesSearch = name.includes(query);
-                const matchesCategory = this.selectedCategory === '' ||
-                    String(product.category_id) === String(this.selectedCategory);
-                const matchesSize = this.selectedSize === '' ||
+
+                const matchesSearch = !query || name.includes(query);
+
+                const matchesCategory =
+                    this.selectedCategory === '' ||
+                    String(product.category_id) ===
+                    String(this.selectedCategory);
+
+                const matchesSize =
+                    this.selectedSize === '' ||
                     this.productHasSize(product, this.selectedSize);
-                return matchesSearch && matchesCategory && matchesSize;
+
+                // Filter berdasarkan ID tag Rekomendasi dari database.
+                const productTags = Array.isArray(product.tags) ?
+                    product.tags : [];
+
+                const matchesRecommendation =
+                    this.selectedRecommendation === '' ||
+                    productTags.some(tag =>
+                        String(tag.id) ===
+                        String(this.selectedRecommendation) &&
+                        String(tag.group || '').trim().toLowerCase() ===
+                        'rekomendasi'
+                    );
+
+                return matchesSearch &&
+                    matchesCategory &&
+                    matchesSize &&
+                    matchesRecommendation;
             });
         },
+
         paginatedProducts() {
             return this.filteredProducts.slice(0, this.visibleLimit);
         },
-        selectedCategoryName() {
-            if (!this.selectedCategory) return 'Semua Produk';
 
-            const category = this.categories.find(
-                cat => String(cat.id) === String(this.selectedCategory)
+        selectedCategoryName() {
+            if (!this.selectedCategory) {
+                return 'Semua Produk';
+            }
+
+            const category = this.categories.find(cat =>
+                String(cat.id) === String(this.selectedCategory)
             );
 
             return category ? category.name : 'Semua Produk';
         }
     },
 
-    mounted() {
+    async mounted() {
+        // Baca filter kategori dan ukuran dari URL.
         this.readCategoryFromUrl();
-        this.fetchCatalogProducts();
-        window.addEventListener('popstate', this.readCategoryFromUrl);
+
+        // Muat tag sebelum membaca filter rekomendasi dari URL.
+        await this.loadTags();
+        this.readRecommendationFromUrl();
+
+        // Muat produk dengan filter rekomendasi yang aktif.
+        await this.fetchCatalogProducts();
+
+        window.addEventListener(
+            'popstate',
+            this.handleCatalogPopstate
+        );
     },
 
     beforeUnmount() {
-        window.removeEventListener('popstate', this.readCategoryFromUrl);
+        window.removeEventListener(
+            'popstate',
+            this.handleCatalogPopstate
+        );
     },
 
     methods: {
+        // ==========================================
+        // TAG REKOMENDASI
+        // ==========================================
+
+        async loadTags() {
+            this.loadingTags = true;
+
+            try {
+                const token = localStorage.getItem('jwt');
+
+                const headers = {
+                    Accept: 'application/json'
+                };
+
+                if (token) {
+                    headers.Authorization = `Bearer ${token}`;
+                }
+
+                const response = await fetch('/api/tags/grouped', {
+                    headers
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const payload = await response.json();
+                const source = payload.data ?? payload;
+
+                let result = [];
+
+                if (Array.isArray(source)) {
+                    // Format: [{ group: 'Rekomendasi', tags: [...] }]
+                    const groupObject = source.find(item =>
+                        String(item.group ?? item.name ?? '')
+                        .trim()
+                        .toLowerCase() === 'rekomendasi' &&
+                        Array.isArray(item.tags)
+                    );
+
+                    if (groupObject) {
+                        result = groupObject.tags;
+                    } else {
+                        // Format: [{ id, name, group: 'Rekomendasi' }]
+                        result = source.filter(item =>
+                            String(item.group ?? '')
+                            .trim()
+                            .toLowerCase() === 'rekomendasi'
+                        );
+                    }
+                } else if (
+                    source &&
+                    typeof source === 'object'
+                ) {
+                    // Format: { Rekomendasi: [...] }
+                    const key = Object.keys(source).find(item =>
+                        item.trim().toLowerCase() === 'rekomendasi'
+                    );
+
+                    if (key && Array.isArray(source[key])) {
+                        result = source[key];
+                    }
+                }
+
+                this.tags = result
+                    .filter(tag =>
+                        tag.id != null &&
+                        String(tag.name ?? '').trim() !== ''
+                    )
+                    .map(tag => ({
+                        ...tag,
+                        id: String(tag.id),
+                        name: String(tag.name).trim(),
+                        group: 'Rekomendasi'
+                    }));
+
+            } catch (error) {
+                console.error(
+                    'Gagal memuat tag rekomendasi:',
+                    error
+                );
+
+                this.tags = [];
+            } finally {
+                this.loadingTags = false;
+            }
+        },
+
+        openRecommendationModal() {
+            this.draftRecommendation =
+                this.selectedRecommendation;
+
+            this.recommendationModalOpen = true;
+        },
+
+        closeRecommendationModal() {
+            this.recommendationModalOpen = false;
+        },
+
+        readRecommendationFromUrl() {
+            const params = new URLSearchParams(
+                window.location.search
+            );
+
+            const requested =
+                params.get('rekomendasi') || '';
+
+            const exists = this.recommendationTags.some(tag =>
+                String(tag.id) === String(requested)
+            );
+
+            this.selectedRecommendation =
+                exists ? String(requested) : '';
+
+            this.draftRecommendation =
+                this.selectedRecommendation;
+        },
+
+        updateRecommendationUrl() {
+            const params = new URLSearchParams(
+                window.location.search
+            );
+
+            if (this.selectedRecommendation) {
+                params.set(
+                    'rekomendasi',
+                    this.selectedRecommendation
+                );
+            } else {
+                params.delete('rekomendasi');
+            }
+
+            const query = params.toString();
+
+            const nextUrl =
+                window.location.pathname +
+                (query ? `?${query}` : '') +
+                window.location.hash;
+
+            window.history.replaceState({}, '', nextUrl);
+        },
+
+        async applyRecommendation() {
+            const exists = this.recommendationTags.some(tag =>
+                String(tag.id) ===
+                String(this.draftRecommendation)
+            );
+
+            if (!exists) {
+                return;
+            }
+
+            this.selectedRecommendation =
+                String(this.draftRecommendation);
+
+            this.recommendationModalOpen = false;
+            this.visibleLimit = 8;
+
+            this.updateRecommendationUrl();
+
+            await this.fetchCatalogProducts();
+        },
+
+        async clearRecommendation() {
+            this.selectedRecommendation = '';
+            this.draftRecommendation = '';
+            this.visibleLimit = 8;
+
+            this.updateRecommendationUrl();
+
+            // Kategori dan ukuran tetap dipertahankan.
+            await this.fetchCatalogProducts();
+        },
+
+        // ==========================================
+        // URL DAN FILTER KATEGORI / UKURAN
+        // ==========================================
+
         readCategoryFromUrl() {
-            const params = new URLSearchParams(window.location.search);
+            const params = new URLSearchParams(
+                window.location.search
+            );
 
-            // Baca kategori dari URL
-            const requested = (params.get('kategori') || '').trim().toLowerCase();
+            const requestedCategory = (
+                params.get('kategori') || ''
+            ).trim().toLowerCase();
 
-            if (!requested) {
+            if (!requestedCategory) {
                 this.selectedCategory = '';
             } else {
                 const category = this.categories.find(cat =>
-                    cat.slug.toLowerCase() === requested ||
-                    cat.name.toLowerCase() === requested ||
-                    String(cat.id) === requested
+                    cat.slug.toLowerCase() === requestedCategory ||
+                    cat.name.toLowerCase() === requestedCategory ||
+                    String(cat.id) === requestedCategory
                 );
 
-                this.selectedCategory = category ? category.id : '';
+                this.selectedCategory = category ?
+                    category.id :
+                    '';
             }
 
-            // Baca ukuran dari URL
-            const requestedSize = (params.get('ukuran') || '').trim().toUpperCase();
+            const requestedSize = (
+                params.get('ukuran') || ''
+            ).trim().toUpperCase();
 
-            this.selectedSize = this.sizeOptions.includes(requestedSize) ?
+            this.selectedSize =
+                this.sizeOptions.includes(requestedSize) ?
                 requestedSize :
                 '';
 
             this.visibleLimit = 8;
         },
 
+        handleCatalogPopstate() {
+            this.readCategoryFromUrl();
+            this.readRecommendationFromUrl();
+            this.fetchCatalogProducts();
+        },
+
         setCategory(value) {
-            const categoryId = value === '' ? '' : Number(value);
+            const categoryId =
+                value === '' ? '' : Number(value);
+
             this.selectedCategory = categoryId;
             this.visibleLimit = 8;
 
-            const params = new URLSearchParams(window.location.search);
+            const params = new URLSearchParams(
+                window.location.search
+            );
+
             if (categoryId === '') {
                 params.delete('kategori');
             } else {
-                const category = this.categories.find(cat => cat.id === categoryId);
-                if (category) params.set('kategori', category.slug);
+                const category = this.categories.find(cat =>
+                    String(cat.id) === String(categoryId)
+                );
+
+                if (category) {
+                    params.set('kategori', category.slug);
+                }
             }
+
             const query = params.toString();
-            const nextUrl = window.location.pathname + (query ? '?' + query : '') + window.location.hash;
+
+            const nextUrl =
+                window.location.pathname +
+                (query ? `?${query}` : '') +
+                window.location.hash;
+
             window.history.replaceState({}, '', nextUrl);
         },
 
-        resetFilters() {
+        async resetFilters() {
             this.searchQuery = '';
             this.selectedSize = '';
-            this.setCategory('');
+            this.selectedRecommendation = '';
+            this.draftRecommendation = '';
+            this.recommendationModalOpen = false;
             this.visibleLimit = 8;
+
+            this.setCategory('');
+            this.updateRecommendationUrl();
+
+            // Hapus parameter ukuran dari URL juga.
+            const params = new URLSearchParams(
+                window.location.search
+            );
+
+            params.delete('ukuran');
+
+            const query = params.toString();
+
+            const nextUrl =
+                window.location.pathname +
+                (query ? `?${query}` : '') +
+                window.location.hash;
+
+            window.history.replaceState({}, '', nextUrl);
+
+            await this.fetchCatalogProducts();
         },
 
         resetVisibleLimit() {
             this.visibleLimit = 8;
         },
 
+        // ==========================================
+        // MEMUAT PRODUK DARI API
+        // ==========================================
+
         async fetchCatalogProducts() {
             this.loading = true;
             this.loadError = false;
 
             try {
-                const url = new URL(@json(route('product.index')), window.location.origin);
+                const url = new URL(
+                    @json(route('product.index')),
+                    window.location.origin
+                );
+
                 url.searchParams.set('in_stock', '1');
 
-                const response = await fetch(url);
+
+
+                const response = await fetch(url.toString(), {
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                });
 
                 if (!response.ok) {
-                    throw new Error('HTTP ' + response.status);
+                    throw new Error(`HTTP ${response.status}`);
                 }
 
                 const data = await response.json();
-                this.products = Array.isArray(data) ? data : (data.data || []);
 
+                this.products = Array.isArray(data) ? data : (Array.isArray(data.data) ? data.data : []);
+                console.log('Produk berhasil dimuat:', this.products);
             } catch (error) {
-                console.error('Gagal memuat katalog:', error);
+                console.error(
+                    'Gagal memuat katalog:',
+                    error
+                );
+
                 this.products = [];
                 this.loadError = true;
             } finally {
@@ -810,67 +1733,132 @@ createApp({
             }
         },
 
+        // ==========================================
+        // FILTER UKURAN
+        // ==========================================
+
         productHasSize(product, requestedSize) {
-            // Struktur API yang digunakan admin: product.stocks = [{ size: { id, name }, stock }]
             if (Array.isArray(product.stocks)) {
                 return product.stocks.some(stock => {
-                    const sizeName = typeof stock.size === 'object' && stock.size !== null ?
+                    const sizeName =
+                        typeof stock.size === 'object' &&
+                        stock.size !== null ?
                         stock.size.name :
                         (stock.size_name || stock.size);
-                    const quantity = Number(stock.stock ?? stock.quantity ?? stock.qty ?? 0);
-                    return String(sizeName || '').trim().toUpperCase() === requestedSize && quantity >
-                        0;
+
+                    const quantity = Number(
+                        stock.stock ??
+                        stock.quantity ??
+                        stock.qty ??
+                        0
+                    );
+
+                    return (
+                        String(sizeName || '')
+                        .trim()
+                        .toUpperCase() === requestedSize &&
+                        quantity > 0
+                    );
                 });
             }
 
-            // Fallback jika endpoint mengirim daftar sizes secara langsung.
             if (Array.isArray(product.sizes)) {
                 return product.sizes.some(size => {
-                    const sizeName = typeof size === 'object' && size !== null ?
-                        (size.name || size.size_name || size.size) :
+                    const sizeName =
+                        typeof size === 'object' &&
+                        size !== null ?
+                        (
+                            size.name ||
+                            size.size_name ||
+                            size.size
+                        ) :
                         size;
-                    const quantity = typeof size === 'object' && size !== null ?
-                        Number(size.stock ?? size.quantity ?? 1) :
+
+                    const quantity =
+                        typeof size === 'object' &&
+                        size !== null ?
+                        Number(
+                            size.stock ??
+                            size.quantity ??
+                            1
+                        ) :
                         1;
-                    return String(sizeName || '').trim().toUpperCase() === requestedSize && quantity >
-                        0;
+
+                    return (
+                        String(sizeName || '')
+                        .trim()
+                        .toUpperCase() === requestedSize &&
+                        quantity > 0
+                    );
                 });
             }
+
             return false;
         },
 
+        // ==========================================
+        // KATEGORI PRODUK
+        // ==========================================
+
         getCategorySlug(product) {
             const category = this.categories.find(cat =>
-                String(cat.id) === String(product.category_id)
+                String(cat.id) ===
+                String(product.category_id)
             );
-            if (category) return category.slug;
 
-            const categoryName = product.category && product.category.name ?
-                product.category.name :
-                '';
-            const normalized = categoryName.toLowerCase().trim();
+            if (category) {
+                return category.slug;
+            }
+
+            const categoryName =
+                product.category?.name || '';
+
+            const normalized =
+                categoryName.toLowerCase().trim();
+
             if (normalized.includes('koko')) return 'koko';
             if (normalized.includes('kaos')) return 'kaos';
-            if (normalized.includes('jaket')) return 'jaket';
+            if (normalized.includes('jaket')) return 'jacket';
             if (normalized.includes('oversize')) return 'oversize';
             if (normalized.includes('kemeja')) return 'kemeja';
             if (normalized.includes('jubah')) return 'jubah';
             if (normalized.includes('kurta')) return 'kurta';
             if (normalized.includes('sirwal')) return 'sirwal';
+
             return normalized || 'produk';
         },
 
+        // ==========================================
+        // GAMBAR, HARGA, DETAIL, DAN LOAD MORE
+        // ==========================================
+
         getImageUrl(path) {
-            if (!path) return @json(asset('assets/no-image.png'));
-            if (/^https?:\/\//i.test(path)) return path;
-            if (path.startsWith('/')) return path;
-            if (path.startsWith('storage/')) return '/' + path;
+            if (!path) {
+                return @json(asset('assets/no-image.png'));
+            }
+
+            if (/^https?:\/\//i.test(path)) {
+                return path;
+            }
+
+            if (path.startsWith('/')) {
+                return path;
+            }
+
+            if (path.startsWith('storage/')) {
+                return '/' + path;
+            }
+
             return '/storage/' + path.replace(/^\/+/, '');
         },
 
         formatRupiah(value) {
             const number = Number(value);
-            if (!Number.isFinite(number)) return 'Hubungi kami';
+
+            if (!Number.isFinite(number)) {
+                return 'Hubungi kami';
+            }
+
             return 'Rp ' + number.toLocaleString('id-ID');
         },
 

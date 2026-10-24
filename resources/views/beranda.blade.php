@@ -110,6 +110,7 @@
 </section>
 
 
+
 <!-- 3. REKOMENDASI -->
 <section id="rekomendasi">
     <div class="wrap">
@@ -118,37 +119,84 @@
                 <h2>Rekomendasi Untuk Anda</h2>
                 <p>Pilihan berdasarkan kebutuhan yang paling sering dicari.</p>
             </div>
-            <!-- <a class="see">Lihat Semua →</a> -->
         </div>
+
         <div class="recs">
-            <article class="rec"><img
-                    src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp">
-                <div class="recText"><b>Untuk Kantor</b><span>Tampil profesional setiap hari</span><button>Lihat
-                        Produk</button></div>
+
+            <!-- UNTUK KANTOR -->
+            <article class="rec">
+                <img src="{{asset('assets/kantor.jpeg')}}" alt="Koleksi pakaian untuk kantor">
+
+                <div class="recText">
+                    <b>Kantor</b>
+                    <span>Tampil profesional setiap hari</span>
+
+                    <a href="{{ route('katalog', ['rekomendasi' => 18]) }}" class="recButton">
+                        Lihat Rekomendasi
+                    </a>
+                </div>
             </article>
-            <article class="rec"><img
-                    src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp">
-                <div class="recText"><b>Outfit Harian</b><span>Nyaman sepanjang aktivitas</span><button>Lihat
-                        Produk</button></div>
+
+            <!-- FORMAL -->
+            <article class="rec">
+                <img src="{{asset('assets/formal.jpeg')}}" alt="Koleksi outfit harian">
+
+                <div class="recText">
+                    <b>Formal</b>
+                    <span>Tampil fresh di acara formal</span>
+
+                    <a href="{{ route('katalog', ['rekomendasi' => 21]) }}" class="recButton">
+                        Lihat Rekomendasi
+                    </a>
+                </div>
             </article>
-            <article class="rec"><img
-                    src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp">
-                <div class="recText"><b>Outfit Jumat</b><span>Tampil terbaik di hari Jumat</span><button>Lihat
-                        Produk</button></div>
+
+            <!-- OUTFIT HARIAN -->
+            <article class="rec">
+                <img src="{{asset('assets/harian.jpeg')}}" alt="Koleksi outfit harian">
+
+                <div class="recText">
+                    <b>Outfit Harian</b>
+                    <span>Tampil terbaik setiap hari</span>
+
+                    <a href="{{ route('katalog', ['rekomendasi' => 20]) }}" class="recButton">
+                        Lihat Produk
+                    </a>
+                </div>
             </article>
-            <article class="rec"><img
-                    src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp">
-                <div class="recText"><b>Untuk Pengajian</b><span>Sopan & nyaman beribadah</span><button>Lihat
-                        Produk</button></div>
+
+            <!-- UNTUK JUMATAN -->
+            <article class="rec">
+                <img src="{{asset('assets/jumatan.jpeg')}}" alt="Koleksi pakaian untuk jumatan">
+
+                <div class="recText">
+                    <b>Jumatan</b>
+                    <span>Tampilkan yang terbaik</span>
+
+                    <a href="{{ route('katalog', ['rekomendasi' => 22]) }}" class="recButton">
+                        Lihat Produk
+                    </a>
+                </div>
             </article>
-            <article class="rec"><img
-                    src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp">
-                <div class="recText"><b>Walima & Kondangan</b><span>Tampil percaya diri</span><button>Lihat
-                        Produk</button></div>
+
+            <!-- WALIMAH DAN KONDANGAN -->
+            <article class="rec">
+                <img src="{{asset('assets/kondangan.jpeg')}}" alt="Koleksi pakaian untuk walimah dan kondangan">
+
+                <div class="recText">
+                    <b>Acara Keluarga</b>
+                    <span>Tampil percaya diri di acara keluarga</span>
+
+                    <a href="{{ route('katalog', ['rekomendasi' => 19]) }}" class="recButton">
+                        Lihat Produk
+                    </a>
+                </div>
             </article>
+
         </div>
     </div>
 </section>
+
 
 <!-- 4. KOLEKSI TERBARU / BEST SELLER -->
 <section id="koleksi" class="latest">

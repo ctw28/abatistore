@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', fn() => view('home'));
-Route::get('/beranda', fn() => view('beranda'));
+Route::get('/beranda', fn() => view('beranda'))->name('beranda');
 Route::get('/katalog', fn() => view('katalog'))->name('katalog');
 Route::get('/new', fn() => view('newweb'));
 Route::get('/produk/detail', fn() => view('detail'))

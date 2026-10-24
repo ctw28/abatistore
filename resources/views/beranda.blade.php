@@ -577,11 +577,13 @@
             </div>
 
             <div class="promo-actions">
-                <a class="promo-wa" href="https://wa.me/6281234567890" target="_blank" rel="noopener">
+                <a class="promo-wa"
+                    href="https://wa.me/6281234567890?text={{ urlencode('Assalamu’alaikum, saya konsultasi kebutuhan pakaian saya di abati store, apa ada rekomendasi?.') }}"
+                    target="_blank" rel="noopener">
                     Chat WhatsApp Sekarang
                 </a>
 
-                <a class="promo-catalog" href="katalog.html">
+                <a class="promo-catalog" href="{{route('katalog')}}" target="_blank" rel="noopener">
                     Lihat Koleksi Sekarang
                 </a>
             </div>
@@ -590,7 +592,9 @@
 </section>
 
 
-<a class="floating-wa" href="https://wa.me/6285241800852" target="_blank" aria-label="Chat WhatsApp"><span>Ada yang
+<a class="floating-wa"
+    href="https://wa.me/6281234567890?text={{ urlencode('Assalamu’alaikum, saya konsultasi kebutuhan pakaian saya di abati store, apa ada rekomendasi?.') }}"
+    target="_blank" aria-label="Chat WhatsApp"><span>Ada yang
         ingin ditanyakan?</span>✆</a>
 @endsection
 

@@ -7,9 +7,17 @@ Route::get('/', fn() => view('home'));
 Route::get('/beranda', fn() => view('beranda'))->name('beranda');
 Route::get('/katalog', fn() => view('katalog'))->name('katalog');
 Route::get('/new', fn() => view('newweb'));
+
 Route::get('/produk/{id}/detail', function ($id) {
-    return view('detail', ['productId' => $id]);
+    $product = \App\Models\Product::with(['category', 'images'])
+        ->findOrFail($id);
+
+    return view('detail', [
+        'productId' => $id,
+        'seoProduct' => $product,
+    ]);
 })->name('produk.detail');
+
 Route::get('/old', fn() => view('home-old'));
 Route::get('/detail/{id}', fn() => view('detail'))->name('detail');
 Route::get('/my-area', fn() => view('admin.login'))->name('login.page');

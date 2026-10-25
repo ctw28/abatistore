@@ -1,10 +1,17 @@
 <!doctype html>
 <html lang="id">
 
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>@yield('title', 'Abati Store')</title>
+    <meta name="description"
+        content="@yield('meta_description', 'Temukan pakaian pria berkualitas di Abati Store Kendari.')">
+
+    <!-- Open Graph: Pratinjau link WhatsApp dan media sosial -->
+    @stack('meta')
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('logo/1/favicon.ico') }}" sizes="any">
@@ -17,11 +24,12 @@
     <link rel="stylesheet" href="{{ asset('css/newweb/02-header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/newweb/03-menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/newweb/07-footer.css') }}">
+
     <!-- CSS Tambahan Per Halaman -->
     @stack('styles')
-    <link rel="stylesheet" href="{{asset('css/newweb/08-responsive.css')}}">
-
+    <link rel="stylesheet" href="{{ asset('css/newweb/08-responsive.css') }}">
 </head>
+
 
 <body>
     <div id="app">

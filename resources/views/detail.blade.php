@@ -2,6 +2,39 @@
 
 @section('title', 'Koko Premium Modern — Abati Store')
 
+@php
+$seoName = $seoProduct->name ?? 'Koleksi Abati Store';
+$seoDescription = \Illuminate\Support\Str::limit(
+strip_tags($seoProduct->description ?? 'Temukan pakaian pria berkualitas di Abati Store Kendari.'),
+200
+);
+
+$seoImagePath = $seoProduct->image ?? null;
+
+if ($seoImagePath && !\Illuminate\Support\Str::startsWith($seoImagePath, ['http://', 'https://'])) {
+$seoImage = asset('storage/' . ltrim(
+preg_replace('#^/?storage/#', '', $seoImagePath),
+'/'
+));
+} else {
+$seoImage = $seoImagePath ?: asset('logo-abati-store.png');
+}
+
+$seoUrl = route('produk.detail', ['id' => $productId]);
+@endphp
+
+@push('meta')
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="Abati Store">
+<meta property="og:title" content="{{ $seoName }} — Abati Store">
+<meta property="og:description" content="{{ $seoDescription }}">
+<meta property="og:image" content="{{ $seoImage }}">
+<meta property="og:image:alt" content="{{ $seoName }}">
+<meta property="og:url" content="{{ $seoUrl }}">
+<meta property="og:locale" content="id_ID">
+<link rel="canonical" href="{{ $seoUrl }}">
+@endpush
+
 @push('styles')
 <!-- CSS Khusus Detail Produk -->
 <link rel="stylesheet" href="{{ asset('css/newweb/09-product-detail.css') }}">

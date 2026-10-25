@@ -186,27 +186,33 @@
                 </div>
 
                 <!-- Penjelasan Ukuran Tersedia (Statis / Informasi Only) -->
+
                 <div class="pd-size-section">
                     <div class="pd-size-heading">
                         <h2>Ukuran tersedia</h2>
-                        <button type="button" id="pdOpenSizeGuide">Panduan ukuran ↗</button>
+                        <button type="button" id="pdOpenSizeGuide">
+                            Panduan ukuran ↗
+                        </button>
                     </div>
-                    <div class="pd-size-badges">
-                        <span class="size-badge is-ready">S</span>
-                        <span class="size-badge is-ready">M</span>
-                        <span class="size-badge is-empty">L</span>
-                        <span class="size-badge is-ready">XL</span>
-                        <span class="size-badge is-empty">XXL</span>
-                        <span class="size-badge is-empty">XXXL</span>
+
+                    <div v-if="product && product.stocks" class="pd-size-badges">
+                        <span v-for="size in allSizes" :key="size.id" class="size-badge"
+                            :class="isSizeAvailable(size.id) ? 'is-ready' : 'is-empty'" v-if="size.name!='All Size'">
+                            @{{ size.name }}
+                        </span>
                     </div>
-                    <p id="pdSizeHelp" style="margin-top: 8px; font-size: 12px; color: #888;">Cek ketersediaan ukuran
-                        sebelum konfirmasi ke admin.</p>
+
+                    <p v-if="product && product.stocks" id="pdSizeHelp"
+                        style="margin-top: 8px; font-size: 12px; color: #888;">
+                        Cek ketersediaan ukuran sebelum konfirmasi ke admin.
+                    </p>
                 </div>
+
 
                 <!-- Tombol Utama Pesan via WA -->
                 <div class="pd-actions" style="margin-top: 20px;">
-                    <a class="pd-btn pd-btn-wa" id="pdWhatsapp" href="https://wa.me/6285241800852" target="_blank"
-                        rel="noopener" style="width: 100%; justify-content: center;">
+                    <a class="pd-btn pd-btn-wa" href="#" @click.prevent="orderViaWhatsApp"
+                        style="width: 100%; justify-content: center;">
                         ☏ Pesan via WhatsApp
                     </a>
                 </div>
@@ -594,16 +600,53 @@
                 error: '',
                 relatedProducts: [],
                 relatedLoading: false,
+                allSizes: [],
+
             };
         },
 
         mounted() {
             this.fetchProduct();
             this.fetchRelatedProducts();
+            this.fetchSizes();
         },
 
         methods: {
 
+            orderViaWhatsApp() {
+                const phone = '6285241800852';
+
+                const productName = this.product?.name || 'produk ini';
+                const productUrl = window.location.href;
+
+                const message =
+                    `Assalamu'alaikum, Kak. Saya mau pesan produk ${productName}. Apa masih ada?\n\n` +
+                    `Link produk: ${productUrl}`;
+
+                const whatsappUrl =
+                    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+                window.open(whatsappUrl, '_blank');
+            },
+
+            isSizeAvailable(sizeId) {
+                const stocks = this.product?.stocks || [];
+
+                return stocks.some(item =>
+                    String(item.size_id) === String(sizeId) &&
+                    Number(item.stock) > 0
+                );
+            },
+            async fetchSizes() {
+                try {
+                    const response = await fetch('/api/sizes');
+                    if (!response.ok) throw new Error('Gagal mengambil ukuran');
+
+                    this.allSizes = await response.json();
+                } catch (error) {
+                    console.error('Gagal memuat daftar ukuran:', error);
+                }
+            },
             async fetchRelatedProducts() {
                 const productId = @json($productId);
 
@@ -611,7 +654,7 @@
 
                 try {
                     const response = await fetch(
-                        @json(url('/api/products'))
+                        @json(url('/api/products')) + '?in_stock=1'
                     );
 
                     if (!response.ok) {
@@ -699,18 +742,15 @@
                 }).format(Number(value) || 0);
             },
 
+
             getDiscountPercent(product) {
-                // Diskon contoh mengikuti tampilan beranda.
-                // Ubah jika diskon produk sebenarnya berbeda.
-                return 17;
+                return window.getDiscountPercent(product);
             },
 
             getDiscountPrice(product) {
-                return Math.round(
-                    (Number(product.price) || 0) *
-                    (1 - this.getDiscountPercent(product) / 100)
-                );
-            }
+                return window.getDiscountPrice(product);
+            },
+
         }
     });
 </script>

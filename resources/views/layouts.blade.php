@@ -45,7 +45,7 @@
                     <button type="button" data-open-modal="shippingModal">
                         Cek Ongkir Lokal
                     </button>
-                    <a href="https://wa.me/6281234567890?text={{ urlencode('Assalamu’alaikum Abati Store, saya ingin bertanya tentang pemesanan seragam.') }}"
+                    <a href="https://wa.me/6285241800852?text={{ urlencode('Assalamu’alaikum kak, saya ingin bertanya tentang pemesanan seragam. Bagaimana caranya?') }}"
                         target="_blank" rel="noopener">
                         Pesan Seragam
                     </a>
@@ -146,7 +146,7 @@
 
                         <!-- Menu Pesan Seragam -->
                         <a class="mobile-menu-link"
-                            href="https://wa.me/6281234567890?text={{ urlencode('Assalamu’alaikum Abati Store, saya ingin bertanya tentang pemesanan seragam.') }}"
+                            href="https://wa.me/6285241800852?text={{ urlencode('Assalamu’alaikum kak, saya ingin bertanya tentang pemesanan seragam. Bagaimana Caranya?') }}"
                             target="_blank" rel="noopener">
                             <span class="menu-link-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -289,151 +289,247 @@
         <!-- ================= KONTEN HALAMAN ================= -->
         @yield('content')
 
-        <!-- ================= FOOTER (SAMA DI SEMUA HALAMAN) ================= -->
-        <footer>
+
+        <!-- ================= FOOTER ABATI STORE ================= -->
+        <footer class="abati-footer">
             <div class="wrap footerGrid">
-                <div>
-                    <div class="footerLogo">ABATI<small>STORE</small></div>
-                    <p>Toko virtual pakaian pria yang memudahkan Anda menemukan baju koko dan pakaian berkualitas sesuai
-                        kebutuhan. Lihat koleksi, cek ukuran, lalu pesan melalui WhatsApp.</p>
+
+                <!-- BRAND -->
+                <div class="footer-brand">
+                    <a href="/" class="footerLogo">
+                        ABATI<small>STORE</small>
+                    </a>
+
+                    <p>
+                        Temukan pakaian pria berkualitas dengan lebih mudah.
+                        Jelajahi koleksi Abati Store secara online, lalu pesan
+                        melalui WhatsApp atau kunjungi toko kami di Kendari.
+                    </p>
                 </div>
+
+                <!-- BELANJA -->
                 <div>
                     <h4>Belanja</h4>
                     <div class="links">
-                        <a href="/#kategori">Kebutuhan</a>
-                        <a href="/#koleksi">Koleksi Terbaru</a>
+                        <a href="/katalog">Semua Produk</a>
+                        <a href="/#kategori">Kategori Produk</a>
                         <a href="/katalog?kategori=koko">Baju Koko</a>
-                        <a href="/katalog?kategori=kurta">Kurta</a>
                         <a href="/katalog?kategori=jubah">Jubah</a>
+                        <a href="/katalog?kategori=kurta">Kurta</a>
                     </div>
                 </div>
+
+                <!-- LAYANAN -->
                 <div>
-                    <h4>Bantuan</h4>
+                    <h4>Layanan</h4>
                     <div class="links">
-                        <a href="#">Cara Belanja</a>
-                        <a href="#">Panduan Ukuran</a>
-                        <a href="#">Pengiriman</a>
-                        <a href="#">Pembayaran</a>
-                        <a href="/#seragam">Pesan Seragam</a>
+                        <a
+                            href="https://wa.me/6285241800852?text={{ urlencode('Assalamu’alaikum kak, saya ingin bertanya tentang pemesanan seragam. Bagaimana caranya?') }}">Pesan
+                            Seragam</a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=-3.9986246,122.5113538"
+                            target="_blank">Lokasi Toko</a>
+                        <a href="https://wa.me/6285241800852?text={{ urlencode('Assalamu’alaikum kak, baju koko fadkhera nya masih ada?')}}"
+                            target="_blank" rel="noopener">
+                            Hubungi Kami
+                        </a>
                     </div>
                 </div>
-                <div>
+
+                <!-- KONTAK -->
+                <div class="footer-contact">
                     <h4>Abati Store Kendari</h4>
-                    <div class="contact">📍 Kendari, Sulawesi Tenggara<br>📱 Pesan melalui WhatsApp<br>📷
-                        @fadkhera.kendari<br>🎵 @fadkhera.kendari</div>
+
+                    <p>
+                        <span>Lokasi</span>
+                        Jalan La Ode Hadi, Lorong Satria, Kel. Wowawanggu, Kec. Kadia, Kota Kendari, Sulawesi Tenggara
+                        93117
+                    </p>
+
+                    <p>
+                        <span>Instagram & TikTok</span>
+                        <a href="https://www.instagram.com/fadkhera.kendari/" target="_blank" rel="noopener">
+                            @fadkhera.kendari
+                        </a>
+                    </p>
+
+
                 </div>
+
             </div>
+
             <div class="wrap bottom">
-                <span>© 2026 Abati Store. All rights reserved.</span>
-                <span>Pakaian adalah Akhlak • INIMI DIA</span>
+                <span>© {{ date('Y') }} Abati Store.</span>
+                <span>Pakaian adalah Akhlak · INIMI DIA</span>
             </div>
         </footer>
+
     </div>
 
     <!-- Vue 3 CDN -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src=" https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <!-- Script Global UI Header/Mobile Menu/Search -->
     <!-- Script Global Navigasi (Hamburger Menu & Search Mobile) -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuButton = document.querySelector('.menu');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const menuBackdrop = document.querySelector('.menu-backdrop');
-        const closeMenuButton = document.querySelector('.close-menu');
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.querySelector('.menu');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const menuBackdrop = document.querySelector('.menu-backdrop');
+            const closeMenuButton = document.querySelector('.close-menu');
 
-        function openMobileMenu() {
-            if (!mobileMenu || !menuBackdrop) return;
-            mobileMenu.classList.add('open');
-            menuBackdrop.classList.add('open');
-            document.body.classList.add('menu-open');
-            document.body.style.overflow = 'hidden';
-            menuButton?.setAttribute('aria-expanded', 'true');
-        }
-
-        function closeMobileMenu() {
-            if (!mobileMenu || !menuBackdrop) return;
-            mobileMenu.classList.remove('open');
-            menuBackdrop.classList.remove('open');
-            document.body.classList.remove('menu-open');
-            document.body.style.overflow = '';
-            menuButton?.setAttribute('aria-expanded', 'false');
-        }
-
-        menuButton?.addEventListener('click', openMobileMenu);
-        closeMenuButton?.addEventListener('click', closeMobileMenu);
-        menuBackdrop?.addEventListener('click', closeMobileMenu);
-
-        mobileMenu?.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        // Mobile Search Toggle
-        const searchButton = document.querySelector('.mobile-search-toggle');
-        const searchPanel = document.querySelector('.mobile-search-panel');
-        const searchInput = document.querySelector('#mobileSearchInput');
-
-        function setMobileSearch(open) {
-            if (!searchPanel) return;
-            searchPanel.classList.toggle('open', open);
-            searchPanel.setAttribute('aria-hidden', String(!open));
-            searchButton?.setAttribute('aria-expanded', String(open));
-            if (open) setTimeout(() => searchInput?.focus(), 100);
-        }
-
-        searchButton?.addEventListener('click', () => {
-            const isOpen = searchPanel?.classList.contains('open');
-            setMobileSearch(!isOpen);
-        });
-
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape') {
-                closeMobileMenu();
-                setMobileSearch(false);
+            function openMobileMenu() {
+                if (!mobileMenu || !menuBackdrop) return;
+                mobileMenu.classList.add('open');
+                menuBackdrop.classList.add('open');
+                document.body.classList.add('menu-open');
+                document.body.style.overflow = 'hidden';
+                menuButton?.setAttribute('aria-expanded', 'true');
             }
-        });
 
+            function closeMobileMenu() {
+                if (!mobileMenu || !menuBackdrop) return;
+                mobileMenu.classList.remove('open');
+                menuBackdrop.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+                menuButton?.setAttribute('aria-expanded', 'false');
+            }
 
-        document.addEventListener('click', function(event) {
-            const opener = event.target.closest('[data-open-modal]');
-            const closer = event.target.closest('[data-close-modal]');
+            menuButton?.addEventListener('click', openMobileMenu);
+            closeMenuButton?.addEventListener('click', closeMobileMenu);
+            menuBackdrop?.addEventListener('click', closeMobileMenu);
 
-            if (opener) {
-                const modal = document.getElementById(
-                    opener.dataset.openModal
-                );
+            mobileMenu?.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
 
-                if (modal) {
-                    modal.classList.add('is-open');
-                    modal.setAttribute('aria-hidden', 'false');
-                    document.body.style.overflow = 'hidden';
+            // Mobile Search Toggle
+            const searchButton = document.querySelector('.mobile-search-toggle');
+            const searchPanel = document.querySelector('.mobile-search-panel');
+            const searchInput = document.querySelector('#mobileSearchInput');
+
+            function setMobileSearch(open) {
+                if (!searchPanel) return;
+                searchPanel.classList.toggle('open', open);
+                searchPanel.setAttribute('aria-hidden', String(!open));
+                searchButton?.setAttribute('aria-expanded', String(open));
+                if (open) setTimeout(() => searchInput?.focus(), 100);
+            }
+
+            searchButton?.addEventListener('click', () => {
+                const isOpen = searchPanel?.classList.contains('open');
+                setMobileSearch(!isOpen);
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape') {
+                    closeMobileMenu();
+                    setMobileSearch(false);
                 }
-            }
+            });
 
-            if (closer) {
-                const modal = closer.closest('.info-modal');
 
-                if (modal) {
-                    modal.classList.remove('is-open');
-                    modal.setAttribute('aria-hidden', 'true');
-                    document.body.style.overflow = '';
+            document.addEventListener('click', function(event) {
+                const opener = event.target.closest('[data-open-modal]');
+                const closer = event.target.closest('[data-close-modal]');
+
+                if (opener) {
+                    const modal = document.getElementById(
+                        opener.dataset.openModal
+                    );
+
+                    if (modal) {
+                        modal.classList.add('is-open');
+                        modal.setAttribute('aria-hidden', 'false');
+                        document.body.style.overflow = 'hidden';
+                    }
                 }
-            }
-        });
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                document.querySelectorAll('.info-modal.is-open')
-                    .forEach(function(modal) {
+                if (closer) {
+                    const modal = closer.closest('.info-modal');
+
+                    if (modal) {
                         modal.classList.remove('is-open');
                         modal.setAttribute('aria-hidden', 'true');
-                    });
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
 
-                document.body.style.overflow = '';
-            }
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    document.querySelectorAll('.info-modal.is-open')
+                        .forEach(function(modal) {
+                            modal.classList.remove('is-open');
+                            modal.setAttribute('aria-hidden', 'true');
+                        });
+
+                    document.body.style.overflow = '';
+                }
+            });
+
         });
+    </script>
 
-    });
+    <script>
+        // Aturan diskon global Abati Store
+
+        window.getDiscountPercent = function(product) {
+            const category = String(
+                    product?.category?.name ||
+                    product?.category?.slug ||
+                    product?.category_name ||
+                    product?.category_slug ||
+                    ''
+                )
+                .toLowerCase()
+                .replace(/[-_]/g, ' ')
+                .trim();
+
+            // Aturan diskon berdasarkan jenis produk
+            const discountRules = [{
+                    keywords: ['koko', 'baju koko'],
+                    percent: 12
+                },
+                {
+                    keywords: ['jaket', 'bomber'],
+                    percent: 7
+                },
+                {
+                    keywords: ['jubah'],
+                    percent: 7
+                },
+                {
+                    keywords: ['kurta'],
+                    percent: 7
+                },
+                {
+                    keywords: ['kemeja'],
+                    percent: 7
+                },
+                {
+                    keywords: ['kaos', 'oversize'],
+                    percent: 7
+                },
+                {
+                    keywords: ['sirwal'],
+                    percent: 7
+                }
+            ];
+
+            const rule = discountRules.find(item =>
+                item.keywords.some(keyword => category.includes(keyword))
+            );
+
+            return rule ? rule.percent : 7;
+        };
+
+        window.getDiscountPrice = function(product) {
+            const price = Number(product?.price || 0);
+            const discount = window.getDiscountPercent(product);
+
+            return Math.round(price * (1 - discount / 100));
+        };
     </script>
 
     @stack('scripts')

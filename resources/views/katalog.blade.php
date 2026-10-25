@@ -231,13 +231,22 @@
     }
 
     .product-category-label {
-        display: block;
-        margin: 0 0 6px;
-        color: var(--accent-gold-dark, #8e6129);
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        margin-bottom: 8px;
+        padding: 5px 10px;
+
+        background: #f3f0eb;
+        color: #75634e;
+
         font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: lowercase;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        line-height: 1.4;
+        text-transform: uppercase;
+
+        border-radius: 4px;
     }
 
     .product-name {
@@ -1204,18 +1213,22 @@
                             <div class="photo">
                                 <img :src="getImageUrl(product.image)" :alt="product.name || 'Produk Abati Store'"
                                     loading="lazy">
+                                <span class="discount-badge">
+                                    @{{ getDiscountPercent(product) }}% OFF
+                                </span>
                             </div>
 
                             <span class="product-category-label">
-                                |@{{ getCategorySlug(product) }}
+                                @{{ getCategorySlug(product) }}
                             </span>
 
                             <strong class="product-name">
                                 @{{ product.name }}
                             </strong>
 
-                            <div class="product-price">
-                                <b>@{{ formatRupiah(product.price) }}</b>
+                            <div class="price">
+                                <del>@{{ formatRupiah(product.price) }}</del>
+                                <b>@{{ formatRupiah(getDiscountPrice(product)) }}</b>
                             </div>
                         </article>
 
@@ -1415,6 +1428,14 @@
             // ==========================================
             // TAG REKOMENDASI
             // ==========================================
+
+            getDiscountPercent(product) {
+                return window.getDiscountPercent(product);
+            },
+
+            getDiscountPrice(product) {
+                return window.getDiscountPrice(product);
+            },
 
             async loadTags() {
                 this.loadingTags = true;

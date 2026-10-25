@@ -758,25 +758,7 @@
             },
 
             getDiscountPercent(product) {
-
-                const category =
-                    product.category?.name
-                    ?.toLowerCase() || '';
-
-
-                if (
-                    category === 'koko' ||
-                    category === 'kurta' ||
-                    category === 'celana' ||
-                    category === 'jacket'
-                ) {
-
-                    return 10;
-
-                }
-
-
-                return 5;
+                return window.getDiscountPercent(product);
 
             },
 
@@ -787,16 +769,8 @@
             },
 
             getDiscountPrice(product) {
+                return window.getDiscountPrice(product);
 
-                const discount =
-                    this.getDiscountPercent(product);
-
-                const price =
-                    Number(product.price) || 0;
-
-
-                return price -
-                    (price * discount / 100);
 
             },
 

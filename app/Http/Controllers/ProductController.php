@@ -83,6 +83,15 @@ class ProductController extends Controller
                     ->where('tags.id', $request->collection);
             });
         }
+        if ($request->filled('rekomendasi')) {
+
+            $products->whereHas('tags', function ($q) use ($request) {
+
+                $q->where('group', 'Rekomendasi')
+                    ->where('tags.id', $request->rekomendasi);
+            });
+        }
+
 
         $products->orderBy('name');
 
@@ -131,6 +140,7 @@ class ProductController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
+            'slug' => 'required|string|unique:products,slug',
             'price' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable',
@@ -172,6 +182,7 @@ class ProductController extends Controller
         // return $request->all();
         $request->validate([
             'name' => 'required|string',
+            'slug' => 'required|string|unique:products,slug',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
             'description' => 'nullable|string',

@@ -21,7 +21,21 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('product.show');
+// Route::get('/products/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/produk/{slug}', function ($slug) {
+    $product = \App\Models\Product::with([
+        'category',
+        'images',
+        'stocks.size',
+        'tags',
+    ])
+        ->where('slug', $slug)
+        ->firstOrFail();
+
+    return response()->json([
+        'data' => $product,
+    ]);
+})->name('api.produk.show');
 
 
 // Route::middleware('auth:api')->group(function () {

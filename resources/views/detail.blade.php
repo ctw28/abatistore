@@ -1,7 +1,6 @@
 @extends('layouts')
 
-@section('title', 'Koko Premium Modern — Abati Store')
-
+@section('title', ($seoProduct->name ?? 'Koleksi Abati Store') . ' — Abati Store')
 @php
 $seoName = $seoProduct->name ?? 'Koleksi Abati Store';
 $seoDescription = \Illuminate\Support\Str::limit(
@@ -20,7 +19,7 @@ preg_replace('#^/?storage/#', '', $seoImagePath),
 $seoImage = $seoImagePath ?: asset('logo-abati-store.png');
 }
 
-$seoUrl = route('produk.detail', ['id' => $productId]);
+$seoUrl = route('produk.detail', ['slug' => $productSlug]);
 @endphp
 
 @push('meta')
@@ -39,110 +38,110 @@ $seoUrl = route('produk.detail', ['id' => $productId]);
 <!-- CSS Khusus Detail Produk -->
 <link rel="stylesheet" href="{{ asset('css/newweb/09-product-detail.css') }}">
 <style>
-    /* Penyesuaian khusus elemen baru halaman detail */
-    .pd-occasion-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 16px;
-        margin-top: 8px;
-    }
+/* Penyesuaian khusus elemen baru halaman detail */
+.pd-occasion-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 8px;
+}
 
-    .pd-occasion-item {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--primary, #183332);
-        background: #f2f7f6;
-        padding: 6px 12px;
-        border-radius: 20px;
-    }
+.pd-occasion-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary, #183332);
+    background: #f2f7f6;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
 
-    .pd-occasion-item i {
-        color: #25d366;
-        font-style: normal;
-        font-weight: 800;
-    }
+.pd-occasion-item i {
+    color: #25d366;
+    font-style: normal;
+    font-weight: 800;
+}
 
-    /* Penyesuaian Tombol Shopee Sekunder & Catatan Luar Kota */
-    .pd-shopee-wrapper {
-        margin-top: 14px;
-        padding-top: 14px;
-        border-top: 1px dashed #e2e8e8;
-    }
+/* Penyesuaian Tombol Shopee Sekunder & Catatan Luar Kota */
+.pd-shopee-wrapper {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed #e2e8e8;
+}
 
-    .pd-shopee-note {
-        font-size: 12px;
-        color: #6f6f6f;
-        margin-bottom: 8px;
-        display: block;
-    }
+.pd-shopee-note {
+    font-size: 12px;
+    color: #6f6f6f;
+    margin-bottom: 8px;
+    display: block;
+}
 
-    .pd-btn-shopee-subtle {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: #fff;
-        color: #ee4d2d;
-        border: 1px solid #ee4d2d;
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-size: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
+.pd-btn-shopee-subtle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: #ee4d2d;
+    border: 1px solid #ee4d2d;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
 
-    .pd-btn-shopee-subtle:hover {
-        background: #ffeeeb;
-    }
+.pd-btn-shopee-subtle:hover {
+    background: #ffeeeb;
+}
 
-    /* Thumbnail Video Badge */
-    .pd-thumb-video {
-        position: relative;
-    }
+/* Thumbnail Video Badge */
+.pd-thumb-video {
+    position: relative;
+}
 
-    .pd-thumb-video::after {
-        content: "▶";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.4);
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-    }
+.pd-thumb-video::after {
+    content: "▶";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
 
-    /* Floating WhatsApp Button */
-    .pd-floating-wa {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        z-index: 99;
-        background: #25d366;
-        color: #fff;
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
-        transition: transform 0.25s ease;
-        text-decoration: none;
-    }
+/* Floating WhatsApp Button */
+.pd-floating-wa {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99;
+    background: #25d366;
+    color: #fff;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+    transition: transform 0.25s ease;
+    text-decoration: none;
+}
 
-    .pd-floating-wa:hover {
-        transform: scale(1.08);
-    }
+.pd-floating-wa:hover {
+    transform: scale(1.08);
+}
 
-    .pd-floating-wa svg {
-        width: 30px;
-        height: 30px;
-        fill: currentColor;
-    }
+.pd-floating-wa svg {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
+}
 </style>
 @endpush
 
@@ -246,7 +245,7 @@ $seoUrl = route('produk.detail', ['id' => $productId]);
                 <div class="pd-actions" style="margin-top: 20px;">
                     <a class="pd-btn pd-btn-wa" href="#" @click.prevent="orderViaWhatsApp"
                         style="width: 100%; justify-content: center;">
-                        ☏ Pesan via WhatsApp
+                        ☏ Pesan via WhatsApp (Gratis Ongkir)
                     </a>
                 </div>
 
@@ -437,7 +436,7 @@ $seoUrl = route('produk.detail', ['id' => $productId]);
 
             <div v-else class="pd-related-grid">
                 <a v-for="item in relatedProducts" :key="item.id" class="pd-product-card"
-                    :href="productDetailUrl(item.id)">
+                    :href="productDetailUrl(item.slug)">
                     <img :src="getImageUrl(item.image)" :alt="item.name" loading="lazy">
 
                     <div>
@@ -470,322 +469,356 @@ $seoUrl = route('produk.detail', ['id' => $productId]);
                     Lihat Lokasi</a>
             </div>
         </section>
+        <!-- Floating WhatsApp Button (Menggantikan Sticky Bar Mobile) -->
+        <a class="pd-floating-wa" href="https://wa.me/6285241800852" target="_blank" rel="noopener"
+            aria-label="Chat WhatsApp">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 11.5A8.5 8.5 0 0 1 7.4 19L3 20.5L4.5 16.3A8.5 8.5 0 1 1 20 11.5Z" />
+            </svg>
+        </a>
 
+        <!-- Modal Panduan Ukuran -->
+        <div class="pd-modal" id="pdSizeModal" aria-hidden="true">
+            <div class="pd-modal-backdrop" data-close-size></div>
+            <section class="pd-modal-card" role="dialog" aria-modal="true" aria-labelledby="pdSizeTitle">
+                <button class="pd-modal-close" type="button" data-close-size aria-label="Tutup">×</button>
+                <span class="pd-modal-eyebrow">BANTUAN UKURAN</span>
+                <h2 id="pdSizeTitle">Panduan ukuran</h2>
+                <p>Isi dengan ukuran resmi produk sebelum digunakan di situs.</p>
+                <div class="pd-table-scroll">
+                    <table class="pd-size-table">
+                        <thead>
+                            <tr>
+                                <th>Ukuran</th>
+                                <th>Lebar dada</th>
+                                <th>Panjang baju</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>S</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>M</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>L</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>XL</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>XXL</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>XXXL</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <small>Belum yakin? Chat admin untuk dibantu memilih ukuran.</small>
+            </section>
+        </div>
     </div>
 </main>
 
-<!-- Floating WhatsApp Button (Menggantikan Sticky Bar Mobile) -->
-<a class="pd-floating-wa" href="https://wa.me/6285241800852" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
-    <svg viewBox="0 0 24 24">
-        <path d="M20 11.5A8.5 8.5 0 0 1 7.4 19L3 20.5L4.5 16.3A8.5 8.5 0 1 1 20 11.5Z" />
-    </svg>
-</a>
 
-<!-- Modal Panduan Ukuran -->
-<div class="pd-modal" id="pdSizeModal" aria-hidden="true">
-    <div class="pd-modal-backdrop" data-close-size></div>
-    <section class="pd-modal-card" role="dialog" aria-modal="true" aria-labelledby="pdSizeTitle">
-        <button class="pd-modal-close" type="button" data-close-size aria-label="Tutup">×</button>
-        <span class="pd-modal-eyebrow">BANTUAN UKURAN</span>
-        <h2 id="pdSizeTitle">Panduan ukuran</h2>
-        <p>Isi dengan ukuran resmi produk sebelum digunakan di situs.</p>
-        <div class="pd-table-scroll">
-            <table class="pd-size-table">
-                <thead>
-                    <tr>
-                        <th>Ukuran</th>
-                        <th>Lebar dada</th>
-                        <th>Panjang baju</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>S</td>
-                        <td>—</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td>M</td>
-                        <td>—</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td>L</td>
-                        <td>—</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td>XL</td>
-                        <td>—</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td>XXL</td>
-                        <td>—</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td>XXXL</td>
-                        <td>—</td>
-                        <td>—</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <small>Belum yakin? Chat admin untuk dibantu memilih ukuran.</small>
-    </section>
-</div>
 @endsection
 
 @push('scripts')
 <script>
-    (function() {
-        let current = 0;
-        const mainImg = document.getElementById('pdMainImage');
-        const mainVid = document.getElementById('pdMainVideo');
-        const vidSource = document.getElementById('pdVideoSource');
-        const count = document.getElementById('pdImageCount');
-        const thumbs = [...document.querySelectorAll('.pd-thumb')];
+(function() {
+    let current = 0;
+    const mainImg = document.getElementById('pdMainImage');
+    const mainVid = document.getElementById('pdMainVideo');
+    const vidSource = document.getElementById('pdVideoSource');
+    const count = document.getElementById('pdImageCount');
+    const thumbs = [...document.querySelectorAll('.pd-thumb')];
 
-        function showMedia(index) {
-            current = (index + thumbs.length) % thumbs.length;
-            const targetThumb = thumbs[current];
-            const mediaType = targetThumb.dataset.type;
+    function showMedia(index) {
+        current = (index + thumbs.length) % thumbs.length;
+        const targetThumb = thumbs[current];
+        const mediaType = targetThumb.dataset.type;
 
-            if (mediaType === 'video') {
-                mainImg.style.display = 'none';
-                mainVid.style.display = 'block';
-                vidSource.src = targetThumb.dataset.videoUrl;
-                mainVid.load();
-            } else {
-                mainVid.pause();
-                mainVid.style.display = 'none';
-                mainImg.style.display = 'block';
-                mainImg.src = targetThumb.querySelector('img').src;
-            }
-
-            count.textContent = (current + 1) + '/' + thumbs.length;
-            thumbs.forEach((t, n) => t.classList.toggle('is-active', n === current));
+        if (mediaType === 'video') {
+            mainImg.style.display = 'none';
+            mainVid.style.display = 'block';
+            vidSource.src = targetThumb.dataset.videoUrl;
+            mainVid.load();
+        } else {
+            mainVid.pause();
+            mainVid.style.display = 'none';
+            mainImg.style.display = 'block';
+            mainImg.src = targetThumb.querySelector('img').src;
         }
 
-        thumbs.forEach(t => t.addEventListener('click', () => showMedia(+t.dataset.index)));
-        document.querySelector('.pd-prev')?.addEventListener('click', () => showMedia(current - 1));
-        document.querySelector('.pd-next')?.addEventListener('click', () => showMedia(current + 1));
+        count.textContent = (current + 1) + '/' + thumbs.length;
+        thumbs.forEach((t, n) => t.classList.toggle('is-active', n === current));
+    }
 
-        const product = 'Koko Premium Modern Lengan Panjang',
-            phone = '6285241800852';
-        const msg = "Assalamu'alaikum Abati Store, saya ingin pesan " + product + ". Mohon konfirmasi stok dan ongkir.";
-        const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
-        document.getElementById('pdWhatsapp').href = url;
+    thumbs.forEach(t => t.addEventListener('click', () => showMedia(+t.dataset.index)));
+    document.querySelector('.pd-prev')?.addEventListener('click', () => showMedia(current - 1));
+    document.querySelector('.pd-next')?.addEventListener('click', () => showMedia(current + 1));
 
-        document.getElementById('pdShareWa').href = 'https://wa.me/?text=' + encodeURIComponent(product + ' — ' +
-            location.href);
-        document.getElementById('pdCopyLink').addEventListener('click', async () => {
-            const status = document.getElementById('pdCopyStatus');
-            try {
-                await navigator.clipboard.writeText(location.href);
-                status.textContent = 'Tautan disalin';
-            } catch (e) {
-                status.textContent = 'Salin URL dari bilah alamat';
-            }
+    const product = 'Koko Premium Modern Lengan Panjang',
+        phone = '6285241800852';
+    const msg = "Assalamu'alaikum Abati Store, saya ingin pesan " + product + ". Mohon konfirmasi stok dan ongkir.";
+    const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+    document.getElementById('pdWhatsapp').href = url;
+
+    document.getElementById('pdShareWa').href = 'https://wa.me/?text=' + encodeURIComponent(product + ' — ' +
+        location.href);
+    document.getElementById('pdCopyLink').addEventListener('click', async () => {
+        const status = document.getElementById('pdCopyStatus');
+        try {
+            await navigator.clipboard.writeText(location.href);
+            status.textContent = 'Tautan disalin';
+        } catch (e) {
+            status.textContent = 'Salin URL dari bilah alamat';
+        }
+    });
+
+    // Tab Switcher
+    document.querySelectorAll('.pd-tab').forEach(t => t.addEventListener('click', () => {
+        const name = t.dataset.tab;
+        document.querySelectorAll('.pd-tab').forEach(x => {
+            x.classList.toggle('is-active', x === t);
+            x.setAttribute('aria-selected', x === t ? 'true' : 'false');
         });
-
-        // Tab Switcher
-        document.querySelectorAll('.pd-tab').forEach(t => t.addEventListener('click', () => {
-            const name = t.dataset.tab;
-            document.querySelectorAll('.pd-tab').forEach(x => {
-                x.classList.toggle('is-active', x === t);
-                x.setAttribute('aria-selected', x === t ? 'true' : 'false');
-            });
-            document.querySelectorAll('.pd-tab-panel').forEach(p => {
-                p.hidden = p.id !== 'pdTab-' + name;
-                p.classList.toggle('is-active', !p.hidden);
-            });
-        }));
-
-        // Modal Panduan Ukuran
-        const modal = document.getElementById('pdSizeModal');
-        document.getElementById('pdOpenSizeGuide').addEventListener('click', () => {
-            modal.classList.add('is-open');
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('pd-modal-open');
+        document.querySelectorAll('.pd-tab-panel').forEach(p => {
+            p.hidden = p.id !== 'pdTab-' + name;
+            p.classList.toggle('is-active', !p.hidden);
         });
+    }));
 
-        document.querySelectorAll('[data-close-size]').forEach(x => x.addEventListener('click', () => {
-            modal.classList.remove('is-open');
-            modal.setAttribute('aria-hidden', 'true');
-            document.body.classList.remove('pd-modal-open');
-        }));
-    })();
+
+})();
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
 
 <script>
-    new Vue({
-        el: '#productDetailApp',
-        delimiters: ['@{{', '}}'],
+new Vue({
+    el: '#productDetailApp',
+    delimiters: ['@{{', '}}'],
 
-        data() {
-            return {
-                product: {},
-                loading: true,
-                error: '',
-                relatedProducts: [],
-                relatedLoading: false,
-                allSizes: [],
+    data() {
+        return {
+            product: {},
+            loading: true,
+            error: '',
+            relatedProducts: [],
+            relatedLoading: false,
+            allSizes: [],
 
-            };
+        };
+    },
+
+    mounted() {
+        this.fetchProduct();
+        this.fetchRelatedProducts();
+        this.fetchSizes();
+    },
+
+    methods: {
+
+        orderViaWhatsApp() {
+            const phone = '6285241800852';
+
+            const productName = this.product?.name || 'produk ini';
+            const productUrl = window.location.href;
+
+            const message =
+                `Assalamu'alaikum, Kak. Saya mau pesan produk ${productName}. Apa masih ada?\n\n` +
+                `Link produk: ${productUrl}`;
+
+            const whatsappUrl =
+                `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappUrl, '_blank');
         },
 
-        mounted() {
-            this.fetchProduct();
-            this.fetchRelatedProducts();
-            this.fetchSizes();
+        isSizeAvailable(sizeId) {
+            const stocks = this.product?.stocks || [];
+
+            return stocks.some(item =>
+                String(item.size_id) === String(sizeId) &&
+                Number(item.stock) > 0
+            );
         },
+        async fetchSizes() {
+            try {
+                const response = await fetch('/api/sizes');
+                if (!response.ok) throw new Error('Gagal mengambil ukuran');
 
-        methods: {
+                this.allSizes = await response.json();
+            } catch (error) {
+                console.error('Gagal memuat daftar ukuran:', error);
+            }
+        },
+        async fetchRelatedProducts() {
+            const productId = @json($productId);
 
-            orderViaWhatsApp() {
-                const phone = '6285241800852';
+            this.relatedLoading = true;
 
-                const productName = this.product?.name || 'produk ini';
-                const productUrl = window.location.href;
-
-                const message =
-                    `Assalamu'alaikum, Kak. Saya mau pesan produk ${productName}. Apa masih ada?\n\n` +
-                    `Link produk: ${productUrl}`;
-
-                const whatsappUrl =
-                    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-                window.open(whatsappUrl, '_blank');
-            },
-
-            isSizeAvailable(sizeId) {
-                const stocks = this.product?.stocks || [];
-
-                return stocks.some(item =>
-                    String(item.size_id) === String(sizeId) &&
-                    Number(item.stock) > 0
+            try {
+                const response = await fetch(
+                    @json(url('/api/products')) + '?in_stock=1'
                 );
-            },
-            async fetchSizes() {
-                try {
-                    const response = await fetch('/api/sizes');
-                    if (!response.ok) throw new Error('Gagal mengambil ukuran');
 
-                    this.allSizes = await response.json();
-                } catch (error) {
-                    console.error('Gagal memuat daftar ukuran:', error);
-                }
-            },
-            async fetchRelatedProducts() {
-                const productId = @json($productId);
-
-                this.relatedLoading = true;
-
-                try {
-                    const response = await fetch(
-                        @json(url('/api/products')) + '?in_stock=1'
-                    );
-
-                    if (!response.ok) {
-                        throw new Error('Gagal mengambil produk terkait');
-                    }
-
-                    const data = await response.json();
-
-                    // Mendukung respons array langsung maupun { data: [...] }
-                    const products = Array.isArray(data) ?
-                        data :
-                        (Array.isArray(data.data) ? data.data : []);
-
-                    // Keluarkan produk yang sedang dibuka
-                    const currentId = String(this.productId);
-
-                    const candidates = products.filter(product =>
-                        String(product.id) !== currentId
-                    );
-
-                    // Acak urutan produk
-                    for (let i = candidates.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
-                    }
-
-                    // Tampilkan maksimal 6 produk
-                    this.relatedProducts = candidates.slice(0, 6);
-
-                } catch (error) {
-                    console.error('Produk terkait gagal dimuat:', error);
-                    this.relatedProducts = [];
-                } finally {
-                    this.relatedLoading = false;
-                }
-            },
-
-            productDetailUrl(id) {
-                const template = @json(route('produk.detail', ['id' => '__ID__']));
-
-                return template.replace('__ID__', encodeURIComponent(id));
-            },
-
-            async fetchProduct() {
-                try {
-                    const productId = @json($productId);
-
-                    let url = @json(route('product.show', ['id' => '__ID__']));
-                    url = url.replace('__ID__', productId);
-
-                    const response = await fetch(url);
-
-                    if (!response.ok) {
-                        throw new Error('Produk tidak ditemukan.');
-                    }
-
-                    const data = await response.json();
-
-                    // Mendukung API yang mengembalikan objek produk langsung
-                    // maupun objek produk di dalam properti "data".
-                    this.product = data.data || data;
-                } catch (error) {
-                    console.error('Gagal mengambil detail produk:', error);
-                    this.error = 'Produk gagal dimuat. Silakan coba kembali.';
-                } finally {
-                    this.loading = false;
-                }
-            },
-
-            getImageUrl(path) {
-                if (!path) return '/images/no-image.png';
-
-                if (/^https?:\/\//i.test(path)) {
-                    return path;
+                if (!response.ok) {
+                    throw new Error('Gagal mengambil produk terkait');
                 }
 
-                return '/storage/' + path.replace(/^\/?storage\//, '');
-            },
+                const data = await response.json();
 
-            formatRupiah(value) {
-                return new Intl.NumberFormat('id-ID', {
-                    style: 'currency',
-                    currency: 'IDR',
-                    maximumFractionDigits: 0
-                }).format(Number(value) || 0);
-            },
+                // Mendukung respons array langsung maupun { data: [...] }
+                const products = Array.isArray(data) ?
+                    data :
+                    (Array.isArray(data.data) ? data.data : []);
+
+                // Keluarkan produk yang sedang dibuka
+                const currentId = String(@json($productId));
+
+                const candidates = products.filter(product =>
+                    String(product.id) !== currentId &&
+                    product.slug
+                );
+
+                // Acak urutan produk
+                for (let i = candidates.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+                }
+
+                // Tampilkan maksimal 6 produk
+                this.relatedProducts = candidates.slice(0, 6);
+
+            } catch (error) {
+                console.error('Produk terkait gagal dimuat:', error);
+                this.relatedProducts = [];
+            } finally {
+                this.relatedLoading = false;
+            }
+        },
+
+        productDetailUrl(slug) {
+            const template = @json(route('produk.detail', ['slug' => '__SLUG__']));
+
+            return template.replace(
+                '__SLUG__',
+                encodeURIComponent(slug)
+            );
+        },
 
 
-            getDiscountPercent(product) {
-                return window.getDiscountPercent(product);
-            },
+        async fetchProduct() {
+            try {
+                const slug = @json($productSlug);
 
-            getDiscountPrice(product) {
-                return window.getDiscountPrice(product);
-            },
+                const template = @json(route('api.produk.show', [
+                    'slug' => '__SLUG__'
+                ]));
 
+                const url = template.replace(
+                    '__SLUG__',
+                    encodeURIComponent(slug)
+                );
+
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error('Produk tidak ditemukan.');
+                }
+
+                const data = await response.json();
+                this.product = data.data || data;
+
+            } catch (error) {
+                console.error('Gagal mengambil detail produk:', error);
+                this.error = 'Produk gagal dimuat. Silakan coba kembali.';
+            } finally {
+                this.loading = false;
+            }
+        },
+
+        getImageUrl(path) {
+            if (!path) return '/images/no-image.png';
+
+            if (/^https?:\/\//i.test(path)) {
+                return path;
+            }
+
+            return '/storage/' + path.replace(/^\/?storage\//, '');
+        },
+
+        formatRupiah(value) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
+            }).format(Number(value) || 0);
+        },
+
+
+        getDiscountPercent(product) {
+            return window.getDiscountPercent(product);
+        },
+
+        getDiscountPrice(product) {
+            return window.getDiscountPrice(product);
+        },
+
+    }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('pdSizeModal');
+    const openButton = document.getElementById('pdOpenSizeGuide');
+
+    if (!modal || !openButton) {
+        console.error('Modal panduan ukuran atau tombol pembuka tidak ditemukan.');
+        return;
+    }
+
+    function openModal() {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('pd-modal-open');
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('pd-modal-open');
+    }
+
+    openButton.addEventListener('click', openModal);
+
+    modal.querySelectorAll('[data-close-size]').forEach(function(element) {
+        element.addEventListener('click', closeModal);
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+            closeModal();
         }
     });
+});
 </script>
 
 @endpush

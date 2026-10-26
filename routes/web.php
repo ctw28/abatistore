@@ -8,12 +8,23 @@ Route::get('/beranda', fn() => view('beranda'))->name('beranda');
 Route::get('/katalog', fn() => view('katalog'))->name('katalog');
 Route::get('/new', fn() => view('newweb'));
 
-Route::get('/produk/{id}/detail', function ($id) {
+// Route::get('/produk/{id}/detail', function ($id) {
+//     $product = \App\Models\Product::with(['category', 'images'])
+//         ->findOrFail($id);
+
+//     return view('detail', [
+//         'productId' => $id,
+//         'seoProduct' => $product,
+//     ]);
+// })->name('produk.detail');
+Route::get('/produk/{slug}', function ($slug) {
     $product = \App\Models\Product::with(['category', 'images'])
-        ->findOrFail($id);
+        ->where('slug', $slug)
+        ->firstOrFail();
 
     return view('detail', [
-        'productId' => $id,
+        'productId' => $product->id,
+        'productSlug' => $product->slug,
         'seoProduct' => $product,
     ]);
 })->name('produk.detail');

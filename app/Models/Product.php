@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -42,5 +43,33 @@ class Product extends Model
             'product_id',
             'tag_id'
         );
+    }
+    protected static function booted()
+    {
+        static::saving(function ($product) {
+            // Buat slug otomatis saat produk baru dibuat
+            // atau ketika nama produk diubah.
+            if (
+                empty($product->slug) ||
+                $product->isDirty('name')
+            ) {
+                $baseSlug = Str::slug($product->name) ?: 'produk';
+                $slug = $baseSlug;
+                $counter = 2;
+
+                while (
+                    static::where('slug', $slug)
+                    ->when($product->exists, function ($query) use ($product) {
+                        $query->where('id', '!=', $product->id);
+                    })
+                    ->exists()
+                ) {
+                    $slug = $baseSlug . '-' . $counter;
+                    $counter++;
+                }
+
+                $product->slug = $slug;
+            }
+        });
     }
 }

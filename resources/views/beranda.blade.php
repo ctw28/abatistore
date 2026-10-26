@@ -218,7 +218,7 @@
 
 
             <article v-for="product in bestSellerProducts" :key="'best-' + product.id" class="product" data-product-card
-                style="cursor: pointer;" @click="goToProductDetail(product.id)">
+                style="cursor: pointer;" @click="goToProductDetail(product)">
                 <div class="photo">
                     <img :src="getImageUrl(product.image)" :alt="product.name" loading="lazy">
 
@@ -280,7 +280,7 @@
         <div class="showProducts">
 
             <article class="product" data-product-card v-for="product in kokoProducts" :key="product.id"
-                style="cursor: pointer;" @click="goToProductDetail(product.id)">
+                style="cursor: pointer;" @click="goToProductDetail(product)">
                 <div class="photo">
                     <img :src="getImageUrl(product.image)" :alt="product.name" loading="lazy">
 
@@ -752,9 +752,15 @@
                DISKON
                ----------------------------------------------------- */
 
-            goToProductDetail(id) {
-                const template = @json(route('produk.detail', ['id' => '__ID__']));
-                window.location.href = template.replace('__ID__', id);
+            goToProductDetail(product) {
+                if (!product || !product.slug) return;
+
+                const template = @json(route('produk.detail', ['slug' => '__SLUG__']));
+
+                window.location.href = template.replace(
+                    '__SLUG__',
+                    encodeURIComponent(product.slug)
+                );
             },
 
             getDiscountPercent(product) {
@@ -763,9 +769,14 @@
             },
 
 
-            productDetailUrl(id) {
-                const template = @json(route('produk.detail', ['id' => '__ID__']));
-                return template.replace('__ID__', id);
+
+            productDetailUrl(slug) {
+                const template = @json(route('produk.detail', ['slug' => '__SLUG__']));
+
+                return template.replace(
+                    '__SLUG__',
+                    encodeURIComponent(slug)
+                );
             },
 
             getDiscountPrice(product) {

@@ -261,7 +261,7 @@
                 <div class="info-modal-note">
                     <strong>Butuh bantuan memilih ukuran?</strong>
                     <p>Chat admin untuk memastikan ukuran sebelum memesan.</p>
-                    <a href="https://wa.me/6281234567890?text={{ urlencode('Assalamu’alaikum Abati Store, saya ingin dibantu memilih ukuran pakaian.') }}"
+                    <a href="https://wa.me/6285241800852?text={{ urlencode('Assalamu’alaikum kak, saya ingin dibantu memilih ukuran pakaian.') }}"
                         target="_blank" rel="noopener" class="info-modal-cta">
                         Tanya Ukuran via WhatsApp
                     </a>

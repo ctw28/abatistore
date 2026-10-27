@@ -38,110 +38,129 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 <!-- CSS Khusus Detail Produk -->
 <link rel="stylesheet" href="{{ asset('css/newweb/09-product-detail.css') }}">
 <style>
-/* Penyesuaian khusus elemen baru halaman detail */
-.pd-occasion-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    margin-top: 8px;
-}
+    /* Penyesuaian khusus elemen baru halaman detail */
+    .pd-occasion-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        margin-top: 8px;
+    }
 
-.pd-occasion-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--primary, #183332);
-    background: #f2f7f6;
-    padding: 6px 12px;
-    border-radius: 20px;
-}
+    .pd-occasion-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary, #183332);
+        background: #f2f7f6;
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
 
-.pd-occasion-item i {
-    color: #25d366;
-    font-style: normal;
-    font-weight: 800;
-}
+    .pd-occasion-item i {
+        color: #25d366;
+        font-style: normal;
+        font-weight: 800;
+    }
 
-/* Penyesuaian Tombol Shopee Sekunder & Catatan Luar Kota */
-.pd-shopee-wrapper {
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px dashed #e2e8e8;
-}
+    /* Penyesuaian Tombol Shopee Sekunder & Catatan Luar Kota */
+    .pd-shopee-wrapper {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px dashed #e2e8e8;
+    }
 
-.pd-shopee-note {
-    font-size: 12px;
-    color: #6f6f6f;
-    margin-bottom: 8px;
-    display: block;
-}
+    .pd-shopee-note {
+        font-size: 12px;
+        color: #6f6f6f;
+        margin-bottom: 8px;
+        display: block;
+    }
 
-.pd-btn-shopee-subtle {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #fff;
-    color: #ee4d2d;
-    border: 1px solid #ee4d2d;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
+    .pd-btn-shopee-subtle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        color: #ee4d2d;
+        border: 1px solid #ee4d2d;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
 
-.pd-btn-shopee-subtle:hover {
-    background: #ffeeeb;
-}
+    .pd-btn-shopee-subtle:hover {
+        background: #ffeeeb;
+    }
 
-/* Thumbnail Video Badge */
-.pd-thumb-video {
-    position: relative;
-}
+    /* Thumbnail Video Badge */
+    .pd-thumb-video {
+        position: relative;
+    }
 
-.pd-thumb-video::after {
-    content: "▶";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-}
+    .pd-thumb-video::after {
+        content: "▶";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+    }
 
-/* Floating WhatsApp Button */
-.pd-floating-wa {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 99;
-    background: #25d366;
-    color: #fff;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
-    transition: transform 0.25s ease;
-    text-decoration: none;
-}
+    /* Floating WhatsApp Button */
+    .pd-floating-wa {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 99;
+        background: #25d366;
+        color: #fff;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+        transition: transform 0.25s ease;
+        text-decoration: none;
+    }
 
-.pd-floating-wa:hover {
-    transform: scale(1.08);
-}
+    .pd-floating-wa:hover {
+        transform: scale(1.08);
+    }
 
-.pd-floating-wa svg {
-    width: 30px;
-    height: 30px;
-    fill: currentColor;
-}
+    .pd-floating-wa svg {
+        width: 30px;
+        height: 30px;
+        fill: currentColor;
+    }
+
+    .pd-stock-alert {
+        margin-top: 16px;
+        padding: 14px 16px;
+        border: 1px solid #f1b8b8;
+        border-radius: 10px;
+        background: #fff1f1;
+        color: #a52828;
+    }
+
+    .pd-stock-alert strong {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .pd-stock-alert p {
+        margin: 0;
+        font-size: 13px;
+    }
 </style>
 @endpush
 
@@ -219,7 +238,9 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 
                 <!-- Penjelasan Ukuran Tersedia (Statis / Informasi Only) -->
 
-                <div class="pd-size-section">
+                <!-- Ukuran tersedia: hanya tampil jika stok belum habis -->
+                <div v-if="product && product.id && !isProductOutOfStock()" class="pd-size-section">
+
                     <div class="pd-size-heading">
                         <h2>Ukuran tersedia</h2>
                         <button type="button" id="pdOpenSizeGuide">
@@ -227,30 +248,35 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                         </button>
                     </div>
 
-                    <div v-if="product && product.stocks" class="pd-size-badges">
+                    <div v-if="product.stocks" class="pd-size-badges">
                         <span v-for="size in allSizes" :key="size.id" class="size-badge"
-                            :class="isSizeAvailable(size.id) ? 'is-ready' : 'is-empty'" v-if="size.name!='All Size'">
+                            :class="isSizeAvailable(size.id) ? 'is-ready' : 'is-empty'" v-if="size.name != 'All Size'">
                             @{{ size.name }}
                         </span>
                     </div>
 
-                    <p v-if="product && product.stocks" id="pdSizeHelp"
-                        style="margin-top: 8px; font-size: 12px; color: #888;">
+                    <p v-if="product.stocks" id="pdSizeHelp" style="margin-top: 8px; font-size: 12px; color: #888;">
                         Cek ketersediaan ukuran sebelum konfirmasi ke admin.
                     </p>
                 </div>
 
-
-                <!-- Tombol Utama Pesan via WA -->
+                <!-- Tombol utama pesan via WA -->
                 <div class="pd-actions" style="margin-top: 20px;">
-                    <a class="pd-btn pd-btn-wa" href="#" @click.prevent="orderViaWhatsApp"
-                        style="width: 100%; justify-content: center;">
+
+                    <div v-if="product && product.id && isProductOutOfStock()" class="pd-stock-alert" role="alert">
+                        <strong>Stok Habis</strong>
+                        <p>Maaf, produk ini sedang habis. Silakan cek koleksi lainnya.</p>
+                    </div>
+
+                    <a v-else-if="product && product.id" class="pd-btn pd-btn-wa" href="#"
+                        @click.prevent="orderViaWhatsApp" style="width: 100%; justify-content: center;">
                         ☏ Pesan via WhatsApp (Gratis Ongkir)
                     </a>
+
                 </div>
 
                 <!-- Opsi Pembelian via Shopee (Luar Kendari) -->
-                <div class="pd-shopee-wrapper">
+                <div v-if="product && product.id && !isProductOutOfStock()" class="pd-shopee-wrapper">
                     <span class="pd-shopee-note">📍 Dari luar Kota Kendari? Anda dapat meminta/request link produk
                         melalui Shopee.</span>
                     <a class="pd-btn-shopee-subtle" href="https://shopee.co.id/" target="_blank" rel="noopener">
@@ -259,7 +285,7 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                 </div>
 
                 <!-- Bagian Pengiriman -->
-                <section class="pd-shipping">
+                <section v-if="product && product.id && !isProductOutOfStock()" class="pd-shipping">
                     <div class="pd-shipping-promo">
                         <span class="pd-shipping-icon">↗</span>
                         <div>
@@ -321,7 +347,7 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                 </section>
 
                 <!-- Tombol Bagikan dengan Ikon Ringkas -->
-                <div class="pd-share">
+                <div v-if="product && product.id && !isProductOutOfStock()" class="pd-share">
                     <span>Bagikan:</span>
                     <a id="pdShareWa" href="#" target="_blank" rel="noopener" title="Bagikan ke WhatsApp"
                         aria-label="Bagikan ke WhatsApp">
@@ -392,7 +418,7 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
         </section>
 
         <!-- Cara Belanja -->
-        <section class="pd-howto" id="cara-belanja">
+        <section v-if="product && product.id && !isProductOutOfStock()" class="pd-howto" id="cara-belanja">
             <div class="pd-section-heading">
                 <span>MUDAH DAN PRAKTIS</span>
                 <h2>Belanja di Abati Store</h2>
@@ -539,286 +565,303 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 
 @push('scripts')
 <script>
-(function() {
-    let current = 0;
-    const mainImg = document.getElementById('pdMainImage');
-    const mainVid = document.getElementById('pdMainVideo');
-    const vidSource = document.getElementById('pdVideoSource');
-    const count = document.getElementById('pdImageCount');
-    const thumbs = [...document.querySelectorAll('.pd-thumb')];
+    (function() {
+        let current = 0;
+        const mainImg = document.getElementById('pdMainImage');
+        const mainVid = document.getElementById('pdMainVideo');
+        const vidSource = document.getElementById('pdVideoSource');
+        const count = document.getElementById('pdImageCount');
+        const thumbs = [...document.querySelectorAll('.pd-thumb')];
 
-    function showMedia(index) {
-        current = (index + thumbs.length) % thumbs.length;
-        const targetThumb = thumbs[current];
-        const mediaType = targetThumb.dataset.type;
+        function showMedia(index) {
+            current = (index + thumbs.length) % thumbs.length;
+            const targetThumb = thumbs[current];
+            const mediaType = targetThumb.dataset.type;
 
-        if (mediaType === 'video') {
-            mainImg.style.display = 'none';
-            mainVid.style.display = 'block';
-            vidSource.src = targetThumb.dataset.videoUrl;
-            mainVid.load();
-        } else {
-            mainVid.pause();
-            mainVid.style.display = 'none';
-            mainImg.style.display = 'block';
-            mainImg.src = targetThumb.querySelector('img').src;
+            if (mediaType === 'video') {
+                mainImg.style.display = 'none';
+                mainVid.style.display = 'block';
+                vidSource.src = targetThumb.dataset.videoUrl;
+                mainVid.load();
+            } else {
+                mainVid.pause();
+                mainVid.style.display = 'none';
+                mainImg.style.display = 'block';
+                mainImg.src = targetThumb.querySelector('img').src;
+            }
+
+            count.textContent = (current + 1) + '/' + thumbs.length;
+            thumbs.forEach((t, n) => t.classList.toggle('is-active', n === current));
         }
 
-        count.textContent = (current + 1) + '/' + thumbs.length;
-        thumbs.forEach((t, n) => t.classList.toggle('is-active', n === current));
-    }
+        thumbs.forEach(t => t.addEventListener('click', () => showMedia(+t.dataset.index)));
+        document.querySelector('.pd-prev')?.addEventListener('click', () => showMedia(current - 1));
+        document.querySelector('.pd-next')?.addEventListener('click', () => showMedia(current + 1));
 
-    thumbs.forEach(t => t.addEventListener('click', () => showMedia(+t.dataset.index)));
-    document.querySelector('.pd-prev')?.addEventListener('click', () => showMedia(current - 1));
-    document.querySelector('.pd-next')?.addEventListener('click', () => showMedia(current + 1));
+        const product = 'Koko Premium Modern Lengan Panjang',
+            phone = '6285241800852';
+        const msg = "Assalamu'alaikum Abati Store, saya ingin pesan " + product + ". Mohon konfirmasi stok dan ongkir.";
+        const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+        document.getElementById('pdWhatsapp').href = url;
 
-    const product = 'Koko Premium Modern Lengan Panjang',
-        phone = '6285241800852';
-    const msg = "Assalamu'alaikum Abati Store, saya ingin pesan " + product + ". Mohon konfirmasi stok dan ongkir.";
-    const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
-    document.getElementById('pdWhatsapp').href = url;
-
-    document.getElementById('pdShareWa').href = 'https://wa.me/?text=' + encodeURIComponent(product + ' — ' +
-        location.href);
-    document.getElementById('pdCopyLink').addEventListener('click', async () => {
-        const status = document.getElementById('pdCopyStatus');
-        try {
-            await navigator.clipboard.writeText(location.href);
-            status.textContent = 'Tautan disalin';
-        } catch (e) {
-            status.textContent = 'Salin URL dari bilah alamat';
-        }
-    });
-
-    // Tab Switcher
-    document.querySelectorAll('.pd-tab').forEach(t => t.addEventListener('click', () => {
-        const name = t.dataset.tab;
-        document.querySelectorAll('.pd-tab').forEach(x => {
-            x.classList.toggle('is-active', x === t);
-            x.setAttribute('aria-selected', x === t ? 'true' : 'false');
+        document.getElementById('pdShareWa').href = 'https://wa.me/?text=' + encodeURIComponent(product + ' — ' +
+            location.href);
+        document.getElementById('pdCopyLink').addEventListener('click', async () => {
+            const status = document.getElementById('pdCopyStatus');
+            try {
+                await navigator.clipboard.writeText(location.href);
+                status.textContent = 'Tautan disalin';
+            } catch (e) {
+                status.textContent = 'Salin URL dari bilah alamat';
+            }
         });
-        document.querySelectorAll('.pd-tab-panel').forEach(p => {
-            p.hidden = p.id !== 'pdTab-' + name;
-            p.classList.toggle('is-active', !p.hidden);
-        });
-    }));
+
+        // Tab Switcher
+        document.querySelectorAll('.pd-tab').forEach(t => t.addEventListener('click', () => {
+            const name = t.dataset.tab;
+            document.querySelectorAll('.pd-tab').forEach(x => {
+                x.classList.toggle('is-active', x === t);
+                x.setAttribute('aria-selected', x === t ? 'true' : 'false');
+            });
+            document.querySelectorAll('.pd-tab-panel').forEach(p => {
+                p.hidden = p.id !== 'pdTab-' + name;
+                p.classList.toggle('is-active', !p.hidden);
+            });
+        }));
 
 
-})();
+    })();
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
 
 <script>
-new Vue({
-    el: '#productDetailApp',
-    delimiters: ['@{{', '}}'],
+    new Vue({
+        el: '#productDetailApp',
+        delimiters: ['@{{', '}}'],
 
-    data() {
-        return {
-            product: {},
-            loading: true,
-            error: '',
-            relatedProducts: [],
-            relatedLoading: false,
-            allSizes: [],
+        data() {
+            return {
+                product: {},
+                loading: true,
+                error: '',
+                relatedProducts: [],
+                relatedLoading: false,
+                allSizes: [],
 
-        };
-    },
-
-    mounted() {
-        this.fetchProduct();
-        this.fetchRelatedProducts();
-        this.fetchSizes();
-    },
-
-    methods: {
-
-        orderViaWhatsApp() {
-            const phone = '6285241800852';
-
-            const productName = this.product?.name || 'produk ini';
-            const productUrl = window.location.href;
-
-            const message =
-                `Assalamu'alaikum, Kak. Saya mau pesan produk ${productName}. Apa masih ada?\n\n` +
-                `Link produk: ${productUrl}`;
-
-            const whatsappUrl =
-                `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-            window.open(whatsappUrl, '_blank');
+            };
         },
 
-        isSizeAvailable(sizeId) {
-            const stocks = this.product?.stocks || [];
-
-            return stocks.some(item =>
-                String(item.size_id) === String(sizeId) &&
-                Number(item.stock) > 0
-            );
+        mounted() {
+            this.fetchProduct();
+            this.fetchRelatedProducts();
+            this.fetchSizes();
         },
-        async fetchSizes() {
-            try {
-                const response = await fetch('/api/sizes');
-                if (!response.ok) throw new Error('Gagal mengambil ukuran');
 
-                this.allSizes = await response.json();
-            } catch (error) {
-                console.error('Gagal memuat daftar ukuran:', error);
-            }
-        },
-        async fetchRelatedProducts() {
-            const productId = @json($productId);
+        methods: {
 
-            this.relatedLoading = true;
+            orderViaWhatsApp() {
+                const phone = '6285241800852';
 
-            try {
-                const response = await fetch(
-                    @json(url('/api/products')) + '?in_stock=1'
+                const productName = this.product?.name || 'produk ini';
+                const productUrl = window.location.href;
+
+                const message =
+                    `Assalamu'alaikum, Kak. Saya mau pesan produk ${productName}. Apa masih ada?\n\n` +
+                    `Link produk: ${productUrl}`;
+
+                const whatsappUrl =
+                    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+                window.open(whatsappUrl, '_blank');
+            },
+
+            isSizeAvailable(sizeId) {
+                const stocks = this.product?.stocks || [];
+
+                return stocks.some(item =>
+                    String(item.size_id) === String(sizeId) &&
+                    Number(item.stock) > 0
                 );
+            },
+            async fetchSizes() {
+                try {
+                    const response = await fetch('/api/sizes');
+                    if (!response.ok) throw new Error('Gagal mengambil ukuran');
 
-                if (!response.ok) {
-                    throw new Error('Gagal mengambil produk terkait');
+                    this.allSizes = await response.json();
+                } catch (error) {
+                    console.error('Gagal memuat daftar ukuran:', error);
                 }
+            },
+            async fetchRelatedProducts() {
+                const productId = @json($productId);
 
-                const data = await response.json();
+                this.relatedLoading = true;
 
-                // Mendukung respons array langsung maupun { data: [...] }
-                const products = Array.isArray(data) ?
-                    data :
-                    (Array.isArray(data.data) ? data.data : []);
+                try {
+                    const response = await fetch(
+                        @json(url('/api/products')) + '?in_stock=1'
+                    );
 
-                // Keluarkan produk yang sedang dibuka
-                const currentId = String(@json($productId));
+                    if (!response.ok) {
+                        throw new Error('Gagal mengambil produk terkait');
+                    }
 
-                const candidates = products.filter(product =>
-                    String(product.id) !== currentId &&
-                    product.slug
-                );
+                    const data = await response.json();
 
-                // Acak urutan produk
-                for (let i = candidates.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+                    // Mendukung respons array langsung maupun { data: [...] }
+                    const products = Array.isArray(data) ?
+                        data :
+                        (Array.isArray(data.data) ? data.data : []);
+
+                    // Keluarkan produk yang sedang dibuka
+                    const currentId = String(@json($productId));
+
+                    const candidates = products.filter(product =>
+                        String(product.id) !== currentId &&
+                        product.slug
+                    );
+
+                    // Acak urutan produk
+                    for (let i = candidates.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+                    }
+
+                    // Tampilkan maksimal 6 produk
+                    this.relatedProducts = candidates.slice(0, 6);
+
+                } catch (error) {
+                    console.error('Produk terkait gagal dimuat:', error);
+                    this.relatedProducts = [];
+                } finally {
+                    this.relatedLoading = false;
                 }
+            },
 
-                // Tampilkan maksimal 6 produk
-                this.relatedProducts = candidates.slice(0, 6);
+            productDetailUrl(slug) {
+                const template = @json(route('produk.detail', ['slug' => '__SLUG__']));
 
-            } catch (error) {
-                console.error('Produk terkait gagal dimuat:', error);
-                this.relatedProducts = [];
-            } finally {
-                this.relatedLoading = false;
-            }
-        },
-
-        productDetailUrl(slug) {
-            const template = @json(route('produk.detail', ['slug' => '__SLUG__']));
-
-            return template.replace(
-                '__SLUG__',
-                encodeURIComponent(slug)
-            );
-        },
-
-
-        async fetchProduct() {
-            try {
-                const slug = @json($productSlug);
-
-                const template = @json(route('api.produk.show', [
-                    'slug' => '__SLUG__'
-                ]));
-
-                const url = template.replace(
+                return template.replace(
                     '__SLUG__',
                     encodeURIComponent(slug)
                 );
+            },
 
-                const response = await fetch(url);
 
-                if (!response.ok) {
-                    throw new Error('Produk tidak ditemukan.');
+            async fetchProduct() {
+                try {
+                    const slug = @json($productSlug);
+
+                    const template = @json(route('api.produk.show', [
+                        'slug' => '__SLUG__'
+                    ]));
+
+                    const url = template.replace(
+                        '__SLUG__',
+                        encodeURIComponent(slug)
+                    );
+
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error('Produk tidak ditemukan.');
+                    }
+
+                    const data = await response.json();
+                    this.product = data.data || data;
+
+                } catch (error) {
+                    console.error('Gagal mengambil detail produk:', error);
+
+                    this.error = error.message === 'Produk tidak ditemukan.' ?
+                        'Produk yang Anda cari tidak ditemukan atau sudah tidak tersedia.' :
+                        'Produk gagal dimuat. Silakan coba kembali.';
+
+                    alert(this.error);
+
+                    window.location.href = @json(route('katalog'));
+                } finally {
+                    this.loading = false;
+                }
+            },
+            isProductOutOfStock() {
+                const stocks = this.product?.stocks || [];
+
+                // Jika tidak ada data stok, jangan langsung menyimpulkan habis.
+                if (stocks.length === 0) {
+                    return false;
                 }
 
-                const data = await response.json();
-                this.product = data.data || data;
+                // Habis jika seluruh ukuran memiliki stok 0 atau kurang.
+                return stocks.every(item => Number(item.stock) <= 0);
+            },
+            getImageUrl(path) {
+                if (!path) return '/images/no-image.png';
 
-            } catch (error) {
-                console.error('Gagal mengambil detail produk:', error);
-                this.error = 'Produk gagal dimuat. Silakan coba kembali.';
-            } finally {
-                this.loading = false;
-            }
-        },
+                if (/^https?:\/\//i.test(path)) {
+                    return path;
+                }
 
-        getImageUrl(path) {
-            if (!path) return '/images/no-image.png';
+                return '/storage/' + path.replace(/^\/?storage\//, '');
+            },
 
-            if (/^https?:\/\//i.test(path)) {
-                return path;
-            }
-
-            return '/storage/' + path.replace(/^\/?storage\//, '');
-        },
-
-        formatRupiah(value) {
-            return new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                maximumFractionDigits: 0
-            }).format(Number(value) || 0);
-        },
+            formatRupiah(value) {
+                return new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    maximumFractionDigits: 0
+                }).format(Number(value) || 0);
+            },
 
 
-        getDiscountPercent(product) {
-            return window.getDiscountPercent(product);
-        },
+            getDiscountPercent(product) {
+                return window.getDiscountPercent(product);
+            },
 
-        getDiscountPrice(product) {
-            return window.getDiscountPrice(product);
-        },
+            getDiscountPrice(product) {
+                return window.getDiscountPrice(product);
+            },
 
-    }
-});
+        }
+    });
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('pdSizeModal');
-    const openButton = document.getElementById('pdOpenSizeGuide');
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('pdSizeModal');
+        const openButton = document.getElementById('pdOpenSizeGuide');
 
-    if (!modal || !openButton) {
-        console.error('Modal panduan ukuran atau tombol pembuka tidak ditemukan.');
-        return;
-    }
-
-    function openModal() {
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('pd-modal-open');
-    }
-
-    function closeModal() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('pd-modal-open');
-    }
-
-    openButton.addEventListener('click', openModal);
-
-    modal.querySelectorAll('[data-close-size]').forEach(function(element) {
-        element.addEventListener('click', closeModal);
-    });
-
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
-            closeModal();
+        if (!modal || !openButton) {
+            console.error('Modal panduan ukuran atau tombol pembuka tidak ditemukan.');
+            return;
         }
+
+        function openModal() {
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('pd-modal-open');
+        }
+
+        function closeModal() {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('pd-modal-open');
+        }
+
+        openButton.addEventListener('click', openModal);
+
+        modal.querySelectorAll('[data-close-size]').forEach(function(element) {
+            element.addEventListener('click', closeModal);
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+                closeModal();
+            }
+        });
     });
-});
 </script>
 
 @endpush

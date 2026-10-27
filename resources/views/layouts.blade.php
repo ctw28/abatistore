@@ -58,7 +58,7 @@
                         Pesan Seragam
                     </a>
                 </nav>
-                <div class="search desktop-search">
+                <!-- <div class="search desktop-search">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="11" cy="11" r="6.5"></circle>
                         <path d="M16 16L20 20"></path>
@@ -70,7 +70,13 @@
                         <circle cx="11" cy="11" r="6.5"></circle>
                         <path d="M16 16L20 20"></path>
                     </svg>
-                </button>
+                </button> -->
+                <!-- TAGLINE GAMBAR PENGGANTI SEARCH (Pilih satu gambar) -->
+                <div class="header-tagline-img"
+                    title="Layanan Pengantaran Abati Store Kendari: Belanja Mudah • Pilih, Deal, Kami Antar">
+                    {{-- Simpan gambar pilihan Anda di folder: public/assets/images/ --}}
+                    <img src="{{ asset('tagline.png') }}" alt="Tagline Abati Store">
+                </div>
             </div>
 
             <!-- DRAWER MENU MOBILE -->
@@ -379,165 +385,165 @@
     <!-- Script Global UI Header/Mobile Menu/Search -->
     <!-- Script Global Navigasi (Hamburger Menu & Search Mobile) -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuButton = document.querySelector('.menu');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const menuBackdrop = document.querySelector('.menu-backdrop');
-        const closeMenuButton = document.querySelector('.close-menu');
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.querySelector('.menu');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const menuBackdrop = document.querySelector('.menu-backdrop');
+            const closeMenuButton = document.querySelector('.close-menu');
 
-        function openMobileMenu() {
-            if (!mobileMenu || !menuBackdrop) return;
-            mobileMenu.classList.add('open');
-            menuBackdrop.classList.add('open');
-            document.body.classList.add('menu-open');
-            document.body.style.overflow = 'hidden';
-            menuButton?.setAttribute('aria-expanded', 'true');
-        }
-
-        function closeMobileMenu() {
-            if (!mobileMenu || !menuBackdrop) return;
-            mobileMenu.classList.remove('open');
-            menuBackdrop.classList.remove('open');
-            document.body.classList.remove('menu-open');
-            document.body.style.overflow = '';
-            menuButton?.setAttribute('aria-expanded', 'false');
-        }
-
-        menuButton?.addEventListener('click', openMobileMenu);
-        closeMenuButton?.addEventListener('click', closeMobileMenu);
-        menuBackdrop?.addEventListener('click', closeMobileMenu);
-
-        mobileMenu?.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        // Mobile Search Toggle
-        const searchButton = document.querySelector('.mobile-search-toggle');
-        const searchPanel = document.querySelector('.mobile-search-panel');
-        const searchInput = document.querySelector('#mobileSearchInput');
-
-        function setMobileSearch(open) {
-            if (!searchPanel) return;
-            searchPanel.classList.toggle('open', open);
-            searchPanel.setAttribute('aria-hidden', String(!open));
-            searchButton?.setAttribute('aria-expanded', String(open));
-            if (open) setTimeout(() => searchInput?.focus(), 100);
-        }
-
-        searchButton?.addEventListener('click', () => {
-            const isOpen = searchPanel?.classList.contains('open');
-            setMobileSearch(!isOpen);
-        });
-
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape') {
-                closeMobileMenu();
-                setMobileSearch(false);
+            function openMobileMenu() {
+                if (!mobileMenu || !menuBackdrop) return;
+                mobileMenu.classList.add('open');
+                menuBackdrop.classList.add('open');
+                document.body.classList.add('menu-open');
+                document.body.style.overflow = 'hidden';
+                menuButton?.setAttribute('aria-expanded', 'true');
             }
-        });
 
+            function closeMobileMenu() {
+                if (!mobileMenu || !menuBackdrop) return;
+                mobileMenu.classList.remove('open');
+                menuBackdrop.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+                menuButton?.setAttribute('aria-expanded', 'false');
+            }
 
-        document.addEventListener('click', function(event) {
-            const opener = event.target.closest('[data-open-modal]');
-            const closer = event.target.closest('[data-close-modal]');
+            menuButton?.addEventListener('click', openMobileMenu);
+            closeMenuButton?.addEventListener('click', closeMobileMenu);
+            menuBackdrop?.addEventListener('click', closeMobileMenu);
 
-            if (opener) {
-                const modal = document.getElementById(
-                    opener.dataset.openModal
-                );
+            mobileMenu?.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
 
-                if (modal) {
-                    modal.classList.add('is-open');
-                    modal.setAttribute('aria-hidden', 'false');
-                    document.body.style.overflow = 'hidden';
+            // Mobile Search Toggle
+            const searchButton = document.querySelector('.mobile-search-toggle');
+            const searchPanel = document.querySelector('.mobile-search-panel');
+            const searchInput = document.querySelector('#mobileSearchInput');
+
+            function setMobileSearch(open) {
+                if (!searchPanel) return;
+                searchPanel.classList.toggle('open', open);
+                searchPanel.setAttribute('aria-hidden', String(!open));
+                searchButton?.setAttribute('aria-expanded', String(open));
+                if (open) setTimeout(() => searchInput?.focus(), 100);
+            }
+
+            searchButton?.addEventListener('click', () => {
+                const isOpen = searchPanel?.classList.contains('open');
+                setMobileSearch(!isOpen);
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape') {
+                    closeMobileMenu();
+                    setMobileSearch(false);
                 }
-            }
+            });
 
-            if (closer) {
-                const modal = closer.closest('.info-modal');
 
-                if (modal) {
-                    modal.classList.remove('is-open');
-                    modal.setAttribute('aria-hidden', 'true');
-                    document.body.style.overflow = '';
+            document.addEventListener('click', function(event) {
+                const opener = event.target.closest('[data-open-modal]');
+                const closer = event.target.closest('[data-close-modal]');
+
+                if (opener) {
+                    const modal = document.getElementById(
+                        opener.dataset.openModal
+                    );
+
+                    if (modal) {
+                        modal.classList.add('is-open');
+                        modal.setAttribute('aria-hidden', 'false');
+                        document.body.style.overflow = 'hidden';
+                    }
                 }
-            }
-        });
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                document.querySelectorAll('.info-modal.is-open')
-                    .forEach(function(modal) {
+                if (closer) {
+                    const modal = closer.closest('.info-modal');
+
+                    if (modal) {
                         modal.classList.remove('is-open');
                         modal.setAttribute('aria-hidden', 'true');
-                    });
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
 
-                document.body.style.overflow = '';
-            }
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    document.querySelectorAll('.info-modal.is-open')
+                        .forEach(function(modal) {
+                            modal.classList.remove('is-open');
+                            modal.setAttribute('aria-hidden', 'true');
+                        });
+
+                    document.body.style.overflow = '';
+                }
+            });
+
         });
-
-    });
     </script>
 
     <script>
-    // Aturan diskon global Abati Store
+        // Aturan diskon global Abati Store
 
-    window.getDiscountPercent = function(product) {
-        const category = String(
-                product?.category?.name ||
-                product?.category?.slug ||
-                product?.category_name ||
-                product?.category_slug ||
-                ''
-            )
-            .toLowerCase()
-            .replace(/[-_]/g, ' ')
-            .trim();
+        window.getDiscountPercent = function(product) {
+            const category = String(
+                    product?.category?.name ||
+                    product?.category?.slug ||
+                    product?.category_name ||
+                    product?.category_slug ||
+                    ''
+                )
+                .toLowerCase()
+                .replace(/[-_]/g, ' ')
+                .trim();
 
-        // Aturan diskon berdasarkan jenis produk
-        const discountRules = [{
-                keywords: ['koko', 'baju koko'],
-                percent: 12
-            },
-            {
-                keywords: ['jaket', 'bomber'],
-                percent: 7
-            },
-            {
-                keywords: ['jubah'],
-                percent: 7
-            },
-            {
-                keywords: ['kurta'],
-                percent: 7
-            },
-            {
-                keywords: ['kemeja'],
-                percent: 7
-            },
-            {
-                keywords: ['kaos', 'oversize'],
-                percent: 7
-            },
-            {
-                keywords: ['sirwal'],
-                percent: 7
-            }
-        ];
+            // Aturan diskon berdasarkan jenis produk
+            const discountRules = [{
+                    keywords: ['koko', 'baju koko'],
+                    percent: 12
+                },
+                {
+                    keywords: ['jaket', 'bomber'],
+                    percent: 7
+                },
+                {
+                    keywords: ['jubah'],
+                    percent: 7
+                },
+                {
+                    keywords: ['kurta'],
+                    percent: 7
+                },
+                {
+                    keywords: ['kemeja'],
+                    percent: 7
+                },
+                {
+                    keywords: ['kaos', 'oversize'],
+                    percent: 7
+                },
+                {
+                    keywords: ['sirwal'],
+                    percent: 7
+                }
+            ];
 
-        const rule = discountRules.find(item =>
-            item.keywords.some(keyword => category.includes(keyword))
-        );
+            const rule = discountRules.find(item =>
+                item.keywords.some(keyword => category.includes(keyword))
+            );
 
-        return rule ? rule.percent : 7;
-    };
+            return rule ? rule.percent : 7;
+        };
 
-    window.getDiscountPrice = function(product) {
-        const price = Number(product?.price || 0);
-        const discount = window.getDiscountPercent(product);
+        window.getDiscountPrice = function(product) {
+            const price = Number(product?.price || 0);
+            const discount = window.getDiscountPercent(product);
 
-        return Math.round(price * (1 - discount / 100));
-    };
+            return Math.round(price * (1 - discount / 100));
+        };
     </script>
 
     @stack('scripts')

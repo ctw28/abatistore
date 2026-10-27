@@ -145,3 +145,44 @@ header {
   font-size: 15px;
   color: var(--text);
 }
+/* =========================================================
+   02 - HEADER > TAGLINE IMAGE
+   ========================================================= */
+
+/* Penampung gambar tagline */
+.header-tagline-img {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* Jarak halus sebelah kiri logo di desktop */
+  padding-left: 20px;
+  border-left: 1px solid var(--line);
+  flex: 0 0 auto;
+}
+
+/* Pengaturan gambar tagline agar proposional */
+.header-tagline-img img {
+  display: block;
+  /* Tinggi disesuaikan agar rapi di header 86px */
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* --- Penyesuaian Mobile (08-responsive.css) --- */
+@media (max-width: 700px) {
+    .head {
+        /* Memastikan logo dan tagline berjarak di HP kecil */
+        justify-content: space-between;
+    }
+
+    .header-tagline-img {
+        padding-left: 0;
+        border-left: 0;
+    }
+
+    .header-tagline-img img {
+        /* Di HP tinggi dikurangi agar tidak sesak di header 70px */
+        height: 50px;
+    }
+}

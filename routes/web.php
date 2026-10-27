@@ -20,8 +20,10 @@ Route::get('/new', fn() => view('newweb'));
 Route::get('/produk/{slug}', function ($slug) {
     $product = \App\Models\Product::with(['category', 'images'])
         ->where('slug', $slug)
-        ->firstOrFail();
-
+        ->first();
+    if (!$product) {
+        abort(404);
+    }
     return view('detail', [
         'productId' => $product->id,
         'productSlug' => $product->slug,
@@ -32,9 +34,9 @@ Route::get('/produk/{slug}', function ($slug) {
 Route::get('/old', fn() => view('home-old'));
 Route::get('/detail/{id}', fn() => view('detail'))->name('detail');
 Route::get('/my-area', fn() => view('admin.login'))->name('login.page');
-Route::get('/produk', fn() => view('admin.product-data'))->name('product.data');
-Route::get('/produk/tambah', fn() => view('admin.product-add'))->name('product.add');
-Route::get('/produk/{id}/edit', fn() => view('admin.product-edit'))->name('product.edit');
+Route::get('/admin/produk', fn() => view('admin.product-data'))->name('product.data');
+Route::get('/admin/produk/tambah', fn() => view('admin.product-add'))->name('product.add');
+Route::get('/admin/produk/{id}/edit', fn() => view('admin.product-edit'))->name('product.edit');
 
 Route::get('/dashboard', fn() => view('admin.dashboard'))->name('dashboard');
 Route::get('/penjualan', fn() => view('admin.penjualan'))->name('penjualan');

@@ -140,7 +140,6 @@ class ProductController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
-            'slug' => 'required|string|unique:products,slug',
             'price' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable',
@@ -182,7 +181,6 @@ class ProductController extends Controller
         // return $request->all();
         $request->validate([
             'name' => 'required|string',
-            'slug' => 'required|string|unique:products,slug',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
             'description' => 'nullable|string',

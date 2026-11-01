@@ -665,10 +665,6 @@ document.addEventListener('DOMContentLoaded', function() {
     startAutoSlide();
 
 });
-</script>
-<script>
-// Inisialisasi Slider Khusus Beranda
-
 
 const {
     createApp
@@ -687,8 +683,7 @@ createApp({
     mounted() {
         this.fetchProducts();
         this.$nextTick(() => {
-            // initNavUI(); // <-- Hapus baris ini karena sudah otomatis aktif dari layout utama initSliderUI(); // Biarkan slider
-            tetap berjalan
+
         });
     },
     methods: {

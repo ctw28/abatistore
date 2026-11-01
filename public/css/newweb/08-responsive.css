@@ -318,7 +318,7 @@
     .slider {
         height: 340px;
 
-        margin: 0 -14px;
+        /* margin: 0 -14px; */
 
         border-radius: 0;
     }

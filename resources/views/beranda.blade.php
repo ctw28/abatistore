@@ -10,34 +10,48 @@
 
 @section('content')
 <!-- 1. BANNER SLIDER -->
-<div class="slider">
-    <div class="slide on"><img
-            src="https://abatistore.com/storage/products/a2lf83GncdoNeJbhy3wd5B7RqLezg5FEk8eenEfS.webp">
-        <div class="slideText"><small>ABATI STORE • BELANJA MUDAH</small>
-            <h1>Cari baju sambil rebahan.</h1>
-            <p>Semua koleksi Abati Store bisa Anda lihat dari rumah. Pilih kebutuhan, cek ukuran yang ready,
-                lalu
-                pesan langsung lewat WhatsApp.</p><button>Jelajahi Koleksi</button>
-        </div>
-    </div>
-    <div class="slide"><img src="https://abatistore.com/storage/products/C9gXGILqZYjLaCMoAxuTnsfZvuHC8qb165uVTDPv.webp">
-        <div class="slideText"><small>PROMO TERBARU</small>
-            <h1>Temukan pakaian yang pas.</h1>
-            <p>Lihat koleksi pilihan dan promo terbaru Abati Store.</p><button>Lihat Promo</button>
-        </div>
-    </div>
-    <div class="slide"><img src="https://abatistore.com/storage/products/5Qcc9Cf0ALYgv2pie5ttlqy0PcrGQD6wtkKUGjVK.webp">
-        <div class="slideText"><small>KOLEKSI TERBARU</small>
-            <h1>Rapi untuk setiap kesempatan.</h1>
-            <p>Koko, kurta, jubah dan pakaian pria pilihan untuk aktivitas Anda.</p><button>Lihat
-                Koleksi</button>
-        </div>
-    </div>
-    <button class="arrow prev">‹</button><button class="arrow next">›</button>
-    <div class="dots"><button class="dot on"></button><button class="dot"></button><button class="dot"></button>
-    </div>
-</div>
+<div class="slider" id="homeSlider">
 
+    <!-- SLIDE 1 -->
+    <div class="slide on">
+        <picture>
+            <!-- Gambar mobile -->
+            <source media="(max-width: 768px)" srcset="{{ asset('banner-abati-mobile-1.webp') }}">
+
+            <!-- Gambar desktop -->
+            <img src="{{ asset('banner-abati-desktop-1.webp') }}" alt="Belanja Mudah di Abati Store"
+                fetchpriority="high">
+        </picture>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+        <picture>
+            <source media="(max-width: 768px)" srcset="{{ asset('banner-abati-mobile-2.webp') }}">
+
+            <img src="{{ asset('banner-abati-desktop-2.webp') }}" alt="Kunjungi Toko Abati Store" loading="lazy">
+        </picture>
+    </div>
+
+
+
+    <!-- NAVIGASI -->
+    <button class="arrow prev" type="button" aria-label="Banner sebelumnya">
+        ‹
+    </button>
+
+    <button class="arrow next" type="button" aria-label="Banner berikutnya">
+        ›
+    </button>
+
+    <!-- INDIKATOR -->
+    <div class="dots">
+        <button class="dot on" type="button" aria-label="Slide 1"></button>
+        <button class="dot" type="button" aria-label="Slide 2"></button>
+        <button class="dot" type="button" aria-label="Slide 3"></button>
+    </div>
+
+</div>
 
 <!-- =========================================================
      KATEGORI + CARI BERDASARKAN UKURAN
@@ -585,144 +599,76 @@
 
 @push('scripts')
 <script>
-// Inisialisasi Slider Khusus Beranda
-function initSliderUI() {
-    /* ---------------------------------------------------------
-       SLIDER
-       --------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', function() {
 
-    const slider = document.querySelector('.slider');
+    const slider = document.getElementById('homeSlider');
 
-    if (slider) {
+    if (!slider) return;
 
-        const slides = [...slider.querySelectorAll('.slide')];
-        const dots = [...slider.querySelectorAll('.dot')];
-        const nextButton = slider.querySelector('.next');
-        const prevButton = slider.querySelector('.prev');
+    const slides = slider.querySelectorAll('.slide');
+    const dots = slider.querySelectorAll('.dot');
+    const prev = slider.querySelector('.prev');
+    const next = slider.querySelector('.next');
 
-        let currentSlide = 0;
-        let sliderTimer = null;
+    let current = 0;
+    let autoSlide;
 
-        function showSlide(index) {
+    if (slides.length <= 1) {
+        slider.classList.add('single-slide');
+        return;
+    }
 
-            if (!slides.length) return;
+    function showSlide(index) {
+        current = (index + slides.length) % slides.length;
 
-            currentSlide =
-                (index + slides.length) % slides.length;
-
-            slides.forEach((slide, index) => {
-                slide.classList.toggle(
-                    'on',
-                    index === currentSlide
-                );
-            });
-
-            dots.forEach((dot, index) => {
-                dot.classList.toggle(
-                    'on',
-                    index === currentSlide
-                );
-            });
-        }
-
-
-        function startSlider() {
-
-            clearInterval(sliderTimer);
-
-            if (slides.length <= 1) return;
-
-            sliderTimer = setInterval(() => {
-                showSlide(currentSlide + 1);
-            }, 5000);
-        }
-
-
-        nextButton?.addEventListener('click', () => {
-
-            showSlide(currentSlide + 1);
-            startSlider();
-
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('on', i === current);
         });
 
-
-        prevButton?.addEventListener('click', () => {
-
-            showSlide(currentSlide - 1);
-            startSlider();
-
-        });
-
-
-        dots.forEach((dot, index) => {
-
-            dot.addEventListener('click', () => {
-
-                showSlide(index);
-                startSlider();
-
-            });
-
-        });
-
-
-        showSlide(0);
-        startSlider();
-
-
-        /*
-         * Hentikan autoplay ketika mouse berada
-         * di atas slider.
-         */
-        slider.addEventListener('mouseenter', () => {
-            clearInterval(sliderTimer);
-        });
-
-
-        slider.addEventListener('mouseleave', () => {
-            startSlider();
-        });
-
-
-        /*
-         * Support swipe sederhana untuk HP.
-         */
-        let touchStartX = 0;
-
-        slider.addEventListener('touchstart', event => {
-
-            touchStartX =
-                event.touches[0].clientX;
-
-        }, {
-            passive: true
-        });
-
-
-        slider.addEventListener('touchend', event => {
-
-            const touchEndX =
-                event.changedTouches[0].clientX;
-
-            const distance =
-                touchEndX - touchStartX;
-
-            if (Math.abs(distance) < 50) return;
-
-            if (distance < 0) {
-                showSlide(currentSlide + 1);
-            } else {
-                showSlide(currentSlide - 1);
-            }
-
-            startSlider();
-
-        }, {
-            passive: true
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('on', i === current);
         });
     }
 
-}
+    function startAutoSlide() {
+        clearInterval(autoSlide);
+
+        autoSlide = setInterval(() => {
+            showSlide(current + 1);
+        }, 5000);
+    }
+
+    next.addEventListener('click', function() {
+        showSlide(current + 1);
+        startAutoSlide();
+    });
+
+    prev.addEventListener('click', function() {
+        showSlide(current - 1);
+        startAutoSlide();
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            showSlide(index);
+            startAutoSlide();
+        });
+    });
+
+    slider.addEventListener('mouseenter', () => {
+        clearInterval(autoSlide);
+    });
+
+    slider.addEventListener('mouseleave', startAutoSlide);
+
+    showSlide(0);
+    startAutoSlide();
+
+});
+</script>
+<script>
+// Inisialisasi Slider Khusus Beranda
+
 
 const {
     createApp
@@ -741,20 +687,16 @@ createApp({
     mounted() {
         this.fetchProducts();
         this.$nextTick(() => {
-            // initNavUI(); // <-- Hapus baris ini karena sudah otomatis aktif dari layout utama
-            initSliderUI(); // Biarkan slider tetap berjalan
+            // initNavUI(); // <-- Hapus baris ini karena sudah otomatis aktif dari layout utama initSliderUI(); // Biarkan slider
+            tetap berjalan
         });
     },
     methods: {
-
-
-        /* -----------------------------------------------------
-           DISKON
+        /* ----------------------------------------------------- DISKON
            ----------------------------------------------------- */
-
         goToProductDetail(product) {
-            if (!product || !product.slug) return;
-
+            if (!product || !product.slug)
+                return;
             const template = @json(route('produk.detail', ['slug' => '__SLUG__']));
 
             window.location.href = template.replace(
@@ -787,8 +729,8 @@ createApp({
 
 
         /* -----------------------------------------------------
-           FILTER
-           ----------------------------------------------------- */
+        FILTER
+        ----------------------------------------------------- */
 
         changeStock(type) {
 
@@ -819,8 +761,8 @@ createApp({
 
 
         /* -----------------------------------------------------
-           IMAGE
-           ----------------------------------------------------- */
+        IMAGE
+        ----------------------------------------------------- */
 
         getImageUrl(path) {
 
@@ -841,8 +783,8 @@ createApp({
 
 
         /* -----------------------------------------------------
-           FORMAT RUPIAH
-           ----------------------------------------------------- */
+        FORMAT RUPIAH
+        ----------------------------------------------------- */
 
         formatRupiah(value) {
 
@@ -861,8 +803,8 @@ createApp({
 
 
         /* =====================================================
-           PRODUCT MODAL
-           ===================================================== */
+        PRODUCT MODAL
+        ===================================================== */
 
         openModal(product) {
 
@@ -898,51 +840,26 @@ createApp({
             if (this.allImages.length <= 1) {
                 return;
             }
-
-
-            this.activeImageIndex =
-                (
-                    this.activeImageIndex + 1
-                ) %
+            this.activeImageIndex = (this.activeImageIndex + 1) %
                 this.allImages.length;
-
         },
-
-
         prevImage() {
-
             if (this.allImages.length <= 1) {
                 return;
             }
-
-
-            this.activeImageIndex =
-                (
-                    this.activeImageIndex -
-                    1 +
-                    this.allImages.length
-                ) %
-                this.allImages.length;
-
+            this.activeImageIndex = (
+                this.activeImageIndex - 1 + this.allImages.length) % this.allImages.length;
         },
-
-
         startProductSlide() {
-
             this.stopProductSlide();
-
-
             if (this.allImages.length <= 1) {
                 return;
             }
+            this.slideInterval = setInterval(() => {
 
+                this.nextImage();
 
-            this.slideInterval =
-                setInterval(() => {
-
-                    this.nextImage();
-
-                }, 5000);
+            }, 5000);
 
         },
 
@@ -963,8 +880,8 @@ createApp({
 
 
         /* =====================================================
-           FETCH PRODUCTS
-           ===================================================== */
+        FETCH PRODUCTS
+        ===================================================== */
         async fetchProducts() {
             const url = "{{ route('product.index') }}";
 
@@ -1056,8 +973,8 @@ createApp({
         },
 
         /* =====================================================
-           WHATSAPP
-           ===================================================== */
+        WHATSAPP
+        ===================================================== */
 
         getWhatsappLink(productName) {
 
@@ -1090,8 +1007,8 @@ createApp({
 
 
         /* =====================================================
-           FACEBOOK PIXEL
-           ===================================================== */
+        FACEBOOK PIXEL
+        ===================================================== */
 
         trackWhatsAppClick(product) {
 
@@ -1237,8 +1154,8 @@ createApp({
     },
 
     /* =========================================================
-       BEFORE UNMOUNT
-       ========================================================= */
+    BEFORE UNMOUNT
+    ========================================================= */
 
     beforeUnmount() {
 

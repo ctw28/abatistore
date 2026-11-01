@@ -1,7 +1,7 @@
 /* =========================================================
    04 - BANNER / SLIDER
    ========================================================= */
-.slider {
+/* .slider {
   height: 390px;
   position: relative;
   overflow: hidden;
@@ -52,4 +52,138 @@
   gap: 6px;
 }
 .dot { width: 7px; height: 7px; border: 0; border-radius: 50%; padding: 0; background: #ddd; }
-.dot.on { width: 20px; border-radius: 5px; background: #fff; }
+.dot.on { width: 20px; border-radius: 5px; background: #fff; } */
+
+/* =========================================================
+   04 - BANNER / SLIDER ABATI STORE
+   ========================================================= */
+
+.slider {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1920 / 600;
+    position: relative;
+    overflow: hidden;
+    background: #30251b;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease, visibility .5s ease;
+}
+
+.slide.on {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.slide picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* NAVIGASI */
+.arrow {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .85);
+    color: #30251b;
+    font-size: 26px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s;
+}
+
+.arrow:hover {
+    background: #fff;
+}
+
+.prev {
+    left: 18px;
+}
+
+.next {
+    right: 18px;
+}
+
+/* DOTS */
+.dots {
+    position: absolute;
+    z-index: 4;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .65);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.dot.on {
+    width: 22px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .slider {
+        aspect-ratio: 900 / 1100;
+        height: auto;
+    }
+
+    .arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 21px;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .dots {
+        bottom: 12px;
+    }
+}
+
+/* HILANGKAN NAVIGASI JIKA HANYA SATU SLIDE */
+.slider.single-slide .arrow,
+.slider.single-slide .dots {
+    display: none;
+}

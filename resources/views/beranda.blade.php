@@ -459,7 +459,7 @@
 
             <div class="offline-main">
                 <div class="offline-store-image">
-                    <img src="toko.jpeg" alt="Toko Abati Store">
+                    <img src="toko-dalam.jpeg" alt="Toko Abati Store">
                 </div>
 
                 <div class="offline-overlay">
@@ -496,28 +496,28 @@
                 <div class="gallery-grid">
                     <!-- FOTO PELANGGAN 1 -->
                     <button class="gallery-item" type="button"
-                        onclick="openStoreImage('toko1.jpeg','Pelanggan Abati Store')">
-                        <img src="toko4.jpeg" alt="Pelanggan Abati Store">
+                        onclick="openStoreImage('toko-depan.jpeg','Pelanggan Abati Store')">
+                        <img src="toko-depan.jpeg" alt="Pelanggan Abati Store">
                     </button>
 
 
                     <!-- FOTO PELANGGAN 2 -->
                     <button class="gallery-item" type="button"
-                        onclick="openStoreImage('toko2.jpeg','Pelanggan Abati Store')">
-                        <img src="toko2.jpeg" alt="Pelanggan Abati Store">
+                        onclick="openStoreImage('toko-dalam-2.jpeg','Pelanggan Abati Store')">
+                        <img src="toko-dalam-2.jpeg" alt="Pelanggan Abati Store">
                     </button>
 
                     <!-- FOTO PELANGGAN 3 -->
                     <button class="gallery-item" type="button"
-                        onclick="openStoreImage('toko3.jpeg','Pelanggan Abati Store')">
-                        <img src="toko3.jpeg" alt="Pelanggan Abati Store">
+                        onclick="openStoreImage('toko2.jpeg','Pelanggan Abati Store')">
+                        <img src="toko2.jpeg" alt="Pelanggan Abati Store">
 
                     </button>
 
                     <!-- FOTO PELANGGAN 4 -->
                     <button class="gallery-item" type="button"
-                        onclick="openStoreImage('toko4.jpeg','Pelanggan Abati Store')">
-                        <img src="toko4.jpeg" alt="Pelanggan Abati Store">s
+                        onclick="openStoreImage('pelanggan-1.jpeg','Pelanggan Abati Store')">
+                        <img src="pelanggan-1.jpeg" alt="Pelanggan Abati Store">
                     </button>
                     <!-- FOTO PELANGGAN 5 -->
                     <button class="gallery-item" type="button"

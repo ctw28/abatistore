@@ -429,9 +429,9 @@
 
 /* Tabs Section */
 .pd-tabs-section {
-    margin-top: 50px;
+    /* margin-top: 50px; */
     border-top: 1px solid var(--line);
-    padding-top: 30px;
+    /* padding-top: 30px; */
 }
 .pd-tabs {
     display: flex;

@@ -222,8 +222,7 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                     </span></span>
                 </div>
 
-                <p class="pd-short-desc"> @{{ product.description || 'Hubungi admin untuk informasi produk.' }}
-                </p>
+                <p class="pd-short-desc"></p>
 
                 <!-- Penjelasan Penggunaan (Centang Hijau) -->
                 <div class="pd-occasion">
@@ -275,25 +274,16 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 
                 </div>
 
-                <!-- Opsi Pembelian via Shopee (Luar Kendari) -->
-                <div v-if="product && product.id && !isProductOutOfStock()" class="pd-shopee-wrapper">
-                    <span class="pd-shopee-note">📍 Dari luar Kota Kendari? Anda dapat meminta/request link produk
-                        melalui Shopee.</span>
-                    <a class="pd-btn-shopee-subtle" href="https://shopee.co.id/" target="_blank" rel="noopener">
-                        <span>🛍 Request via Shopee</span>
-                    </a>
-                </div>
-
                 <!-- Bagian Pengiriman -->
-                <section v-if="product && product.id && !isProductOutOfStock()" class="pd-shipping">
+                <!-- <section v-if="product && product.id && !isProductOutOfStock()" class="pd-shipping">
                     <div class="pd-shipping-promo">
                         <span class="pd-shipping-icon">↗</span>
                         <div>
                             <b>Gratis ongkir hingga Rp10.000</b>
                             <small>Subsidi sesuai tarif dan wilayah layanan.</small>
                         </div>
-                    </div>
-                    <details class="pd-shipping-details">
+                    </div> -->
+                <!-- <details class="pd-shipping-details">
                         <summary>Cek tabel ongkir per kecamatan <span>⌄</span></summary>
                         <p class="pd-shipping-note">Tarif berikut contoh. Ganti sesuai tarif yang ditentukan Abati
                             Store.</p>
@@ -343,8 +333,8 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                         </div>
                         <small class="pd-shipping-footnote">Subsidi maksimal Rp10.000. Admin mengonfirmasi ongkir
                             sebelum pembayaran.</small>
-                    </details>
-                </section>
+                    </details> -->
+                <!-- </section> -->
 
                 <!-- Tombol Bagikan dengan Ikon Ringkas -->
                 <div v-if="product && product.id && !isProductOutOfStock()" class="pd-share">
@@ -364,6 +354,16 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                     </button>
                     <small id="pdCopyStatus" aria-live="polite"></small>
                 </div>
+                <!-- Opsi Pembelian via Shopee (Luar Kendari) -->
+                <div v-if="product && product.id && !isProductOutOfStock()" class="pd-shopee-wrapper">
+                    <span class="pd-shopee-note">📍 Dari luar Kota Kendari / Luar Sultra? Anda dapat meminta/request
+                        link produk
+                        melalui Shopee.</span>
+                    <a class="pd-btn-shopee-subtle" href="https://shopee.co.id/" target="_blank" rel="noopener">
+                        <span>🛍 Request link Shopee</span>
+                    </a>
+                </div>
+
             </div>
         </section>
 
@@ -372,28 +372,21 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
             <div class="pd-tabs" role="tablist">
                 <button class="pd-tab is-active" data-tab="description" role="tab"
                     aria-selected="true">Deskripsi</button>
-                <button class="pd-tab" data-tab="realpic" role="tab" aria-selected="false">Real Pict</button>
-                <button class="pd-tab" data-tab="video" role="tab" aria-selected="false">Video</button>
+                <!-- <button class="pd-tab" data-tab="realpic" role="tab" aria-selected="false">Foto dan Video</button> -->
+                <!-- <button class="pd-tab" data-tab="video" role="tab" aria-selected="false">Video</button> -->
             </div>
             <div class="pd-tab-panel is-active" id="pdTab-description" role="tabpanel">
                 <div>
-                    <h2>Deskripsi produk</h2>
-                    <p>Koko dengan desain modern dan tampilan rapi untuk menemani aktivitas harian. Periksa detail
-                        bahan, potongan, dan ukuran melalui foto produk atau tanyakan langsung kepada admin sebelum
-                        memesan.</p>
-                    <ul>
-                        <li><b>Kategori:</b> Baju koko</li>
-                        <li><b>Penggunaan:</b> Ibadah, kerja, kajian, dan acara formal</li>
-                        <li><b>Perawatan:</b> Ikuti petunjuk pada label produk</li>
-                    </ul>
+                    <!-- <h2>Deskripsi produk</h2> -->
+                    @{{ product.description || 'Hubungi admin untuk informasi produk.' }}
                 </div>
-                <div class="pd-detail-highlights">
+                <!-- <div class="pd-detail-highlights">
                     <article><b>01 — Model modern</b><small>Tampilan rapi dan sederhana</small></article>
                     <article><b>02 — Pilihan aktivitas</b><small>Untuk kegiatan formal maupun ibadah</small></article>
                     <article><b>03 — Bantuan ukuran</b><small>Tanyakan ukuran sebelum transaksi</small></article>
-                </div>
+                </div> -->
             </div>
-            <div class="pd-tab-panel" id="pdTab-realpic" role="tabpanel" hidden>
+            <!-- <div class="pd-tab-panel" id="pdTab-realpic" role="tabpanel" hidden>
                 <h2>Foto asli produk</h2>
                 <p>Ganti gambar contoh berikut dengan foto asli stok Abati Store.</p>
                 <div class="pd-real-gallery">
@@ -414,28 +407,28 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                         <p>Tambahkan URL video produk asli ketika tersedia.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
 
         <!-- Cara Belanja -->
         <section v-if="product && product.id && !isProductOutOfStock()" class="pd-howto" id="cara-belanja">
             <div class="pd-section-heading">
                 <span>MUDAH DAN PRAKTIS</span>
-                <h2>Belanja di Abati Store</h2>
-                <p>Konfirmasi dulu supaya detail pesanan dan biaya pengiriman jelas.</p>
+                <h2>Belanja Online di Abati Store</h2>
+                <!-- <p>Konfirmasi dulu supaya detail pesanan dan biaya pengiriman jelas.</p> -->
             </div>
             <div class="pd-howto-grid">
                 <article><i>01</i>
-                    <h3>Chat & konfirmasi</h3>
-                    <p>Tanyakan stok, ukuran, dan detail produk kepada admin.</p>
+                    <h3>Pilih Produk di Web</h3>
+                    <p>Pilih produk yang disuka / diminati dan chat untuk detail dan pemesanan.</p>
                 </article>
                 <article><i>02</i>
-                    <h3>Sepakati total</h3>
-                    <p>Admin mengonfirmasi harga produk, subsidi, dan ongkir.</p>
+                    <h3>Deal</h3>
+                    <p>Jika sudah sepakat, tinggal bayar.</p>
                 </article>
                 <article><i>03</i>
-                    <h3>Pesanan diproses</h3>
-                    <p>Setelah kesepakatan, pesanan disiapkan untuk diantar atau dikirim.</p>
+                    <h3>Pesanan diantarkan ke tempatmu</h3>
+                    <p>Setelah pembayaran, pesanan disiapkan dan akan diantar ke tempatmu.</p>
                 </article>
             </div>
         </section>

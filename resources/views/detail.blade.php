@@ -252,6 +252,47 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
             width: 100%;
         }
     }
+
+    .pd-size-help {
+        margin-top: 18px;
+        padding: 16px;
+        text-align: center;
+        background: #faf8f5;
+        border-radius: 10px;
+    }
+
+    .pd-size-help p {
+        margin: 0 0 12px;
+        font-size: 14px;
+        color: #514b43;
+    }
+
+    .pd-size-wa {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 22px;
+        background: #25D366;
+        color: #fff;
+        border-radius: 7px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background .2s ease;
+    }
+
+    .pd-size-wa:hover {
+        background: #1eae54;
+        color: #fff;
+    }
+
+    .pd-size-help small {
+        display: block;
+        margin-top: 10px;
+        font-size: 12px;
+        color: #888;
+    }
 </style>
 @endpush
 
@@ -407,7 +448,21 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                                 </tbody>
                             </table>
                         </div> -->
-                        <small>Jika Belum yakin, bisa Chat admin untuk dibantu memilih ukuran.</small>
+                        <div class="pd-size-help">
+                            <p>Belum yakin dengan ukuran yang cocok?</p>
+
+                            <a :href="'https://wa.me/628xxxxxxxxxx?text=' +
+                encodeURIComponent(
+                    'Assalamu’alaikum kak, saya mau tanya terkait ukuran ' +
+                    product.name +
+                    '. Mohon bantuannya untuk memilih ukuran yang sesuai.'
+                )" target="_blank" rel="noopener" class="pd-size-wa">
+                                <i class="fab fa-whatsapp"></i>
+                                Tanyakan ukuran via WhatsApp
+                            </a>
+
+                            <small>Kami siap membantu memilih ukuran yang pas.</small>
+                        </div>
                     </section>
                 </div>
                 <!-- Tombol utama pesan via WA -->

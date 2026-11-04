@@ -453,10 +453,11 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 
                             <a :href="'https://wa.me/6285241800852?text=' +
                 encodeURIComponent(
-                    'Assalamu’alaikum kak, saya mau tanya terkait ukuran ' +
-                    product.name +
-                    '. Mohon bantuannya untuk memilih ukuran yang sesuai.'
-                )" target="_blank" rel="noopener" class="pd-size-wa">
+        'Assalamu’alaikum kak, saya mau tanya terkait ukuran:\n\n' +
+        'Produk: ' + product.name + '\n' +
+        'Link Produk: ' + window.location.href + '\n\n' +
+        'Mohon bantuannya untuk memilih ukuran yang sesuai. Terima kasih kak.'
+    )" target="_blank" rel="noopener" class="pd-size-wa">
                                 <i class="fab fa-whatsapp"></i>
                                 Tanyakan ukuran via WhatsApp
                             </a>

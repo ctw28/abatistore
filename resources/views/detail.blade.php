@@ -38,6 +38,63 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 <!-- CSS Khusus Detail Produk -->
 <link rel="stylesheet" href="{{ asset('css/newweb/09-product-detail.css') }}">
 <style>
+    /* SHARE PRODUK */
+    .pd-share {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .pd-share-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #777;
+        margin-right: 2px;
+    }
+
+    .pd-share-btn {
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #e8e8e8;
+        border-radius: 50%;
+        background: #fff;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all .2s ease;
+    }
+
+    .pd-share-wa {
+        color: #25D366;
+    }
+
+    .pd-share-copy {
+        color: #555;
+    }
+
+    .pd-share-wa:hover {
+        color: #fff;
+        background: #25D366;
+        border-color: #25D366;
+        transform: translateY(-2px);
+    }
+
+    .pd-share-copy:hover {
+        color: #fff;
+        background: #333;
+        border-color: #333;
+        transform: translateY(-2px);
+    }
+
+    #pdCopyStatus {
+        font-size: 12px;
+        color: #25a55b;
+        margin-left: 2px;
+    }
+
     /* Penyesuaian khusus elemen baru halaman detail */
     .pd-occasion-list {
         display: flex;
@@ -161,6 +218,40 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
         margin: 0;
         font-size: 13px;
     }
+
+    /* ===== PANDUAN UKURAN ===== */
+    .pd-size-guide {
+        width: 100%;
+        margin-top: 20px;
+        padding: 16px;
+        background: #fff;
+        border: 1px solid #eee9e3;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .pd-size-guide img {
+        display: block;
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        margin: 0 auto;
+        object-fit: contain;
+        border-radius: 6px;
+    }
+
+    /* Mobile */
+    @media (max-width: 576px) {
+        .pd-size-guide {
+            padding: 10px;
+            margin-top: 14px;
+            border-radius: 10px;
+        }
+
+        .pd-size-guide img {
+            width: 100%;
+        }
+    }
 </style>
 @endpush
 
@@ -206,14 +297,15 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 
             <!-- Informasi Produk -->
             <div class="pd-info">
-                <div class="pd-badges">
+                <!-- <div class="pd-badges">
                     <span class="pd-category"> @{{ product.category ? product.category.name : 'Produk' }}
                     </span>
                     <span class="pd-discount">Diskon -@{{ getDiscountPercent(product) }}%
                     </span></span>
-                </div>
+                </div> -->
 
-                <h1>@{{ product.name || 'Memuat produk...' }}</h1>
+                <h1>@{{ product.category ? product.category.name : 'Produk' }} |
+                    @{{ product.name || 'Memuat produk...' }}</h1>
 
                 <div class="pd-price-row">
                     <strong class="pd-price">@{{ formatRupiah(getDiscountPrice(product)) }}</strong>
@@ -225,13 +317,14 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                 <p class="pd-short-desc"></p>
 
                 <!-- Penjelasan Penggunaan (Centang Hijau) -->
-                <div class="pd-occasion">
-                    <h2>Cocok untuk</h2>
+                <div class="pd-occasion" v-if="product.tags && product.tags.some(tag => tag.group === 'Rekomendasi')">
+                    <h2>Cocok untuk (Rekomendasi)</h2>
+
                     <div class="pd-occasion-list">
-                        <span class="pd-occasion-item"><i>✓</i> Kantor</span>
-                        <span class="pd-occasion-item"><i>✓</i> Kajian</span>
-                        <span class="pd-occasion-item"><i>✓</i> Sholat Jumat</span>
-                        <span class="pd-occasion-item"><i>✓</i> Kondangan / Acara Formal</span>
+                        <span class="pd-occasion-item"
+                            v-for="tag in product.tags.filter(tag => tag.group === 'Rekomendasi')" :key="tag.id">
+                            <i>✓</i> @{{ tag.name }}
+                        </span>
                     </div>
                 </div>
 
@@ -253,14 +346,72 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                             @{{ size.name }}
                         </span>
                     </div>
-
+                    <!-- 
                     <p v-if="product.stocks" id="pdSizeHelp" style="margin-top: 8px; font-size: 12px; color: #888;">
                         Cek ketersediaan ukuran sebelum konfirmasi ke admin.
-                    </p>
+                    </p> -->
                 </div>
-
+                <!-- Modal Panduan Ukuran -->
+                <div class="pd-modal" id="pdSizeModal" aria-hidden="true">
+                    <div class="pd-modal-backdrop" data-close-size></div>
+                    <section class="pd-modal-card" role="dialog" aria-modal="true" aria-labelledby="pdSizeTitle">
+                        <button class="pd-modal-close" type="button" data-close-size aria-label="Tutup">×</button>
+                        <span class="pd-modal-eyebrow">BANTUAN UKURAN</span>
+                        <h2 id="pdSizeTitle">Panduan ukuran berdasarkan berat dan tinggi badan</h2>
+                        <!-- <p>Isi dengan ukuran resmi produk sebelum digunakan di situs.</p> -->
+                        <div class="pd-size-guide" v-if="sizeGuide">
+                            <img :src="'/' + sizeGuide.image" :alt="'Panduan Ukuran ' +
+            (product.brand ? product.brand.name : '') + ' ' +
+            (product.category ? product.category.name : '')">
+                        </div>
+                        <!-- <div class="pd-table-scroll">
+                            <table class="pd-size-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ukuran</th>
+                                        <th>Lebar dada</th>
+                                        <th>Panjang baju</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>S</td>
+                                        <td>—</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>M</td>
+                                        <td>—</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>L</td>
+                                        <td>—</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>XL</td>
+                                        <td>—</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>XXL</td>
+                                        <td>—</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>XXXL</td>
+                                        <td>—</td>
+                                        <td>—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+                        <small>Jika Belum yakin, bisa Chat admin untuk dibantu memilih ukuran.</small>
+                    </section>
+                </div>
                 <!-- Tombol utama pesan via WA -->
-                <div class="pd-actions" style="margin-top: 20px;">
+                <div class="pd-actions">
 
                     <div v-if="product && product.id && isProductOutOfStock()" class="pd-stock-alert" role="alert">
                         <strong>Stok Habis</strong>
@@ -338,31 +489,41 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 
                 <!-- Tombol Bagikan dengan Ikon Ringkas -->
                 <div v-if="product && product.id && !isProductOutOfStock()" class="pd-share">
-                    <span>Bagikan:</span>
-                    <a id="pdShareWa" href="#" target="_blank" rel="noopener" title="Bagikan ke WhatsApp"
-                        aria-label="Bagikan ke WhatsApp">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                            <path d="M20 11.5A8.5 8.5 0 0 1 7.4 19L3 20.5L4.5 16.3A8.5 8.5 0 1 1 20 11.5Z" />
+                    <span class="pd-share-label">Bagikan:</span>
+
+                    <!-- WhatsApp -->
+                    <a id="pdShareWa" href="#" target="_blank" rel="noopener" class="pd-share-btn pd-share-wa"
+                        title="Bagikan ke WhatsApp" aria-label="Bagikan ke WhatsApp">
+
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M20.52 3.48A11.87 11.87 0 0 0 12.08 0C5.5 0 .15 5.35.15 11.93c0 2.1.55 4.16 1.6 5.98L0 24l6.25-1.64a11.9 11.9 0 0 0 5.83 1.48h.01c6.58 0 11.93-5.35 11.93-11.93a11.86 11.86 0 0 0-3.5-8.43ZM12.09 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.71.97.99-3.62-.24-.37a9.88 9.88 0 0 1-1.52-5.26c0-5.45 4.44-9.89 9.9-9.89a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.9 7c0 5.45-4.44 9.89-9.9 9.89Zm5.43-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.5 1.69.64.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z" />
                         </svg>
                     </a>
-                    <button id="pdCopyLink" type="button" title="Salin Tautan" aria-label="Salin Tautan">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+
+                    <!-- Copy Link -->
+                    <button id="pdCopyLink" type="button" class="pd-share-btn pd-share-copy" title="Salin Tautan"
+                        aria-label="Salin Tautan">
+
+                        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="8" y="8" width="13" height="13" rx="2.5" />
+                            <path d="M16 8V5.5A2.5 2.5 0 0 0 13.5 3h-8A2.5 2.5 0 0 0 3 5.5v8A2.5 2.5 0 0 0 5.5 16H8" />
                         </svg>
                     </button>
+
                     <small id="pdCopyStatus" aria-live="polite"></small>
                 </div>
                 <!-- Opsi Pembelian via Shopee (Luar Kendari) -->
-                <div v-if="product && product.id && !isProductOutOfStock()" class="pd-shopee-wrapper">
+                <!-- <div v-if="product && product.id && !isProductOutOfStock()" class="pd-shopee-wrapper">
                     <span class="pd-shopee-note">📍 Dari luar Kota Kendari / Luar Sultra? Anda dapat meminta/request
                         link produk
                         melalui Shopee.</span>
-                    <a class="pd-btn-shopee-subtle" href="https://shopee.co.id/" target="_blank" rel="noopener">
+                    <a class="pd-btn-shopee-subtle" v-else-if="product && product.id" href="#"
+                        @click.prevent="requestShopeeLink" target="_blank" rel="noopener">
                         <span>🛍 Request link Shopee</span>
                     </a>
-                </div>
+                </div> -->
 
             </div>
         </section>
@@ -496,60 +657,7 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
             </svg>
         </a>
 
-        <!-- Modal Panduan Ukuran -->
-        <div class="pd-modal" id="pdSizeModal" aria-hidden="true">
-            <div class="pd-modal-backdrop" data-close-size></div>
-            <section class="pd-modal-card" role="dialog" aria-modal="true" aria-labelledby="pdSizeTitle">
-                <button class="pd-modal-close" type="button" data-close-size aria-label="Tutup">×</button>
-                <span class="pd-modal-eyebrow">BANTUAN UKURAN</span>
-                <h2 id="pdSizeTitle">Panduan ukuran</h2>
-                <p>Isi dengan ukuran resmi produk sebelum digunakan di situs.</p>
-                <div class="pd-table-scroll">
-                    <table class="pd-size-table">
-                        <thead>
-                            <tr>
-                                <th>Ukuran</th>
-                                <th>Lebar dada</th>
-                                <th>Panjang baju</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>S</td>
-                                <td>—</td>
-                                <td>—</td>
-                            </tr>
-                            <tr>
-                                <td>M</td>
-                                <td>—</td>
-                                <td>—</td>
-                            </tr>
-                            <tr>
-                                <td>L</td>
-                                <td>—</td>
-                                <td>—</td>
-                            </tr>
-                            <tr>
-                                <td>XL</td>
-                                <td>—</td>
-                                <td>—</td>
-                            </tr>
-                            <tr>
-                                <td>XXL</td>
-                                <td>—</td>
-                                <td>—</td>
-                            </tr>
-                            <tr>
-                                <td>XXXL</td>
-                                <td>—</td>
-                                <td>—</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <small>Belum yakin? Chat admin untuk dibantu memilih ukuran.</small>
-            </section>
-        </div>
+
     </div>
 </main>
 
@@ -558,72 +666,292 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 
 @push('scripts')
 <script>
-    (function() {
-        let current = 0;
-        const mainImg = document.getElementById('pdMainImage');
-        const mainVid = document.getElementById('pdMainVideo');
-        const vidSource = document.getElementById('pdVideoSource');
-        const count = document.getElementById('pdImageCount');
-        const thumbs = [...document.querySelectorAll('.pd-thumb')];
+    document.addEventListener('DOMContentLoaded', function() {
+
+        /* =========================================
+           1. MODAL PANDUAN UKURAN
+        ========================================= */
+
+        function openSizeModal() {
+            const modal = document.getElementById('pdSizeModal');
+
+            if (!modal) {
+                console.error('Modal panduan ukuran tidak ditemukan.');
+                return;
+            }
+
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('pd-modal-open');
+        }
+
+        function closeSizeModal() {
+            const modal = document.getElementById('pdSizeModal');
+
+            if (!modal) return;
+
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('pd-modal-open');
+        }
+
+
+        /* =========================================
+           2. SALIN TAUTAN PRODUK
+        ========================================= */
+
+        async function copyProductLink() {
+            const status = document.getElementById('pdCopyStatus');
+            const button = document.getElementById('pdCopyLink');
+            const url = window.location.href;
+
+            if (!status) return;
+
+            status.textContent = '';
+
+            if (button) {
+                button.disabled = true;
+            }
+
+            try {
+                // Metode utama: Clipboard API
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(url);
+                } else {
+                    // Metode alternatif untuk browser/konteks yang tidak mendukung Clipboard API
+                    const textarea = document.createElement('textarea');
+
+                    textarea.value = url;
+                    textarea.setAttribute('readonly', '');
+                    textarea.style.position = 'fixed';
+                    textarea.style.left = '-9999px';
+                    textarea.style.top = '0';
+
+                    document.body.appendChild(textarea);
+
+                    textarea.focus();
+                    textarea.select();
+                    textarea.setSelectionRange(0, textarea.value.length);
+
+                    const success = document.execCommand('copy');
+
+                    document.body.removeChild(textarea);
+
+                    if (!success) {
+                        throw new Error('Gagal menyalin tautan.');
+                    }
+                }
+
+                status.textContent = 'Tautan berhasil disalin!';
+
+            } catch (error) {
+                console.error('Gagal menyalin tautan:', error);
+                status.textContent = 'Gagal menyalin. Silakan salin dari alamat browser.';
+
+            } finally {
+                if (button) {
+                    button.disabled = false;
+                }
+            }
+        }
+
+
+        /* =========================================
+           3. BAGIKAN PRODUK KE WHATSAPP
+        ========================================= */
+
+        function shareProductWhatsApp(link) {
+            const productTitle =
+                document.querySelector('#productDetailApp h1')?.textContent.trim() ||
+                document.title;
+
+            const productUrl = window.location.href;
+
+            const message =
+                'Assalamu’alaikum, saya ingin berbagi produk ini:\n\n' +
+                productTitle + '\n' +
+                productUrl;
+
+            link.href = 'https://wa.me/?text=' + encodeURIComponent(message);
+        }
+
+
+        /* =========================================
+           4. GALERI FOTO DAN VIDEO PRODUK
+        ========================================= */
+
+        let currentMedia = 0;
 
         function showMedia(index) {
-            current = (index + thumbs.length) % thumbs.length;
-            const targetThumb = thumbs[current];
+            const thumbs = Array.from(
+                document.querySelectorAll('.pd-thumb')
+            );
+
+            if (!thumbs.length) return;
+
+            const mainImg = document.getElementById('pdMainImage');
+            const mainVid = document.getElementById('pdMainVideo');
+            const vidSource = document.getElementById('pdVideoSource');
+            const count = document.getElementById('pdImageCount');
+
+            if (!mainImg || !mainVid || !vidSource) return;
+
+            currentMedia = (index + thumbs.length) % thumbs.length;
+
+            const targetThumb = thumbs[currentMedia];
             const mediaType = targetThumb.dataset.type;
 
             if (mediaType === 'video') {
+                const videoUrl = targetThumb.dataset.videoUrl;
+
+                if (!videoUrl) return;
+
                 mainImg.style.display = 'none';
                 mainVid.style.display = 'block';
-                vidSource.src = targetThumb.dataset.videoUrl;
+
+                vidSource.src = videoUrl;
                 mainVid.load();
+
             } else {
+                const thumbnailImage = targetThumb.querySelector('img');
+
+                if (!thumbnailImage) return;
+
                 mainVid.pause();
                 mainVid.style.display = 'none';
+
                 mainImg.style.display = 'block';
-                mainImg.src = targetThumb.querySelector('img').src;
+                mainImg.src = thumbnailImage.src;
             }
 
-            count.textContent = (current + 1) + '/' + thumbs.length;
-            thumbs.forEach((t, n) => t.classList.toggle('is-active', n === current));
+            if (count) {
+                count.textContent = (currentMedia + 1) + '/' + thumbs.length;
+            }
+
+            thumbs.forEach(function(thumb, index) {
+                thumb.classList.toggle('is-active', index === currentMedia);
+            });
         }
 
-        thumbs.forEach(t => t.addEventListener('click', () => showMedia(+t.dataset.index)));
-        document.querySelector('.pd-prev')?.addEventListener('click', () => showMedia(current - 1));
-        document.querySelector('.pd-next')?.addEventListener('click', () => showMedia(current + 1));
 
-        const product = 'Koko Premium Modern Lengan Panjang',
-            phone = '6285241800852';
-        const msg = "Assalamu'alaikum Abati Store, saya ingin pesan " + product + ". Mohon konfirmasi stok dan ongkir.";
-        const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
-        document.getElementById('pdWhatsapp').href = url;
+        /* =========================================
+           5. EVENT DELEGATION
+           Berlaku juga untuk elemen yang muncul
+           belakangan melalui Vue v-if
+        ========================================= */
 
-        document.getElementById('pdShareWa').href = 'https://wa.me/?text=' + encodeURIComponent(product + ' — ' +
-            location.href);
-        document.getElementById('pdCopyLink').addEventListener('click', async () => {
-            const status = document.getElementById('pdCopyStatus');
-            try {
-                await navigator.clipboard.writeText(location.href);
-                status.textContent = 'Tautan disalin';
-            } catch (e) {
-                status.textContent = 'Salin URL dari bilah alamat';
+        document.addEventListener('click', function(event) {
+
+            const target = event.target;
+
+            if (!(target instanceof Element)) return;
+
+
+            // Buka panduan ukuran
+            if (target.closest('#pdOpenSizeGuide')) {
+                event.preventDefault();
+                openSizeModal();
+                return;
             }
+
+
+            // Tutup panduan ukuran
+            if (target.closest('[data-close-size]')) {
+                event.preventDefault();
+                closeSizeModal();
+                return;
+            }
+
+
+            // Salin tautan produk
+            const copyButton = target.closest('#pdCopyLink');
+
+            if (copyButton) {
+                event.preventDefault();
+                copyProductLink();
+                return;
+            }
+
+
+            // Bagikan ke WhatsApp
+            const whatsappButton = target.closest('#pdShareWa');
+
+            if (whatsappButton) {
+                shareProductWhatsApp(whatsappButton);
+                return;
+            }
+
+
+            // Thumbnail galeri
+            const thumb = target.closest('.pd-thumb');
+
+            if (thumb) {
+                const index = Number(thumb.dataset.index);
+
+                if (!Number.isNaN(index)) {
+                    showMedia(index);
+                }
+
+                return;
+            }
+
+
+            // Foto sebelumnya
+            if (target.closest('.pd-prev')) {
+                showMedia(currentMedia - 1);
+                return;
+            }
+
+
+            // Foto berikutnya
+            if (target.closest('.pd-next')) {
+                showMedia(currentMedia + 1);
+                return;
+            }
+
+
+            // Tab informasi produk
+            const tab = target.closest('.pd-tab');
+
+            if (tab) {
+                const name = tab.dataset.tab;
+
+                document.querySelectorAll('.pd-tab').forEach(function(item) {
+                    const active = item === tab;
+
+                    item.classList.toggle('is-active', active);
+                    item.setAttribute(
+                        'aria-selected',
+                        active ? 'true' : 'false'
+                    );
+                });
+
+                document.querySelectorAll('.pd-tab-panel').forEach(function(panel) {
+                    panel.hidden = panel.id !== 'pdTab-' + name;
+                    panel.classList.toggle('is-active', !panel.hidden);
+                });
+            }
+
         });
 
-        // Tab Switcher
-        document.querySelectorAll('.pd-tab').forEach(t => t.addEventListener('click', () => {
-            const name = t.dataset.tab;
-            document.querySelectorAll('.pd-tab').forEach(x => {
-                x.classList.toggle('is-active', x === t);
-                x.setAttribute('aria-selected', x === t ? 'true' : 'false');
-            });
-            document.querySelectorAll('.pd-tab-panel').forEach(p => {
-                p.hidden = p.id !== 'pdTab-' + name;
-                p.classList.toggle('is-active', !p.hidden);
-            });
-        }));
 
+        /* =========================================
+           6. TUTUP MODAL DENGAN TOMBOL ESCAPE
+        ========================================= */
 
-    })();
+        document.addEventListener('keydown', function(event) {
+
+            if (event.key === 'Escape') {
+                const modal = document.getElementById('pdSizeModal');
+
+                if (modal && modal.classList.contains('is-open')) {
+                    closeSizeModal();
+                }
+            }
+
+        });
+
+    });
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
@@ -641,6 +969,7 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                 relatedProducts: [],
                 relatedLoading: false,
                 allSizes: [],
+                sizeGuide: null,
 
             };
         },
@@ -661,6 +990,21 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 
                 const message =
                     `Assalamu'alaikum, Kak. Saya mau pesan produk ${productName}. Apa masih ada?\n\n` +
+                    `Link produk: ${productUrl}`;
+
+                const whatsappUrl =
+                    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+                window.open(whatsappUrl, '_blank');
+            },
+            requestShopeeLink() {
+                const phone = '6285241800852';
+
+                const productName = this.product?.name || 'produk ini';
+                const productUrl = window.location.href;
+
+                const message =
+                    `Assalamu'alaikum, Kak. Saya mau request link shopee untuk produk ${productName} karena saya dari luar kendari / Luar Sulawesi Tenggara?\n\n` +
                     `Link produk: ${productUrl}`;
 
                 const whatsappUrl =
@@ -764,6 +1108,7 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 
                     const data = await response.json();
                     this.product = data.data || data;
+                    this.sizeGuide = data.size_guide || null;
 
                 } catch (error) {
                     console.error('Gagal mengambil detail produk:', error);
@@ -818,42 +1163,6 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
             },
 
         }
-    });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const modal = document.getElementById('pdSizeModal');
-        const openButton = document.getElementById('pdOpenSizeGuide');
-
-        if (!modal || !openButton) {
-            console.error('Modal panduan ukuran atau tombol pembuka tidak ditemukan.');
-            return;
-        }
-
-        function openModal() {
-            modal.classList.add('is-open');
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('pd-modal-open');
-        }
-
-        function closeModal() {
-            modal.classList.remove('is-open');
-            modal.setAttribute('aria-hidden', 'true');
-            document.body.classList.remove('pd-modal-open');
-        }
-
-        openButton.addEventListener('click', openModal);
-
-        modal.querySelectorAll('[data-close-size]').forEach(function(element) {
-            element.addEventListener('click', closeModal);
-        });
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && modal.classList.contains('is-open')) {
-                closeModal();
-            }
-        });
     });
 </script>
 

@@ -24,16 +24,18 @@ Route::get('/products', [ProductController::class, 'index'])->name('product.inde
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/produk/{slug}', function ($slug) {
     $product = \App\Models\Product::with([
+        'brand',
         'category',
         'images',
         'stocks.size',
-        'tags',
-    ])
-        ->where('slug', $slug)
-        ->firstOrFail();
+        'tags'
+    ])->where('slug', $slug)->firstOrFail();
+
+    $sizeGuide = $product->sizeGuide();
 
     return response()->json([
         'data' => $product,
+        'size_guide' => $sizeGuide
     ]);
 })->name('api.produk.show');
 

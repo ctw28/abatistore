@@ -12,4 +12,8 @@ class Category extends Model
     {
         return $this->hasMany(Product::class);
     }
+    public function sizeGuides()
+    {
+        return $this->hasMany(SizeGuide::class);
+    }
 }

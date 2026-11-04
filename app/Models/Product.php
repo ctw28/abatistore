@@ -72,4 +72,14 @@ class Product extends Model
             }
         });
     }
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+    public function sizeGuide()
+    {
+        return SizeGuide::where('brand_id', $this->brand_id)
+            ->where('category_id', $this->category_id)
+            ->first();
+    }
 }

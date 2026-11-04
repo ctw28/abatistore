@@ -540,7 +540,7 @@
 
 /* How to Buy Section */
 .pd-howto {
-    margin-top: 60px;
+    margin-top: 30px;
     background: var(--cream);
     padding: 40px;
     border-radius: 16px;
@@ -767,7 +767,7 @@
         font-size: 22px;
     }
     .pd-price {
-        font-size: 22px;
+        font-size: 18px;
     }
     .pd-howto {
         padding: 24px 16px;

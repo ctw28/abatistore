@@ -451,7 +451,7 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                         <div class="pd-size-help">
                             <p>Belum yakin dengan ukuran yang cocok?</p>
 
-                            <a :href="'https://wa.me/628xxxxxxxxxx?text=' +
+                            <a :href="'https://wa.me/6285241800852?text=' +
                 encodeURIComponent(
                     'Assalamu’alaikum kak, saya mau tanya terkait ukuran ' +
                     product.name +

@@ -47,11 +47,11 @@
                 <nav class="desktop-nav">
                     <a href="{{ route('beranda') }}">Beranda</a>
                     <a href="{{ route('katalog') }}">Katalog</a>
-                    <button type="button" data-open-modal="sizeModal">
+                    <!-- <button type="button" data-open-modal="sizeModal">
                         Panduan Ukuran
                     </button>
                     <button type="button" data-open-modal="shippingModal">
-                        Cek Ongkir Lokal
+                        Cek Ongkir Lokal -->
                     </button>
                     <a href="https://wa.me/6285241800852?text={{ urlencode('Assalamu’alaikum kak, saya ingin bertanya tentang pemesanan seragam. Bagaimana caranya?') }}"
                         target="_blank" rel="noopener">
@@ -113,21 +113,18 @@
 
 
                         <!-- Menu Panduan Ukuran -->
-                        <button type="button" class="mobile-menu-link" data-open-modal="sizeModal">
+                        <!-- <button type="button" class="mobile-menu-link" data-open-modal="sizeModal">
                             <span class="menu-link-icon">
 
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
                                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <!-- Bentuk baju -->
                                     <path d="M8 4L4 6.5 2.8 11l3.4 1.2L8 9.5V20h8V9.5l1.8 2.7 3.4-1.2L20 6.5 16 4" />
                                     <path d="M8 4c.8 1.4 2.1 2.1 4 2.1S15.2 5.4 16 4" />
 
-                                    <!-- Garis ukur horizontal dan panah dua arah -->
                                     <path d="M8.5 14.2h7" />
                                     <path d="m10 12.9-1.5 1.3 1.5 1.3" />
                                     <path d="m14 12.9 1.5 1.3-1.5 1.3" />
 
-                                    <!-- Garis ukur vertikal -->
                                     <path d="M18.8 13.5v5" />
                                     <path d="m17.7 14.6 1.1-1.1 1.1 1.1" />
                                     <path d="m17.7 17.4 1.1 1.1 1.1-1.1" />
@@ -139,10 +136,10 @@
                                 <small>Bantu pilih ukuran yang pas</small>
                             </span>
                             <span class="menu-arrow">›</span>
-                        </button>
+                        </button> -->
 
                         <!-- Menu Ongkir -->
-                        <button type="button" class="mobile-menu-link" data-open-modal="shippingModal">
+                        <!-- <button type="button" class="mobile-menu-link" data-open-modal="shippingModal">
                             <span class="menu-link-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                     <path d="M3 6h11v12H3z" />
@@ -156,7 +153,7 @@
                                 <small>Informasi biaya dan pengiriman</small>
                             </span>
                             <span class="mobile-menu-arrow">›</span>
-                        </button>
+                        </button> -->
 
                         <!-- Menu Pesan Seragam -->
                         <a class="mobile-menu-link"
@@ -385,165 +382,165 @@
     <!-- Script Global UI Header/Mobile Menu/Search -->
     <!-- Script Global Navigasi (Hamburger Menu & Search Mobile) -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuButton = document.querySelector('.menu');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const menuBackdrop = document.querySelector('.menu-backdrop');
-        const closeMenuButton = document.querySelector('.close-menu');
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.querySelector('.menu');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const menuBackdrop = document.querySelector('.menu-backdrop');
+            const closeMenuButton = document.querySelector('.close-menu');
 
-        function openMobileMenu() {
-            if (!mobileMenu || !menuBackdrop) return;
-            mobileMenu.classList.add('open');
-            menuBackdrop.classList.add('open');
-            document.body.classList.add('menu-open');
-            document.body.style.overflow = 'hidden';
-            menuButton?.setAttribute('aria-expanded', 'true');
-        }
-
-        function closeMobileMenu() {
-            if (!mobileMenu || !menuBackdrop) return;
-            mobileMenu.classList.remove('open');
-            menuBackdrop.classList.remove('open');
-            document.body.classList.remove('menu-open');
-            document.body.style.overflow = '';
-            menuButton?.setAttribute('aria-expanded', 'false');
-        }
-
-        menuButton?.addEventListener('click', openMobileMenu);
-        closeMenuButton?.addEventListener('click', closeMobileMenu);
-        menuBackdrop?.addEventListener('click', closeMobileMenu);
-
-        mobileMenu?.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        // Mobile Search Toggle
-        const searchButton = document.querySelector('.mobile-search-toggle');
-        const searchPanel = document.querySelector('.mobile-search-panel');
-        const searchInput = document.querySelector('#mobileSearchInput');
-
-        function setMobileSearch(open) {
-            if (!searchPanel) return;
-            searchPanel.classList.toggle('open', open);
-            searchPanel.setAttribute('aria-hidden', String(!open));
-            searchButton?.setAttribute('aria-expanded', String(open));
-            if (open) setTimeout(() => searchInput?.focus(), 100);
-        }
-
-        searchButton?.addEventListener('click', () => {
-            const isOpen = searchPanel?.classList.contains('open');
-            setMobileSearch(!isOpen);
-        });
-
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape') {
-                closeMobileMenu();
-                setMobileSearch(false);
+            function openMobileMenu() {
+                if (!mobileMenu || !menuBackdrop) return;
+                mobileMenu.classList.add('open');
+                menuBackdrop.classList.add('open');
+                document.body.classList.add('menu-open');
+                document.body.style.overflow = 'hidden';
+                menuButton?.setAttribute('aria-expanded', 'true');
             }
-        });
 
+            function closeMobileMenu() {
+                if (!mobileMenu || !menuBackdrop) return;
+                mobileMenu.classList.remove('open');
+                menuBackdrop.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+                menuButton?.setAttribute('aria-expanded', 'false');
+            }
 
-        document.addEventListener('click', function(event) {
-            const opener = event.target.closest('[data-open-modal]');
-            const closer = event.target.closest('[data-close-modal]');
+            menuButton?.addEventListener('click', openMobileMenu);
+            closeMenuButton?.addEventListener('click', closeMobileMenu);
+            menuBackdrop?.addEventListener('click', closeMobileMenu);
 
-            if (opener) {
-                const modal = document.getElementById(
-                    opener.dataset.openModal
-                );
+            mobileMenu?.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
 
-                if (modal) {
-                    modal.classList.add('is-open');
-                    modal.setAttribute('aria-hidden', 'false');
-                    document.body.style.overflow = 'hidden';
+            // Mobile Search Toggle
+            const searchButton = document.querySelector('.mobile-search-toggle');
+            const searchPanel = document.querySelector('.mobile-search-panel');
+            const searchInput = document.querySelector('#mobileSearchInput');
+
+            function setMobileSearch(open) {
+                if (!searchPanel) return;
+                searchPanel.classList.toggle('open', open);
+                searchPanel.setAttribute('aria-hidden', String(!open));
+                searchButton?.setAttribute('aria-expanded', String(open));
+                if (open) setTimeout(() => searchInput?.focus(), 100);
+            }
+
+            searchButton?.addEventListener('click', () => {
+                const isOpen = searchPanel?.classList.contains('open');
+                setMobileSearch(!isOpen);
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape') {
+                    closeMobileMenu();
+                    setMobileSearch(false);
                 }
-            }
+            });
 
-            if (closer) {
-                const modal = closer.closest('.info-modal');
 
-                if (modal) {
-                    modal.classList.remove('is-open');
-                    modal.setAttribute('aria-hidden', 'true');
-                    document.body.style.overflow = '';
+            document.addEventListener('click', function(event) {
+                const opener = event.target.closest('[data-open-modal]');
+                const closer = event.target.closest('[data-close-modal]');
+
+                if (opener) {
+                    const modal = document.getElementById(
+                        opener.dataset.openModal
+                    );
+
+                    if (modal) {
+                        modal.classList.add('is-open');
+                        modal.setAttribute('aria-hidden', 'false');
+                        document.body.style.overflow = 'hidden';
+                    }
                 }
-            }
-        });
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                document.querySelectorAll('.info-modal.is-open')
-                    .forEach(function(modal) {
+                if (closer) {
+                    const modal = closer.closest('.info-modal');
+
+                    if (modal) {
                         modal.classList.remove('is-open');
                         modal.setAttribute('aria-hidden', 'true');
-                    });
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
 
-                document.body.style.overflow = '';
-            }
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    document.querySelectorAll('.info-modal.is-open')
+                        .forEach(function(modal) {
+                            modal.classList.remove('is-open');
+                            modal.setAttribute('aria-hidden', 'true');
+                        });
+
+                    document.body.style.overflow = '';
+                }
+            });
+
         });
-
-    });
     </script>
 
     <script>
-    // Aturan diskon global Abati Store
+        // Aturan diskon global Abati Store
 
-    window.getDiscountPercent = function(product) {
-        const category = String(
-                product?.category?.name ||
-                product?.category?.slug ||
-                product?.category_name ||
-                product?.category_slug ||
-                ''
-            )
-            .toLowerCase()
-            .replace(/[-_]/g, ' ')
-            .trim();
+        window.getDiscountPercent = function(product) {
+            const category = String(
+                    product?.category?.name ||
+                    product?.category?.slug ||
+                    product?.category_name ||
+                    product?.category_slug ||
+                    ''
+                )
+                .toLowerCase()
+                .replace(/[-_]/g, ' ')
+                .trim();
 
-        // Aturan diskon berdasarkan jenis produk
-        const discountRules = [{
-                keywords: ['koko', 'baju koko'],
-                percent: 12
-            },
-            {
-                keywords: ['jaket', 'bomber'],
-                percent: 7
-            },
-            {
-                keywords: ['jubah'],
-                percent: 7
-            },
-            {
-                keywords: ['kurta'],
-                percent: 7
-            },
-            {
-                keywords: ['kemeja'],
-                percent: 7
-            },
-            {
-                keywords: ['kaos', 'oversize'],
-                percent: 7
-            },
-            {
-                keywords: ['sirwal'],
-                percent: 7
-            }
-        ];
+            // Aturan diskon berdasarkan jenis produk
+            const discountRules = [{
+                    keywords: ['koko', 'baju koko'],
+                    percent: 12
+                },
+                {
+                    keywords: ['jaket', 'bomber'],
+                    percent: 7
+                },
+                {
+                    keywords: ['jubah'],
+                    percent: 7
+                },
+                {
+                    keywords: ['kurta'],
+                    percent: 7
+                },
+                {
+                    keywords: ['kemeja'],
+                    percent: 7
+                },
+                {
+                    keywords: ['kaos', 'oversize'],
+                    percent: 7
+                },
+                {
+                    keywords: ['sirwal'],
+                    percent: 7
+                }
+            ];
 
-        const rule = discountRules.find(item =>
-            item.keywords.some(keyword => category.includes(keyword))
-        );
+            const rule = discountRules.find(item =>
+                item.keywords.some(keyword => category.includes(keyword))
+            );
 
-        return rule ? rule.percent : 7;
-    };
+            return rule ? rule.percent : 7;
+        };
 
-    window.getDiscountPrice = function(product) {
-        const price = Number(product?.price || 0);
-        const discount = window.getDiscountPercent(product);
+        window.getDiscountPrice = function(product) {
+            const price = Number(product?.price || 0);
+            const discount = window.getDiscountPercent(product);
 
-        return Math.round(price * (1 - discount / 100));
-    };
+            return Math.round(price * (1 - discount / 100));
+        };
     </script>
 
     @stack('scripts')

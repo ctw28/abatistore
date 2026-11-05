@@ -158,3 +158,17 @@ desktop-nav a,
         padding: 26px 22px;
     }
 }
+/* Sembunyikan elemen Vue sebelum selesai inisialisasi */
+[v-cloak] {
+    display: none !important;
+}
+
+/* Modal selalu tersembunyi secara default */
+.pd-modal {
+    display: none;
+}
+
+/* Modal hanya muncul ketika dibuka */
+.pd-modal.is-open {
+    display: flex;
+}

@@ -297,7 +297,7 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 @endpush
 
 @section('content')
-<main class="pd-page" id="productDetailApp">
+<main class="pd-page" id="productDetailApp" v-cloak>
     <div class="pd-container">
 
         <section class="pd-main" style="padding-top: 20px;">

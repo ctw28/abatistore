@@ -93,8 +93,7 @@ class ProductController extends Controller
         }
 
 
-        $products->orderBy('name');
-
+        $products->latest();
         if ($request->filled('limit')) {
             $limit = min(max((int) $request->limit, 1), 6);
 

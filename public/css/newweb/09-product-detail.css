@@ -437,7 +437,7 @@
     display: flex;
     gap: 10px;
     border-bottom: 1px solid var(--line);
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 .pd-tab {
     padding: 10px 20px;

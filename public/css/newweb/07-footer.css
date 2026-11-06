@@ -30,3 +30,41 @@ footer { background:#181818; color:#fff; font-size:14px; }
 }
 .floating-wa span { position:absolute; right:67px; white-space:nowrap; background:#fff; color:#333; padding:7px 10px; border-radius:8px; box-shadow:0 3px 15px rgba(0,0,0,.12); font-size:12px; opacity:0; transition:.2s; pointer-events:none; }
 .floating-wa:hover span { opacity:1; }
+.footerLogo {
+    display: inline-block;
+    width: 150px;
+    margin-bottom: 12px;
+}
+
+.footerLogo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 65px;
+    object-fit: contain;
+    object-position: left center;
+}
+.footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.footer-socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color .2s ease;
+}
+
+.footer-socials a i {
+    font-size: 19px;
+}
+
+.footer-socials a:hover {
+    color: #fff;
+}

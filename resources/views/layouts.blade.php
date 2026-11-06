@@ -32,7 +32,7 @@
 
 
 <body>
-    <div id="app" v-cloak>
+    <div id="app">
         <!-- ================= HEADER & MOBILE MENU (SAMA DI SEMUA HALAMAN) ================= -->
         <header>
             <div class="wrap head">
@@ -47,16 +47,17 @@
                 <nav class="desktop-nav">
                     <a href="{{ route('beranda') }}">Beranda</a>
                     <a href="{{ route('katalog') }}">Katalog</a>
+                    <a href="https://wa.me/6285241800852?text={{ urlencode('Assalamu’alaikum kak, saya ingin bertanya tentang pemesanan seragam. Bagaimana caranya?') }}"
+                        target="_blank" rel="noopener">
+                        Pesan Seragam
+                    </a>
+                    <a href="{{ route('detail.toko') }}">Tentang Kami</a>
                     <!-- <button type="button" data-open-modal="sizeModal">
                         Panduan Ukuran
                     </button>
                     <button type="button" data-open-modal="shippingModal">
                         Cek Ongkir Lokal -->
-                    </button>
-                    <a href="https://wa.me/6285241800852?text={{ urlencode('Assalamu’alaikum kak, saya ingin bertanya tentang pemesanan seragam. Bagaimana caranya?') }}"
-                        target="_blank" rel="noopener">
-                        Pesan Seragam
-                    </a>
+                    <!-- </button> -->
                 </nav>
                 <!-- <div class="search desktop-search">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -308,12 +309,12 @@
                 <!-- BRAND -->
                 <div class="footer-brand">
                     <a href="/" class="footerLogo">
-                        ABATI<small>STORE</small>
+                        <img src="{{ asset('logo-abati-store-white.png') }}" alt="Abati Store">
                     </a>
 
                     <p>
-                        Temukan pakaian pria berkualitas dengan lebih mudah.
-                        Jelajahi koleksi Abati Store secara online, lalu pesan
+                        Mau belanja mudah, praktis dan cepat? INIMI DIA, ABATI STORE.
+                        Jelajahi koleksi Abati Store secara online dari mana dan kapanpun, pesan
                         melalui WhatsApp atau kunjungi toko kami di Kendari.
                     </p>
                 </div>
@@ -323,7 +324,6 @@
                     <h4>Belanja</h4>
                     <div class="links">
                         <a href="/katalog">Semua Produk</a>
-                        <a href="/#kategori">Kategori Produk</a>
                         <a href="/katalog?kategori=koko">Baju Koko</a>
                         <a href="/katalog?kategori=jubah">Jubah</a>
                         <a href="/katalog?kategori=kurta">Kurta</a>
@@ -355,12 +355,21 @@
                         Jalan La Ode Hadi, Lorong Satria, Kel. Wowawanggu, Kec. Kadia, Kota Kendari, Sulawesi Tenggara
                         93117
                     </p>
-
                     <p>
-                        <span>Instagram & TikTok</span>
-                        <a href="https://www.instagram.com/fadkhera.kendari/" target="_blank" rel="noopener">
-                            @fadkhera.kendari
+                        <span>Ikuti Media Sosial Kami</span>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/fadkhera.kendari/" target="_blank" rel="noopener"
+                            aria-label="Instagram Abati Store">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
                         </a>
+
+                        <a href="https://www.tiktok.com/@fadkhera.kendari" target="_blank" rel="noopener"
+                            aria-label="TikTok Abati Store">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
                     </p>
 
 
@@ -370,7 +379,6 @@
 
             <div class="wrap bottom">
                 <span>© {{ date('Y') }} Abati Store.</span>
-                <span>Pakaian adalah Akhlak · INIMI DIA</span>
             </div>
         </footer>
 

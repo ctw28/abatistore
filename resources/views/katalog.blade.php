@@ -1233,14 +1233,18 @@
                         </article>
 
 
-                        <aside v-if="index === 5 && filteredProducts.length > 6" class="interleaved-rec-card">
+                        <aside v-if="index === batchSize - 1 && filteredProducts.length > batchSize"
+                            class="interleaved-rec-card">
+
                             <div class="interleaved-rec-info">
                                 <small>SERAGAM</small>
                                 <h3>Butuh Pakaian Seragam untuk keluarga / komunitasmu?</h3>
                                 <p>Dapatkan penawaran spesial untuk pemesanan seragam.</p>
                             </div>
-                            <button type="button" class="interleaved-rec-btn" @click.stop="setCategory(1)">Konsultasikan
-                                sekarang →</button>
+
+                            <button type="button" class="interleaved-rec-btn" @click.stop="setCategory(1)">
+                                Konsultasikan sekarang →
+                            </button>
                         </aside>
                     </template>
                 </div>
@@ -1327,9 +1331,9 @@
                 searchQuery: '',
                 selectedCategory: '',
                 selectedSize: '',
-
                 // Tampilan katalog
-                visibleLimit: 8,
+                batchSize: 8,
+                visibleLimit: 16,
                 loading: false,
                 loadError: false
             };
@@ -1401,6 +1405,11 @@
         },
 
         async mounted() {
+            // Tentukan jumlah produk berdasarkan ukuran layar.
+            this.handleResize();
+
+            window.addEventListener('resize', this.handleResize);
+
             // Baca filter kategori dan ukuran dari URL.
             this.readCategoryFromUrl();
 
@@ -1422,9 +1431,27 @@
                 'popstate',
                 this.handleCatalogPopstate
             );
+
+            window.removeEventListener(
+                'resize',
+                this.handleResize
+            );
         },
 
         methods: {
+            handleResize() {
+                const nextBatchSize = window.innerWidth <= 1199 ? 6 : 8;
+
+                if (nextBatchSize !== this.batchSize) {
+                    const loadedBatches = Math.max(
+                        2,
+                        Math.ceil(this.visibleLimit / this.batchSize)
+                    );
+
+                    this.batchSize = nextBatchSize;
+                    this.visibleLimit = loadedBatches * nextBatchSize;
+                }
+            },
             // ==========================================
             // TAG REKOMENDASI
             // ==========================================
@@ -1589,7 +1616,7 @@
                     String(this.draftRecommendation);
 
                 this.recommendationModalOpen = false;
-                this.visibleLimit = 8;
+                this.visibleLimit = this.batchSize * 2;
 
                 this.updateRecommendationUrl();
 
@@ -1599,7 +1626,7 @@
             async clearRecommendation() {
                 this.selectedRecommendation = '';
                 this.draftRecommendation = '';
-                this.visibleLimit = 8;
+                this.visibleLimit = this.batchSize * 2;
 
                 this.updateRecommendationUrl();
 
@@ -1643,7 +1670,7 @@
                     requestedSize :
                     '';
 
-                this.visibleLimit = 8;
+                this.visibleLimit = this.batchSize * 2;
             },
 
             handleCatalogPopstate() {
@@ -1657,7 +1684,7 @@
                     value === '' ? '' : Number(value);
 
                 this.selectedCategory = categoryId;
-                this.visibleLimit = 8;
+                this.visibleLimit = this.batchSize * 2;
 
                 const params = new URLSearchParams(
                     window.location.search
@@ -1691,7 +1718,7 @@
                 this.selectedRecommendation = '';
                 this.draftRecommendation = '';
                 this.recommendationModalOpen = false;
-                this.visibleLimit = 8;
+                this.visibleLimit = this.batchSize * 2;
 
                 this.setCategory('');
                 this.updateRecommendationUrl();
@@ -1716,7 +1743,7 @@
             },
 
             resetVisibleLimit() {
-                this.visibleLimit = 8;
+                this.visibleLimit = this.batchSize * 2;
             },
 
             // ==========================================
@@ -1912,7 +1939,7 @@
 
 
             loadMore() {
-                this.visibleLimit += 8;
+                this.visibleLimit += this.batchSize;
             }
         }
     }).mount('#catalogApp');

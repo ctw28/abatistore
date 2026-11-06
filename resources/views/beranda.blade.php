@@ -131,7 +131,7 @@
         <div class="sectionHead">
             <div>
                 <h2>Rekomendasi Untuk Anda</h2>
-                <p>Pilihan berdasarkan kebutuhan yang paling sering dicari.</p>
+                <p>Hanya Bersifat rekomendasi, penilaian setiap orang bisa berbeda.</p>
             </div>
         </div>
 
@@ -599,565 +599,565 @@
 
 @push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
 
-    const slider = document.getElementById('homeSlider');
+        const slider = document.getElementById('homeSlider');
 
-    if (!slider) return;
+        if (!slider) return;
 
-    const slides = slider.querySelectorAll('.slide');
-    const dots = slider.querySelectorAll('.dot');
-    const prev = slider.querySelector('.prev');
-    const next = slider.querySelector('.next');
+        const slides = slider.querySelectorAll('.slide');
+        const dots = slider.querySelectorAll('.dot');
+        const prev = slider.querySelector('.prev');
+        const next = slider.querySelector('.next');
 
-    let current = 0;
-    let autoSlide;
+        let current = 0;
+        let autoSlide;
 
-    if (slides.length <= 1) {
-        slider.classList.add('single-slide');
-        return;
-    }
+        if (slides.length <= 1) {
+            slider.classList.add('single-slide');
+            return;
+        }
 
-    function showSlide(index) {
-        current = (index + slides.length) % slides.length;
+        function showSlide(index) {
+            current = (index + slides.length) % slides.length;
 
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('on', i === current);
-        });
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('on', i === current);
+            });
 
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('on', i === current);
-        });
-    }
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('on', i === current);
+            });
+        }
 
-    function startAutoSlide() {
-        clearInterval(autoSlide);
+        function startAutoSlide() {
+            clearInterval(autoSlide);
 
-        autoSlide = setInterval(() => {
+            autoSlide = setInterval(() => {
+                showSlide(current + 1);
+            }, 5000);
+        }
+
+        next.addEventListener('click', function() {
             showSlide(current + 1);
-        }, 5000);
-    }
-
-    next.addEventListener('click', function() {
-        showSlide(current + 1);
-        startAutoSlide();
-    });
-
-    prev.addEventListener('click', function() {
-        showSlide(current - 1);
-        startAutoSlide();
-    });
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', function() {
-            showSlide(index);
             startAutoSlide();
         });
-    });
 
-    slider.addEventListener('mouseenter', () => {
-        clearInterval(autoSlide);
-    });
-
-    slider.addEventListener('mouseleave', startAutoSlide);
-
-    showSlide(0);
-    startAutoSlide();
-
-});
-
-const {
-    createApp
-} = Vue;
-
-createApp({
-    data() {
-        return {
-            kokoProducts: [],
-            jubahProducts: [],
-            kaosProducts: [],
-            bestSellerProducts: [],
-            productsLoading: false
-        };
-    },
-    mounted() {
-        this.fetchProducts();
-        this.$nextTick(() => {
-
+        prev.addEventListener('click', function() {
+            showSlide(current - 1);
+            startAutoSlide();
         });
-    },
-    methods: {
-        /* ----------------------------------------------------- DISKON
-           ----------------------------------------------------- */
-        goToProductDetail(product) {
-            if (!product || !product.slug)
-                return;
-            const template = @json(route('produk.detail', ['slug' => '__SLUG__']));
 
-            window.location.href = template.replace(
-                '__SLUG__',
-                encodeURIComponent(product.slug)
-            );
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                showSlide(index);
+                startAutoSlide();
+            });
+        });
+
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(autoSlide);
+        });
+
+        slider.addEventListener('mouseleave', startAutoSlide);
+
+        showSlide(0);
+        startAutoSlide();
+
+    });
+
+    const {
+        createApp
+    } = Vue;
+
+    createApp({
+        data() {
+            return {
+                kokoProducts: [],
+                jubahProducts: [],
+                kaosProducts: [],
+                bestSellerProducts: [],
+                productsLoading: false
+            };
         },
+        mounted() {
+            this.fetchProducts();
+            this.$nextTick(() => {
 
-        getDiscountPercent(product) {
-            return window.getDiscountPercent(product);
-
+            });
         },
+        methods: {
+            /* ----------------------------------------------------- DISKON
+               ----------------------------------------------------- */
+            goToProductDetail(product) {
+                if (!product || !product.slug)
+                    return;
+                const template = @json(route('produk.detail', ['slug' => '__SLUG__']));
 
-
-
-        productDetailUrl(slug) {
-            const template = @json(route('produk.detail', ['slug' => '__SLUG__']));
-
-            return template.replace(
-                '__SLUG__',
-                encodeURIComponent(slug)
-            );
-        },
-
-        getDiscountPrice(product) {
-            return window.getDiscountPrice(product);
-
-
-        },
-
-
-        /* -----------------------------------------------------
-        FILTER
-        ----------------------------------------------------- */
-
-        changeStock(type) {
-
-            this.stockFilter = type;
-
-            this.selectedCategory = null;
-
-        },
-
-
-        changeCategory(categoryId) {
-
-            this.stockFilter = 'available';
-
-            this.selectedCategory =
-                categoryId;
-
-            this.visibleCount = 500;
-
-        },
-
-
-        loadMore() {
-
-            this.visibleCount += 500;
-
-        },
-
-
-        /* -----------------------------------------------------
-        IMAGE
-        ----------------------------------------------------- */
-
-        getImageUrl(path) {
-
-            if (!path) {
-                return '/assets/no-image.png';
-            }
-
-            return `/storage/${path}`;
-
-        },
-
-
-        getFile(path) {
-
-            return path || '';
-
-        },
-
-
-        /* -----------------------------------------------------
-        FORMAT RUPIAH
-        ----------------------------------------------------- */
-
-        formatRupiah(value) {
-
-            const number =
-                Number(value);
-
-            if (isNaN(number)) {
-                return value;
-            }
-
-
-            return 'Rp ' +
-                number.toLocaleString('id-ID');
-
-        },
-
-
-        /* =====================================================
-        PRODUCT MODAL
-        ===================================================== */
-
-        openModal(product) {
-
-            this.selectedProduct = product;
-
-            this.activeImageIndex = 0;
-
-            this.startProductSlide();
-
-
-            const modalElement =
-                document.getElementById(
-                    'productModal'
+                window.location.href = template.replace(
+                    '__SLUG__',
+                    encodeURIComponent(product.slug)
                 );
+            },
+
+            getDiscountPercent(product) {
+                return window.getDiscountPercent(product);
+
+            },
 
 
-            if (!modalElement) return;
 
+            productDetailUrl(slug) {
+                const template = @json(route('produk.detail', ['slug' => '__SLUG__']));
 
-            const modal =
-                new bootstrap.Modal(
-                    modalElement
+                return template.replace(
+                    '__SLUG__',
+                    encodeURIComponent(slug)
                 );
+            },
+
+            getDiscountPrice(product) {
+                return window.getDiscountPrice(product);
 
 
-            modal.show();
-
-        },
+            },
 
 
-        nextImage() {
+            /* -----------------------------------------------------
+            FILTER
+            ----------------------------------------------------- */
 
-            if (this.allImages.length <= 1) {
-                return;
-            }
-            this.activeImageIndex = (this.activeImageIndex + 1) %
-                this.allImages.length;
-        },
-        prevImage() {
-            if (this.allImages.length <= 1) {
-                return;
-            }
-            this.activeImageIndex = (
-                this.activeImageIndex - 1 + this.allImages.length) % this.allImages.length;
-        },
-        startProductSlide() {
-            this.stopProductSlide();
-            if (this.allImages.length <= 1) {
-                return;
-            }
-            this.slideInterval = setInterval(() => {
+            changeStock(type) {
 
-                this.nextImage();
+                this.stockFilter = type;
 
-            }, 5000);
+                this.selectedCategory = null;
 
-        },
+            },
 
 
-        stopProductSlide() {
+            changeCategory(categoryId) {
 
-            if (this.slideInterval) {
+                this.stockFilter = 'available';
 
-                clearInterval(
-                    this.slideInterval
-                );
+                this.selectedCategory =
+                    categoryId;
 
-                this.slideInterval = null;
+                this.visibleCount = 500;
 
-            }
-
-        },
+            },
 
 
-        /* =====================================================
-        FETCH PRODUCTS
-        ===================================================== */
-        async fetchProducts() {
-            const url = "{{ route('product.index') }}";
+            loadMore() {
 
-            // Ambil produk sesuai filter dari Laravel
-            const fetchProducts = async (params) => {
-                const query = new URLSearchParams(params);
+                this.visibleCount += 500;
 
-                const response = await fetch(`${url}?${query}`, {
-                    headers: {
-                        Accept: 'application/json'
-                    }
-                });
+            },
 
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
+
+            /* -----------------------------------------------------
+            IMAGE
+            ----------------------------------------------------- */
+
+            getImageUrl(path) {
+
+                if (!path) {
+                    return '/assets/no-image.png';
                 }
 
-                const products = await response.json();
+                return `/storage/${path}`;
 
-                return Array.isArray(products) ? products : [];
-            };
+            },
 
-            this.productsLoading = true;
 
-            try {
-                // Empat request dengan filter masing-masing
-                const results = await Promise.allSettled([
-                    // Koko: stok tersedia, kategori 1, maksimal 6
-                    fetchProducts({
-                        status: 'ada',
-                        category_id: 1,
-                        limit: 6
-                    }),
+            getFile(path) {
 
-                    // Jubah: stok tersedia, kategori 10, maksimal 6
-                    fetchProducts({
-                        status: 'ada',
-                        category_id: 10,
-                        limit: 6
-                    }),
+                return path || '';
 
-                    // Kaos: stok tersedia, kategori 5, maksimal 6
-                    fetchProducts({
-                        status: 'ada',
-                        category_id: 5,
-                        limit: 6
-                    }),
+            },
 
-                    // Best Seller: stok tersedia, collection ID 38, maksimal 4
-                    fetchProducts({
-                        status: 'ada',
-                        collection: 17,
-                        limit: 4
-                    })
-                ]);
 
-                const [koko, jubah, kaos, bestSeller] = results;
+            /* -----------------------------------------------------
+            FORMAT RUPIAH
+            ----------------------------------------------------- */
 
-                this.kokoProducts =
-                    koko.status === 'fulfilled' ? koko.value : [];
+            formatRupiah(value) {
 
-                this.jubahProducts =
-                    jubah.status === 'fulfilled' ? jubah.value : [];
+                const number =
+                    Number(value);
 
-                this.kaosProducts =
-                    kaos.status === 'fulfilled' ? kaos.value : [];
+                if (isNaN(number)) {
+                    return value;
+                }
 
-                this.bestSellerProducts =
-                    bestSeller.status === 'fulfilled' ? bestSeller.value : [];
 
-                // Catat error per request
-                results.forEach((result, index) => {
-                    if (result.status === 'rejected') {
-                        console.error(
-                            `Request produk ke-${index + 1} gagal:`,
-                            result.reason
-                        );
+                return 'Rp ' +
+                    number.toLocaleString('id-ID');
+
+            },
+
+
+            /* =====================================================
+            PRODUCT MODAL
+            ===================================================== */
+
+            openModal(product) {
+
+                this.selectedProduct = product;
+
+                this.activeImageIndex = 0;
+
+                this.startProductSlide();
+
+
+                const modalElement =
+                    document.getElementById(
+                        'productModal'
+                    );
+
+
+                if (!modalElement) return;
+
+
+                const modal =
+                    new bootstrap.Modal(
+                        modalElement
+                    );
+
+
+                modal.show();
+
+            },
+
+
+            nextImage() {
+
+                if (this.allImages.length <= 1) {
+                    return;
+                }
+                this.activeImageIndex = (this.activeImageIndex + 1) %
+                    this.allImages.length;
+            },
+            prevImage() {
+                if (this.allImages.length <= 1) {
+                    return;
+                }
+                this.activeImageIndex = (
+                    this.activeImageIndex - 1 + this.allImages.length) % this.allImages.length;
+            },
+            startProductSlide() {
+                this.stopProductSlide();
+                if (this.allImages.length <= 1) {
+                    return;
+                }
+                this.slideInterval = setInterval(() => {
+
+                    this.nextImage();
+
+                }, 5000);
+
+            },
+
+
+            stopProductSlide() {
+
+                if (this.slideInterval) {
+
+                    clearInterval(
+                        this.slideInterval
+                    );
+
+                    this.slideInterval = null;
+
+                }
+
+            },
+
+
+            /* =====================================================
+            FETCH PRODUCTS
+            ===================================================== */
+            async fetchProducts() {
+                const url = "{{ route('product.index') }}";
+
+                // Ambil produk sesuai filter dari Laravel
+                const fetchProducts = async (params) => {
+                    const query = new URLSearchParams(params);
+
+                    const response = await fetch(`${url}?${query}`, {
+                        headers: {
+                            Accept: 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
                     }
-                });
 
-                console.log('Koko:', this.kokoProducts);
-                console.log('Jubah:', this.jubahProducts);
-                console.log('Kaos:', this.kaosProducts);
-                console.log('Best Seller:', this.bestSellerProducts);
+                    const products = await response.json();
 
-            } finally {
-                this.productsLoading = false;
+                    return Array.isArray(products) ? products : [];
+                };
+
+                this.productsLoading = true;
+
+                try {
+                    // Empat request dengan filter masing-masing
+                    const results = await Promise.allSettled([
+                        // Koko: stok tersedia, kategori 1, maksimal 6
+                        fetchProducts({
+                            status: 'ada',
+                            category_id: 1,
+                            limit: 6
+                        }),
+
+                        // Jubah: stok tersedia, kategori 10, maksimal 6
+                        fetchProducts({
+                            status: 'ada',
+                            category_id: 10,
+                            limit: 6
+                        }),
+
+                        // Kaos: stok tersedia, kategori 5, maksimal 6
+                        fetchProducts({
+                            status: 'ada',
+                            category_id: 5,
+                            limit: 6
+                        }),
+
+                        // Best Seller: stok tersedia, collection ID 38, maksimal 4
+                        fetchProducts({
+                            status: 'ada',
+                            collection: 17,
+                            limit: 4
+                        })
+                    ]);
+
+                    const [koko, jubah, kaos, bestSeller] = results;
+
+                    this.kokoProducts =
+                        koko.status === 'fulfilled' ? koko.value : [];
+
+                    this.jubahProducts =
+                        jubah.status === 'fulfilled' ? jubah.value : [];
+
+                    this.kaosProducts =
+                        kaos.status === 'fulfilled' ? kaos.value : [];
+
+                    this.bestSellerProducts =
+                        bestSeller.status === 'fulfilled' ? bestSeller.value : [];
+
+                    // Catat error per request
+                    results.forEach((result, index) => {
+                        if (result.status === 'rejected') {
+                            console.error(
+                                `Request produk ke-${index + 1} gagal:`,
+                                result.reason
+                            );
+                        }
+                    });
+
+                    console.log('Koko:', this.kokoProducts);
+                    console.log('Jubah:', this.jubahProducts);
+                    console.log('Kaos:', this.kaosProducts);
+                    console.log('Best Seller:', this.bestSellerProducts);
+
+                } finally {
+                    this.productsLoading = false;
+                }
+            },
+
+            /* =====================================================
+            WHATSAPP
+            ===================================================== */
+
+            getWhatsappLink(productName) {
+
+                const phoneNumber =
+                    '6285241800852';
+
+
+                const message =
+                    `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
+
+
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            },
+
+
+            getWhatsappLinkSeragam() {
+
+                const phoneNumber =
+                    '6285241800852';
+
+
+                const message =
+                    'Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?';
+
+
+                return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            },
+
+
+            /* =====================================================
+            FACEBOOK PIXEL
+            ===================================================== */
+
+            trackWhatsAppClick(product) {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'track',
+                        'InitiateCheckout', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        }
+                    );
+
+                }
+
+            },
+
+
+            trackShopeeClick(product) {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'ShopeeClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        }
+                    );
+
+                }
+
+            },
+
+
+            trackDetailClick(product) {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'DetailClick', {
+                            content_ids: [product.id],
+                            content_name: product.name,
+                            value: product.price,
+                            currency: 'IDR'
+                        }
+                    );
+
+                }
+
+            },
+
+
+            trackSeragamClick() {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'SeragamClick'
+                    );
+
+                }
+
+            },
+
+
+            trackSeragamClickWA() {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'SeragamClickWA'
+                    );
+
+                }
+
+            },
+
+
+            trackClickWaAdmin() {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'WaAdminClick'
+                    );
+
+                }
+
+            },
+
+
+            trackClickIg() {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'IgClick'
+                    );
+
+                }
+
+            },
+
+
+            trackClickTiktok() {
+
+                if (
+                    typeof fbq === 'function'
+                ) {
+
+                    fbq(
+                        'trackCustom',
+                        'TiktokClick'
+                    );
+
+                }
+
             }
         },
 
-        /* =====================================================
-        WHATSAPP
-        ===================================================== */
+        /* =========================================================
+        BEFORE UNMOUNT
+        ========================================================= */
 
-        getWhatsappLink(productName) {
+        beforeUnmount() {
 
-            const phoneNumber =
-                '6285241800852';
-
-
-            const message =
-                `Bismillah kak, saya mau pesan ${productName}. Masih ready?`;
-
-
-            return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-        },
-
-
-        getWhatsappLinkSeragam() {
-
-            const phoneNumber =
-                '6285241800852';
-
-
-            const message =
-                'Bismillah, saya ingin seragam untuk keluarga / komunitas. Bagaimana caranya?';
-
-
-            return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-        },
-
-
-        /* =====================================================
-        FACEBOOK PIXEL
-        ===================================================== */
-
-        trackWhatsAppClick(product) {
-
-            if (
-                typeof fbq === 'function'
-            ) {
-
-                fbq(
-                    'track',
-                    'InitiateCheckout', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    }
-                );
-
-            }
-
-        },
-
-
-        trackShopeeClick(product) {
-
-            if (
-                typeof fbq === 'function'
-            ) {
-
-                fbq(
-                    'trackCustom',
-                    'ShopeeClick', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    }
-                );
-
-            }
-
-        },
-
-
-        trackDetailClick(product) {
-
-            if (
-                typeof fbq === 'function'
-            ) {
-
-                fbq(
-                    'trackCustom',
-                    'DetailClick', {
-                        content_ids: [product.id],
-                        content_name: product.name,
-                        value: product.price,
-                        currency: 'IDR'
-                    }
-                );
-
-            }
-
-        },
-
-
-        trackSeragamClick() {
-
-            if (
-                typeof fbq === 'function'
-            ) {
-
-                fbq(
-                    'trackCustom',
-                    'SeragamClick'
-                );
-
-            }
-
-        },
-
-
-        trackSeragamClickWA() {
-
-            if (
-                typeof fbq === 'function'
-            ) {
-
-                fbq(
-                    'trackCustom',
-                    'SeragamClickWA'
-                );
-
-            }
-
-        },
-
-
-        trackClickWaAdmin() {
-
-            if (
-                typeof fbq === 'function'
-            ) {
-
-                fbq(
-                    'trackCustom',
-                    'WaAdminClick'
-                );
-
-            }
-
-        },
-
-
-        trackClickIg() {
-
-            if (
-                typeof fbq === 'function'
-            ) {
-
-                fbq(
-                    'trackCustom',
-                    'IgClick'
-                );
-
-            }
-
-        },
-
-
-        trackClickTiktok() {
-
-            if (
-                typeof fbq === 'function'
-            ) {
-
-                fbq(
-                    'trackCustom',
-                    'TiktokClick'
-                );
-
-            }
+            this.stopProductSlide();
 
         }
-    },
-
-    /* =========================================================
-    BEFORE UNMOUNT
-    ========================================================= */
-
-    beforeUnmount() {
-
-        this.stopProductSlide();
-
-    }
-}).mount('#app');
+    }).mount('#app');
 </script>
 
 @endpush

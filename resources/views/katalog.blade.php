@@ -1100,7 +1100,7 @@
 
                     <div class="catalog-recommendation-row">
                         <button type="button" class="catalog-recommendation-trigger" @click="openRecommendationModal">
-                            + Rekomendasi
+                            + Filter Rekomendasi
                         </button>
 
                         <span v-if="selectedRecommendationTag" class="catalog-active-tag">

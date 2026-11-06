@@ -285,7 +285,7 @@
         align-items: center;
         justify-content: space-between;
         gap: 20px;
-        margin: 8px 0;
+        margin: 25px 0;
     }
 
     .interleaved-rec-info small {

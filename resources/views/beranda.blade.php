@@ -131,7 +131,7 @@
         <div class="sectionHead">
             <div>
                 <h2>Rekomendasi Untuk Anda</h2>
-                <p>Hanya Bersifat rekomendasi, penilaian setiap orang bisa berbeda.</p>
+                <p>Bersifat rekomendasi, penilaian setiap orang bisa berbeda.</p>
             </div>
         </div>
 

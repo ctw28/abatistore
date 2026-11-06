@@ -20,7 +20,8 @@ class Product extends Model
         'image',
         'is_featured',
         'is_habis',
-        'link_shopee'
+        'link_shopee',
+        'brand_id',
     ];
 
     public function category()

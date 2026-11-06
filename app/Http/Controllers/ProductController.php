@@ -21,7 +21,8 @@ class ProductController extends Controller
             'category',
             'images',
             'stocks.size',
-            'tags'
+            'tags',
+            'brand'
         ]);
 
         if ($request->has('is_featured')) {

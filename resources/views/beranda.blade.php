@@ -1,6 +1,6 @@
 @extends('layouts')
 
-@section('title', 'Beranda — Abati Store')
+@section('title', 'Beranda — ABATI STORE')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/newweb/04-slider.css') }}">

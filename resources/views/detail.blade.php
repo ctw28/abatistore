@@ -38,6 +38,114 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 <!-- CSS Khusus Detail Produk -->
 <link rel="stylesheet" href="{{ asset('css/newweb/09-product-detail.css') }}">
 <style>
+    .size-guide-empty {
+        padding: 24px 16px;
+        text-align: center;
+        background: #f8f8f8;
+        border: 1px solid #eee;
+        border-radius: 12px;
+    }
+
+    .size-guide-empty-icon {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .size-guide-empty strong {
+        display: block;
+        color: #333;
+        font-size: 14px;
+    }
+
+    .size-guide-empty p {
+        color: #777;
+        font-size: 13px;
+        line-height: 1.6;
+        margin: 8px 0 16px;
+    }
+
+    /* ===== PROMO GRATIS ONGKIR ===== */
+
+    .pd-shipping-promo {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin-top: 16px;
+        padding: 16px;
+        background: #f3f8f5;
+        border: 1px solid #dcece1;
+        border-radius: 12px;
+    }
+
+    .pd-shipping-highlight span {
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .pd-shipping-icon {
+        flex-shrink: 0;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #e0f2e6;
+        border-radius: 50%;
+        font-size: 20px;
+    }
+
+    .pd-shipping-content {
+        min-width: 0;
+    }
+
+    .pd-shipping-content>strong {
+        display: block;
+        color: #244d36;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .pd-shipping-highlight {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: #21834b;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .pd-shipping-content p {
+        margin: 0 0 6px;
+        color: #555;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .pd-shipping-content p strong {
+        color: #21834b;
+    }
+
+    .pd-shipping-content small {
+        display: block;
+        color: #858585;
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    @media (max-width: 576px) {
+        .pd-shipping-promo {
+            padding: 13px;
+            gap: 11px;
+        }
+
+        .pd-shipping-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 15px;
+        }
+    }
+
     /* SHARE PRODUK */
     .pd-share {
         display: flex;
@@ -404,75 +512,80 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                     <div class="pd-modal-backdrop" data-close-size></div>
                     <section class="pd-modal-card" role="dialog" aria-modal="true" aria-labelledby="pdSizeTitle">
                         <button class="pd-modal-close" type="button" data-close-size aria-label="Tutup">×</button>
-                        <span class="pd-modal-eyebrow">BANTUAN UKURAN</span>
-                        <h2 id="pdSizeTitle">Panduan ukuran berdasarkan berat dan tinggi badan</h2>
-                        <!-- <p>Isi dengan ukuran resmi produk sebelum digunakan di situs.</p> -->
-                        <div class="pd-size-guide" v-if="sizeGuide">
-                            <img :src="'/' + sizeGuide.image" :alt="'Panduan Ukuran ' +
-            (product.brand ? product.brand.name : '') + ' ' +
-            (product.category ? product.category.name : '')">
-                        </div>
-                        <!-- <div class="pd-table-scroll">
-                            <table class="pd-size-table">
-                                <thead>
-                                    <tr>
-                                        <th>Ukuran</th>
-                                        <th>Lebar dada</th>
-                                        <th>Panjang baju</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>S</td>
-                                        <td>—</td>
-                                        <td>—</td>
-                                    </tr>
-                                    <tr>
-                                        <td>M</td>
-                                        <td>—</td>
-                                        <td>—</td>
-                                    </tr>
-                                    <tr>
-                                        <td>L</td>
-                                        <td>—</td>
-                                        <td>—</td>
-                                    </tr>
-                                    <tr>
-                                        <td>XL</td>
-                                        <td>—</td>
-                                        <td>—</td>
-                                    </tr>
-                                    <tr>
-                                        <td>XXL</td>
-                                        <td>—</td>
-                                        <td>—</td>
-                                    </tr>
-                                    <tr>
-                                        <td>XXXL</td>
-                                        <td>—</td>
-                                        <td>—</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> -->
-                        <div class="pd-size-help">
-                            <p>Belum yakin dengan ukuran yang cocok?</p>
 
-                            <a :href="'https://wa.me/6285241800852?text=' +
-                encodeURIComponent(
-        'Assalamu’alaikum kak, saya mau tanya terkait ukuran:\n\n' +
-        'Produk: ' + product.name + '\n' +
-        'Link Produk: ' + window.location.href + '\n\n' +
-        'Mohon bantuannya untuk memilih ukuran yang sesuai. Terima kasih kak.'
-    )" target="_blank" rel="noopener" class="pd-size-wa">
-                                <i class="fab fa-whatsapp"></i>
-                                Tanyakan ukuran via WhatsApp
-                            </a>
+                        <!-- Jika Size Guide Tersedia -->
+                        <div v-if="sizeGuide">
+                            <span class="pd-modal-eyebrow">BANTUAN UKURAN</span>
+                            <h2 id="pdSizeTitle">Panduan ukuran berdasarkan berat dan tinggi badan</h2>
 
-                            <small>Kami siap membantu memilih ukuran yang pas.</small>
+                            <div class="pd-size-guide" v-if="sizeGuide">
+                                <img :src="'/' + sizeGuide.image" :alt="'Panduan Ukuran ' +
+                            (product.brand ? product.brand.name : '') + ' ' +
+                            (product.category ? product.category.name : '')">
+                            </div>
+                            <div class="pd-size-help">
+                                <p>Belum yakin dengan ukuran yang cocok?</p>
+
+                                <a :href="'https://wa.me/6285241800852?text=' +encodeURIComponent(
+                            'Assalamu’alaikum kak, saya mau tanya terkait ukuran:\n\n' +'Produk: ' 
+                            + product.name + '\n' +'Link Produk: ' + window.location.href + '\n\n' +
+                            'Mohon bantuannya untuk memilih ukuran yang sesuai. Terima kasih kak.'
+                            )" target="_blank" rel="noopener" class="pd-size-wa">
+                                    <i class="fab fa-whatsapp"></i>
+                                    Tanyakan ukuran via WhatsApp
+                                </a>
+
+                                <small>Kami siap membantu memilih ukuran yang pas.</small>
+                            </div>
                         </div>
+
+                        <!-- Jika Size Guide Tidak Tersedia -->
+                        <div v-else class="size-guide-empty">
+                            <div class="size-guide-empty-icon">📏</div>
+
+                            <strong>Panduan ukuran belum tersedia</strong>
+
+                            <p>
+                                Silakan hubungi admin untuk mendapatkan rekomendasi
+                                ukuran yang sesuai dengan kebutuhan Anda.
+                            </p>
+
+                            <button type="button" class="pd-size-wa" @click="askSizeGuideViaWhatsApp">
+                                Hubungi Admin via WhatsApp
+                            </button>
+                        </div>
+
+
+
+
                     </section>
                 </div>
+
+                <!-- Informasi Gratis Ongkir dan Subsidi Pengiriman -->
+                <section v-if="product && product.id && !isProductOutOfStock()" class="pd-shipping-promo">
+
+                    <div class="pd-shipping-icon">🚚</div>
+
+                    <div class="pd-shipping-content">
+                        <strong>Belanja Mudah, Ongkir Lebih Hemat!</strong>
+
+                        <div class="pd-shipping-highlight">
+                            <span>✓</span>
+                            Gratis ongkir untuk area terjangkau (Kadia dan sekitarnya).
+                        </div>
+
+                        <p>
+                            Untuk kecamatan lainnya, nikmati subsidi ongkir
+                            hingga <strong>Rp10.000</strong>.
+                        </p>
+                        <!-- 
+                        <small>
+                            Lokasi dan biaya pengiriman akan dikonfirmasi admin
+                            sebelum pembayaran.
+                        </small> -->
+                    </div>
+                </section>
+
                 <!-- Tombol utama pesan via WA -->
                 <div class="pd-actions">
 
@@ -483,72 +596,10 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
 
                     <a v-else-if="product && product.id" class="pd-btn pd-btn-wa" href="#"
                         @click.prevent="orderViaWhatsApp" style="width: 100%; justify-content: center;">
-                        ☏ Pesan via WhatsApp (Gratis Ongkir)
+                        ☏ Order Sekarang (WhatsApp)
                     </a>
 
                 </div>
-
-                <!-- Bagian Pengiriman -->
-                <!-- <section v-if="product && product.id && !isProductOutOfStock()" class="pd-shipping">
-                    <div class="pd-shipping-promo">
-                        <span class="pd-shipping-icon">↗</span>
-                        <div>
-                            <b>Gratis ongkir hingga Rp10.000</b>
-                            <small>Subsidi sesuai tarif dan wilayah layanan.</small>
-                        </div>
-                    </div> -->
-                <!-- <details class="pd-shipping-details">
-                        <summary>Cek tabel ongkir per kecamatan <span>⌄</span></summary>
-                        <p class="pd-shipping-note">Tarif berikut contoh. Ganti sesuai tarif yang ditentukan Abati
-                            Store.</p>
-                        <div class="pd-table-scroll">
-                            <table class="pd-shipping-table">
-                                <thead>
-                                    <tr>
-                                        <th>Kecamatan</th>
-                                        <th>Tarif</th>
-                                        <th>Subsidi</th>
-                                        <th>Dibayar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mandonga</td>
-                                        <td>Rp5.000</td>
-                                        <td>Rp5.000</td>
-                                        <td class="pd-free">Gratis</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kadia</td>
-                                        <td>Rp5.000</td>
-                                        <td>Rp5.000</td>
-                                        <td class="pd-free">Gratis</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Wua-Wua</td>
-                                        <td>Rp7.000</td>
-                                        <td>Rp7.000</td>
-                                        <td class="pd-free">Gratis</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Poasia</td>
-                                        <td>Rp10.000</td>
-                                        <td>Rp10.000</td>
-                                        <td class="pd-free">Gratis</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Baruga</td>
-                                        <td>Rp12.000</td>
-                                        <td>Rp10.000</td>
-                                        <td>Rp2.000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <small class="pd-shipping-footnote">Subsidi maksimal Rp10.000. Admin mengonfirmasi ongkir
-                            sebelum pembayaran.</small>
-                    </details> -->
-                <!-- </section> -->
 
                 <!-- Tombol Bagikan dengan Ikon Ringkas -->
                 <div v-if="product && product.id && !isProductOutOfStock()" class="pd-share">
@@ -1147,7 +1198,16 @@ $seoUrl = route('produk.detail', ['slug' => $productSlug]);
                 );
             },
 
+            askSizeGuideViaWhatsApp() {
+                const phone = '6285241800852';
 
+                const message =
+                    `Assalamu'alaikum, saya ingin bertanya panduan ukuran untuk produk ${this.product.name}. Bisa dibantu rekomendasi ukurannya?`;
+
+                const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+                window.open(url, '_blank');
+            },
             async fetchProduct() {
                 try {
                     const slug = @json($productSlug);

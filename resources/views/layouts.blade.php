@@ -28,6 +28,9 @@
     <!-- CSS Tambahan Per Halaman -->
     @stack('styles')
     <link rel="stylesheet" href="{{ asset('css/newweb/08-responsive.css') }}">
+    @if(app()->environment('production'))
+    @include('admin.layouts.analytics')
+    @endif
 </head>
 
 
